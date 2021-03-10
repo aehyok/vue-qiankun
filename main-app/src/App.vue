@@ -1,9 +1,12 @@
 <template>
   <div id="app">
     <div id="nav">
+      <router-link to="/form-app">form-app</router-link>|
+      <router-link to="/table-app">table-app</router-link>|
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
+     <div id="appContainer"></div>
     <router-view/>
   </div>
 </template>
@@ -28,5 +31,9 @@
       color: #42b983;
     }
   }
+}
+.appContainer{
+  background: #ccc;
+  padding: 20px;
 }
 </style>

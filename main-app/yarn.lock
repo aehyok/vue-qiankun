@@ -819,7 +819,7 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/runtime@^7.11.0", "@babel/runtime@^7.8.4":
+"@babel/runtime@^7.10.5", "@babel/runtime@^7.11.0", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4":
   version "7.13.10"
   resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.13.10.tgz?cache=0&sync_timestamp=1615243066705&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.13.10.tgz#47d42a57b6095f4468da440388fdbad8bebf0d7d"
   integrity sha1-R9QqV7YJX0Ro2kQDiP262L6/DX0=
@@ -4659,6 +4659,13 @@ import-from@^2.1.0:
   dependencies:
     resolve-from "^3.0.0"
 
+import-html-entry@^1.9.0:
+  version "1.11.1"
+  resolved "https://registry.npmjs.org/import-html-entry/-/import-html-entry-1.11.1.tgz#3d8c5977926bdd122ab8e658965c102068b4af8d"
+  integrity sha512-O7mCUTwKdYU49/LH6nq1adWPnUlZQpKeGWIEcDq07KTcqP/v0jBLEIVc0oE0Mtlw3CEe0eeKGMyhl6LwfXCV7A==
+  dependencies:
+    "@babel/runtime" "^7.7.2"
+
 import-local@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/import-local/download/import-local-2.0.0.tgz#55070be38a5993cf18ef6db7e961f5bee5c5a09d"
@@ -6885,6 +6892,17 @@ q@^1.1.2:
   resolved "https://registry.npm.taobao.org/q/download/q-1.5.1.tgz?cache=0&sync_timestamp=1599054212574&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fq%2Fdownload%2Fq-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
+qiankun@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.npmjs.org/qiankun/-/qiankun-2.4.0.tgz#e0c847fcee1e79c167899bfcb7441a23590c5430"
+  integrity sha512-O9xfVQ1yP1tp7dL1EvK3BicD3z2NURAyF0BjxdJ9TYny40VFfWvw7H9j5ONZiihiE7owcwCpXex+FsqEU7fuew==
+  dependencies:
+    "@babel/runtime" "^7.10.5"
+    import-html-entry "^1.9.0"
+    lodash "^4.17.11"
+    single-spa "5.8.1"
+    tslib "^1.10.0"
+
 qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.npm.taobao.org/qs/download/qs-6.7.0.tgz?cache=0&sync_timestamp=1610598235973&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fqs%2Fdownload%2Fqs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
@@ -7490,6 +7508,11 @@ simple-swizzle@^0.2.2:
   integrity sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
   dependencies:
     is-arrayish "^0.3.1"
+
+single-spa@5.8.1:
+  version "5.8.1"
+  resolved "https://registry.npmjs.org/single-spa/-/single-spa-5.8.1.tgz#86c2575e297e31d8f06945944ec97e31851a59ae"
+  integrity sha512-RlyLZ1IDIPdzI6mQPzCQnlgTt9jmbAXBZODmifoDut840wksPDSPhcSS8jXMpuUlqOidQiX2YuLVQSR9DEgsXw==
 
 slash@^1.0.0:
   version "1.0.0"
@@ -8130,7 +8153,7 @@ tsconfig-paths@^3.9.0:
     minimist "^1.2.0"
     strip-bom "^3.0.0"
 
-tslib@^1.9.0:
+tslib@^1.10.0, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.npm.taobao.org/tslib/download/tslib-1.14.1.tgz?cache=0&sync_timestamp=1609887539329&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftslib%2Fdownload%2Ftslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha1-zy04vcNKE0vK8QkcQfZhni9nLQA=
