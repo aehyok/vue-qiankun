@@ -7,9 +7,9 @@
           <a href="javascript:;" @click="goMenu(m)">{{ m.name }}</a>
         </li>
       </ul> -->
+
       <div style="margin-left: 90px;">
         <el-menu
-          :default-active="activeMenu"
           class="el-menu-demo"
           mode="horizontal"
           background-color="#2bae85"
@@ -81,11 +81,11 @@
 </template>
 <script>
 export default {
-  computed: {
-    activeMenu () {
-      return this.$route.matched[0].path
-    }
-  },
+  // computed: {
+  //   activeMenu () {
+  //     return this.$route.matched[0].path
+  //   }
+  // },
   data () {
     const checkPassword = (rules, value, callback) => {
       if (value !== this.form.newPassword) {
