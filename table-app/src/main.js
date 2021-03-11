@@ -12,7 +12,7 @@ let instance = null
 function render (props = {}) {
   const { container } = props
   router = new VueRouter({
-    base: window.__POWERED_BY_QIANKUN__ ? '/app-vue/' : '/',
+    base: window.__POWERED_BY_QIANKUN__ ? '/table-app/' : '/',
     mode: 'history',
     routes
   })
@@ -21,7 +21,7 @@ function render (props = {}) {
     router,
     store,
     render: h => h(App)
-  }).$mount(container ? container.querySelector('#app') : '#app')
+  }).$mount(container ? container.querySelector('#tableapp') : '#tableapp')
 }
 
 // 独立运行时

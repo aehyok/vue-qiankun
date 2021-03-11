@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Layout from '@/layout'
 
 Vue.use(VueRouter)
 
@@ -9,6 +10,26 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/agriculture',
+    name: 'agriculture',
+    component: Layout,
+    meta: {
+      title: '涉农数据管理'
+    },
+    children: [
+      {
+        path: '/test',
+        name: 'test',
+        component: () =>
+          import('@/views/Test'),
+        meta: {
+          title: '户址管理',
+          hidden: false
+        }
+      }
+    ]
   },
   {
     path: '/about',
