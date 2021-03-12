@@ -11,7 +11,7 @@
         router
         background-color="#2c303b"
         text-color="#fff"
-        style="border: 0;"
+        style="border: 0;float:left;width:100%;"
       >
         <template v-for="m in displayMenuTree">
           <el-menu-item
@@ -21,8 +21,9 @@
             >{{ m.meta.title }}</el-menu-item
           >
           <el-submenu :index="m.path" v-else :key="m.name">
-            <span slot="title">{{ m.meta.title }}</span>
+            <span style="border: 0;float:left;"  slot="title">{{ m.meta.title }}</span>
             <el-menu-item
+              style="border: 0;float:left;width:100%;"
               :index="sub.path"
               :key="sub.name"
               v-for="sub in m.children"
@@ -37,18 +38,77 @@
 </template>
 <script>
 // import { getVersion } from '@/services'
-import { mapGetters, mapState } from 'vuex'
+// import { mapGetters, mapState } from 'vuex'
 export default {
-  data() {
+  data () {
     return {
       menuList: [],
       version: '',
+      displayMenuTree: [
+        {
+          path: '/form-app',
+          name: 'form-app',
+          meta: {
+            title: 'form-app',
+            hidden: false,
+            permissions: 7
+          },
+          children: [
+            {
+              path: '/form-app',
+              name: 'form-app-dynamic',
+              meta: {
+                title: 'form-app-dynamic',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
+              path: '/form-app/about',
+              name: 'form-app-about',
+              meta: {
+                title: 'form-app-about',
+                hidden: false,
+                permissions: 10
+              }
+            }
+          ]
+        },
+        {
+          path: '/table-app',
+          name: 'table-app',
+          meta: {
+            title: 'table-app',
+            hidden: false,
+            permissions: 1543
+          },
+          children: [
+            {
+              path: '/table-app',
+              name: 'table-dynamic',
+              meta: {
+                title: 'table-dynamic',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
+              path: '/table-app/about',
+              name: 'table-app-about',
+              meta: {
+                title: 'about',
+                hidden: false,
+                permissions: 10
+              }
+            }
+          ]
+        }
+      ]
     }
   },
   computed: {
-    ...mapGetters('permission', ['displayMenuTree']),
-    ...mapState('permission', ['leftMenus']),
-    activeMenu() {
+    // ...mapState('permission', ['leftMenus']),
+    activeMenu () {
       const route = this.$route
       const { meta, path } = route
       // if set path, the sidebar will highlight the path you set
@@ -56,22 +116,22 @@ export default {
         return meta.activeMenu
       }
       return path
-    },
+    }
   },
-  created() {
+  created () {
     this.getVersion()
   },
   methods: {
-    async getVersion() {
+    async getVersion () {
       const res = {
         code: 200,
         message: 'success',
-        data: { code: '1.3.0.001', updateDate: '2020.10.20', description: '' },
+        data: { code: '1.3.0.001', updateDate: '2020.10.20', description: '' }
       }
       // await getVersion()
       this.version = res.data.code
-    },
-  },
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
