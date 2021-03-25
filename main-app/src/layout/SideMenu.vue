@@ -109,6 +109,15 @@ export default {
                 hidden: false,
                 permissions: 10
               }
+            },
+            {
+              path: '/cesium',
+              name: 'me-app-cesium',
+              meta: {
+                title: 'me-app-cesium',
+                hidden: false,
+                permissions: 10
+              }
             }
           ]
         },

@@ -22,6 +22,16 @@ const routes = [
     }
   },
   {
+    path: '/cesium',
+    name: 'cesium',
+    component: () =>
+      import('@/views/Cesium'),
+    meta: {
+      title: '户址管理',
+      hidden: false
+    }
+  },
+  {
     path: '/agriculture',
     name: 'agriculture',
     component: Layout,
