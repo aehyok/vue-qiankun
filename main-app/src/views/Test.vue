@@ -15,7 +15,7 @@
 </template>
 <script>
 import videojs from 'video.js'
-import 'videojs-contrib-hls'
+// import 'videojs-contrib-hls'
 import 'video.js/dist/video-js.css'
 export default {
   data () {

@@ -100,6 +100,15 @@ export default {
                 hidden: false,
                 permissions: 10
               }
+            },
+            {
+              path: '/test',
+              name: 'me-app-test',
+              meta: {
+                title: 'me-app-test',
+                hidden: false,
+                permissions: 10
+              }
             }
           ]
         },
