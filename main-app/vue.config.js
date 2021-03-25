@@ -1,6 +1,15 @@
 const path = require('path');
-
+const TerserPlugin = require('terser-webpack-plugin')
 module.exports = {
+  // 打包后console.log消失
+  configureWebpack: config => {
+    config.optimization.minimizer.push(
+      new TerserPlugin({
+        extractComments: false,
+        terserOptions: { compress: { drop_console: true } },
+      })
+    )
+  },
   devServer: {
     port: 1000,
   },

@@ -3,12 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.9.1",
+    "leaflet": "^1.7.1",
+    "leaflet.pm": "^2.2.0",
+    "terser-webpack-plugin": "^5.1.1",
     "vue": "^2.6.11",
     "vue-router": "^3.5.1",
     "vuex": "^3.4.0"

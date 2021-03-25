@@ -75,6 +75,35 @@ export default {
           ]
         },
         {
+          path: '/me-app',
+          name: '/me-app',
+          meta: {
+            title: 'me-app',
+            hidden: false,
+            permissions: 7
+          },
+          children: [
+            {
+              path: '/me-app',
+              name: 'me-app-dynamic',
+              meta: {
+                title: 'me-app-dynamic',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
+              path: '/me/about',
+              name: 'me-app-about',
+              meta: {
+                title: 'me-app-about',
+                hidden: false,
+                permissions: 10
+              }
+            }
+          ]
+        },
+        {
           path: '/table-app',
           name: 'table-app',
           meta: {

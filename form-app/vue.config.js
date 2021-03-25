@@ -16,12 +16,11 @@ module.exports = {
       .tap(options => ({ name: '/fonts/[name].[hash:8].[ext]' }))
       .end()
   },
-  // 自定义webpack配置
-  configureWebpack: {
-    output: {
+  configureWebpack:{
+    output :{
       library: `${name}`,
       libraryTarget: 'umd',// 把子应用打包成 umd 库格式
       jsonpFunction: `webpackJsonp_${name}`,
-    },
-  },
+    }
+  }
 };
