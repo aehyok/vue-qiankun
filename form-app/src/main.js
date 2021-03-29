@@ -11,6 +11,10 @@ import * as L from 'leaflet'
 import 'leaflet.pm'
 import 'leaflet.pm/dist/leaflet.pm.css'
 
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+Vue.use(ElementUI)
 Vue.L = Vue.prototype.$L = L
 Vue.config.productionTip = false
 delete L.Icon.Default.prototype._getIconUrl

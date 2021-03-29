@@ -21,6 +21,12 @@ export default {
   data () {
     return {}
   },
+  created () {
+    const temp = { A: 11, B: 12 }
+    const obj = { a: 1 }
+    const copy = Object.assign({}, obj, temp)
+    console.log(copy, 'copy')
+  },
   mounted () {
     videojs('my-video',
       function () {

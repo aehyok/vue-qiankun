@@ -64,6 +64,15 @@ export default {
               }
             },
             {
+              path: '/form-app/form',
+              name: 'aehyok-form',
+              meta: {
+                title: 'form',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
               path: '/form-app/about',
               name: 'form-app-about',
               meta: {
