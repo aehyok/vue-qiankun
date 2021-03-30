@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import routes from './router'
 import store from './store'
+import plugins from './plugins'
 
 import 'leaflet/dist/leaflet.css'
 // 引入Leaflet对象 挂载到Vue上，便于全局使用，也可以单独页面中单独引用
@@ -23,6 +24,7 @@ L.Icon.Default.mergeOptions({
   iconUrl: require('leaflet/dist/images/marker-icon.png'),
   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 })
+Vue.use(plugins)
 
 let router = null
 let instance = null
