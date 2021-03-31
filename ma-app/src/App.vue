@@ -1,9 +1,10 @@
 <template>
-  <div id="formapp">
-    <!-- <div id="nav">
-      <router-link to="/">form-app</router-link> |
+  <div id="tableapp">
+    <div id="nav">
+      <router-link to="/">table-app</router-link> |
       <router-link to="/about">About</router-link>
-    </div> -->
+      table-app
+    </div>
     <router-view/>
   </div>
 </template>

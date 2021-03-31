@@ -21,7 +21,7 @@
             >{{ m.meta.title }}</el-menu-item
           >
           <el-submenu :index="m.path" v-else :key="m.name">
-            <span style="border: 0;float:left;"  slot="title">{{ m.meta.title }}</span>
+            <span style="border:0;float:left;"  slot="title">{{ m.meta.title }}</span>
             <el-menu-item
               style="border: 0;float:left;width:100%;"
               :index="sub.path"

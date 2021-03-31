@@ -26,6 +26,22 @@ export default {
     const obj = { a: 1 }
     const copy = Object.assign({}, obj, temp)
     console.log(copy, 'copy')
+
+    const tempObject = { }
+
+    Object.defineProperty(tempObject, 'test', {
+      value: 42,
+      enumerable: false,
+      writable: true,
+      set (newVal) {
+        this.value = newVal
+      },
+      get () {
+        // return value
+      }
+    })
+    tempObject.test = 77
+    console.log(tempObject.test)
   },
   mounted () {
     videojs('my-video',
