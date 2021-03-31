@@ -93,6 +93,15 @@ export default {
           },
           children: [
             {
+              path: '/editor',
+              name: 'editor',
+              meta: {
+                title: 'wangeditor',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
               path: '/me-app',
               name: 'me-app-dynamic',
               meta: {
