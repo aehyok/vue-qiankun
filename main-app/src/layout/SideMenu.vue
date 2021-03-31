@@ -120,10 +120,19 @@ export default {
               }
             },
             {
-              path: '/test',
-              name: 'me-app-test',
+              path: '/ffmpeg',
+              name: 'ffmpeg',
               meta: {
-                title: 'me-app-test',
+                title: 'ffmpeg',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
+              path: '/video',
+              name: 'video',
+              meta: {
+                title: 'video',
                 hidden: false,
                 permissions: 10
               }

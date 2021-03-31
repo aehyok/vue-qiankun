@@ -8,10 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.9.7",
     "core-js": "^3.9.1",
     "element-ui": "^2.15.1",
     "leaflet": "^1.7.1",
     "leaflet.pm": "^2.2.0",
+    "mock.js": "^0.2.0",
     "qiankun": "^2.4.0",
     "terser-webpack-plugin": "^4.2.3",
     "video.js": "^7.11.4",
