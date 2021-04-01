@@ -14,6 +14,7 @@
     "leaflet": "^1.7.1",
     "leaflet.pm": "^2.2.0",
     "mock.js": "^0.2.0",
+    "mockjs": "^1.1.0",
     "terser-webpack-plugin": "^5.1.1",
     "v-jsoneditor": "^1.4.2",
     "vue": "^2.6.11",

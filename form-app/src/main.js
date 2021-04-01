@@ -14,7 +14,7 @@ import 'leaflet.pm/dist/leaflet.pm.css'
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-
+require('./mock/mock.js')
 Vue.use(ElementUI)
 Vue.L = Vue.prototype.$L = L
 Vue.config.productionTip = false
