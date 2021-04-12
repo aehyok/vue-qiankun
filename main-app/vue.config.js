@@ -1,15 +1,26 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin')
-module.exports = {
+const SpeedMeasureWebpackPlugin = require('speed-measure-webpack-plugin');
+
+const smp = new SpeedMeasureWebpackPlugin();
+
+module.exports = smp.wrap({
+  //...
   // 打包后console.log消失
-  configureWebpack: config => {
-    config.optimization.minimizer.push(
-      new TerserPlugin({
-        extractComments: false,
-        terserOptions: { compress: { drop_console: true } },
-      })
-    )
-  },
+  //其他配置....
+  // configureWebpack: {
+  //   plugins: [
+
+  //   ]
+  // },
+  // configureWebpack: config => {
+  //   config.optimization.minimizer.push(
+  //     new TerserPlugin({
+  //       extractComments: false,
+  //       terserOptions: { compress: { drop_console: true } },
+  //     })
+  //   )
+  // },
   devServer: {
     port: 1000,
   },
@@ -23,4 +34,4 @@ module.exports = {
     },
   },
   transpileDependencies: ['single-spa','qiankun','import-html-entry'],
-};
+});
