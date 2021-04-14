@@ -1,5 +1,4 @@
-import { createRouter,createWebHashHistory } from "vue-router";
-
+import { createRouter,createWebHistory } from "vue-router"
 const routes = [
 	{
 		path: "/",
@@ -12,11 +11,17 @@ const routes = [
 		meta: {
 			title: "首页"
 		}
-	}
+	},
+    {
+        path: '/404',
+        name: '404',
+        component: () => import("../components/NotFound.vue"),
+    },
+    // { path: '/catchAll(.*)', name:'404', redirect: '/404' },
 ];
 
 const router = createRouter({
-	history: createWebHashHistory(),
+	history: createWebHistory(),
 	routes,
 });
 

@@ -11,16 +11,13 @@
         router
         background-color="#2c303b"
         text-color="#fff"
-        style="border: 0;float:left;width:100%;"
       >
-        <template v-for="m in displayMenuTree">
-          <el-menu-item
-            :index="m.path"
-            :key="m.name"
-            v-if="!m.children || !m.children.length"
-            >{{m.meta.title}} </el-menu-item>
-          <el-submenu :index="m.path" v-else :key="m.name">
-            <span style="border:0;float:left;"  slot="title">{{ m.meta.title }}</span>
+        <template v-for="m in displayMenuTree" :key="m.id">
+          <el-submenu :index="m.path">
+            <template #title>
+              <i class="el-icon-location"></i>
+              <span>{{ m.meta.title }}</span>
+            </template>
             <el-menu-item
               style="border: 0;float:left;width:100%;"
               :index="sub.path"
@@ -44,6 +41,7 @@ export default {
       version: '',
       displayMenuTree: [
         {
+          id: 1,
           path: '/form-app',
           name: 'form-app',
           meta: {
@@ -82,6 +80,7 @@ export default {
           ]
         },
         {
+          id:2,
           path: '/me-app',
           name: '/me-app',
           meta: {
@@ -147,6 +146,7 @@ export default {
           ]
         },
         {
+          id: 3,
           path: '/table-app',
           name: 'table-app',
           meta: {
@@ -179,12 +179,10 @@ export default {
     }
   },
   computed: {
-    // ...mapState('permission', ['leftMenus']),
     activeMenu () {
       const route = this.$route
       console.log(this.$route, 'this.$route');
       const { meta, path } = route
-      // if set path, the sidebar will highlight the path you set
       if (meta.activeMenu) {
         return meta.activeMenu
       }
@@ -201,7 +199,6 @@ export default {
         message: 'success',
         data: { code: '1.3.0.001', updateDate: '2020.10.20', description: '' }
       }
-      // await getVersion()
       this.version = res.data.code
     }
   }
@@ -215,14 +212,12 @@ export default {
     position: relative;
   }
 }
-
 .menu-container {
   position: relative;
   height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   background: #2c303b;
-
   :deep(.el-scrollbar__wrap)  {
     overflow-x: hidden;
   }

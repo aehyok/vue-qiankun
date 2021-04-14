@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import NotFound from '@/components/NotFound'
 import Layout from '@/layout'
 
 Vue.use(VueRouter)
@@ -61,7 +62,9 @@ const routes = [
     path: '/editor',
     name: 'editor',
     component: () => import(/* webpackChunkName: "about" */ '../views/Editor.vue')
-  }
+  },
+  { path: '/404', component: NotFound },
+  { path: '*', redirect: '/404' },
 ]
 
 const router = new VueRouter({
