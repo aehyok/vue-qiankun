@@ -2,14 +2,9 @@
   <div class="app-header">
     <div class="header-name">
       <span>数字乡村支撑平台</span>
-      <!-- <ul class="head-menu">
-        <li v-for="m in getHeadMenu" :key="m.name">
-          <a href="javascript:;" @click="goMenu(m)">{{ m.name }}</a>
-        </li>
-      </ul> -->
-
       <div style="margin-left: 90px;">
         <el-menu
+          :default-active="activeIndex"
           class="el-menu-demo"
           mode="horizontal"
           background-color="#2bae85"
@@ -32,10 +27,12 @@
           <span>admin</span>
           <i class="el-icon-caret-bottom el-icon--right"></i>
         </span>
-        <!-- <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="a">修改密码</el-dropdown-item>
-          <el-dropdown-item command="b">退出登录</el-dropdown-item>
-        </el-dropdown-menu> -->
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="a">修改密码</el-dropdown-item>
+            <el-dropdown-item command="b">退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
       </el-dropdown>
     </div>
     <el-dialog
@@ -123,7 +120,7 @@ export default {
           }
         }
       ],
-      activeIndex: '1',
+      activeIndex: '/form-app',
       resetPasswordVisible: false,
       form: {
         oldPassword: '',
@@ -179,7 +176,9 @@ export default {
       // this.$store.commit('permission/setMenusAll')
     },
     handleCommand (command) {
+      console.log('a修改密码')
       if (command === 'a') {
+        console.log('a修改密码')
         this.resetPasswordVisible = true
       } else {
         this.checkLoginOut()

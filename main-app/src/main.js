@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { registerMicroApps, start } from 'qiankun'
+import { registerMicroApps, start,getActiveRule } from 'qiankun'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
@@ -41,13 +41,15 @@ L.Icon.Default.mergeOptions({
 Vue.use(ElementUI, {
   size: 'medium'
 })
+
+const getActiveRule = (hash) => (location) => location.hash.startsWith(hash);
 // 在主应用中注册微应用
 registerMicroApps([
   {
     name: 'form-app', // app name registered
     entry: '//localhost:2000',
     container: '#mainwrapper',
-    activeRule: '/form-app'
+    activeRule: getActiveRule('#/form-app')
   },
   {
     name: 'table-app',

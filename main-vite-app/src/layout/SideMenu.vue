@@ -60,7 +60,7 @@ export default {
               }
             },
             {
-              path: '/form-app/form',
+              path: '/form-app/#/form',
               name: 'aehyok-form',
               meta: {
                 title: 'form',
@@ -69,7 +69,7 @@ export default {
               }
             },
             {
-              path: '/form-app/about',
+              path: '/form-app/#/about',
               name: 'form-app-about',
               meta: {
                 title: 'form-app-about',

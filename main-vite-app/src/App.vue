@@ -18,18 +18,15 @@
     </el-container>
   </div>
 </template>
-<script>
+<script setup>
 import Header from './layout/Header.vue'
 import SideMenu from './layout/SideMenu.vue'
-
+</script>
+<script>
 export default {
-  components: {
-    Header,
-    SideMenu
+  setup() {
+
   },
-  data () {
-    return {}
-  }
 }
 </script>
 <style lang="scss" scoped>
