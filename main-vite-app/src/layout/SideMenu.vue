@@ -12,7 +12,7 @@
         background-color="#2c303b"
         text-color="#fff"
       >
-        <template v-for="m in state.displayMenuTree" :key="m.id">
+        <div v-for="m in state.displayMenuTree" :key="m.id">
           <el-submenu :index="m.path" >
             <template #title>
               <i class="el-icon-location"></i>
@@ -26,7 +26,7 @@
               >{{ sub.meta.title }}</el-menu-item
             >
           </el-submenu>
-        </template>
+        </div>
       </el-menu>
     </el-scrollbar>
     <div class="version">V{{ state.version }}[2]</div>
@@ -178,7 +178,7 @@ import { useRoute } from 'vue-router'
       ]
   const activeMenu = computed(() => {
       const route = useRoute()
-      console.log(route, 'this.$route');
+      // console.log(route, 'this.$route');
       const { meta, path } = route
       if (meta.activeMenu) {
         return meta.activeMenu

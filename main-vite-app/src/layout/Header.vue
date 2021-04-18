@@ -77,9 +77,10 @@
   </div>
 </template>
 <script setup>
-import { computed,reactive } from 'vue'
+import { computed,reactive ,ref } from 'vue'
 import { useRoute } from 'vue-router'
 
+const ruleForm = ref(null)
 const checkPsdVal = (rules, value, callback) => {
   const rule = /^(?![^a-zA-Z]+$)(?!\D+$).{8,16}/
   if (!rule.test(value)) {
@@ -205,19 +206,20 @@ const loginOut = async(type) => {
   // this.$router.push('/login')
 }
 const submitPassword = () => {
-  // this.$refs.ruleForm.validate(async valid => {
-  //   if (valid) {
-  //     const res = {}
-  //     //  await modifyPassword({
-  //     //   newPassword: this.form.newPassword,
-  //     //   oldPassword: this.form.oldPassword,
-  //     // })
-  //     if (res.code === 200) {
-  //       this.$message.success('修改成功，请重新登录！')
-  //       loginOut('resetPassort')
-  //     }
-  //   }
-  // })
+  ruleForm.validate(async valid => {
+    if (valid) {
+      const res = {}
+      //  await modifyPassword({
+      //   newPassword: this.form.newPassword,
+      //   oldPassword: this.form.oldPassword,
+      // })
+      if (res.code === 200) {
+        console.log('修改成功！')
+        //this.$message.success('修改成功，请重新登录！')
+        loginOut('resetPassort')
+      }
+    }
+  })
 }
 const close = () => {
   state.resetPasswordVisible = false

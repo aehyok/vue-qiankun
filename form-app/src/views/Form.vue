@@ -43,7 +43,7 @@ export default {
     VJsoneditor
   },
   created () {
-    console.log(this.$router, 'this.$router')
+    console.log(this.$router, 'this.$router', 'form-app')
   },
   methods: {
     submitForm () {
