@@ -22,7 +22,14 @@ registerMicroApps([
   }
 ])
 
-start();
+start({
+  // 开启css 样式隔离
+  sandbox: {
+    // strictStyleIsolation = false，才可以获取到子应用的dom节点，主应用可修改子应用样式，但是子应用不可修改主应用的样式。
+    strictStyleIsolation: true,
+    experimentalStyleIsolation: true
+  }
+});
 const app = createApp(App)
 app.use(ElementPlus, local)
 app.use(router)

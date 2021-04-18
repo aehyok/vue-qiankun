@@ -51,7 +51,7 @@ export default {
           },
           children: [
             {
-              path: '/form-app',
+              path: '/form-app/#/',
               name: 'form-app-dynamic',
               meta: {
                 title: 'form-app-dynamic',
