@@ -37,13 +37,13 @@
     </div>
     <el-dialog
       title="修改密码"
-      :visible.sync="state.resetPasswordVisible"
+      v-model="state.resetPasswordVisible"
       width="40%"
       :close-on-click-modal="false"
       :append-to-body="true"
       @close="close"
     >
-      <el-form :model="state.form" :rules="rules" ref="ruleForm" label-width="100px">
+      <el-form :model="state.form" :rules="state.rules" ref="ruleForm" label-width="100px">
         <el-form-item label="原密码" prop="oldPassword">
           <el-input
             v-model="state.form.oldPassword"
@@ -67,12 +67,12 @@
           ></el-input>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
+      <template #footer>
         <el-button @click="close">取消</el-button>
         <el-button type="primary" @click="submitPassword('ruleForm')"
           >确定修改</el-button
         >
-      </div>
+      </template>
     </el-dialog>
   </div>
 </template>
