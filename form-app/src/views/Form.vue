@@ -43,10 +43,7 @@ export default {
     VJsoneditor
   },
   created () {
-    // getContentTypeList().then(res => {
-    //   console.log(res.data, 'res.data.form')
-    // })
-    // this.value=
+    console.log(this.$router, 'this.$router')
   },
   methods: {
     submitForm () {

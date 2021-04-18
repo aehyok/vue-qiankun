@@ -12,7 +12,16 @@ registerMicroApps([
     name: 'form-app', // app name registered
     entry: '//localhost:2000',
     container: '#mainwrapper',
-    activeRule: '/form-app'
+    activeRule: '/form-app',
+    props:{//额外参数
+      getToken:{
+         
+          token: 'aehyok',
+          id: '789',
+          name: '123'
+        
+      }
+    }
   },
   {
     name: 'table-app',
