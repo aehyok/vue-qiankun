@@ -12,8 +12,8 @@
         background-color="#2c303b"
         text-color="#fff"
       >
-        <template v-for="m in displayMenuTree" :key="m.id">
-          <el-submenu :index="m.path">
+        <template v-for="m in state.displayMenuTree" :key="m.id">
+          <el-submenu :index="m.path" >
             <template #title>
               <i class="el-icon-location"></i>
               <span>{{ m.meta.title }}</span>
@@ -29,17 +29,17 @@
         </template>
       </el-menu>
     </el-scrollbar>
-    <div class="version">V{{ version }}[2]</div>
+    <div class="version">V{{ state.version }}[2]</div>
   </div>
 </template>
-<script>
-
-export default {
-  data () {
-    return {
-      menuList: [],
-      version: '',
-      displayMenuTree: [
+<script setup>
+import { reactive, computed, onMounted } from 'vue';
+import { useRoute } from 'vue-router'
+  const state = reactive({
+    displayMenuTree:[],
+    version: ''
+  })
+  state.displayMenuTree = [
         {
           id: 1,
           path: '/form-app',
@@ -156,7 +156,7 @@ export default {
           },
           children: [
             {
-              path: '/table-app',
+              path: '/table-app/#/',
               name: 'table-dynamic',
               meta: {
                 title: 'table-dynamic',
@@ -165,7 +165,7 @@ export default {
               }
             },
             {
-              path: '/table-app/about',
+              path: '/table-app/#/about',
               name: 'table-app-about',
               meta: {
                 title: 'about',
@@ -176,33 +176,25 @@ export default {
           ]
         }
       ]
-    }
-  },
-  computed: {
-    activeMenu () {
-      const route = this.$route
-      console.log(this.$route, 'this.$route');
+  const activeMenu = computed(() => {
+      const route = useRoute()
+      console.log(route, 'this.$route');
       const { meta, path } = route
       if (meta.activeMenu) {
         return meta.activeMenu
       }
-      return path
-    }
-  },
-  created () {
-    this.getVersion()
-  },
-  methods: {
-    async getVersion () {
+    })
+    onMounted(()=>{
+      getVersion()
+    })
+    const getVersion = () => {
       const res = {
         code: 200,
         message: 'success',
         data: { code: '1.3.0.001', updateDate: '2020.10.20', description: '' }
       }
-      this.version = res.data.code
+      state.version = res.data.code
     }
-  }
-}
 </script>
 <style lang="scss" scoped>
 .scroll-wrap {
