@@ -4,7 +4,7 @@
       <span>数字乡村支撑平台</span>
       <div style="margin-left: 90px;">
         <el-menu
-          :default-active="activeIndex"
+          :default-active="state.activeIndex"
           class="el-menu-demo"
           mode="horizontal"
           background-color="#2bae85"
@@ -13,7 +13,7 @@
           :router="true"
         >
           <el-menu-item
-            v-for="m in permitedRoutes"
+            v-for="m in state.permitedRoutes"
             :index="m.path"
             :key="m.meta.title"
             >{{ m.meta.title }}</el-menu-item
@@ -37,16 +37,16 @@
     </div>
     <el-dialog
       title="修改密码"
-      :visible.sync="resetPasswordVisible"
+      :visible.sync="state.resetPasswordVisible"
       width="40%"
       :close-on-click-modal="false"
       :append-to-body="true"
       @close="close"
     >
-      <el-form :model="form" :rules="rules" ref="ruleForm" label-width="100px">
+      <el-form :model="state.form" :rules="rules" ref="ruleForm" label-width="100px">
         <el-form-item label="原密码" prop="oldPassword">
           <el-input
-            v-model="form.oldPassword"
+            v-model="state.form.oldPassword"
             type="password"
             show-password
             placeholder="请输入原密码"
@@ -54,14 +54,14 @@
         </el-form-item>
         <el-form-item label="新密码" prop="newPassword">
           <el-input
-            v-model="form.newPassword"
+            v-model="state.form.newPassword"
             type="password"
             placeholder="密码必须包含字母和数字,长度为8-16"
           ></el-input>
         </el-form-item>
         <el-form-item label="确认密码" prop="checkPwd">
           <el-input
-            v-model="form.checkPwd"
+            v-model="state.form.checkPwd"
             type="password"
             placeholder="请再次输入新密码"
           ></el-input>
@@ -76,159 +76,157 @@
     </el-dialog>
   </div>
 </template>
-<script>
-export default {
-  // computed: {
-  //   activeMenu () {
-  //     return this.$route.matched[0].path
-  //   }
-  // },
-  data () {
-    const checkPassword = (rules, value, callback) => {
-      if (value !== this.form.newPassword) {
-        callback(new Error('两次密码输入不一致'))
-      } else {
-        callback()
-      }
-    }
-    const checkPsdVal = (rules, value, callback) => {
-      const rule = /^(?![^a-zA-Z]+$)(?!\D+$).{8,16}/
-      if (!rule.test(value)) {
-        callback(new Error('请输入8-16位字母+数字组合新密码'))
-      } else {
-        callback()
-      }
-    }
-    return {
-      permitedRoutes: [
-        {
-          path: '/form-app',
-          name: 'organizationManage',
-          meta: {
-            title: '组织管理',
-            hidden: false,
-            permissions: 7
-          }
-        },
-        {
-          path: '/table-app',
-          name: 'baseManage',
-          meta: {
-            title: '基础管理',
-            hidden: false,
-            permissions: 4
-          }
-        }
-      ],
-      activeIndex: '/form-app',
-      resetPasswordVisible: false,
-      form: {
+<script setup>
+import { computed,reactive } from 'vue'
+import { useRoute } from 'vue-router'
+
+const checkPsdVal = (rules, value, callback) => {
+  const rule = /^(?![^a-zA-Z]+$)(?!\D+$).{8,16}/
+  if (!rule.test(value)) {
+    callback(new Error('请输入8-16位字母+数字组合新密码'))
+  } else {
+    callback()
+  }
+}
+
+const checkPassword = (rules, value, callback) => {
+  if (value !== state.form.newPassword) {
+    callback(new Error('两次密码输入不一致'))
+  } else {
+    callback()
+  }
+}
+
+const state = reactive({
+  permitedRoutes: [],
+  rules: {},
+  form: {
         oldPassword: '',
         newPassword: '',
         checkPwd: ''
       },
-      rules: {
-        oldPassword: [
-          {
-            required: true,
-            message: '请输入原密码',
-            trigger: ['blur']
-          }
-        ],
-        newPassword: [
-          {
-            required: true,
-            message: '请输入新密码',
-            trigger: ['blur']
-          },
-          {
-            validator: checkPsdVal,
-            trigger: ['blur']
-          }
-        ],
-        checkPwd: [
-          {
-            required: true,
-            message: '请再次输入新密码',
-            trigger: ['blur']
-          },
-          {
-            validator: checkPsdVal,
-            trigger: ['blur']
-          },
-          {
-            validator: checkPassword,
-            trigger: ['blur']
-          }
-        ]
-      }
+  activeIndex: '/form-app',
+  resetPasswordVisible: false,    
+})
+state.permitedRoutes =[
+  {
+    path: '/form-app',
+    name: 'organizationManage',
+    meta: {
+      title: '组织管理',
+      hidden: false,
+      permissions: 7
     }
   },
-  created () {
-    this.user = JSON.parse(localStorage.getItem('loginInfo'))
-  },
-  methods: {
-    handleSelect (key, keyPath) {
-      console.log(key, keyPath)
-    },
-    goMenu (routerList) {
-      console.log(routerList)
-      // this.$store.commit('permission/setMenusAll')
-    },
-    handleCommand (command) {
-      console.log('a修改密码')
-      if (command === 'a') {
-        console.log('a修改密码')
-        this.resetPasswordVisible = true
-      } else {
-        this.checkLoginOut()
-      }
-    },
-    // 退出二次确认框
-    checkLoginOut () {
-      this.$confirm('请问是否退出登录?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
-        .then(() => {
-          this.loginOut()
-        })
-        .catch(() => {
-          return false
-        })
-    },
-
-    // 退出登录
-    async loginOut (type) {
-      // const res = await logout({
-      //   token: this.user.token,
-      // })
-      this.$message.success('您已安全退出')
-      this.$store.commit('permission/setMenus', [])
-      localStorage.removeItem('loginInfo')
-      this.$router.push('/login')
-    },
-    submitPassword () {
-      this.$refs.ruleForm.validate(async valid => {
-        if (valid) {
-          const res = {}
-          //  await modifyPassword({
-          //   newPassword: this.form.newPassword,
-          //   oldPassword: this.form.oldPassword,
-          // })
-          if (res.code === 200) {
-            this.$message.success('修改成功，请重新登录！')
-            this.loginOut('resetPassort')
-          }
-        }
-      })
-    },
-    close () {
-      this.resetPasswordVisible = false
-      this.$refs.ruleForm.resetFields()
+  {
+    path: '/table-app',
+    name: 'baseManage',
+    meta: {
+      title: '基础管理',
+      hidden: false,
+      permissions: 4
     }
   }
+]
+state.rules = {
+  oldPassword: [
+    {
+      required: true,
+      message: '请输入原密码',
+      trigger: ['blur']
+    }
+  ],
+  newPassword: [
+    {
+      required: true,
+      message: '请输入新密码',
+      trigger: ['blur']
+    },
+    {
+      validator: checkPsdVal,
+      trigger: ['blur']
+    }
+  ],
+  checkPwd: [
+    {
+      required: true,
+      message: '请再次输入新密码',
+      trigger: ['blur']
+    },
+    {
+      validator: checkPsdVal,
+      trigger: ['blur']
+    },
+    {
+      validator: checkPassword,
+      trigger: ['blur']
+    }
+  ]
+}
+
+const handleSelect =(key, keyPath) => {
+  console.log(key, keyPath)
+}
+const goMenu = (routerList) => {
+  console.log(routerList)
+  // this.$store.commit('permission/setMenusAll')
+}
+const handleCommand = (command) => {
+  console.log('a修改密码')
+  if (command === 'a') {
+    console.log('a修改密码')
+    state.resetPasswordVisible = true
+  } else {
+    checkLoginOut()
+  }
+}
+// 退出二次确认框
+const checkLoginOut = () => {
+  // this.$confirm('请问是否退出登录?', '提示', {
+  //   confirmButtonText: '确定',
+  //   cancelButtonText: '取消',
+  //   type: 'warning'
+  // })
+  //   .then(() => {
+  //     loginOut()
+  //   })
+  //   .catch(() => {
+  //     return false
+  //   })
+}
+// 退出登录
+const loginOut = async(type) => {
+  //     // const res = await logout({
+  //     //   token: this.user.token,
+  //     // })
+  // this.$message.success('您已安全退出')
+  // this.$store.commit('permission/setMenus', [])
+  // localStorage.removeItem('loginInfo')
+  // this.$router.push('/login')
+}
+const submitPassword = () => {
+  // this.$refs.ruleForm.validate(async valid => {
+  //   if (valid) {
+  //     const res = {}
+  //     //  await modifyPassword({
+  //     //   newPassword: this.form.newPassword,
+  //     //   oldPassword: this.form.oldPassword,
+  //     // })
+  //     if (res.code === 200) {
+  //       this.$message.success('修改成功，请重新登录！')
+  //       loginOut('resetPassort')
+  //     }
+  //   }
+  // })
+}
+const close = () => {
+  state.resetPasswordVisible = false
+  // this.$refs.ruleForm.resetFields()
+}
+const activeMenu = computed(() => {
+  const route = useRoute()
+  return route.matched[0].path
+})
   // watch: {
   //   $route: {
   //     handler (to) {
@@ -243,7 +241,6 @@ export default {
   //     immediate: true
   //   }
   // }
-}
 </script>
 <style lang="scss" scoped>
 .app-header {
