@@ -18,9 +18,18 @@
     </el-container>
   </div>
 </template>
-<script lang="ts" setup>
+<script lang="ts">
+  import { defineComponent } from '@vue/runtime-core'
   import Header from './layout/Header.vue'
   import SideMenu from './layout/SideMenu.vue'
+
+  export default defineComponent({
+    name: 'App',
+    components: {
+      Header,
+      SideMenu
+    }
+  })
 </script>
 <style lang="scss" scoped>
   .app-header {

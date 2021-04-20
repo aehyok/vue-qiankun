@@ -28,169 +28,179 @@
     <div class="version">V{{ state.version }}[2]</div>
   </div>
 </template>
-<script lang="ts" setup>
-  import { reactive, computed, onMounted } from 'vue'
+<script lang="ts">
+  import { reactive, computed, onMounted, defineComponent, toRefs } from 'vue'
   import { useRoute } from 'vue-router'
-  const state = reactive({
-    displayMenuTree: [],
-    version: ''
-  })
-  state.displayMenuTree = [
-    {
-      id: 1,
-      path: '/form-app',
-      name: 'form-app',
-      meta: {
-        title: 'form-app',
-        hidden: false,
-        permissions: 7
-      },
-      children: [
+
+  export default defineComponent({
+    setup() {
+      const state = reactive({
+        displayMenuTree: [],
+        version: ''
+      })
+      state.displayMenuTree = [
         {
-          path: '/form-app/#/',
-          name: 'form-app-dynamic',
+          id: 1,
+          path: '/form-app',
+          name: 'form-app',
           meta: {
-            title: 'form-app-dynamic',
+            title: 'form-app',
             hidden: false,
-            permissions: 10
-          }
+            permissions: 7
+          },
+          children: [
+            {
+              path: '/form-app/#/',
+              name: 'form-app-dynamic',
+              meta: {
+                title: 'form-app-dynamic',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
+              path: '/form-app/#/form',
+              name: 'aehyok-form',
+              meta: {
+                title: 'form',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
+              path: '/form-app/#/about',
+              name: 'form-app-about',
+              meta: {
+                title: 'form-app-about',
+                hidden: false,
+                permissions: 10
+              }
+            }
+          ]
         },
         {
-          path: '/form-app/#/form',
-          name: 'aehyok-form',
-          meta: {
-            title: 'form',
-            hidden: false,
-            permissions: 10
-          }
-        },
-        {
-          path: '/form-app/#/about',
-          name: 'form-app-about',
-          meta: {
-            title: 'form-app-about',
-            hidden: false,
-            permissions: 10
-          }
-        }
-      ]
-    },
-    {
-      id: 2,
-      path: '/me-app',
-      name: '/me-app',
-      meta: {
-        title: 'me-app',
-        hidden: false,
-        permissions: 7
-      },
-      children: [
-        {
-          path: '/editor',
-          name: 'editor',
-          meta: {
-            title: 'wangeditor',
-            hidden: false,
-            permissions: 10
-          }
-        },
-        {
+          id: 2,
           path: '/me-app',
-          name: 'me-app-dynamic',
+          name: '/me-app',
           meta: {
-            title: 'me-app-dynamic',
+            title: 'me-app',
             hidden: false,
-            permissions: 10
-          }
+            permissions: 7
+          },
+          children: [
+            {
+              path: '/editor',
+              name: 'editor',
+              meta: {
+                title: 'wangeditor',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
+              path: '/me-app',
+              name: 'me-app-dynamic',
+              meta: {
+                title: 'me-app-dynamic',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
+              path: '/me/about',
+              name: 'me-app-about',
+              meta: {
+                title: 'me-app-about',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
+              path: '/ffmpeg',
+              name: 'ffmpeg',
+              meta: {
+                title: 'ffmpeg',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
+              path: '/video',
+              name: 'video',
+              meta: {
+                title: 'video',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
+              path: '/cesium',
+              name: 'me-app-cesium',
+              meta: {
+                title: 'me-app-cesium',
+                hidden: false,
+                permissions: 10
+              }
+            }
+          ]
         },
         {
-          path: '/me/about',
-          name: 'me-app-about',
+          id: 3,
+          path: '/table-app',
+          name: 'table-app',
           meta: {
-            title: 'me-app-about',
+            title: 'table-app',
             hidden: false,
-            permissions: 10
-          }
-        },
-        {
-          path: '/ffmpeg',
-          name: 'ffmpeg',
-          meta: {
-            title: 'ffmpeg',
-            hidden: false,
-            permissions: 10
-          }
-        },
-        {
-          path: '/video',
-          name: 'video',
-          meta: {
-            title: 'video',
-            hidden: false,
-            permissions: 10
-          }
-        },
-        {
-          path: '/cesium',
-          name: 'me-app-cesium',
-          meta: {
-            title: 'me-app-cesium',
-            hidden: false,
-            permissions: 10
-          }
+            permissions: 1543
+          },
+          children: [
+            {
+              path: '/table-app/#/',
+              name: 'table-dynamic',
+              meta: {
+                title: 'table-dynamic',
+                hidden: false,
+                permissions: 10
+              }
+            },
+            {
+              path: '/table-app/#/about',
+              name: 'table-app-about',
+              meta: {
+                title: 'about',
+                hidden: false,
+                permissions: 10
+              }
+            }
+          ]
         }
       ]
-    },
-    {
-      id: 3,
-      path: '/table-app',
-      name: 'table-app',
-      meta: {
-        title: 'table-app',
-        hidden: false,
-        permissions: 1543
-      },
-      children: [
-        {
-          path: '/table-app/#/',
-          name: 'table-dynamic',
-          meta: {
-            title: 'table-dynamic',
-            hidden: false,
-            permissions: 10
-          }
-        },
-        {
-          path: '/table-app/#/about',
-          name: 'table-app-about',
-          meta: {
-            title: 'about',
-            hidden: false,
-            permissions: 10
-          }
+      const activeMenu = computed(() => {
+        const route = useRoute()
+        // console.log(route, 'this.$route');
+        const { meta } = route
+        if (meta.activeMenu) {
+          return meta.activeMenu
         }
-      ]
-    }
-  ]
-  const activeMenu = computed(() => {
-    const route = useRoute()
-    // console.log(route, 'this.$route');
-    const { meta, path } = route
-    if (meta.activeMenu) {
-      return meta.activeMenu
+        return ''
+      })
+      const getVersion = () => {
+        const res = {
+          code: 200,
+          message: 'success',
+          data: { code: '1.3.0.001', updateDate: '2020.10.20', description: '' }
+        }
+        state.version = res.data.code
+      }
+      onMounted(() => {
+        getVersion()
+      })
+      return {
+        ...toRefs(state),
+        activeMenu
+      }
     }
   })
-  onMounted(() => {
-    getVersion()
-  })
-  const getVersion = () => {
-    const res = {
-      code: 200,
-      message: 'success',
-      data: { code: '1.3.0.001', updateDate: '2020.10.20', description: '' }
-    }
-    state.version = res.data.code
-  }
 </script>
 <style lang="scss" scoped>
   .scroll-wrap {

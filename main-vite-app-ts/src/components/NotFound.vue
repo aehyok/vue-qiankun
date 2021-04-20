@@ -8,6 +8,7 @@
   import { onMounted, ref } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { useStore } from 'vuex'
+
   export default {
     setup() {
       const route = useRoute()

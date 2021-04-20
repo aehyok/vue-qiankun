@@ -33,6 +33,7 @@
   import { ref, defineComponent, reactive } from 'vue'
   import { useStore } from 'vuex'
   import { useRouter } from 'vue-router'
+
   export default defineComponent({
     name: 'HelloWorld',
     props: {
@@ -48,20 +49,13 @@
         console.log('404')
         router.push('/404')
       }
-      store.commit('setTest', 'ssss' + Math.random())
+      store.commit('setTest', `ssss ${Math.random()}`)
       const count = ref(0)
-      const add = (a, b) => {
-        return a + b
-      }
-      const se = ref(undefined)
       const test = reactive({
         name: undefined
       })
       // se.value="aehyok"
       console.log(test.name)
-
-      if (test.name === undefined) {
-      }
       return { count, jumpClick }
     }
   })
