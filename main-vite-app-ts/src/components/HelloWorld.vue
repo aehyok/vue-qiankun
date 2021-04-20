@@ -30,53 +30,52 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, reactive } from 'vue'
-// import { useStore } from 'vuex'
-export default defineComponent({
-  name: 'HelloWorld',
-  props: {
-    msg: {
-      type: String,
-      required: true
+  import { ref, defineComponent, reactive } from 'vue'
+  // import { useStore } from 'vuex'
+  export default defineComponent({
+    name: 'HelloWorld',
+    props: {
+      msg: {
+        type: String,
+        required: true
+      }
+    },
+    setup: () => {
+      // const store = useStore()
+
+      // store.commit('setTest','ssss'+Math.random())
+      const count = ref(0)
+      const add = (a, b) => {
+        return a + b
+      }
+      const se = ref(undefined)
+      const test = reactive({
+        name: undefined
+      })
+      // se.value="aehyok"
+      console.log(test.name)
+
+      if (test.name === undefined) {
+      }
+      return { count }
     }
-  },
-  setup: () => {
-    // const store = useStore()
-
-    // store.commit('setTest','ssss'+Math.random())
-		const count = ref(0)
-		const add=(a,b)=>{
-			return a+b
-		}
-		const se=ref(undefined)
-    const test= reactive({
-      name: undefined
-    })
-		// se.value="aehyok"
-    console.log(test.name)
-
-    if(test.name ===undefined){
-
-    }
-    return { count }
-  }
-})
+  })
 </script>
 
 <style scoped>
-a {
-  color: #42b983;
-}
+  a {
+    color: #42b983;
+  }
 
-label {
-  margin: 0 0.5em;
-  font-weight: bold;
-}
+  label {
+    margin: 0 0.5em;
+    font-weight: bold;
+  }
 
-code {
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #304455;
-}
+  code {
+    background-color: #eee;
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #304455;
+  }
 </style>

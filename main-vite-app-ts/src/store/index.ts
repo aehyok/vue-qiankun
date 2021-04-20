@@ -5,13 +5,11 @@ export default createStore({
     test: ''
   },
   mutations: {
-    setTest(state,data){
+    setTest(state, data) {
       state.test = data
       console.log(state.test, 'stateTest')
     }
   },
-  actions: {
-  },
-  modules: {
-  }
+  actions: {},
+  modules: {}
 })

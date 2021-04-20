@@ -2,7 +2,7 @@
   <div class="app-header">
     <div class="header-name">
       <span>数字乡村支撑平台</span>
-      <div style="margin-left: 90px;">
+      <div style="margin-left: 90px">
         <el-menu
           :default-active="state.activeIndex"
           class="el-menu-demo"
@@ -12,18 +12,15 @@
           active-text-color="#fff"
           :router="true"
         >
-          <el-menu-item
-            v-for="m in state.permitedRoutes"
-            :index="m.path"
-            :key="m.meta.title"
-            >{{ m.meta.title }}</el-menu-item
-          >
+          <el-menu-item v-for="m in state.permitedRoutes" :index="m.path" :key="m.meta.title">{{
+            m.meta.title
+          }}</el-menu-item>
         </el-menu>
       </div>
     </div>
     <div class="user">
       <el-dropdown @command="handleCommand">
-        <span class="el-dropdown-link" style="color: #fff;">
+        <span class="el-dropdown-link" style="color: #fff">
           <span>admin</span>
           <i class="el-icon-caret-bottom el-icon--right"></i>
         </span>
@@ -69,165 +66,163 @@
       </el-form>
       <template #footer>
         <el-button @click="close">取消</el-button>
-        <el-button type="primary" @click="submitPassword('ruleForm')"
-          >确定修改</el-button
-        >
+        <el-button type="primary" @click="submitPassword('ruleForm')">确定修改</el-button>
       </template>
     </el-dialog>
   </div>
 </template>
-<script lang='ts' setup>
-import { computed,reactive ,ref, toRefs } from 'vue'
-import { useRoute } from 'vue-router'
-const ruleForm = ref(null)
-const checkPsdVal = (rules, value, callback) => {
-  const rule = /^(?![^a-zA-Z]+$)(?!\D+$).{8,16}/
-  if (!rule.test(value)) {
-    callback(new Error('请输入8-16位字母+数字组合新密码'))
-  } else {
-    callback()
+<script lang="ts" setup>
+  import { computed, reactive, ref, toRefs } from 'vue'
+  import { useRoute } from 'vue-router'
+  const ruleForm = ref(null)
+  const checkPsdVal = (rules, value, callback) => {
+    const rule = /^(?![^a-zA-Z]+$)(?!\D+$).{8,16}/
+    if (!rule.test(value)) {
+      callback(new Error('请输入8-16位字母+数字组合新密码'))
+    } else {
+      callback()
+    }
   }
-}
 
-const checkPassword = (rules, value, callback) => {
-  if (value !== state.form.newPassword) {
-    callback(new Error('两次密码输入不一致'))
-  } else {
-    callback()
+  const checkPassword = (rules, value, callback) => {
+    if (value !== state.form.newPassword) {
+      callback(new Error('两次密码输入不一致'))
+    } else {
+      callback()
+    }
   }
-}
 
-const state = reactive({
-  permitedRoutes: [],
-  rules: {},
-  form: {
-        oldPassword: '',
-        newPassword: '',
-        checkPwd: ''
-      },
-  activeIndex: '/form-app',
-  resetPasswordVisible: false,
-})
-state.permitedRoutes =[
-  {
-    path: '/form-app',
-    name: 'organizationManage',
-    meta: {
-      title: '组织管理',
-      hidden: false,
-      permissions: 7
-    }
-  },
-  {
-    path: '/table-app',
-    name: 'baseManage',
-    meta: {
-      title: '基础管理',
-      hidden: false,
-      permissions: 4
-    }
-  }
-]
-state.rules = {
-  oldPassword: [
+  const state = reactive({
+    permitedRoutes: [],
+    rules: {},
+    form: {
+      oldPassword: '',
+      newPassword: '',
+      checkPwd: ''
+    },
+    activeIndex: '/form-app',
+    resetPasswordVisible: false
+  })
+  state.permitedRoutes = [
     {
-      required: true,
-      message: '请输入原密码',
-      trigger: ['blur']
-    }
-  ],
-  newPassword: [
-    {
-      required: true,
-      message: '请输入新密码',
-      trigger: ['blur']
+      path: '/form-app',
+      name: 'organizationManage',
+      meta: {
+        title: '组织管理',
+        hidden: false,
+        permissions: 7
+      }
     },
     {
-      validator: checkPsdVal,
-      trigger: ['blur']
-    }
-  ],
-  checkPwd: [
-    {
-      required: true,
-      message: '请再次输入新密码',
-      trigger: ['blur']
-    },
-    {
-      validator: checkPsdVal,
-      trigger: ['blur']
-    },
-    {
-      validator: checkPassword,
-      trigger: ['blur']
+      path: '/table-app',
+      name: 'baseManage',
+      meta: {
+        title: '基础管理',
+        hidden: false,
+        permissions: 4
+      }
     }
   ]
-}
-
-const handleSelect =(key, keyPath) => {
-  console.log(key, keyPath)
-}
-const goMenu = (routerList) => {
-  console.log(routerList)
-  // this.$store.commit('permission/setMenusAll')
-}
-const handleCommand = (command) => {
-  console.log('a修改密码')
-  if (command === 'a') {
-    console.log('a修改密码')
-    state.resetPasswordVisible = true
-  } else {
-    checkLoginOut()
+  state.rules = {
+    oldPassword: [
+      {
+        required: true,
+        message: '请输入原密码',
+        trigger: ['blur']
+      }
+    ],
+    newPassword: [
+      {
+        required: true,
+        message: '请输入新密码',
+        trigger: ['blur']
+      },
+      {
+        validator: checkPsdVal,
+        trigger: ['blur']
+      }
+    ],
+    checkPwd: [
+      {
+        required: true,
+        message: '请再次输入新密码',
+        trigger: ['blur']
+      },
+      {
+        validator: checkPsdVal,
+        trigger: ['blur']
+      },
+      {
+        validator: checkPassword,
+        trigger: ['blur']
+      }
+    ]
   }
-}
-// 退出二次确认框
-const checkLoginOut = () => {
-  // this.$confirm('请问是否退出登录?', '提示', {
-  //   confirmButtonText: '确定',
-  //   cancelButtonText: '取消',
-  //   type: 'warning'
-  // })
-  //   .then(() => {
-  //     loginOut()
-  //   })
-  //   .catch(() => {
-  //     return false
-  //   })
-}
-// 退出登录
-const loginOut = async(type) => {
-  //     // const res = await logout({
-  //     //   token: this.user.token,
-  //     // })
-  // this.$message.success('您已安全退出')
-  // this.$store.commit('permission/setMenus', [])
-  // localStorage.removeItem('loginInfo')
-  // this.$router.push('/login')
-}
-const submitPassword = () => {
-  ruleForm.validate(async valid => {
-    if (valid) {
-      const res = {}
-      //  await modifyPassword({
-      //   newPassword: this.form.newPassword,
-      //   oldPassword: this.form.oldPassword,
-      // })
-      //if (res.code === 200) {
+
+  const handleSelect = (key, keyPath) => {
+    console.log(key, keyPath)
+  }
+  const goMenu = (routerList) => {
+    console.log(routerList)
+    // this.$store.commit('permission/setMenusAll')
+  }
+  const handleCommand = (command) => {
+    console.log('a修改密码')
+    if (command === 'a') {
+      console.log('a修改密码')
+      state.resetPasswordVisible = true
+    } else {
+      checkLoginOut()
+    }
+  }
+  // 退出二次确认框
+  const checkLoginOut = () => {
+    // this.$confirm('请问是否退出登录?', '提示', {
+    //   confirmButtonText: '确定',
+    //   cancelButtonText: '取消',
+    //   type: 'warning'
+    // })
+    //   .then(() => {
+    //     loginOut()
+    //   })
+    //   .catch(() => {
+    //     return false
+    //   })
+  }
+  // 退出登录
+  const loginOut = async (type) => {
+    //     // const res = await logout({
+    //     //   token: this.user.token,
+    //     // })
+    // this.$message.success('您已安全退出')
+    // this.$store.commit('permission/setMenus', [])
+    // localStorage.removeItem('loginInfo')
+    // this.$router.push('/login')
+  }
+  const submitPassword = () => {
+    ruleForm.validate(async (valid) => {
+      if (valid) {
+        const res = {}
+        //  await modifyPassword({
+        //   newPassword: this.form.newPassword,
+        //   oldPassword: this.form.oldPassword,
+        // })
+        //if (res.code === 200) {
         console.log('修改成功！')
         //this.$message.success('修改成功，请重新登录！')
         loginOut('resetPassort')
-      //}
-    }
+        //}
+      }
+    })
+  }
+  const close = () => {
+    state.resetPasswordVisible = false
+    // this.$refs.ruleForm.resetFields()
+  }
+  const activeMenu = computed(() => {
+    const route = useRoute()
+    return route.matched[0].path
   })
-}
-const close = () => {
-  state.resetPasswordVisible = false
-  // this.$refs.ruleForm.resetFields()
-}
-const activeMenu = computed(() => {
-  const route = useRoute()
-  return route.matched[0].path
-})
 
   // watch: {
   //   $route: {
@@ -245,35 +240,35 @@ const activeMenu = computed(() => {
   // }
 </script>
 <style lang="scss" scoped>
-.app-header {
-  display: flex;
-  justify-content: space-between;
-  height: 60px;
-  .header-name {
-    flex: 0 0 auto;
+  .app-header {
     display: flex;
-    align-items: center;
-    line-height: 40px;
-    color: #fff;
-    font-size: 18px;
-  }
+    justify-content: space-between;
+    height: 60px;
+    .header-name {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      line-height: 40px;
+      color: #fff;
+      font-size: 18px;
+    }
 
-  .user {
-    display: flex;
-    align-items: center;
+    .user {
+      display: flex;
+      align-items: center;
+    }
   }
-}
-.head-menu li {
-  display: inline-block;
-  margin-left: 20px;
-  font-size: 16px;
-}
-:deep(.el-menu.el-menu--horizontal) {
-  border-bottom: 0;
-}
-:deep(.el-menu--horizontal > .el-menu-item) {
-  height: auto;
-  line-height: 30px;
-  margin-left: 30px;
-}
+  .head-menu li {
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 16px;
+  }
+  :deep(.el-menu.el-menu--horizontal) {
+    border-bottom: 0;
+  }
+  :deep(.el-menu--horizontal > .el-menu-item) {
+    height: auto;
+    line-height: 30px;
+    margin-left: 30px;
+  }
 </style>
