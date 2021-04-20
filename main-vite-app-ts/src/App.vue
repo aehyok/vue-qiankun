@@ -18,16 +18,9 @@
     </el-container>
   </div>
 </template>
-<script lang='ts'>
+<script lang='ts' setup>
 import Header from './layout/Header.vue'
 import SideMenu from './layout/SideMenu.vue'
-export default {
-  name:"App",
-  components:{
-    Header,
-    SideMenu
-  }
-}
 </script>
 <style lang="scss" scoped>
 .app-header {
