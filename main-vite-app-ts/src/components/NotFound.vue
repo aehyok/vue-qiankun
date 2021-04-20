@@ -12,12 +12,12 @@ export default {
   setup(){
     const route = useRoute()
     const router = useRouter()
-    const store = useStore()
+    // const store = useStore()
     // console.log(store.state.test, 'store.state.test')
     const message = ref('')
     message.value = '返回首页'
 
-    function backHome() {
+    const backHome = () :void=> {
       console.log(route, 'displayMenuTree')
       try
       {

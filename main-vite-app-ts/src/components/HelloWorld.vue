@@ -31,7 +31,7 @@
 
 <script lang="ts">
 import { ref, defineComponent, reactive } from 'vue'
-import { useStore } from 'vuex'
+// import { useStore } from 'vuex'
 export default defineComponent({
   name: 'HelloWorld',
   props: {
@@ -41,7 +41,7 @@ export default defineComponent({
     }
   },
   setup: () => {
-    const store = useStore()
+    // const store = useStore()
 
     // store.commit('setTest','ssss'+Math.random())
 		const count = ref(0)
