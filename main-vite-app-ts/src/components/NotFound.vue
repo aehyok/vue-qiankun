@@ -5,15 +5,17 @@
   </div>
 </template>
 <script lang="ts">
-  import { ref } from 'vue'
+  import { onMounted, ref } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { useStore } from 'vuex'
   export default {
     setup() {
       const route = useRoute()
       const router = useRouter()
-      // const store = useStore()
-      // console.log(store.state.test, 'store.state.test')
+      const store = useStore()
+      onMounted(() => {
+        console.log(store.state.test, 'store.state.test')
+      })
       const message = ref('')
       message.value = '返回首页'
 

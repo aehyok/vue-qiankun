@@ -12,6 +12,8 @@
     },
     setup() {
       const msg = ref('')
+      const message = 'ssss'
+      console.log(message)
       msg.value = 'Hello in the World'
     }
   }

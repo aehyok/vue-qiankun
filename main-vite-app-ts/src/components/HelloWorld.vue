@@ -1,6 +1,6 @@
 <template>
   <h1>{{ msg }}</h1>
-
+  <el-button @click="jumpClick">jumpClick</el-button>
   <p>
     Recommended IDE setup:
     <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
@@ -31,7 +31,8 @@
 
 <script lang="ts">
   import { ref, defineComponent, reactive } from 'vue'
-  // import { useStore } from 'vuex'
+  import { useStore } from 'vuex'
+  import { useRouter } from 'vue-router'
   export default defineComponent({
     name: 'HelloWorld',
     props: {
@@ -41,9 +42,13 @@
       }
     },
     setup: () => {
-      // const store = useStore()
-
-      // store.commit('setTest','ssss'+Math.random())
+      const store = useStore()
+      const router = useRouter()
+      const jumpClick = () => {
+        console.log('404')
+        router.push('/404')
+      }
+      store.commit('setTest', 'ssss' + Math.random())
       const count = ref(0)
       const add = (a, b) => {
         return a + b
@@ -57,7 +62,7 @@
 
       if (test.name === undefined) {
       }
-      return { count }
+      return { count, jumpClick }
     }
   })
 </script>
