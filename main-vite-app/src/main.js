@@ -14,12 +14,14 @@ registerMicroApps([
     container: '#mainwrapper',
     activeRule: '/form-app',
     props:{//额外参数
-      getToken:{
-         
+      getToken: {
+
           token: 'aehyok',
           id: '789',
           name: '123'
-        
+      },
+      Test: function(test) {
+        console.log('子应用传递数据到主应用',test)
       }
     }
   },

@@ -30,7 +30,8 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
+import { ref, defineComponent, reactive } from 'vue'
+import { useStore } from 'vuex'
 export default defineComponent({
   name: 'HelloWorld',
   props: {
@@ -40,12 +41,23 @@ export default defineComponent({
     }
   },
   setup: () => {
+    const store = useStore()
+
+    // store.commit('setTest','ssss'+Math.random())
 		const count = ref(0)
 		const add=(a,b)=>{
 			return a+b
 		}
-		const se=ref("")
-		se.value="aehyok"
+		const se=ref(undefined)
+    const test= reactive({
+      name: undefined
+    })
+		// se.value="aehyok"
+    console.log(test.name)
+
+    if(test.name ===undefined){
+
+    }
     return { count }
   }
 })
