@@ -8,7 +8,7 @@
         background-color="#2c303b"
         text-color="#fff"
       >
-        <div v-for="m in state.displayMenuTree" :key="m.id">
+        <div v-for="m in displayMenuTree" :key="m.id">
           <el-submenu :index="m.path">
             <template #title>
               <i class="el-icon-location"></i>
@@ -25,7 +25,7 @@
         </div>
       </el-menu>
     </el-scrollbar>
-    <div class="version">V{{ state.version }}[2]</div>
+    <div class="version">V{{ version }}[2]</div>
   </div>
 </template>
 <script lang="ts">
