@@ -20,7 +20,7 @@
       const message = ref('')
       message.value = '返回首页'
 
-      const backHome = (): void => {
+      const backHome = () => {
         console.log(route, 'displayMenuTree')
         try {
           router.push({})

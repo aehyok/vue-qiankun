@@ -49,6 +49,10 @@
         console.log('404')
         router.push('/404')
       }
+
+      const jumpTest = (x, y, z) => {
+        return x + y + z
+      }
       store.commit('setTest', `ssss ${Math.random()}`)
       const count = ref(0)
       const test = reactive({
