@@ -19,7 +19,8 @@ export default {
       const { token } = state
       // 未登录 - 返回主页
       if (!token) {
-        this.$message.error('未检测到登录信息！')
+        console.log('未检测到登录信息！')
+        // this.$message.error('未检测到登录信息！')
         // return this.$router.push('/')
       }
       this.getUserInfo(token)
