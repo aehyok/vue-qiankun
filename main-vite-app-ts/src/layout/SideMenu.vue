@@ -98,7 +98,7 @@
               }
             },
             {
-              path: '/me-app',
+              path: '/home',
               name: 'me-app-dynamic',
               meta: {
                 title: 'me-app-dynamic',

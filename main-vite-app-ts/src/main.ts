@@ -3,6 +3,7 @@ import { registerMicroApps, start } from 'qiankun'
 // 内置ElementPlus
 import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css'
+import actions from './actions'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -16,6 +17,7 @@ registerMicroApps([
     activeRule: '/form-app',
     props: {
       // 额外参数
+      token: 'befcefdbf--abc',
       getToken: {
         token: 'aehyok',
         id: '789',

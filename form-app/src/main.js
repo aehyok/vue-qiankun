@@ -11,7 +11,7 @@ import 'leaflet/dist/leaflet.css'
 import * as L from 'leaflet'
 import 'leaflet.pm'
 import 'leaflet.pm/dist/leaflet.pm.css'
-
+import actions from './Actions'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 require('./mock/mock.js')
@@ -29,6 +29,11 @@ Vue.use(plugins)
 let router = null
 let instance = null
 function render (props = {}) {
+  if (props) {
+    // 注入 actions 实例
+    actions.setActions(props)
+  }
+
   const { container } = props
   router = new VueRouter({
     base: window.__POWERED_BY_QIANKUN__ ? '/form-app/' : '/',
@@ -52,7 +57,13 @@ export async function bootstrap () {
   console.log('[vue] vue app bootstraped')
 }
 export async function mount (props) {
-  console.log('[vue] props from main framework', props)
+  // console.log('[vue] props from main framework', props)
+  // props.onGlobalStateChange((state, prev) => {
+  //   // state: 变更后的状态; prev 变更前的状态
+  //   console.log(state, prev, '子应用')
+  // })
+
+  // props.setGlobalState(props)
   render(props)
 }
 export async function unmount () {
