@@ -43,5 +43,11 @@ start({
 })
 
 const app = createApp(App)
+app.config.globalProperties.$filters = {
+  currencyUSD(value: String) {
+    console.log('currencyUSD'+ value)
+    return '$' + value
+  }
+}
 app.use(router).use(ElementPlus).use(store)
 app.mount('#app')
