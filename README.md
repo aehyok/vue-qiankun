@@ -27,3 +27,7 @@
       app.use(ElementPlus)
       app.mount('#app')
     ```
+### 4、vue-router 引入 https://next.router.vuejs.org/zh/installation.html
+- npm install vue-router@4
+### 5、vuex 引入https://next.vuex.vuejs.org/installation.html
+- npm install vuex@next --save
