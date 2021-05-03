@@ -1,4 +1,4 @@
-# vue-component
+# webpack-app
 
 ## Project setup
 ```
