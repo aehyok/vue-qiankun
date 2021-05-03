@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "aehyok-form-vue3": "^1.0.30",
     "core-js": "^3.6.5",
     "element-plus": "^1.0.2-beta.41",
     "vue": "^3.0.0",
