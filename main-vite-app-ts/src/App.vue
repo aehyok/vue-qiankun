@@ -1,6 +1,5 @@
 <template>
-  <div id="app">
-    <el-container style="height: 100vh">
+    <el-container style="height: 100vh" v-if="showLayout">
       <el-header class="app-header">
         <Header />
       </el-header>
@@ -16,18 +15,41 @@
         </el-main>
       </el-container>
     </el-container>
-  </div>
+    <router-view v-if="!showLayout" />
 </template>
 <script lang="ts">
-  import { defineComponent } from '@vue/runtime-core'
+  import { defineComponent, watch, nextTick, reactive, toRefs } from 'vue'
   import Header from './layout/Header.vue'
   import SideMenu from './layout/SideMenu.vue'
+  import { useRoute } from 'vue-router'
 
   export default defineComponent({
     name: 'App',
     components: {
       Header,
       SideMenu
+    },
+    setup(){
+      const route = useRoute();
+      const state = reactive({
+        showLayout: true
+      })
+      watch(
+        route,
+        async ({ path }, prevRoute: unknown): Promise<void> => {
+          // console.log(path, 'App.path')
+          await nextTick()
+          path.includes("login")
+            ? state.showLayout = false
+            : state.showLayout = true
+          console.log(state);
+
+        },
+        { immediate: true }
+      );
+      return {
+        ...toRefs(state)
+      }
     }
   })
 </script>

@@ -22,6 +22,15 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+    meta: {
+      title: '登录',
+      showLayout: false,
+    }
+  },
+  {
     path: '/404',
     name: '404',
     component: () => import(/* webpackChunkName: "notFound" */ '../components/NotFound.vue')

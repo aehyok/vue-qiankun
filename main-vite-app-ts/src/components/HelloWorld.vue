@@ -27,7 +27,7 @@
       const jumpTest = (x, y, z) => {
         return x + y + z
       }
-      store.commit('setTest', `ssss ${Math.random()}`)
+      // store.commit('setTest', `ssss ${Math.random()}`)
       const count = ref(0)
       const test = reactive({
         name: undefined
