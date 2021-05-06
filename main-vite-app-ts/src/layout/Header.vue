@@ -171,17 +171,17 @@
 
       // 退出二次确认框
       const checkLoginOut = () => {
-        this.$confirm('请问是否退出登录?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        })
-          .then(() => {
-            loginOut()
-          })
-          .catch(() => {
-            return false
-          })
+        // this.$confirm('请问是否退出登录?', '提示', {
+        //   confirmButtonText: '确定',
+        //   cancelButtonText: '取消',
+        //   type: 'warning'
+        // })
+        //   .then(() => {
+        //     loginOut()
+        //   })
+        //   .catch(() => {
+        //     return false
+        //   })
       }
 
       const handleCommand = (command) => {
