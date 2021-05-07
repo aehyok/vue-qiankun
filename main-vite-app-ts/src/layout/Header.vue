@@ -72,13 +72,14 @@
   </div>
 </template>
 <script lang="ts">
-  import { computed, defineComponent, reactive, ref, toRefs } from 'vue'
+  import { computed, defineComponent, getCurrentInstance, reactive, ref, toRefs } from 'vue'
   import { useRoute } from 'vue-router'
-
   export default defineComponent({
     setup() {
       const ruleForm = ref(null)
-
+      const { ctx } = getCurrentInstance();
+      console.log(ctx, 'ctx')
+      // ctx.getAllLocales()
       const checkPsdVal = (rules, value, callback) => {
         const rule = /^(?![^a-zA-Z]+$)(?!\D+$).{8,16}/
         if (!rule.test(value)) {
