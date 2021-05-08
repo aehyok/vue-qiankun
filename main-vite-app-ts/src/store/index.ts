@@ -76,7 +76,7 @@ export default createStore({
             }
           },
           {
-            path: '/me/about',
+            path: '/about',
             name: 'me-app-about',
             meta: {
               title: 'me-app-about',
