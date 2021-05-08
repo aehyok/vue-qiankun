@@ -29,7 +29,7 @@
   </div>
 </template>
 <script lang="ts">
-  import { reactive, computed, onMounted, defineComponent, toRefs } from 'vue'
+  import { reactive, computed, onMounted, defineComponent, toRefs, watch } from 'vue'
   import { useRoute } from 'vue-router'
   import { useStore } from 'vuex';
 
@@ -40,8 +40,15 @@
         displayMenuTree: [],
         version: ''
       })
-      state.displayMenuTree = store.state.menuList // .filter(item=> item.path === store.state.headMenu)
-
+      // TODO watch store
+      watch(
+        () => store.state,
+        val => {
+        console.log('ßßs11323', store.state.headerMenu)
+        state.displayMenuTree = store.state.menuList.filter(item => item.path === store.state.headerMenu)
+        console.log(state.displayMenuTree, 'displayMenuTree');
+        }, { immediate: true, deep: true }
+      );
       const activeMenu = computed(() => {
         const route = useRoute()
         // console.log(route, 'this.$route');

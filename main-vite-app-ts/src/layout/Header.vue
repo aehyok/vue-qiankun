@@ -108,9 +108,9 @@
         activeIndex: '/form-app',
         resetPasswordVisible: false
       })
-      onBeforeMount(() => {
-        store.getters['permission/']
-      })
+      store.commit('header',state.activeIndex)
+      console.log(store.state.headerMenu,'header-menu');
+
       state.permitedRoutes = [
         {
           path: '/form-app',
@@ -245,10 +245,6 @@
 
 
       }
-      const activeMenu = computed(() => {
-        const route = useRoute()
-        return route.matched[0].path
-      })
       return {
         ...toRefs(state),
         close,
@@ -260,29 +256,11 @@
         handleSelect,
         checkPassword,
         checkPsdVal,
-        activeMenu,
         selectMenu,
         headList,
-        // ...useMapGetters(["/permission/headerMenuList"]),
-
       }
     }
   })
-
-  // watch: {
-  //   $route: {
-  //     handler (to) {
-  //       const item = this.permitedRoutes.find(item => {
-  //         if (to.matched[0]) {
-  //           return to.matched[0].path === item.path
-  //         }
-  //         return false
-  //       })
-  //       this.$store.commit('permission/setLeftMenus', item.children)
-  //     },
-  //     immediate: true
-  //   }
-  // }
 </script>
 <style lang="scss" scoped>
   .app-header {
