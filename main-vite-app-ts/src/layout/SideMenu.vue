@@ -31,150 +31,17 @@
 <script lang="ts">
   import { reactive, computed, onMounted, defineComponent, toRefs } from 'vue'
   import { useRoute } from 'vue-router'
+  import { useStore } from 'vuex';
 
   export default defineComponent({
     setup() {
+      const store = useStore()
       const state = reactive({
         displayMenuTree: [],
         version: ''
       })
-      state.displayMenuTree = [
-        {
-          id: 1,
-          path: '/form-app',
-          name: 'form-app',
-          meta: {
-            title: 'form-app',
-            hidden: false,
-            permissions: 7
-          },
-          children: [
-            {
-              path: '/form-app/#/',
-              name: 'form-app-dynamic',
-              meta: {
-                title: 'form-app-dynamic',
-                hidden: false,
-                permissions: 10
-              }
-            },
-            {
-              path: '/form-app/#/form',
-              name: 'aehyok-form',
-              meta: {
-                title: 'form',
-                hidden: false,
-                permissions: 10
-              }
-            },
-            {
-              path: '/form-app/#/about',
-              name: 'form-app-about',
-              meta: {
-                title: 'form-app-about',
-                hidden: false,
-                permissions: 10
-              }
-            }
-          ]
-        },
-        {
-          id: 2,
-          path: '/me-app',
-          name: '/me-app',
-          meta: {
-            title: 'me-app',
-            hidden: false,
-            permissions: 7
-          },
-          children: [
-            {
-              path: '/editor',
-              name: 'editor',
-              meta: {
-                title: 'wangeditor',
-                hidden: false,
-                permissions: 10
-              }
-            },
-            {
-              path: '/home',
-              name: 'me-app-dynamic',
-              meta: {
-                title: 'me-app-dynamic',
-                hidden: false,
-                permissions: 10
-              }
-            },
-            {
-              path: '/me/about',
-              name: 'me-app-about',
-              meta: {
-                title: 'me-app-about',
-                hidden: false,
-                permissions: 10
-              }
-            },
-            {
-              path: '/ffmpeg',
-              name: 'ffmpeg',
-              meta: {
-                title: 'ffmpeg',
-                hidden: false,
-                permissions: 10
-              }
-            },
-            {
-              path: '/video',
-              name: 'video',
-              meta: {
-                title: 'video',
-                hidden: false,
-                permissions: 10
-              }
-            },
-            {
-              path: '/cesium',
-              name: 'me-app-cesium',
-              meta: {
-                title: 'me-app-cesium',
-                hidden: false,
-                permissions: 10
-              }
-            }
-          ]
-        },
-        {
-          id: 3,
-          path: '/table-app',
-          name: 'table-app',
-          meta: {
-            title: 'table-app',
-            hidden: false,
-            permissions: 1543
-          },
-          children: [
-            {
-              path: '/table-app/#/',
-              name: 'table-dynamic',
-              meta: {
-                title: 'table-dynamic',
-                hidden: false,
-                permissions: 10
-              }
-            },
-            {
-              path: '/table-app/#/about',
-              name: 'table-app-about',
-              meta: {
-                title: 'about',
-                hidden: false,
-                permissions: 10
-              }
-            }
-          ]
-        }
-      ]
+      state.displayMenuTree = store.state.menuList // .filter(item=> item.path === store.state.headMenu)
+
       const activeMenu = computed(() => {
         const route = useRoute()
         // console.log(route, 'this.$route');

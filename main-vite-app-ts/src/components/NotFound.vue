@@ -23,7 +23,7 @@
       const backHome = () => {
         console.log(route, 'displayMenuTree')
         try {
-          router.push({})
+          router.push('/')
         } catch {
           router.push({ name: 'login' })
         }

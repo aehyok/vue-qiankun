@@ -11,8 +11,9 @@
           text-color="#fff"
           active-text-color="#fff"
           :router="true"
+          @select="selectMenu"
         >
-          <el-menu-item v-for="m in permitedRoutes" :index="m.path" :key="m.meta.title">{{
+          <el-menu-item v-for="m in headList" :index="m.path" :key="m.meta.title">{{
             m.meta.title
           }}</el-menu-item>
         </el-menu>
@@ -72,11 +73,19 @@
   </div>
 </template>
 <script lang="ts">
-  import { computed, defineComponent, getCurrentInstance, reactive, ref, toRefs } from 'vue'
-  import { useRoute } from 'vue-router'
+  import { computed, defineComponent, getCurrentInstance, onBeforeMount, reactive, ref, toRefs } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
+  import { useStore } from 'vuex'
+  import { useMapGetters } from '../utils/store'
+
   export default defineComponent({
     setup() {
+
       const ruleForm = ref(null)
+      const router = useRouter()
+      const store = useStore()
+      const headList = store.getters.headerMenuList
+      console.log(store.getters.headerMenuList, store,'headerMenuList')
       const { ctx } = getCurrentInstance();
       console.log(ctx, 'ctx')
       // ctx.getAllLocales()
@@ -98,6 +107,9 @@
         },
         activeIndex: '/form-app',
         resetPasswordVisible: false
+      })
+      onBeforeMount(() => {
+        store.getters['permission/']
       })
       state.permitedRoutes = [
         {
@@ -172,6 +184,7 @@
 
       // 退出二次确认框
       const checkLoginOut = () => {
+        router.push("/login");
         // this.$confirm('请问是否退出登录?', '提示', {
         //   confirmButtonText: '确定',
         //   cancelButtonText: '取消',
@@ -197,6 +210,7 @@
       // 退出登录
       const loginOut = async (type) => {
         console.log(type)
+        router.push("/login")
         //     // const res = await logout({
         //     //   token: this.user.token,
         //     // })
@@ -225,6 +239,12 @@
         state.resetPasswordVisible = false
         // this.$refs.ruleForm.resetFields()
       }
+      const selectMenu = (e) => {
+        console.log(e,'selectMenu')
+        store.commit('header',e)
+
+
+      }
       const activeMenu = computed(() => {
         const route = useRoute()
         return route.matched[0].path
@@ -240,7 +260,11 @@
         handleSelect,
         checkPassword,
         checkPsdVal,
-        activeMenu
+        activeMenu,
+        selectMenu,
+        headList,
+        // ...useMapGetters(["/permission/headerMenuList"]),
+
       }
     }
   })
