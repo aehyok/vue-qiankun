@@ -33,14 +33,53 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/404',
     name: '404',
-    component: () => import(/* webpackChunkName: "notFound" */ '../components/NotFound.vue')
-  }
-  // { path: '/catchAll(.*)', name:'404', redirect: '/404' },
+    component: () => import(/* webpackChunkName: "404" */ '../components/NotFound.vue')
+  },
+  {
+    path: '/button',
+    name: 'button',
+    component: () => import(/* webpackChunkName: "button" */ '../views/button/index.vue')
+  },
+  {
+    // 找不到路由重定向到404页面
+    path: "/:pathMatch(.*)",
+    redirect: "/404",
+    meta: {
+      icon: "el-icon-s-home",
+      title: "message.hshome",
+      showLink: false,
+      savedPosition: false,
+    },
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes
 })
+
+
+import NProgress from "../utils/progress";
+
+const whiteList = ["/login", "/register"];
+
+// router.beforeEach((to, _from, next) => {
+
+//   // NProgress.start();
+//   console.log('before Each');
+//   // const { t } = i18n.global;
+//   // // @ts-ignore
+//   // document.title = t(to.meta.title); // 动态title
+//   // whiteList.indexOf(to.path) !== -1 || storageSession.getItem("info")
+//   //   ? next()
+//   //   : next("/login"); // 全部重定向到登录页
+// });
+
+// router.afterEach(() => {
+//   console.log('after Each');
+
+//   // NProgress.done();
+// });
+
 
 export default router
