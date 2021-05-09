@@ -36,9 +36,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "404" */ '../components/NotFound.vue')
   },
   {
-    path: '/button',
-    name: 'button',
-    component: () => import(/* webpackChunkName: "button" */ '../views/button/index.vue')
+    path: '/buttonList',
+    name: 'buttonList',
+    component: () => import(/* webpackChunkName: "button" */ '../views/buttonList/index.vue')
   },
   {
     // 找不到路由重定向到404页面

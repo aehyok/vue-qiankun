@@ -13,16 +13,16 @@ export default createStore({
         path: '/form-app',
         name: 'form-app',
         meta: {
-          title: '组织管理',
+          title: '主应用',
           hidden: false,
           permissions: 7
         },
         children: [
           {
-            path: '/form-app/#/',
-            name: 'form-app-dynamic',
+            path: '/buttonList',
+            name: 'buttonList',
             meta: {
-              title: 'form-app-dynamic',
+              title: '按钮样式列表',
               hidden: false,
               permissions: 10
             }

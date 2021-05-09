@@ -30,6 +30,12 @@ registerMicroApps([
     entry: '//localhost:3000',
     container: '#mainwrapper',
     activeRule: '/table-app'
+  },
+  {
+    name: 'wp-app',
+    entry: '//localhost:4000',
+    container: '#mainwrapper',
+    activeRule: '/wp-app'
   }
 ])
 

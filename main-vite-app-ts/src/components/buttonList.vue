@@ -82,7 +82,7 @@ export default defineComponent({
     }
 
     .java:active {
-      opacity: 0.7;
+      opacity: 0.2;
     }
 
     .c {
