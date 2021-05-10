@@ -105,7 +105,7 @@
           newPassword: '',
           checkPwd: ''
         },
-        activeIndex: '/form-app',
+        activeIndex: '/',
         resetPasswordVisible: false
       })
       store.commit('header',state.activeIndex)

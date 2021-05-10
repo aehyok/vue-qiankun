@@ -24,7 +24,7 @@
       <el-button
         size="large"
         type="primary"
-        style="margin-left: 120px; height: 50px;"
+        style="margin-left: 120px; height: 50px"
         @click="submitForm"
         native-type="submit"
       >
@@ -34,105 +34,108 @@
   </div>
 </template>
 <script>
-import { defineComponent, reactive, toRefs, ref } from 'vue'
-import FormView from 'aehyok-form-vue3'
-// import VJsoneditor from 'v-jsoneditor'
+import { defineComponent, reactive, toRefs, ref } from "vue";
+import FormView from "aehyok-form-vue3";
+// import VJsoneditor from "v-jsoneditor"
 
 export default defineComponent({
   components: {
-    FormView,
+    FormView
     // VJsoneditor
   },
-  setup(props, context){
-    let refs = ref('')
-    const dom = el => {
-      refs = el
-    }
+  setup() {
+    let refs = ref("");
+    const dom = (el) => {
+      refs = el;
+    };
 
     const state = reactive({
       options: {
-          mode: 'code',
-          mainMenuBar: false,
+        mode: "code",
+        mainMenuBar: false
       },
       show: true,
       formConfig: {
         cols: 24,
         formListItem: [
           {
-            name: 'name1',
-            type: 'text',
-            title: '栏目标题',
+            name: "name1",
+            type: "text",
+            title: "栏目标题",
             required: true // 必填
           },
           {
-            name: 'name',
-            type: 'text',
-            title: '栏目名称'
+            name: "name",
+            type: "text",
+            title: "栏目名称"
           },
           {
-            name: 'total',
-            type: 'number',
-            title: '栏目数量',
+            name: "total",
+            type: "number",
+            title: "栏目数量",
             required: true
           },
           {
-            name: 'count',
-            type: 'number',
-            title: '浏览数量'
+            name: "count",
+            type: "number",
+            title: "浏览数量"
           },
           {
-            name: 'descript',
-            type: 'textarea',
-            title: '备注',
+            name: "descript",
+            type: "textarea",
+            title: "备注",
             required: true
           },
           {
-            name: 'content',
-            type: 'textarea',
-            title: '内容'
+            name: "content",
+            type: "textarea",
+            title: "内容"
           },
           {
-            name: 'startDate',
-            type: 'date',
-            title: '开始日期',
+            name: "startDate",
+            type: "date",
+            title: "开始日期",
             required: true
           },
           {
-            name: 'endDate',
-            type: 'date',
-            title: '结束日期'
+            name: "endDate",
+            type: "date",
+            title: "结束日期"
           },
           {
-            name: 'isValid',
-            type: 'switch',
-            title: '是否有效'
+            name: "isValid",
+            type: "switch",
+            title: "是否有效"
           },
           {
-            name: 'isExpired',
-            type: 'switch',
-            title: '是否过期',
+            name: "isExpired",
+            type: "switch",
+            title: "是否过期",
             required: true
           },
           {
-            name: 'type',
-            type: 'radio',
-            codeTable: 'type',
-            title: '栏目类型',
+            name: "type",
+            type: "radio",
+            codeTable: "type",
+            title: "栏目类型",
             controls: [
               {
                 value: 1,
                 showCondition: [
                   {
-                    name: 'show',
-                    type: 'radio',
-                    codeTable:[{id:1,text:'China'},{id:2,text:'English'}],
-                    title: '测试类型',
+                    name: "show",
+                    type: "radio",
+                    codeTable: [
+                      { id: 1, text: "China" },
+                      { id: 2, text: "English" }
+                    ],
+                    title: "测试类型",
                     required: true
                   },
                   {
-                    name: 'image1',
-                    type: 'image',
-                    title: '文件'
+                    name: "image1",
+                    type: "image",
+                    title: "文件"
                   }
                 ]
               },
@@ -140,77 +143,77 @@ export default defineComponent({
                 value: 2,
                 showCondition: [
                   {
-                    name: 'isValids',
-                    type: 'switch',
-                    title: '是否有效'
+                    name: "isValids",
+                    type: "switch",
+                    title: "是否有效"
                   }
                 ]
               }
             ]
           },
           {
-            name: 'requireType',
-            type: 'radio',
-            codeTable: 'isp',
-            title: '图文类型',
+            name: "requireType",
+            type: "radio",
+            codeTable: "isp",
+            title: "图文类型",
             required: true
           },
           {
-            name: 'range',
-            type: 'checkbox',
-            title: '发布范围',
-            codeTable: 'isp',
+            name: "range",
+            type: "checkbox",
+            title: "发布范围",
+            codeTable: "isp",
             required: true
           },
           {
-            name: 'dateRange',
-            type: 'daterange',
-            title: '日期范围'
+            name: "dateRange",
+            type: "daterange",
+            title: "日期范围"
           },
           {
-            name: 'creType',
-            type: 'select',
+            name: "creType",
+            type: "select",
             // multiple: true,
-            codeTable: 'politicalstatus',
-            title: '证件类型'
+            codeTable: "politicalstatus",
+            title: "证件类型"
           },
           {
-            name: 'image',
-            type: 'image',
-            title: '头像'
+            name: "image",
+            type: "image",
+            title: "头像"
           }
         ],
         formData: {
-          name: '主菜单栏目',
+          name: "主菜单栏目",
           total: null,
           count: null,
           createDate: 1606730360386,
           type: 1,
           requireType: undefined,
-          creType: '',
+          creType: "",
           range: [],
           isExpired: false,
           isValid: true
         }
       }
-    })
+    });
     const submitForm = () => {
-      console.log(state.formConfig.formData , 'formData')
-      refs.validate(valid => {
+      console.log(state.formConfig.formData, "formData");
+      refs.value.validate((valid) => {
         if (valid) {
-          console.log(valid, 'this.valid')
+          console.log(valid, "this.valid");
         } else {
-          console.log(valid, '验证失败')
+          console.log(valid, "验证失败");
         }
-        return false
-      })
-    }
+        return false;
+      });
+    };
     return {
       ...toRefs(state),
       submitForm,
       dom
-    }
-  },
-})
+    };
+  }
+});
 </script>
 <style scoped></style>

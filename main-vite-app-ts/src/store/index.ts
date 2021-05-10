@@ -10,11 +10,12 @@ export default createStore({
     menuList: [
       {
         id: 1,
-        path: '/form-app',
-        name: 'form-app',
+        path: '/home',
+        name: 'home',
         meta: {
           title: '主应用',
           hidden: false,
+          main: true,
           permissions: 7
         },
         children: [
@@ -24,23 +25,25 @@ export default createStore({
             meta: {
               title: '按钮样式列表',
               hidden: false,
+              main: true,
               permissions: 10
             }
           },
           {
-            path: '/form-app/#/form',
+            path: '/about',
             name: 'aehyok-form',
             meta: {
-              title: 'form',
+              title: '主应用关于',
               hidden: false,
+              main: false,
               permissions: 10
             }
           },
           {
-            path: '/form-app/#/about',
-            name: 'form-app-about',
+            path: '/home',
+            name: 'home',
             meta: {
-              title: 'form-app-about',
+              title: '主应用主页',
               hidden: false,
               permissions: 10
             }
@@ -49,8 +52,8 @@ export default createStore({
       },
       {
         id: 2,
-        path: '/me-app',
-        name: '/me-app',
+        path: '/form-app/#/about',
+        name: 'form-app',
         meta: {
           title: '基础管理',
           hidden: false,
@@ -115,7 +118,7 @@ export default createStore({
       },
       {
         id: 3,
-        path: '/table-app',
+        path: '/wp-app/#/about',
         name: 'table-app',
         meta: {
           title: '数据管理',
@@ -124,7 +127,7 @@ export default createStore({
         },
         children: [
           {
-            path: '/table-app/#/',
+            path: '/wp-app/#/',
             name: 'table-dynamic',
             meta: {
               title: 'table-dynamic',
@@ -133,7 +136,7 @@ export default createStore({
             }
           },
           {
-            path: '/table-app/#/about',
+            path: '/wp-app/#/about',
             name: 'table-app-about',
             meta: {
               title: 'about',

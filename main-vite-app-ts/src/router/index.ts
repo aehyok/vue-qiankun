@@ -18,7 +18,8 @@ const routes: Array<RouteRecordRaw> = [
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
     meta: {
-      title: '关于'
+      title: '关于',
+      main: true,
     }
   },
   {
@@ -38,26 +39,41 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/buttonList',
     name: 'buttonList',
-    component: () => import(/* webpackChunkName: "button" */ '../views/buttonList/index.vue')
-  },
-  {
-    // 找不到路由重定向到404页面
-    path: "/:pathMatch(.*)",
-    redirect: "/404",
+    component: () => import(/* webpackChunkName: "button" */ '../views/buttonList/index.vue'),
     meta: {
-      icon: "el-icon-s-home",
-      title: "message.hshome",
-      showLink: false,
-      savedPosition: false,
-    },
+      main: true,  // 是否为主应用的路由菜单
+    }
   },
+  // {
+  //   // 找不到路由重定向到404页面
+  //   path: "/:pathMatch(.*)",
+  //   redirect: "/404",
+  //   meta: {
+  //     icon: "el-icon-s-home",
+  //     title: "message.hshome",
+  //     showLink: false,
+  //     savedPosition: false,
+  //   },
+  // },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes
 })
+const childrenPath = ['/form-app', '/wp-app'];
 
+router.beforeEach((to, from, next) => {
+  console.log(to,'before---each')
+  if (to.name) {
+    // 有 name 属性，说明是主应用的路由
+    next();
+  }
+  if (childrenPath.some((item) => to.path.includes(item))) {
+    next();
+  }
+  next({ name: '404' });
+});
 
 import NProgress from "../utils/progress";
 

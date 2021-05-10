@@ -9,8 +9,8 @@
         </el-aside>
         <el-main class="layoutbox">
           <div class="main-wrapper" style="position: relative; height: 100%">
-            <router-view></router-view>
-            <div id="mainwrapper"></div>
+            <router-view v-show="main"></router-view>
+            <div id="mainwrapper" v-show="!main"></div>
           </div>
         </el-main>
       </el-container>
@@ -32,16 +32,18 @@
     setup(){
       const route = useRoute();
       const state = reactive({
-        showLayout: true
+        showLayout: true,
+        main: false,  // 是否为主应用的菜单
       })
       watch(
         route,
         async ({ path }, prevRoute: unknown): Promise<void> => {
-          // console.log(path, 'App.path')
-          await nextTick()
+          // console.log(state.main, 'stateMain')
           path.includes("login")
             ? state.showLayout = false
             : state.showLayout = true
+          console.log(route,route.meta.main===true, 'App.path')
+          state.main = route.meta.main ? true : false
           console.log(state);
 
         },

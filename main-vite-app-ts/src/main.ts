@@ -8,6 +8,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+const getActiveRule = (hash:any) => (location:any) => location.hash.startsWith(hash);
 // 在主应用中注册微应用
 registerMicroApps([
   {
@@ -49,6 +50,8 @@ start({
 })
 
 const app = createApp(App)
+
+// 全局函数注入
 app.config.globalProperties.$filters = {
   currencyUSD(value: String) {
     console.log('currencyUSD'+ value)
