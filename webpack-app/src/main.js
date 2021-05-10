@@ -49,7 +49,7 @@ function render(props = {}) {
 
 // 独立运行时
 if (!window.__POWERED_BY_QIANKUN__) {
-  console.log('独立运行 ')
+  console.log("独立运行");
   render();
 }
 

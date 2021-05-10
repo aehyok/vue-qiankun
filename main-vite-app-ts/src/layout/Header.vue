@@ -105,7 +105,7 @@
           newPassword: '',
           checkPwd: ''
         },
-        activeIndex: '/',
+        activeIndex: '/home',
         resetPasswordVisible: false
       })
       store.commit('header',state.activeIndex)
