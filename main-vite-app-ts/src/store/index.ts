@@ -148,26 +148,26 @@ export default createStore({
       }
     ],
     headerMenu: '',
-    count: 0,
+    count: 0
   },
   getters: {
     headerMenuList: (state: any) => {
-      return state.menuList.filter((item:any) =>{
+      return state.menuList.filter((item: any) => {
         return {
           ...item,
           children: []
         }
       })
     },
-    baseInfo: state => {
-      return state.toDoList.filter(item => item.done)
+    baseInfo: (state) => {
+      return state.toDoList.filter((item) => item.done)
     },
     getTodo: (state) => (id: any) => {
-      return state.toDoList.find(todo => todo.id === id)
+      return state.toDoList.find((todo) => todo.id === id)
     }
   },
   mutations: {
-    increment (state, edge) {
+    increment(state, edge) {
       state.count = state.count + edge
     },
     header(state, path) {
@@ -177,11 +177,11 @@ export default createStore({
   // actions 类似于 mutation，actions中可以包含异步
   // store.dispatch('increment')
   actions: {
-    increment (context) {
+    increment(context) {
       context.commit('increment')
     }
   },
   modules: {
     // permission,
-  },
+  }
 })

@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
     meta: {
       title: '关于',
-      main: true,
+      main: true
     }
   },
   {
@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
     meta: {
       title: '登录',
-      showLayout: false,
+      showLayout: false
     }
   },
   {
@@ -41,9 +41,9 @@ const routes: Array<RouteRecordRaw> = [
     name: 'buttonList',
     component: () => import(/* webpackChunkName: "button" */ '../views/buttonList/index.vue'),
     meta: {
-      main: true,  // 是否为主应用的路由菜单
+      main: true // 是否为主应用的路由菜单
     }
-  },
+  }
   // {
   //   // 找不到路由重定向到404页面
   //   path: "/:pathMatch(.*)",
@@ -61,23 +61,23 @@ const router = createRouter({
   history: createWebHistory(),
   routes
 })
-const childrenPath = ['/form-app', '/wp-app'];
+const childrenPath = ['/form-app', '/wp-app']
 
 router.beforeEach((to, from, next) => {
-  console.log(to,'before---each')
+  console.log(to, 'before---each')
   if (to.name) {
     // 有 name 属性，说明是主应用的路由
-    next();
+    next()
   }
   if (childrenPath.some((item) => to.path.includes(item))) {
-    next();
+    next()
   }
-  next({ name: '404' });
-});
+  next({ name: '404' })
+})
 
-import NProgress from "../utils/progress";
+import NProgress from '../utils/progress'
 
-const whiteList = ["/login", "/register"];
+const whiteList = ['/login', '/register']
 
 // router.beforeEach((to, _from, next) => {
 
@@ -96,6 +96,5 @@ const whiteList = ["/login", "/register"];
 
 //   // NProgress.done();
 // });
-
 
 export default router

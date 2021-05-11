@@ -73,20 +73,27 @@
   </div>
 </template>
 <script lang="ts">
-  import { computed, defineComponent, getCurrentInstance, onBeforeMount, reactive, ref, toRefs } from 'vue'
+  import {
+    computed,
+    defineComponent,
+    getCurrentInstance,
+    onBeforeMount,
+    reactive,
+    ref,
+    toRefs
+  } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { useStore } from 'vuex'
   import { useMapGetters } from '../utils/store'
 
   export default defineComponent({
     setup() {
-
       const ruleForm = ref(null)
       const router = useRouter()
       const store = useStore()
       const headList = store.getters.headerMenuList
-      console.log(store.getters.headerMenuList, store,'headerMenuList')
-      const { ctx } = getCurrentInstance();
+      console.log(store.getters.headerMenuList, store, 'headerMenuList')
+      const { ctx } = getCurrentInstance()
       console.log(ctx, 'ctx')
       // ctx.getAllLocales()
       const checkPsdVal = (rules, value, callback) => {
@@ -108,8 +115,8 @@
         activeIndex: '/home',
         resetPasswordVisible: false
       })
-      store.commit('header',state.activeIndex)
-      console.log(store.state.headerMenu,'header-menu');
+      store.commit('header', state.activeIndex)
+      console.log(store.state.headerMenu, 'header-menu')
 
       state.permitedRoutes = [
         {
@@ -184,7 +191,7 @@
 
       // 退出二次确认框
       const checkLoginOut = () => {
-        router.push("/login");
+        router.push('/login')
         // this.$confirm('请问是否退出登录?', '提示', {
         //   confirmButtonText: '确定',
         //   cancelButtonText: '取消',
@@ -210,7 +217,7 @@
       // 退出登录
       const loginOut = async (type) => {
         console.log(type)
-        router.push("/login")
+        router.push('/login')
         //     // const res = await logout({
         //     //   token: this.user.token,
         //     // })
@@ -240,10 +247,8 @@
         // this.$refs.ruleForm.resetFields()
       }
       const selectMenu = (e) => {
-        console.log(e,'selectMenu')
-        store.commit('header',e)
-
-
+        console.log(e, 'selectMenu')
+        store.commit('header', e)
       }
       return {
         ...toRefs(state),
@@ -257,7 +262,7 @@
         checkPassword,
         checkPsdVal,
         selectMenu,
-        headList,
+        headList
       }
     }
   })
