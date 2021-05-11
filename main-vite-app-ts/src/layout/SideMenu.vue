@@ -3,7 +3,7 @@
     <el-scrollbar class="scroll-wrap" :noresize="false" view-style="{ height: '100%' }">
       <el-menu
         :default-active="activeMenu"
-        unique-opened
+        unique-opened="true"
         router
         background-color="#2c303b"
         text-color="#fff"

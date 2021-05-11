@@ -19,12 +19,12 @@
     setup: () => {
       const store = useStore()
       const router = useRouter()
-      const jumpClick = () => {
+      const jumpClick = (): void => {
         console.log('404')
         router.push('/404')
       }
 
-      const jumpTest = (x, y, z) => {
+      const jumpTest = (x: any, y: any, z: any): any => {
         return x + y + z
       }
       // store.commit('setTest', `ssss ${Math.random()}`)

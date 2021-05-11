@@ -8,12 +8,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-const getActiveRule = (hash:any) => (location:any) => location.hash.startsWith(hash);
+const getActiveRule = (hash: any) => (location: any) => location.hash.startsWith(hash)
+
 // 在主应用中注册微应用
 registerMicroApps([
   {
     name: 'form-app', // app name registered
-    entry: '//localhost:2000',
+    entry: process.env.NODE_ENV === 'production' ? 'http://139.186.205.7:2000' : '//localhost:2000',
     container: '#mainwrapper',
     activeRule: '/form-app',
     props: {
@@ -28,13 +29,13 @@ registerMicroApps([
   },
   {
     name: 'table-app',
-    entry: '//localhost:3000',
+    entry: process.env.NODE_ENV === 'production' ? 'http://139.186.205.7:3000' : '//localhost:3000',
     container: '#mainwrapper',
     activeRule: '/table-app'
   },
   {
     name: 'wp-app',
-    entry: '//localhost:4000',
+    entry: process.env.NODE_ENV === 'production' ? 'http://139.186.205.7:4000' : '//localhost:4000',
     container: '#mainwrapper',
     activeRule: '/wp-app'
   }
@@ -54,7 +55,7 @@ const app = createApp(App)
 // 全局函数注入
 app.config.globalProperties.$filters = {
   currencyUSD(value: String) {
-    console.log('currencyUSD'+ value)
+    console.log('currencyUSD' + value)
     return '$' + value
   }
 }

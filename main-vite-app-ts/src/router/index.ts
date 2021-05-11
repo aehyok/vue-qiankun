@@ -75,9 +75,9 @@ router.beforeEach((to, from, next) => {
   next({ name: '404' })
 })
 
-import NProgress from '../utils/progress'
+// import NProgress from '../utils/progress'
 
-const whiteList = ['/login', '/register']
+// const whiteList = ['/login', '/register']
 
 // router.beforeEach((to, _from, next) => {
 

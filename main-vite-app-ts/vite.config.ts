@@ -19,6 +19,9 @@ export default defineConfig({
     }
   },
   base: './', // 设置打包路径
+  build: {
+    outDir: '../qiankun/main'
+  },
   server: {
     port: 1100, // 设置服务启动端口号
     // https: true,

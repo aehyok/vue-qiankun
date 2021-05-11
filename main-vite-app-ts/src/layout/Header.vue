@@ -105,7 +105,6 @@
         }
       }
       const state = reactive({
-        permitedRoutes: [],
         rules: {},
         form: {
           oldPassword: '',
@@ -116,28 +115,7 @@
         resetPasswordVisible: false
       })
       store.commit('header', state.activeIndex)
-      console.log(store.state.headerMenu, 'header-menu')
 
-      state.permitedRoutes = [
-        {
-          path: '/form-app',
-          name: 'organizationManage',
-          meta: {
-            title: '组织管理',
-            hidden: false,
-            permissions: 7
-          }
-        },
-        {
-          path: '/table-app',
-          name: 'baseManage',
-          meta: {
-            title: '基础管理',
-            hidden: false,
-            permissions: 4
-          }
-        }
-      ]
       const checkPassword = (rules, value, callback) => {
         if (value !== state.form.newPassword) {
           callback(new Error('两次密码输入不一致'))
