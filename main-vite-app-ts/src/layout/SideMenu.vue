@@ -61,8 +61,8 @@
       const activeMenu = computed(() => {
         const route = useRoute()
         console.log(route, 'this.$route')
-        const meta = route.meta
-        if (meta.activeMenu) {
+        const meta = route ? route.meta : ''
+        if (meta && meta.activeMenu) {
           return meta.activeMenu
         }
         return ''
