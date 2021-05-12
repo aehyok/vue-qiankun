@@ -1,5 +1,5 @@
-import "../../common/qiankun/public-path";
-import actions from "../../common/qiankun/actions";
+import "./public-path";
+import actions from "./actions";
 import { createApp } from "vue";
 import ElementPlus from "element-plus";
 import "element-plus/lib/theme-chalk/index.css";
@@ -28,10 +28,6 @@ function render(props = {}) {
     actions.setActions(props);
   }
   const { container } = props;
-  // const router = createRouter({
-  //   history: createWebHistory(),
-  //   routes
-  // })
   const router = createRouter({
     // base: window.__POWERED_BY_QIANKUN__ ? "/wp-app" : "/",
     history: createWebHashHistory(),

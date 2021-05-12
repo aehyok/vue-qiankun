@@ -13,8 +13,8 @@
           :router="true"
           @select="selectMenu"
         >
-          <el-menu-item v-for="m in headList" :index="m.path" :key="m.meta.title">{{
-            m.meta.title
+          <el-menu-item v-for="m in headList" :index="m.path" :key="m.path">{{
+            m.source.title
           }}</el-menu-item>
         </el-menu>
       </div>
@@ -92,9 +92,9 @@
       const router = useRouter()
       const store = useStore()
       const headList = store.getters.headerMenuList
-      console.log(store.getters.headerMenuList, store, 'headerMenuList')
+      // console.log(store.getters.headerMenuList, store, 'headerMenuList')
       const { ctx } = getCurrentInstance()
-      console.log(ctx, 'ctx')
+      // console.log(ctx, 'ctx')
       // ctx.getAllLocales()
       const checkPsdVal = (rules, value, callback) => {
         const rule = /^(?![^a-zA-Z]+$)(?!\D+$).{8,16}/
@@ -159,14 +159,6 @@
         ]
       }
 
-      const handleSelect = (key, keyPath) => {
-        console.log(key, keyPath)
-      }
-      const goMenu = (routerList) => {
-        console.log(routerList)
-        // this.$store.commit('permission/setMenusAll')
-      }
-
       // 退出二次确认框
       const checkLoginOut = () => {
         router.push('/login')
@@ -225,7 +217,7 @@
         // this.$refs.ruleForm.resetFields()
       }
       const selectMenu = (e) => {
-        console.log(e, 'selectMenu')
+        // console.log(e, 'selectMenu')
         store.commit('header', e)
       }
       return {
@@ -235,8 +227,6 @@
         loginOut,
         checkLoginOut,
         handleCommand,
-        goMenu,
-        handleSelect,
         checkPassword,
         checkPsdVal,
         selectMenu,

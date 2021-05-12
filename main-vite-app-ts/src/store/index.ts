@@ -12,7 +12,7 @@ export default createStore({
         id: 1,
         path: '/home',
         name: 'home',
-        meta: {
+        source: {
           title: '主应用',
           hidden: false,
           main: true,
@@ -22,7 +22,7 @@ export default createStore({
           {
             path: '/buttonList',
             name: 'buttonList',
-            meta: {
+            source: {
               title: '按钮样式列表',
               hidden: false,
               main: true,
@@ -32,7 +32,7 @@ export default createStore({
           {
             path: '/about',
             name: 'aehyok-form',
-            meta: {
+            source: {
               title: '主应用关于',
               hidden: false,
               main: false,
@@ -42,7 +42,7 @@ export default createStore({
           {
             path: '/home',
             name: 'home',
-            meta: {
+            source: {
               title: '主应用主页',
               hidden: false,
               permissions: 10
@@ -54,7 +54,7 @@ export default createStore({
         id: 2,
         path: '/form-app/#/about',
         name: 'form-app',
-        meta: {
+        source: {
           title: '基础管理',
           hidden: false,
           permissions: 7
@@ -63,7 +63,7 @@ export default createStore({
           {
             path: '/editor',
             name: 'editor',
-            meta: {
+            source: {
               title: 'wangeditor',
               hidden: false,
               permissions: 10
@@ -72,7 +72,7 @@ export default createStore({
           {
             path: '/home',
             name: 'me-app-dynamic',
-            meta: {
+            source: {
               title: 'me-app-dynamic',
               hidden: false,
               permissions: 10
@@ -81,7 +81,7 @@ export default createStore({
           {
             path: '/about',
             name: 'me-app-about',
-            meta: {
+            source: {
               title: 'me-app-about',
               hidden: false,
               permissions: 10
@@ -90,7 +90,7 @@ export default createStore({
           {
             path: '/ffmpeg',
             name: 'ffmpeg',
-            meta: {
+            source: {
               title: 'ffmpeg',
               hidden: false,
               permissions: 10
@@ -99,7 +99,7 @@ export default createStore({
           {
             path: '/video',
             name: 'video',
-            meta: {
+            source: {
               title: 'video',
               hidden: false,
               permissions: 10
@@ -108,7 +108,7 @@ export default createStore({
           {
             path: '/cesium',
             name: 'me-app-cesium',
-            meta: {
+            source: {
               title: 'me-app-cesium',
               hidden: false,
               permissions: 10
@@ -120,7 +120,7 @@ export default createStore({
         id: 3,
         path: '/wp-app/#/about',
         name: 'table-app',
-        meta: {
+        source: {
           title: '数据管理',
           hidden: false,
           permissions: 1543
@@ -129,7 +129,7 @@ export default createStore({
           {
             path: '/wp-app/#/',
             name: 'table-dynamic',
-            meta: {
+            source: {
               title: 'table-dynamic',
               hidden: false,
               permissions: 10
@@ -138,7 +138,7 @@ export default createStore({
           {
             path: '/wp-app/#/about',
             name: 'table-app-about',
-            meta: {
+            source: {
               title: 'about',
               hidden: false,
               permissions: 10

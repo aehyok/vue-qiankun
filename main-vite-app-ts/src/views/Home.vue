@@ -16,7 +16,7 @@
     setup() {
       const msg = ref('')
       const message = 'ssss'
-      console.log(message)
+      // console.log(message)
       msg.value = 'Hello in the World'
       // const set = () => {
       //   const state = reactive({

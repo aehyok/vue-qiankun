@@ -1,8 +1,8 @@
 <template>
-  <div class="about">
-    <h1>This is an wp about page</h1>
-  </div>
+  <h1>This is an webpack about page</h1>
 </template>
-<script setup>
-console.log("setup about");
+<script>
+export default {
+  setup() {}
+};
 </script>

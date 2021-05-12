@@ -3,32 +3,34 @@
     <el-scrollbar class="scroll-wrap" :noresize="false" view-style="{ height: '100%' }">
       <el-menu
         :default-active="activeMenu"
-        unique-opened="true"
+        :unique-opened="true"
         router
         background-color="#2c303b"
         text-color="#fff"
       >
-        <div v-for="m in displayMenuTree" :key="m.id">
+        <template v-for="m in displayMenuTree">
           <el-submenu :index="m.path">
             <template #title>
               <i class="el-icon-location"></i>
-              <span>{{ m.meta.title }}</span>
+              <span>{{ m.source.title }}</span>
             </template>
             <el-menu-item
               style="border: 0; float: left; width: 100%"
               :index="sub.path"
               :key="sub.name"
               v-for="sub in m.children"
-              >{{ sub.meta.title }}</el-menu-item
             >
+              {{ sub.source.title }}
+            </el-menu-item>
           </el-submenu>
-        </div>
+        </template>
       </el-menu>
     </el-scrollbar>
     <div class="version">V{{ version }}[2]</div>
   </div>
 </template>
 <script lang="ts">
+  import { nextTick } from 'process'
   import { reactive, computed, onMounted, defineComponent, toRefs, watch } from 'vue'
   import { useRoute } from 'vue-router'
   import { useStore } from 'vuex'
@@ -42,12 +44,14 @@
       })
       // TODO watch store
       watch(
-        () => store.state,
-        (val) => {
+        () => store.state.headerMenu,
+        (val, old) => {
+          // nextTick(() => {
           state.displayMenuTree = store.state.menuList.filter(
             (item) => item.path === store.state.headerMenu
           )
-          console.log(state.displayMenuTree, 'displayMenuTree')
+          // })
+          console.log(val, old, state.displayMenuTree, 'displayMenuTree')
         },
         {
           immediate: true,
@@ -56,8 +60,8 @@
       )
       const activeMenu = computed(() => {
         const route = useRoute()
-        // console.log(route, 'this.$route');
-        const { meta } = route
+        console.log(route, 'this.$route')
+        const meta = route.meta
         if (meta.activeMenu) {
           return meta.activeMenu
         }

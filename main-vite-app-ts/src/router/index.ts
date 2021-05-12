@@ -64,7 +64,7 @@ const router = createRouter({
 const childrenPath = ['/form-app', '/wp-app']
 
 router.beforeEach((to, from, next) => {
-  console.log(to, 'before---each')
+  // console.log(to, 'before---each')
   if (to.name) {
     // 有 name 属性，说明是主应用的路由
     next()

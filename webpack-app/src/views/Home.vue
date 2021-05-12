@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="20">
       <el-col :span="12">
-        <el-form :model="formConfig.formData" label-width="120px" :ref="dom">
+        <el-form :model="formConfig.formData" label-width="120px" ref="formDom">
           <FormView
             :columnList="formConfig.formListItem"
             :formData="formConfig.formData"
@@ -44,10 +44,7 @@ export default defineComponent({
     // VJsoneditor
   },
   setup() {
-    let refs = ref("");
-    const dom = (el) => {
-      refs = el;
-    };
+    let formDom = ref(null);
 
     const state = reactive({
       options: {
@@ -199,7 +196,7 @@ export default defineComponent({
     });
     const submitForm = () => {
       console.log(state.formConfig.formData, "formData");
-      refs.value.validate((valid) => {
+      formDom.value.validate((valid) => {
         if (valid) {
           console.log(valid, "this.valid");
         } else {
@@ -211,7 +208,7 @@ export default defineComponent({
     return {
       ...toRefs(state),
       submitForm,
-      dom
+      formDom
     };
   }
 });

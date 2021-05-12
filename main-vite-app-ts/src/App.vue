@@ -1,21 +1,21 @@
 <template>
-    <el-container style="height: 100vh" v-if="showLayout">
-      <el-header class="app-header">
-        <Header />
-      </el-header>
-      <el-container style="overflow: auto">
-        <el-aside style="box-shadow: 0 2px 10px #f1f1f1; width: 250px">
-          <SideMenu />
-        </el-aside>
-        <el-main class="layoutbox">
-          <div class="main-wrapper" style="position: relative; height: 100%">
-            <router-view v-show="main"></router-view>
-            <div id="mainwrapper" v-show="!main"></div>
-          </div>
-        </el-main>
-      </el-container>
+  <el-container style="height: 100vh" v-if="showLayout">
+    <el-header class="app-header">
+      <Header />
+    </el-header>
+    <el-container style="overflow: auto">
+      <el-aside style="box-shadow: 0 2px 10px #f1f1f1; width: 250px">
+        <SideMenu />
+      </el-aside>
+      <el-main class="layoutbox">
+        <div class="main-wrapper" style="position: relative; height: 100%">
+          <router-view v-show="main"></router-view>
+          <div id="mainwrapper" v-show="!main"></div>
+        </div>
+      </el-main>
     </el-container>
-    <router-view v-if="!showLayout" />
+  </el-container>
+  <router-view v-if="!showLayout" />
 </template>
 <script lang="ts">
   import { defineComponent, watch, nextTick, reactive, toRefs } from 'vue'
@@ -29,26 +29,23 @@
       Header,
       SideMenu
     },
-    setup(){
-      const route = useRoute();
+    setup() {
+      const route = useRoute()
       const state = reactive({
         showLayout: true,
-        main: false,  // 是否为主应用的菜单
+        main: false // 是否为主应用的菜单
       })
       watch(
         route,
         async ({ path }, prevRoute: unknown): Promise<void> => {
           // console.log(state.main, 'stateMain')
-          path.includes("login")
-            ? state.showLayout = false
-            : state.showLayout = true
-          console.log(route,route.meta.main===true, 'App.path')
+          path.includes('login') ? (state.showLayout = false) : (state.showLayout = true)
+          console.log(route, 'App.path')
           state.main = route.meta.main ? true : false
-          console.log(state);
-
+          // console.log(state)
         },
         { immediate: true }
-      );
+      )
       return {
         ...toRefs(state)
       }

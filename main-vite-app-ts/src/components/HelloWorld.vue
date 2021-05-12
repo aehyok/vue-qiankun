@@ -33,7 +33,7 @@
         name: undefined
       })
       // se.value="aehyok"
-      console.log(test.name)
+      // console.log(test.name)
       return { count, jumpClick }
     }
   })
