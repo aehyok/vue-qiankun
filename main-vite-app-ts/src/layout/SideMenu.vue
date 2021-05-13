@@ -5,6 +5,7 @@
         :default-active="activeMenu"
         :unique-opened="true"
         router
+        :default-openeds="openeds"
         background-color="#2c303b"
         text-color="#fff"
       >
@@ -38,20 +39,21 @@
   export default defineComponent({
     setup() {
       const store = useStore()
+      const route = useRoute()
       const state = reactive({
         displayMenuTree: [],
-        version: ''
+        version: '',
+        openeds: []
       })
       // TODO watch store
       watch(
         () => store.state.headerMenu,
-        (val, old) => {
-          // nextTick(() => {
+        (newValue, oldValue) => {
           state.displayMenuTree = store.state.menuList.filter(
             (item) => item.path === store.state.headerMenu
           )
-          // })
-          console.log(val, old, state.displayMenuTree, 'displayMenuTree')
+          state.openeds = [store.state.headerMenu]
+          console.log(newValue, oldValue, state.displayMenuTree, 'displayMenuTree')
         },
         {
           immediate: true,
@@ -59,7 +61,6 @@
         }
       )
       const activeMenu = computed(() => {
-        const route = useRoute()
         console.log(route, 'this.$route')
         const meta = route ? route.meta : ''
         if (meta && meta.activeMenu) {

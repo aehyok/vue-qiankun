@@ -1,3 +1,4 @@
+import '../../common/qiankun/public-path'
 import { createApp } from 'vue'
 import { registerMicroApps, start } from 'qiankun'
 // 内置ElementPlus
@@ -8,15 +9,15 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-const getActiveRule = (hash: any) => (location: any) => location.hash.startsWith(hash)
+const getActiveRule = (hash: string) => (location: any) => location.pathname.startsWith(hash)
 
 // 在主应用中注册微应用
 registerMicroApps([
   {
-    name: 'form-app', // app name registered
+    name: 'form-app',
     entry: process.env.NODE_ENV === 'production' ? 'http://139.186.205.7:2000' : '//localhost:2000',
     container: '#mainwrapper',
-    activeRule: '/form-app',
+    activeRule: getActiveRule('/form-app'),
     props: {
       // 额外参数
       token: 'befcefdbf--abc',
@@ -31,13 +32,13 @@ registerMicroApps([
     name: 'table-app',
     entry: process.env.NODE_ENV === 'production' ? 'http://139.186.205.7:3000' : '//localhost:3000',
     container: '#mainwrapper',
-    activeRule: '/table-app'
+    activeRule: getActiveRule('/table-app')
   },
   {
     name: 'wp-app',
-    entry: process.env.NODE_ENV === 'production' ? 'http://139.186.205.7:4000' : '//localhost:4000',
+    entry: process.env.NODE_ENV === 'production' ? '/child/wp-app/' : '//localhost:4000',
     container: '#mainwrapper',
-    activeRule: '/wp-app'
+    activeRule: getActiveRule('/wp-app')
   }
 ])
 

@@ -61,15 +61,19 @@ const router = createRouter({
   history: createWebHistory(),
   routes
 })
-const childrenPath = ['/form-app', '/wp-app']
+const childrenPath = ['/form-app', '/wp']
 
 router.beforeEach((to, from, next) => {
-  // console.log(to, 'before---each')
+  console.log(to, 'before---each')
   if (to.name) {
+    console.log(to, 'main')
+
     // 有 name 属性，说明是主应用的路由
     next()
   }
   if (childrenPath.some((item) => to.path.includes(item))) {
+    console.log(to, 'child')
+
     next()
   }
   next({ name: '404' })
