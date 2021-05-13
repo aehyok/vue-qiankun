@@ -1,26 +1,14 @@
 const { name } = require("./package");
 module.exports = {
   publicPath: "./",
-  // assetsDir: './mpoa',
-  outputDir: "../qiankun/wp-app",
+  lintOnSave: false,
+  outputDir: "../qiankun/main/child/wp-app",
   devServer: {
     port: 4000,
     headers: {
       "Access-Control-Allow-Origin": "*"
     }
   },
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.js$/,
-  //       exclude: /node_modules/,
-  //       loader: "eslint-loader",
-  //       options: {
-  //         // eslint options (if necessary)
-  //       }
-  //     }
-  //   ]
-  // },
   chainWebpack: (config) => {
     config.module
       .rule("fonts")
