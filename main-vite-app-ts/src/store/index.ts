@@ -118,7 +118,7 @@ export default createStore({
       },
       {
         id: 3,
-        path: '/child/wp-app/#/about',
+        path: '/wp-app/#/home',
         name: 'table-app',
         source: {
           title: '数据管理',
@@ -127,7 +127,7 @@ export default createStore({
         },
         children: [
           {
-            path: '/child/wp-app/',
+            path: '/wp-app/#/table',
             name: 'table-dynamic',
             source: {
               title: 'table-dynamic',
@@ -136,7 +136,7 @@ export default createStore({
             }
           },
           {
-            path: '/child/wp-app/#/about',
+            path: '/wp-app/#/about',
             name: 'table-app-about',
             source: {
               title: 'about',
