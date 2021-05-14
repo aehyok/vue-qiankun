@@ -1,10 +1,9 @@
-import '../../common/qiankun/public-path'
 import { createApp } from 'vue'
 import { registerMicroApps, start } from 'qiankun'
+
 // 内置ElementPlus
 import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css'
-import actions from './actions'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -15,7 +14,7 @@ const getActiveRule = (hash: string) => (location: any) => location.pathname.sta
 registerMicroApps([
   {
     name: 'form-app',
-    entry: process.env.NODE_ENV === 'production' ? 'http://139.186.205.7:2000' : '//localhost:2000',
+    entry: process.env.NODE_ENV === 'production' ? '/child/form-app/' : '//localhost:2000/',
     container: '#mainwrapper',
     activeRule: getActiveRule('/form-app'),
     props: {
@@ -30,13 +29,13 @@ registerMicroApps([
   },
   {
     name: 'table-app',
-    entry: process.env.NODE_ENV === 'production' ? 'http://139.186.205.7:3000' : '//localhost:3000',
+    entry: process.env.NODE_ENV === 'production' ? '/child/table-app/' : '//localhost:3000/',
     container: '#mainwrapper',
     activeRule: getActiveRule('/table-app')
   },
   {
     name: 'wp-app',
-    entry: process.env.NODE_ENV === 'production' ? '/child/wp-app/' : '//localhost:4000',
+    entry: process.env.NODE_ENV === 'production' ? '/child/wp-app/' : '//localhost:4000/',
     container: '#mainwrapper',
     activeRule: getActiveRule('/wp-app')
   }

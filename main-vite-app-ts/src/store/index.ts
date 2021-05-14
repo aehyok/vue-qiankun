@@ -118,7 +118,7 @@ export default createStore({
       },
       {
         id: 3,
-        path: '/wp-app/#/home',
+        path: '/wp-app/#/main',
         name: 'table-app',
         source: {
           title: '数据管理',
