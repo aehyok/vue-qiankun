@@ -1,5 +1,7 @@
 import Home from "../views/Home.vue";
 import Table from "../views/Table.vue";
+import MeTable from "../views/MeTable.vue";
+
 const routes = [
   {
     path: "/main",
@@ -26,6 +28,11 @@ const routes = [
     path: "/table",
     name: "table",
     component: Table
+  },
+  {
+    path: "/metable",
+    name: "metable",
+    component: MeTable
   },
   {
     path: "/about",
