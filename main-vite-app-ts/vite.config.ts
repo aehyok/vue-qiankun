@@ -23,7 +23,7 @@ export default defineConfig({
     outDir: '../qiankun/main'
   },
   server: {
-    port: 1100, // 设置服务启动端口号
+    port: 1000, // 设置服务启动端口号
     // https: true,
     open: true, // 设置服务启动时是否自动打开浏览器
     cors: true // 允许跨域

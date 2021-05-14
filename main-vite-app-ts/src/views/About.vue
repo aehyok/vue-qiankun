@@ -12,8 +12,8 @@
   export default defineComponent({
     setup(props, context) {
       console.log(props)
-      const { ctx } = getCurrentInstance()
-      ctx.$filters.currencyUSD('sssss')
+      const { proxy } = getCurrentInstance()
+      proxy.$filters.currencyUSD('sssss')
       let phone = '18620342685'
       let check = checkPhoneFun(phone)
       console.log(check, '手机号检测')
