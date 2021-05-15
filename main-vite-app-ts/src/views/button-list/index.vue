@@ -3,10 +3,10 @@
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import buttonlist from '../../components/ButtonList.vue'
+  import ButtonList from '../../components/Button11111List.vue'
   export default defineComponent({
     components: {
-      buttonlist
+      ButtonList
     },
     setup() {}
   })
