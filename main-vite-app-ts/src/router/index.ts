@@ -37,9 +37,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "404" */ '../components/NotFound.vue')
   },
   {
-    path: '/buttonList',
-    name: 'buttonList',
-    component: () => import(/* webpackChunkName: "button" */ '../views/buttonList/index.vue'),
+    path: '/button-list',
+    name: 'button-list',
+    component: () => import(/* webpackChunkName: "button" */ '../views/button-list/index.vue'),
     meta: {
       main: true // 是否为主应用的路由菜单
     }

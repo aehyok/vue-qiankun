@@ -20,8 +20,8 @@ export default createStore({
         },
         children: [
           {
-            path: '/buttonList',
-            name: 'buttonList',
+            path: '/button-list',
+            name: 'button-list',
             source: {
               title: '按钮样式列表',
               hidden: false,

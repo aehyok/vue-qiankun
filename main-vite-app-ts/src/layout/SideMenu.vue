@@ -31,7 +31,6 @@
   </div>
 </template>
 <script lang="ts">
-  import { nextTick } from 'process'
   import { reactive, computed, onMounted, defineComponent, toRefs, watch } from 'vue'
   import { useRoute } from 'vue-router'
   import { useStore } from 'vuex'
