@@ -47,18 +47,19 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       main: true // 是否为主应用的路由菜单
     }
-  },
-  {
-    // 找不到路由重定向到404页面
-    path: '/:pathMatch(.*)',
-    redirect: '/404',
-    meta: {
-      icon: 'el-icon-s-home',
-      title: 'message.hshome',
-      showLink: false,
-      savedPosition: false
-    }
   }
+  // ,
+  // {
+  //   // 找不到路由重定向到404页面
+  //   path: '/:pathMatch(.*)',
+  //   redirect: '/404',
+  //   meta: {
+  //     icon: 'el-icon-s-home',
+  //     title: 'message.hshome',
+  //     showLink: false,
+  //     savedPosition: false
+  //   }
+  // }
 ]
 
 const router = createRouter({
