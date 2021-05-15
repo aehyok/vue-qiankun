@@ -36,15 +36,15 @@
         main: false // 是否为主应用的菜单
       })
       watch(
-        route,
-        async ({ path }, prevRoute: unknown): Promise<void> => {
-          // console.log(state.main, 'stateMain')
-          path.includes('login') ? (state.showLayout = false) : (state.showLayout = true)
-          console.log(route, 'App.path')
+        () => route.path,
+        (newValue, oldValue) => {
+          route.path.includes('login') ? (state.showLayout = false) : (state.showLayout = true)
+          console.log(newValue, oldValue, route, 'App.path')
           state.main = route.meta.main ? true : false
-          // console.log(state)
         },
-        { immediate: true }
+        {
+          immediate: true
+        }
       )
       return {
         ...toRefs(state)
