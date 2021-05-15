@@ -34,7 +34,11 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/404',
     name: '404',
-    component: () => import(/* webpackChunkName: "404" */ '../components/NotFound.vue')
+    component: () => import(/* webpackChunkName: "404" */ '../components/NotFound.vue'),
+    meta: {
+      title: '404',
+      main: true
+    }
   },
   {
     path: '/button-list',
@@ -43,18 +47,18 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       main: true // 是否为主应用的路由菜单
     }
+  },
+  {
+    // 找不到路由重定向到404页面
+    path: '/:pathMatch(.*)',
+    redirect: '/404',
+    meta: {
+      icon: 'el-icon-s-home',
+      title: 'message.hshome',
+      showLink: false,
+      savedPosition: false
+    }
   }
-  // {
-  //   // 找不到路由重定向到404页面
-  //   path: "/:pathMatch(.*)",
-  //   redirect: "/404",
-  //   meta: {
-  //     icon: "el-icon-s-home",
-  //     title: "message.hshome",
-  //     showLink: false,
-  //     savedPosition: false,
-  //   },
-  // },
 ]
 
 const router = createRouter({
@@ -76,7 +80,7 @@ router.beforeEach((to, from, next) => {
 
     next()
   }
-  next({ name: '404' })
+  next('/404')
 })
 
 // import NProgress from '../utils/progress'
