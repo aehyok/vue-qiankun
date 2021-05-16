@@ -5,7 +5,7 @@ import MeTable from "../views/MeTable.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/"
+    redirect: "/home"
   },
   {
     path: "/home",
