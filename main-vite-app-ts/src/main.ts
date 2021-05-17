@@ -7,6 +7,7 @@ import 'element-plus/lib/theme-chalk/index.css'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import './styles/index.css'
 
 const getActiveRule = (hash: string) => (location: any) => location.pathname.startsWith(hash)
 

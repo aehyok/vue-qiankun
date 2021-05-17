@@ -84,26 +84,27 @@ router.beforeEach((to, from, next) => {
   next('/404')
 })
 
-// import NProgress from '../utils/progress'
+import NProgress from '../utils/progress'
 
 // const whiteList = ['/login', '/register']
 
-// router.beforeEach((to, _from, next) => {
+router.beforeEach((to, from, next) => {
+  console.log('before Each---router')
+  NProgress.start()
+  next()
+  console.log('before Each---enter')
+  // const { t } = i18n.global;
+  // // @ts-ignore
+  // document.title = t(to.meta.title); // 动态title
+  // whiteList.indexOf(to.path) !== -1 || storageSession.getItem("info")
+  //   ? next()
+  //   : next("/login"); // 全部重定向到登录页
+})
 
-//   // NProgress.start();
-//   console.log('before Each');
-//   // const { t } = i18n.global;
-//   // // @ts-ignore
-//   // document.title = t(to.meta.title); // 动态title
-//   // whiteList.indexOf(to.path) !== -1 || storageSession.getItem("info")
-//   //   ? next()
-//   //   : next("/login"); // 全部重定向到登录页
-// });
-
-// router.afterEach(() => {
-//   console.log('after Each');
-
-//   // NProgress.done();
-// });
+router.afterEach((to, from, failure) => {
+  console.log('after Each---router')
+  NProgress.done()
+  console.log('after Each---enter')
+})
 
 export default router
