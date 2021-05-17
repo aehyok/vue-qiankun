@@ -10,14 +10,13 @@
           />
         </el-form>
       </el-col>
-      <el-col :span="12" v-if="show">
-        <!-- <v-jsoneditor
-          v-show ="false"
-          v-model="formConfig"
+      <el-col :span="12">
+        <vue-json-editor
+          v-model:value="formConfig"
           :options="options"
           :plus="false"
           height="800px"
-        /> -->
+        />
       </el-col>
     </el-row>
     <el-row>
@@ -35,13 +34,13 @@
 </template>
 <script>
 import { defineComponent, reactive, toRefs, ref } from "vue";
-import FormView from "aehyok-form-vue3";
+import FormView, { VueJsonEditor } from "aehyok-form-vue3";
 // import VJsoneditor from "v-jsoneditor"
 
 export default defineComponent({
   components: {
-    FormView
-    // VJsoneditor
+    FormView,
+    VueJsonEditor
   },
   setup() {
     let formDom = ref(null);
