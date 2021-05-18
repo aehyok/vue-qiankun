@@ -87,7 +87,7 @@ router.beforeEach((to, from, next) => {
 import NProgress from '../utils/progress'
 
 // const whiteList = ['/login', '/register']
-
+// 页面进入之前
 router.beforeEach((to, from, next) => {
   console.log('before Each---router')
   NProgress.start()
@@ -101,6 +101,7 @@ router.beforeEach((to, from, next) => {
   //   : next("/login"); // 全部重定向到登录页
 })
 
+// 页面进入之后
 router.afterEach((to, from, failure) => {
   console.log('after Each---router')
   NProgress.done()

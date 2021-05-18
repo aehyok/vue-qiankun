@@ -18,13 +18,13 @@
   <router-view v-if="!showLayout" />
 </template>
 <script lang="ts">
-  import { defineComponent, watch, nextTick, reactive, toRefs } from 'vue'
-  import Header from './layout/Header.vue'
-  import SideMenu from './layout/SideMenu.vue'
-  import { useRoute } from 'vue-router'
+  import { defineComponent, watch, nextTick, reactive, toRefs } from "vue"
+  import Header from "./layout/Header.vue"
+  import SideMenu from "./layout/SideMenu.vue"
+  import { useRoute } from "vue-router"
 
   export default defineComponent({
-    name: 'App',
+    name: "App",
     components: {
       Header,
       SideMenu
@@ -38,8 +38,8 @@
       watch(
         () => route.path,
         (newValue, oldValue) => {
-          route.path.includes('login') ? (state.showLayout = false) : (state.showLayout = true)
-          console.log(newValue, oldValue, route, 'App.path')
+          route.path.includes("login") ? (state.showLayout = false) : (state.showLayout = true)
+          console.log(newValue, oldValue, route, "App.path")
           state.main = route.meta.main ? true : false
         },
         {
