@@ -130,7 +130,7 @@ export default defineComponent({
                   },
                   {
                     name: "image1",
-                    type: "image",
+                    type: "ImageTypeView",
                     title: "文件"
                   }
                 ]

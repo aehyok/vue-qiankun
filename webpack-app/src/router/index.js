@@ -1,6 +1,7 @@
 import Home from "../views/Home.vue";
 import Table from "../views/Table.vue";
 import MeTable from "../views/MeTable.vue";
+import ffmpeg from "../views/video/ffmpeg.vue";
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     path: "/metable",
     name: "metable",
     component: MeTable
+  },
+  {
+    path: "/ffmpeg",
+    name: "ffmpeg",
+    component: ffmpeg
   },
   {
     path: "/about",
