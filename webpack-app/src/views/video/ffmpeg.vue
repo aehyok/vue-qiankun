@@ -12,7 +12,7 @@ import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 export default defineComponent({
   name: "App",
   setup() {
-    // app state
+    // app state //
     const ffmpeg = createFFmpeg({
       log: true
     });
