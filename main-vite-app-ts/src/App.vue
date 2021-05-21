@@ -4,7 +4,7 @@
       <Header />
     </el-header>
     <el-container style="overflow: auto">
-      <el-aside style="box-shadow: 0 2px 10px #f1f1f1; width: 250px">
+      <el-aside style="box-shadow: 0 2px 10px #f1f1f1; width: 250px" v-if="!showLeft">
         <SideMenu />
       </el-aside>
       <el-main class="layoutbox">
@@ -22,6 +22,7 @@
   import Header from "./layout/Header.vue"
   import SideMenu from "./layout/SideMenu.vue"
   import { useRoute } from "vue-router"
+  import { useStore } from "vuex"
 
   export default defineComponent({
     name: "App",
@@ -31,10 +32,13 @@
     },
     setup() {
       const route = useRoute()
+      const store = useStore()
       const state = reactive({
         showLayout: true,
+        showLeft: true, // 暂时为true则不显示左侧菜单
         main: false // 是否为主应用的菜单
       })
+      // 监测路由判断是主应用路由还是子应用路由
       watch(
         () => route.path,
         (newValue, oldValue) => {
@@ -44,6 +48,22 @@
         },
         {
           immediate: true
+        }
+      )
+
+      // 监测左侧菜单是否展示
+      watch(
+        () => store.state.headerMenu,
+        (newValue, oldValue) => {
+          if (newValue) {
+            const menu = store.state.menuList.find((item) => item.path === newValue)
+            console.log(menu.source.showLeft)
+            state.showLeft = menu.source.showLeft
+          }
+        },
+        {
+          immediate: true,
+          deep: true
         }
       )
       return {
