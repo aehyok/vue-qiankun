@@ -6,20 +6,20 @@ import ffmpeg from "../views/video/ffmpeg.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/home"
+    redirect: "/wp-app/home"
   },
   {
-    path: "/home",
+    path: "/wp-app/home",
     name: "Home",
     component: Home,
     children: [
       {
-        path: "/table1",
+        path: "table1",
         name: "Table1",
         component: Table
       },
       {
-        path: "/about1",
+        path: "about1",
         name: "About1",
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -30,7 +30,7 @@ const routes = [
     ]
   },
   {
-    path: "/table",
+    path: "/wp-app/table",
     name: "table",
     component: Table
   },
@@ -45,7 +45,7 @@ const routes = [
     component: ffmpeg
   },
   {
-    path: "/about",
+    path: "/wp-app/about",
     name: "about",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")

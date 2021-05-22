@@ -1,49 +1,49 @@
-import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router"
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    redirect: '/home'
+    path: "/",
+    redirect: "/home"
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
+    path: "/home",
+    name: "Home",
+    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
     meta: {
-      title: '首页'
+      title: "首页"
     }
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: "/about",
+    name: "About",
+    component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
     meta: {
-      title: '关于',
+      title: "关于",
       main: true
     }
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+    path: "/login",
+    name: "Login",
+    component: () => import(/* webpackChunkName: "login" */ "../views/Login.vue"),
     meta: {
-      title: '登录',
+      title: "登录",
       showLayout: false
     }
   },
   {
-    path: '/404',
-    name: '404',
-    component: () => import(/* webpackChunkName: "404" */ '../components/NotFound.vue'),
+    path: "/404",
+    name: "404",
+    component: () => import(/* webpackChunkName: "404" */ "../components/NotFound.vue"),
     meta: {
-      title: '404',
+      title: "404",
       main: true
     }
   },
   {
-    path: '/button-list',
-    name: 'button-list',
-    component: () => import(/* webpackChunkName: "button" */ '../views/button-list/index.vue'),
+    path: "/button-list",
+    name: "button-list",
+    component: () => import(/* webpackChunkName: "buttonlist" */ "../views/button-list/index.vue"),
     meta: {
       main: true // 是否为主应用的路由菜单
     }
@@ -63,36 +63,35 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes
 })
-const childrenPath = ['/form-app', '/wp']
+const childrenPath = ["/form-app", "/wp-app"]
 
 router.beforeEach((to, from, next) => {
-  console.log(to, 'before---each')
+  console.log(to, "before---each")
   if (to.name) {
-    console.log(to, 'main')
+    console.log(to, "main")
 
     // 有 name 属性，说明是主应用的路由
     next()
   }
   if (childrenPath.some((item) => to.path.includes(item))) {
-    console.log(to, 'child')
+    console.log(to, "child")
 
     next()
   }
-  next('/404')
+  // 如果找不到路由跳转到404
+  next("/404")
 })
 
-import NProgress from '../utils/progress'
+import NProgress from "../utils/progress"
 
 // const whiteList = ['/login', '/register']
 // 页面进入之前
 router.beforeEach((to, from, next) => {
-  console.log('before Each---router')
   NProgress.start()
   next()
-  console.log('before Each---enter')
   // const { t } = i18n.global;
   // // @ts-ignore
   // document.title = t(to.meta.title); // 动态title
@@ -103,9 +102,7 @@ router.beforeEach((to, from, next) => {
 
 // 页面进入之后
 router.afterEach((to, from, failure) => {
-  console.log('after Each---router')
   NProgress.done()
-  console.log('after Each---enter')
 })
 
 export default router

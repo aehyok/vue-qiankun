@@ -30,7 +30,6 @@ function render(props = {}) {
   }
   const { container } = props;
   const router = createRouter({
-    // base: window.__POWERED_BY_QIANKUN__ ? "/wp-app" : "/",
     history: createWebHashHistory(),
     routes
   });

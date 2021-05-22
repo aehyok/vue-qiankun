@@ -64,7 +64,7 @@ export default createStore({
       },
       {
         id: 2,
-        path: "/form-app/#/about",
+        path: "/form-app/form",
         name: "form-app",
         source: {
           title: "基础管理",
@@ -82,7 +82,7 @@ export default createStore({
             }
           },
           {
-            path: "/home",
+            path: "/form-app/home",
             name: "me-app-dynamic",
             source: {
               title: "me-app-dynamic",
@@ -91,7 +91,7 @@ export default createStore({
             }
           },
           {
-            path: "/about",
+            path: "/form-app/about",
             name: "me-app-about",
             source: {
               title: "me-app-about",
@@ -130,7 +130,7 @@ export default createStore({
       },
       {
         id: 3,
-        path: "/wp-app/#/home",
+        path: "/wp-app/home",
         name: "table-app",
         source: {
           title: "数据管理",
@@ -139,7 +139,7 @@ export default createStore({
         },
         children: [
           {
-            path: "/wp-app/#/table",
+            path: "/wp-app/table",
             name: "table-dynamic",
             source: {
               title: "table-dynamic",
@@ -148,7 +148,7 @@ export default createStore({
             }
           },
           {
-            path: "/wp-app/#/about",
+            path: "/wp-app/about",
             name: "table-app-about",
             source: {
               title: "about",
