@@ -1,5 +1,5 @@
-import "../../common/qiankun/public-path.js";
-import actions from "../../common/qiankun/actions.js";
+import "../../common/utils/qiankun/public-path.js";
+import actions from "../../common/utils/qiankun/actions.js";
 import { createApp } from "vue";
 import ElementPlus from "element-plus";
 import "element-plus/lib/theme-chalk/index.css";

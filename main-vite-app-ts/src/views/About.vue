@@ -1,11 +1,9 @@
 <template>
-  Test
-  <!-- <test /> 1111-->
   <h1>{{ double }}</h1>
   <el-button type="primary" @click="test">test</el-button>
 </template>
 <script>
-  import { checkPhoneFun } from "../../../common/init.js"
+  import { checkPhoneFun } from "../../../common/utils/init.js"
   import { getCurrentInstance, defineComponent, computed } from "vue"
   import { useStore, mapGetters } from "vuex"
 
