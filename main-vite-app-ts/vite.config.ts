@@ -20,7 +20,7 @@ export default defineConfig({
   },
   base: "./", // 设置打包路径
   build: {
-    outDir: "../qiankun/main"
+    outDir: "../../release/ui/main-app"
   },
   server: {
     port: 1000, // 设置服务启动端口号

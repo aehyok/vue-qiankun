@@ -2,7 +2,7 @@ const { name } = require("./package");
 module.exports = {
   publicPath: "./",
   lintOnSave: false,
-  outputDir: "../qiankun/main/child/wp-app",
+  outputDir: "../../release/ui/wp-app",
   devServer: {
     port: 4000,
     headers: {

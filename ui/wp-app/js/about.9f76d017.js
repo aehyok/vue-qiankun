@@ -1,0 +1,2 @@
+(window["webpackJsonp_webpack-app"]=window["webpackJsonp_webpack-app"]||[]).push([["about"],{f820:function(e,a,n){"use strict";n.r(a);var p=n("7a23");function c(e,a,n,c,t,o){return Object(p["openBlock"])(),Object(p["createBlock"])("h1",null,"This is an webpack about page")}var t={setup:function(){}};t.render=c;a["default"]=t}}]);
+//# sourceMappingURL=about.9f76d017.js.map

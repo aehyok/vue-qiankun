@@ -15,7 +15,7 @@ const getActiveRule = (hash: any) => (location: any) => location.hash.startsWith
 registerMicroApps([
   {
     name: "form-app",
-    entry: process.env.NODE_ENV === "production" ? "/child/form-app/" : "//localhost:2000/",
+    entry: process.env.NODE_ENV === "production" ? "http://139.186.205.7:8078/" : "//localhost:2000/",
     container: "#mainwrapper",
     activeRule: getActiveRule("#/form-app"),
     props: {
@@ -36,7 +36,7 @@ registerMicroApps([
   },
   {
     name: "wp-app",
-    entry: process.env.NODE_ENV === "production" ? "/child/wp-app/" : "//localhost:4000",
+    entry: process.env.NODE_ENV === "production" ? "http://139.186.205.7:8079/" : "//localhost:4000",
     container: "#mainwrapper",
     activeRule: getActiveRule("#/wp-app")
   }
