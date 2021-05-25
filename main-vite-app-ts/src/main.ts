@@ -38,7 +38,16 @@ registerMicroApps([
     name: "wp-app",
     entry: process.env.NODE_ENV === "production" ? "http://139.186.205.7:8079/" : "//localhost:4000",
     container: "#mainwrapper",
-    activeRule: getActiveRule("#/wp-app")
+    activeRule: getActiveRule("#/wp-app"),
+    props: {
+      // 额外参数
+      token: localStorage.getItem('token'),
+      getToken: {
+        token: "aehyok",
+        id: "789",
+        name: "123"
+      }
+    }
   }
 ])
 

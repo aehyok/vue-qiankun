@@ -92,10 +92,6 @@
       const router = useRouter()
       const store = useStore()
       const headList = store.getters.headerMenuList
-      // console.log(store.getters.headerMenuList, store, 'headerMenuList')
-      const { ctx } = getCurrentInstance()
-      // console.log(ctx, 'ctx')
-      // ctx.getAllLocales()
       const checkPsdVal = (rules, value, callback) => {
         const rule = /^(?![^a-zA-Z]+$)(?!\D+$).{8,16}/
         if (!rule.test(value)) {

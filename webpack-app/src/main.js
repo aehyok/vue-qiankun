@@ -55,6 +55,7 @@ export async function bootstrap() {
 }
 
 export async function mount(props) {
+  console.log('webpack-app', localStorage.getItem('token')); 
   console.log("[vue] props from main framework", props);
 
   render(props);

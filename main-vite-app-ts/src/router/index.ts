@@ -69,6 +69,7 @@ const router = createRouter({
 const childrenPath = ["/form-app", "/wp-app"]
 
 router.beforeEach((to, from, next) => {
+  localStorage.setItem("token", 'aehyok')
   console.log(to, "before---each")
   if (to.name) {
     console.log(to, "main")
