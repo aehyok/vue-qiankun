@@ -1,20 +1,26 @@
 <template>
-  <div>Home</div>
+  <div>Home {{id}}</div>
   <HelloWorld msg="msg" />
+  
   <!-- <el-button type="primary" @click="set">测试setGlobal函数</el-button> -->
 </template>
 <script lang="ts">
-  import { ref, reactive } from 'vue'
-  import actions from '../actions'
-  import HelloWorld from '../components/HelloWorld.vue'
 
-  export default {
+  import { ref, reactive, defineComponent, toRefs } from 'vue'
+  import actions from '../actions'
+  import HelloWorld from '/@/components/HelloWorld.vue'
+  import { ToDoInfo } from '/#/store'
+  export default  defineComponent({
     name: 'Home',
     components: {
       HelloWorld
     },
     setup() {
       const msg = ref('')
+      const state = reactive<ToDoInfo>({
+        id:"aehyok"
+      })
+      console.log(state, 'state11111111111111111111111111111111111111')
       const message = 'ssss'
       // console.log(message)
       msg.value = 'Hello in the World'
@@ -36,7 +42,9 @@
       //     token
       //   })
       // }
-      return {}
+      return {
+        ...toRefs(state)
+      }
     }
-  }
+  })
 </script>
