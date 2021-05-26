@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/about",
     name: "About",
-    component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    component: () => import(/* webpackChunkName: "about" */ "../views/about.vue"),
     meta: {
       title: "关于",
       main: true
@@ -25,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/login",
     name: "Login",
-    component: () => import(/* webpackChunkName: "login" */ "../views/Login.vue"),
+    component: () => import(/* webpackChunkName: "login" */ "../views/login.vue"),
     meta: {
       title: "登录",
       showLayout: false
@@ -34,7 +34,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/404",
     name: "404",
-    component: () => import(/* webpackChunkName: "404" */ "../components/NotFound.vue"),
+    component: () => import(/* webpackChunkName: "404" */ "../components/not-found.vue"),
     meta: {
       title: "404",
       main: true

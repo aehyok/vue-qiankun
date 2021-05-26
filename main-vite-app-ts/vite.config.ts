@@ -19,18 +19,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   return {
     root,
     resolve: {
+      
       alias: [
-        // /@/xxxx => src/xxxx
-        {
-          find: /\/@\//,
-          replacement: pathResolve('src') + '/',
-        },
-        // /#/xxxx => types/xxxx
-        {
-          find: /\/#\//,
-          replacement: pathResolve('types') + '/',
-        },
-        // ['@vue/compiler-sfc', '@vue/compiler-sfc/dist/compiler-sfc.esm-browser.js'],
+        { find: '@', replacement: resolve(__dirname, 'src') },
+        { find: '#', replacement: resolve(__dirname, 'src/types') },
       ],
     },
     server: {

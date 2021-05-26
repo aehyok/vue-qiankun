@@ -4,7 +4,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "allowSyntheticDefaultImports": true,
     "strictFunctionTypes": false,
     "jsx": "preserve",
@@ -22,8 +22,8 @@
     "noImplicitAny": false,
     "skipLibCheck": true,
     "paths": {
-      "/@/*": ["src/*"],
-      "/#/*": ["types/*"]
+      "@/*": ["src/*"],
+      "#/*": ["types/*"]
     }
   },
   "include": [

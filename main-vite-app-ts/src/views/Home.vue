@@ -8,8 +8,8 @@
 
   import { ref, reactive, defineComponent, toRefs } from 'vue'
   import actions from '../actions'
-  import HelloWorld from '/@/components/HelloWorld.vue'
-  import { ToDoInfo } from '/#/store'
+  import HelloWorld from '@/components/hello-world.vue'
+  import { ToDoInfo } from '#/store'
   export default  defineComponent({
     name: 'Home',
     components: {

@@ -5,7 +5,7 @@
     </el-header>
     <el-container style="overflow: auto">
       <el-aside style="box-shadow: 0 2px 10px #f1f1f1; width: 250px" v-if="!showLeft">
-        <SideMenu />
+        <side-menu />
       </el-aside>
       <el-main class="layoutbox">
         <div class="main-wrapper" style="position: relative; height: 100%">
@@ -18,9 +18,9 @@
   <router-view v-if="!showLayout" />
 </template>
 <script lang="ts">
-  import { defineComponent, watch, nextTick, reactive, toRefs } from "vue"
-  import Header from "./layout/Header.vue"
-  import SideMenu from "./layout/SideMenu.vue"
+  import { defineComponent, watch, reactive, toRefs } from "vue"
+  import Header from "./layout/header.vue"
+  import SideMenu from "./layout/side-menu.vue"
   import { useRoute } from "vue-router"
   import { useStore } from "vuex"
 
@@ -54,7 +54,7 @@
       // 监测左侧菜单是否展示
       watch(
         () => store.state.headerMenu,
-        (newValue, oldValue) => {
+        (newValue) => {
           if (newValue) {
             const menu = store.state.menuList.find((item) => item.path === newValue)
             console.log(menu.source.showLeft)
