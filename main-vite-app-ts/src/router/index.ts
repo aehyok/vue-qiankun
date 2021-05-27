@@ -66,7 +66,7 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
-const childrenPath = ["/form-app", "/wp-app"]
+const childrenPath = ["/form-app", "/wp-app", "dvs-village"]
 
 router.beforeEach((to, from, next) => {
   localStorage.setItem("token", 'aehyok')

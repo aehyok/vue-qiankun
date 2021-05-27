@@ -48,6 +48,9 @@
 
 - npm install vuex@next --save
 
+### 6、qiankun框架的引入
+- npm i qiankun -S
+
 ### 6、部署方式，2021 年 5 月 24 日考虑主应用和子应用部署在同一台服务器，并且主应用部署在一级目录模式为 hash，子应用部署在二级目录模式也为 hash。
 
     └── main/                 # 根文件夹

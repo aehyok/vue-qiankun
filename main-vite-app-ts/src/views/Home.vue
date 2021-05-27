@@ -1,5 +1,6 @@
 <template>
   <div>Home {{id}}</div>
+  <el-button @click="jumpClick">test</el-button>
   <HelloWorld msg="msg" />
   
   <!-- <el-button type="primary" @click="set">测试setGlobal函数</el-button> -->
@@ -7,6 +8,7 @@
 <script lang="ts">
 
   import { ref, reactive, defineComponent, toRefs } from 'vue'
+  import { useRouter } from 'vue-router'
   import actions from '../actions'
   import HelloWorld from '@/components/hello-world.vue'
   import { ToDoInfo } from '#/store'
@@ -16,6 +18,7 @@
       HelloWorld
     },
     setup() {
+      const router = useRouter()
       const msg = ref('')
       const state = reactive<ToDoInfo>({
         id:"aehyok"
@@ -24,6 +27,9 @@
       const message = 'ssss'
       // console.log(message)
       msg.value = 'Hello in the World'
+      const jumpClick = () => {
+        router.push('/dvs-village/household-code')
+      }
       // const set = () => {
       //   const state = reactive({
       //     name: 'aehyok',
@@ -43,7 +49,8 @@
       //   })
       // }
       return {
-        ...toRefs(state)
+        ...toRefs(state),
+        jumpClick
       }
     }
   })

@@ -35,6 +35,13 @@ registerMicroApps([
     activeRule: getActiveRule("#/table-app")
   },
   {
+    // 乡村治理
+    name: "dvs-village",
+    entry: process.env.NODE_ENV === "production" ? "http://139.186.205.7:9901/" : "//localhost:9901",
+    container: "#mainwrapper",
+    activeRule: getActiveRule("#/dvs-village"),
+  },
+  {
     name: "wp-app",
     entry: process.env.NODE_ENV === "production" ? "http://139.186.205.7:8079/" : "//localhost:4000",
     container: "#mainwrapper",
