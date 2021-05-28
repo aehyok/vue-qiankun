@@ -45,3 +45,15 @@
 ### 5、vuex 引入https://next.vuex.vuejs.org/installation.html
 
 - npm install vuex@next --save
+
+### 6、部署方式，2021年5月24日考虑主应用和子应用部署在同一台服务器，并且主应用部署在一级目录模式为hash，子应用部署在二级目录模式也为hash。
+
+    └── main/                 # 根文件夹
+    |
+    ├── child/                # 存放所有微应用的文件夹
+    |   ├── webpack-app/      # 存放微应用 webpack-app 的文件夹
+    |   ├── form-app/         # 存放微应用 form-app 的文件夹
+    |   ├── ....-app/         # 存放微应用 ....-app 的文件夹
+    ├── index.html            # 主应用的index.html
+    ├── css/                  # 主应用的css文件夹
+    ├── js/                   # 主应用的js文件夹
