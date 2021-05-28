@@ -10,6 +10,7 @@ import store from "./store";
 import "xe-utils";
 import VXETable from "vxe-table";
 import "vxe-table/lib/style.css";
+import plugins from "./plugins";
 
 // function useTable (app: App) {
 //     app.use(VXETable)
@@ -29,7 +30,6 @@ function render(props = {}) {
   }
   const { container } = props;
   const router = createRouter({
-    // base: window.__POWERED_BY_QIANKUN__ ? "/wp-app" : "/",
     history: createWebHashHistory(),
     routes
   });
@@ -40,6 +40,7 @@ function render(props = {}) {
     .use(VXETable)
     .use(store)
     .use(router)
+    .use(plugins)
     .mount(container ? container.querySelector("#webpackapp") : "#webpackapp");
 }
 

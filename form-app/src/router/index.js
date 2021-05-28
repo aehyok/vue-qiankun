@@ -7,11 +7,15 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: '/form-app'
+  },
+  {
+    path: '/form-app/home',
     name: 'Home',
     component: Home
   },
   {
-    path: '/about',
+    path: '/form-app/about',
     name: 'About',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -19,7 +23,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/form',
+    path: '/form-app/form',
     name: 'form',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

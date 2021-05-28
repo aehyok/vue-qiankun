@@ -4,16 +4,16 @@ module.exports = {
   useTabs: false,
   semi: false, // 未尾逗号
   vueIndentScriptAndStyle: true,
-  singleQuote: true, // 单引号
-  quoteProps: 'as-needed',
+  singleQuote: false, // 单引号
+  quoteProps: "as-needed",
   bracketSpacing: true,
-  trailingComma: 'none', // 未尾分号
+  trailingComma: "none", // 未尾分号
   jsxBracketSameLine: false,
   jsxSingleQuote: false,
-  arrowParens: 'always',
+  arrowParens: "always",
   insertPragma: false,
   requirePragma: false,
-  proseWrap: 'never',
-  htmlWhitespaceSensitivity: 'strict',
-  endOfLine: 'lf'
+  proseWrap: "never",
+  htmlWhitespaceSensitivity: "strict",
+  endOfLine: "lf"
 }

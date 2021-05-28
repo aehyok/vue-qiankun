@@ -1,5 +1,5 @@
-import { createApp } from 'vue'
-import { registerMicroApps, start } from 'qiankun'
+import { createApp } from "vue"
+import { registerMicroApps, start } from "qiankun"
 
 // 内置ElementPlus
 import ElementPlus from 'element-plus'
@@ -9,36 +9,36 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-const getActiveRule = (hash: string) => (location: any) => location.pathname.startsWith(hash)
+const getActiveRule = (hash: any) => (location: any) => location.hash.startsWith(hash)
 
 // 在主应用中注册微应用
 registerMicroApps([
   {
-    name: 'form-app',
-    entry: process.env.NODE_ENV === 'production' ? '/child/form-app/' : '//localhost:2000/',
-    container: '#mainwrapper',
-    activeRule: getActiveRule('/form-app'),
+    name: "form-app",
+    entry: process.env.NODE_ENV === "production" ? "/child/form-app/" : "//localhost:2000/",
+    container: "#mainwrapper",
+    activeRule: getActiveRule("#/form-app"),
     props: {
       // 额外参数
-      token: 'befcefdbf--abc',
+      token: "befcefdbf--abc",
       getToken: {
-        token: 'aehyok',
-        id: '789',
-        name: '123'
+        token: "aehyok",
+        id: "789",
+        name: "123"
       }
     }
   },
   {
-    name: 'table-app',
-    entry: process.env.NODE_ENV === 'production' ? '/child/table-app/' : '//localhost:3000',
-    container: '#mainwrapper',
-    activeRule: getActiveRule('/table-app')
+    name: "table-app",
+    entry: process.env.NODE_ENV === "production" ? "/child/table-app/" : "//localhost:3000",
+    container: "#mainwrapper",
+    activeRule: getActiveRule("#/table-app")
   },
   {
-    name: 'wp-app',
-    entry: process.env.NODE_ENV === 'production' ? '/child/wp-app/' : '//localhost:4000',
-    container: '#mainwrapper',
-    activeRule: getActiveRule('/wp-app')
+    name: "wp-app",
+    entry: process.env.NODE_ENV === "production" ? "/child/wp-app/" : "//localhost:4000",
+    container: "#mainwrapper",
+    activeRule: getActiveRule("#/wp-app")
   }
 ])
 
@@ -56,8 +56,8 @@ const app = createApp(App)
 // 全局函数注入
 app.config.globalProperties.$filters = {
   currencyUSD(value: String) {
-    console.log('currencyUSD' + value)
-    return '$' + value
+    console.log("currencyUSD" + value)
+    return "$" + value
   }
 }
 app.use(router).use(ElementPlus, { locale }).use(store)
