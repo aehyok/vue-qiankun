@@ -1,6 +1,7 @@
 <template>
   <div>Home</div>
   <HelloWorld msg="msg" />
+  <el-date-picker />
   <!-- <el-button type="primary" @click="set">测试setGlobal函数</el-button> -->
 </template>
 <script lang="ts">

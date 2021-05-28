@@ -4,6 +4,7 @@ import { registerMicroApps, start } from 'qiankun'
 // 内置ElementPlus
 import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css'
+import locale from 'element-plus/lib/locale/lang/zh-cn' //中文
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -45,8 +46,8 @@ start({
   // 开启css 样式隔离
   sandbox: {
     // strictStyleIsolation = false，才可以获取到子应用的dom节点，主应用可修改子应用样式，但是子应用不可修改主应用的样式。
-    strictStyleIsolation: true,
-    experimentalStyleIsolation: true
+    // strictStyleIsolation: true,
+    // experimentalStyleIsolation: true
   }
 })
 
@@ -59,5 +60,5 @@ app.config.globalProperties.$filters = {
     return '$' + value
   }
 }
-app.use(router).use(ElementPlus).use(store)
+app.use(router).use(ElementPlus, { locale }).use(store)
 app.mount('#app')
