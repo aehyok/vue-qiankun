@@ -1,12 +1,5 @@
 <template>
-  <div id="tableapp">
-    <div id="nav">
-      <router-link to="/">table-app</router-link> |
-      <router-link to="/about">About</router-link>
-      table-app
-    </div>
-    <router-view/>
-  </div>
+  <router-view/>
 </template>
 
 <style lang="scss">

@@ -1,27 +1,36 @@
-
-const { name } = require('./package');
+const packageName = require('./package.json').name;
+var webpack = require( 'webpack' )
 module.exports = {
-  devServer: {
-    port: 3000,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-  },
+  lintOnSave: false,
+  publicPath: './',
+  outputDir: '../../release/cms/console/child/dvs-geography',
+  productionSourceMap: false,
   chainWebpack: (config) => {
-    config.module
-      .rule('fonts')
-      .test(/.(ttf|otf|eot|woff|woff2)$/)
-      .use('url-loader')
-      .loader('url-loader')
-      .tap(options => ({ name: '/fonts/[name].[hash:8].[ext]' }))
-      .end()
+    config.module.rule('fonts').use('url-loader').loader('url-loader').options({}).end();
+    config.module.rule('images').use('url-loader').loader('url-loader').options({}).end();
   },
-  // 自定义webpack配置
+  // 打包方式设置为umd
   configureWebpack: {
     output: {
-      library: `${name}`,
-      libraryTarget: 'umd',// 把子应用打包成 umd 库格式
-      jsonpFunction: `webpackJsonp_${name}`,
+      library: `${packageName}`,
+      libraryTarget: "umd",
+      jsonpFunction: `webpackJsonp_${packageName}`
+    }
+  },
+  devServer: {
+    port: 5000,
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    },
+    proxy: {
+      '/infra': {
+        target: 'http://139.9.184.171:10088/',
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/infra': '',
+        },
+      },
     },
   },
 };
