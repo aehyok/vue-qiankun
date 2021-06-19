@@ -30,13 +30,13 @@ registerMicroApps([
   },
   {
     name: "table-app",
-    entry: process.env.NODE_ENV === "production" ? "/child/table-app/" : "//localhost:3000",
+    entry: process.env.NODE_ENV === "production" ? "/child/table-app/" : "//localhost:3000/",
     container: "#mainwrapper",
     activeRule: getActiveRule("#/table-app")
   },
   {
     name: "wp-app",
-    entry: process.env.NODE_ENV === "production" ? "/child/wp-app/" : "//localhost:4000",
+    entry: process.env.NODE_ENV === "production" ? "/child/wp-app/" : "//localhost:4000/",
     container: "#mainwrapper",
     activeRule: getActiveRule("#/wp-app")
   }
