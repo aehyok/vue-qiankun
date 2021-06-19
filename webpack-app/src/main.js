@@ -1,5 +1,5 @@
-import "../../common/utils/qiankun/public-path.js";
-import actions from "../../common/utils/qiankun/actions.js";
+import "../../common/qiankun/public-path.js";
+import actions from "../../common/qiankun/actions.js";
 import { createApp } from "vue";
 import ElementPlus from "element-plus";
 import "element-plus/lib/theme-chalk/index.css";
@@ -55,7 +55,6 @@ export async function bootstrap() {
 }
 
 export async function mount(props) {
-  console.log('webpack-app', localStorage.getItem('token')); 
   console.log("[vue] props from main framework", props);
 
   render(props);

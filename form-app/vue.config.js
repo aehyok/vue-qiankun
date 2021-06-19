@@ -3,7 +3,7 @@ const { name } = require('./package');
 module.exports = {
   publicPath: "./",
   lintOnSave: false,
-  outputDir: "../../release/ui/form-app",
+  outputDir: "../qiankun/main/child/form-app",
   devServer: {
     port: 2000,
     headers: {

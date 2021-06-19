@@ -1,35 +1,25 @@
 <template>
-  <div>Home {{id}}</div>
-  <el-button @click="jumpClick">test</el-button>
+  <div>Home</div>
   <HelloWorld msg="msg" />
-  
+  <el-date-picker v-model="date" />
   <!-- <el-button type="primary" @click="set">测试setGlobal函数</el-button> -->
 </template>
 <script lang="ts">
-
-  import { ref, reactive, defineComponent, toRefs } from 'vue'
-  import { useRouter } from 'vue-router'
+  import { ref, reactive } from 'vue'
   import actions from '../actions'
-  import HelloWorld from '@/components/hello-world.vue'
-  import { ToDoInfo } from '#/store'
-  export default  defineComponent({
+  import HelloWorld from '../components/HelloWorld.vue'
+
+  export default {
     name: 'Home',
     components: {
       HelloWorld
     },
     setup() {
-      const router = useRouter()
       const msg = ref('')
-      const state = reactive<ToDoInfo>({
-        id:"aehyok"
-      })
-      console.log(state, 'state11111111111111111111111111111111111111')
       const message = 'ssss'
       // console.log(message)
       msg.value = 'Hello in the World'
-      const jumpClick = () => {
-        router.push('/dvs-village/household-code')
-      }
+      const date = ref(null)
       // const set = () => {
       //   const state = reactive({
       //     name: 'aehyok',
@@ -49,9 +39,8 @@
       //   })
       // }
       return {
-        ...toRefs(state),
-        jumpClick
+        date
       }
     }
-  })
+  }
 </script>

@@ -2,12 +2,12 @@ import { createApp } from "vue"
 import { registerMicroApps, start } from "qiankun"
 
 // 内置ElementPlus
-import ElementPlus from "element-plus"
-import "element-plus/lib/theme-chalk/index.css"
-import App from "./App.vue"
-import router from "./router"
-import store from "./store"
-import "./styles/index.css"
+import ElementPlus from 'element-plus'
+import 'element-plus/lib/theme-chalk/index.css'
+import locale from 'element-plus/lib/locale/lang/zh-cn' //中文
+import App from './App.vue'
+import router from './router'
+import store from './store'
 
 const getActiveRule = (hash: any) => (location: any) => location.hash.startsWith(hash)
 
@@ -15,7 +15,7 @@ const getActiveRule = (hash: any) => (location: any) => location.hash.startsWith
 registerMicroApps([
   {
     name: "form-app",
-    entry: process.env.NODE_ENV === "production" ? "http://139.186.205.7:8078/" : "//localhost:2000/",
+    entry: process.env.NODE_ENV === "production" ? "/child/form-app/" : "//localhost:2000/",
     container: "#mainwrapper",
     activeRule: getActiveRule("#/form-app"),
     props: {
@@ -35,26 +35,10 @@ registerMicroApps([
     activeRule: getActiveRule("#/table-app")
   },
   {
-    // 乡村治理
-    name: "dvs-village",
-    entry: process.env.NODE_ENV === "production" ? "http://139.186.205.7:9901/" : "//localhost:9901",
-    container: "#mainwrapper",
-    activeRule: getActiveRule("#/dvs-village"),
-  },
-  {
     name: "wp-app",
-    entry: process.env.NODE_ENV === "production" ? "http://139.186.205.7:8079/" : "//localhost:4000",
+    entry: process.env.NODE_ENV === "production" ? "/child/wp-app/" : "//localhost:4000",
     container: "#mainwrapper",
-    activeRule: getActiveRule("#/wp-app"),
-    props: {
-      // 额外参数
-      token: localStorage.getItem('token'),
-      getToken: {
-        token: "aehyok",
-        id: "789",
-        name: "123"
-      }
-    }
+    activeRule: getActiveRule("#/wp-app")
   }
 ])
 
@@ -62,8 +46,8 @@ start({
   // 开启css 样式隔离
   sandbox: {
     // strictStyleIsolation = false，才可以获取到子应用的dom节点，主应用可修改子应用样式，但是子应用不可修改主应用的样式。
-    strictStyleIsolation: true,
-    experimentalStyleIsolation: true
+    // strictStyleIsolation: true,
+    // experimentalStyleIsolation: true
   }
 })
 
@@ -76,5 +60,5 @@ app.config.globalProperties.$filters = {
     return "$" + value
   }
 }
-app.use(router).use(ElementPlus).use(store)
-app.mount("#app")
+app.use(router).use(ElementPlus, { locale }).use(store)
+app.mount('#app')
