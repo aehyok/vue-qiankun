@@ -22,21 +22,18 @@ export default defineConfig({
   build: {
     outDir: "../qiankun/main"
   },
+  // 本地运行配置，及反向代理配置
   server: {
-    port: 1000, // 设置服务启动端口号
-    // https: true,
-    open: true, // 设置服务启动时是否自动打开浏览器
-    cors: true, // 允许跨域
-    hmr: true
-
-    // 设置代理，根据我们项目实际情况配置
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://xxx.xxx.xxx.xxx:8000',
-    //     changeOrigin: true,
-    //     secure: false,
-    //     rewrite: (path) => path.replace('/api/', '/')
-    //   }
-    // }
+    port: 1000,
+    cors: true, // 默认启用并允许任何源
+    open: true, // 在服务器启动时自动在浏览器中打开应用程序
+    //反向代理配置，注意rewrite写法，开始没看文档在这里踩了坑
+    proxy: {
+      '/infra': {
+        target: 'http://rap2api.taobao.org/app/mock/283135/',   //代理接口
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/infra/, '')
+      }
+    }
   }
 })
