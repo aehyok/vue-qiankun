@@ -7,11 +7,11 @@
 <script lang="ts">
 import { reactive, onBeforeMount } from "vue";
 import info, { ContextProps } from "../components/info/index.vue";
-// import { getVerify, getLogin } from "/@/api/user";
+import { loginList } from '../services/index';
 import { useRouter } from "vue-router";
 import { storageSession } from "../utils/storage";
 import { warnMessage, successMessage } from "../utils/message";
-import access from '../../../react-app/src/access';
+
 export default {
   name: "login",
   components: {
@@ -75,6 +75,9 @@ export default {
 
     onBeforeMount(() => {
       // refreshGetVerify();
+      loginList().then(res => {
+        console.log(res, '-loginList-')
+      })
     });
 
     return {
