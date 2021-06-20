@@ -5,6 +5,9 @@
 import { defineComponent, onMounted, reactive } from 'vue';
 import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+
+import '@geoman-io/leaflet-geoman-free';
+import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 export default  defineComponent({
     setup() {
         const state = reactive({
@@ -17,9 +20,9 @@ export default  defineComponent({
                 zoom:10,
                 minZoom: 10,
                 maxZoom: 18,
-                center: [array[0],array[1]], 
-                zoomControl: true, 
-                doubleClickZoom: false, 
+                center: [array[0],array[1]],
+                zoomControl: true,
+                doubleClickZoom: false,
                 attributionControl: false,
             });
             L.tileLayer(
@@ -34,6 +37,11 @@ export default  defineComponent({
                     subdomains: ['1', '2', '3', '4'],
                 }
             ).addTo(map);
+
+            map.pm.addControls({
+              position: 'topleft',
+              // drawCircle: false,
+            });
         })
     },
 })
