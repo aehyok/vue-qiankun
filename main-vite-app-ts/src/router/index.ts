@@ -25,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/login",
     name: "Login",
-    component: () => import(/* webpackChunkName: "login" */ "../views/Login.vue"),
+    component: () => import(/* webpackChunkName: "login" */ "../views//login/login.vue"),
     meta: {
       title: "登录",
       showLayout: false
