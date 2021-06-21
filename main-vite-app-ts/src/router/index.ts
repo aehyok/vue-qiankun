@@ -69,10 +69,11 @@ const router = createRouter({
   routes
 })
 const childrenPath = ["/dvs-village", "/dvs-cons", "/dvs-basic", "/dvs-digital",'wp-app', 'map-app', 'form-app', 'table-app']
-handConfig.systemList.map(item => {
-  
+let child = handConfig.systemList.map(item => {
+  return item.systemId
 })
 
+console.log(child, '----------child-----------')
 router.beforeEach((to, _from, next) => {
   NProgress.start()
 

@@ -31,7 +31,7 @@ export const getVersion = () => {
 * 退出登录
 */
 export const logout = () => {
-  return request('/sso/auth/logout', {
+  return request('/api/logout', {
     method: "post"
   });
 };

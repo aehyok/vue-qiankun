@@ -200,13 +200,12 @@ export default defineComponent({
         let account = encode(state.loginForm.account)
         let password = md5(state.loginForm.password
           ).toLocaleLowerCase()
-        console.log(res,'=========================res',account)  
         let result = res.data.find(
           item=> item.account=== account && 
           item.password === password)
         if(result?.success === "200"){
           localStorage.setItem('token', JSON.stringify({
-            ...res.data,
+            ...result,
             account:state.loginForm.account
           }))
           window.location.href="/"

@@ -18,9 +18,10 @@
 </template>
 <script lang="ts">
   import { defineComponent, watch, reactive, toRefs ,defineAsyncComponent, onMounted} from 'vue';
-  import { start } from "qiankun"
+  import { registerMicroApps, start } from "qiankun"
   import { useStore } from "vuex"
   import { useRoute } from 'vue-router'
+  import { getActiveRule } from '../../../common/utils/ts/utils'
   export default defineComponent({
     name:'Layout',
     components: {
@@ -37,6 +38,34 @@
 
       onMounted(()=> {
         console.log('start loading')
+
+        // 在主应用中注册微应用
+        registerMicroApps([
+          {
+            name: "form-app",
+            entry: process.env.NODE_ENV === "production" ? "/child/form-app/" : "//localhost:2000/",
+            container: "#mainwrapper",
+            activeRule: getActiveRule("#/form-app"),
+          },
+          {
+            name: "table-app",
+            entry: process.env.NODE_ENV === "production" ? "/child/table-app/" : "//localhost:3000/",
+            container: "#mainwrapper",
+            activeRule: getActiveRule("#/table-app")
+          },
+          {
+            name: "wp-app",
+            entry: process.env.NODE_ENV === "production" ? "/child/wp-app/" : "//localhost:4000/",
+            container: "#mainwrapper",
+            activeRule: getActiveRule("#/wp-app")
+          },
+          {
+            name: "map-app",
+            entry: process.env.NODE_ENV === "production" ? "/child/map-app/" : "//localhost:5000/",
+            container: "#mainwrapper",
+            activeRule: getActiveRule("#/map-app")
+          }
+        ])
         start({
           prefetch: 'all',
           sandbox: {
