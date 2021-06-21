@@ -121,9 +121,9 @@ export default defineComponent({
       rememberPasCbox: false,
       loading: false,
       loginForm: {
-        account: '',
-        password: '',
-        captchaValue: '',
+        account: 'admin',
+        password: '123456',
+        captchaValue: 'oyta',
         captchaId: ''
       },
       dialogVisible: false,

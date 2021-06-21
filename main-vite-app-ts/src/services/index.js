@@ -19,6 +19,15 @@ export const login = () => {
 };
 
 /**
+* 获取版本号
+*/
+export const getVersion = () => {
+    return request('/api/version', {
+      method: "get"
+    });
+  };
+
+/**
 * 退出登录
 */
 export const logout = () => {
@@ -27,14 +36,7 @@ export const logout = () => {
   });
 };
 
-/**
-* 获取版本号
-*/
-export const getVersion = () => {
-  return request('/basic/console/version', {
-    method: "get"
-  });
-};
+
 
 /**
 * 发送手机验证码

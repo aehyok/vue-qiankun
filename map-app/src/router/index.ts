@@ -6,10 +6,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Home',
     component: Home,
-    redirect: '/leaflet',
+    redirect: '/map-app/leaflet',
   },
   {
-    path: '/about',
+    path: '/map-app/about',
     name: 'About',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
   {
-    path: '/leaflet',
+    path: '/map-app/leaflet',
     name: 'Leaflet',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -25,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/leaflet/index.vue'),
   },
   {
-    path: '/geoman',
+    path: '/map-app/geoman',
     name: 'Geoman',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -33,7 +33,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/leaflet/geoman.vue'),
   },
   {
-    path: '/vue-leaflet',
+    path: '/map-app/vue-leaflet',
     name: 'Vue-leaflet',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -42,9 +42,4 @@ const routes: Array<RouteRecordRaw> = [
   },
 ];
 
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes,
-});
-
-export default router;
+export default routes;

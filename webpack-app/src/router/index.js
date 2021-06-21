@@ -35,7 +35,7 @@ const routes = [
     component: Table
   },
   {
-    path: "/metable",
+    path: "/wp-app/metable",
     name: "metable",
     component: MeTable
   },

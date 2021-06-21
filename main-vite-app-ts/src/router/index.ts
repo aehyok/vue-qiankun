@@ -1,4 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router"
+import NProgress from "../utils/progress"
+import handConfig  from "../../public/config"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "Home",
     component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
     meta: {
-      title: "首页"
+      title: "首页",
     }
   },
   {
@@ -66,42 +68,40 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
-const childrenPath = ["/form-app", "/wp-app"]
+const childrenPath = ["/dvs-village", "/dvs-cons", "/dvs-basic", "/dvs-digital",'wp-app', 'map-app', 'form-app', 'table-app']
+handConfig.systemList.map(item => {
+  
+})
 
-router.beforeEach((to, from, next) => {
-  console.log(to, "before---each")
-  if (to.name) {
-    console.log(to, "main")
+router.beforeEach((to, _from, next) => {
+  NProgress.start()
 
-    // 有 name 属性，说明是主应用的路由
+  if (to.path === '/login' || to.path === '/init-password') {
     next()
+    return false;
+  }
+  if (!localStorage.getItem('token')) {
+    next('/login')
+    return false
+  }
+  if (to.name) {
+    next()
+    return false
   }
   if (childrenPath.some((item) => to.path.includes(item))) {
-    console.log(to, "child")
-
     next()
+    console.log('child');
+
+    return false
   }
   // 如果找不到路由跳转到404
   next("/404")
+  return false
 })
 
-import NProgress from "../utils/progress"
-
-// const whiteList = ['/login', '/register']
-// 页面进入之前
-router.beforeEach((to, from, next) => {
-  NProgress.start()
-  next()
-  // const { t } = i18n.global;
-  // // @ts-ignore
-  // document.title = t(to.meta.title); // 动态title
-  // whiteList.indexOf(to.path) !== -1 || storageSession.getItem("info")
-  //   ? next()
-  //   : next("/login"); // 全部重定向到登录页
-})
 
 // 页面进入之后
-router.afterEach((to, from, failure) => {
+router.afterEach(() => {
   NProgress.done()
 })
 
