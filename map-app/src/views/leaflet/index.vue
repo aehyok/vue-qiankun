@@ -10,9 +10,6 @@ import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 export default  defineComponent({
     setup() {
-        const state = reactive({
-        })
-
         let map = {}
         onMounted(()=> {
             let array = [44.41318342260997, 125.1389239572005]
@@ -25,23 +22,30 @@ export default  defineComponent({
                 doubleClickZoom: false,
                 attributionControl: false,
             });
-            L.tileLayer(
+            const satellite = L.tileLayer(
                 'https://mt1.sea.utuapp.cn/220122/satellite/{z}/{x}/{y}.png',
                 {
                     subdomains: ['1', '2', '3', '4'],
                 }
-            ).addTo(map);
-            L.tileLayer(
+            );
+            const overlay = L.tileLayer(
                 'https://mt1.sea.utuapp.cn/220122/overlay/{z}/{x}/{y}.png',
                 {
                     subdomains: ['1', '2', '3', '4'],
                 }
-            ).addTo(map);
+            );
 
-            map.pm.addControls({
-              position: 'topleft',
-              // drawCircle: false,
-            });
+            // 图层分组
+            const layerGroup = L.layerGroup([satellite, overlay])
+            layerGroup.addTo(map)
+
+            // 控制图层
+            const controls = L.control.layers({
+                杨陵: layerGroup,
+                农安: layerGroup
+            }).addTo(map)
+            controls.expand()
+            L.marker([44.41318342260997, 125.1389239572005]).addTo(map);
         })
     },
 })
