@@ -74,11 +74,13 @@
 
 <script>
 import { getVerifyCode, login }  from '../../services/index'  
+import { getList} from '../../services/system'
 import md5 from 'js-md5'
 import { encode, decode} from 'js-base64'
 import { defineComponent, onBeforeMount, reactive, toRefs, ref } from 'vue'
 import FindPassword from './find-password.vue'
 import { warnMessage } from '../../utils/message'
+import { useStore } from 'vuex';
 export default defineComponent({
   name:'Login',
   components: {
@@ -86,6 +88,7 @@ export default defineComponent({
   }, 
   setup() {
     let form = ref(null)
+    let store = useStore()
     const validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'))
@@ -208,7 +211,7 @@ export default defineComponent({
             ...result,
             account:state.loginForm.account
           }))
-          window.location.href="/"
+          store.dispatch("fetchSystemList")
         }else {
           warnMessage('用户名或密码输入有误，请重新输入')
         }

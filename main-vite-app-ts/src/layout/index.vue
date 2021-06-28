@@ -1,6 +1,6 @@
 <template>
   <el-container style="height: 100vh">
-    <el-header class="app-header">
+    <el-header class="app-header" v-if="showHeader">
       <Header />
     </el-header>
     <el-container style="overflow: auto">
@@ -32,13 +32,34 @@
       const store = useStore()
       const route = useRoute()
       const state = reactive({
+          showHeader: true,  // 是否显示顶部状态栏
           showLeft: false, // 暂时为true则不显示左侧菜单
           main: false // 是否为主应用的菜单
         })
 
       onMounted(()=> {
         console.log('start loading')
-
+        const array =
+        [
+          {
+            name:'wp-app',
+            productionEntry: "/child/wp-app/" ,
+            developmentEntry:  "//localhost:4000/",
+            title: "数字农业",
+            homePath:"/wp-app/home",
+            normal:"images/module/dvs-farm-normal.png",
+			      selected: "images/module/dvs-farm-selected.png",
+          },
+          {
+            name:'map-app',
+            productionEntry: "/child/map-app/" ,
+            developmentEntry:  "//localhost:5000/",
+            title: "乡村治理",
+            homePath:"/map-app/leaflet",
+            normal:"images/module/dvs-village-normal.png",
+			      selected: "images/module/dvs-village-selected.png",
+          }
+        ]
         // 在主应用中注册微应用
         registerMicroApps([
           {

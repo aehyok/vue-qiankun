@@ -2,16 +2,16 @@
 const handConfig ={
 	systemList:[
 		{
-			systemId: "dvs-farm", 
-			path:"",
+			systemId: "wp-app", 
+			path:"/wp-app/home",
 			title:"数字农业",
 			normal:"images/module/dvs-farm-normal.png",
 			selected: "images/module/dvs-farm-selected.png",
 		},
 		{
-			systemId: "dvs-village", 
+			systemId: "map-app", 
 			// path:"/dvs-village/home?pageType=1",
-			path: '/wp-app/home',
+			path: '/map-app/leaflet',
 			title:"乡村治理",
 			normal:"images/module/dvs-village-normal.png",
 			selected: "images/module/dvs-village-selected.png",
