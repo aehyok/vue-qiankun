@@ -10,18 +10,16 @@ interface AppState {
   systemId?: string;
   currentSystem?: SystemInfo;
   systemList: [],
-  Slist: []
 }
 
 const dataState = createPersistedState({
-    paths: ['menuList','systemId',"currentSystem", "Slist"]  // 持久化的数据
+    paths: ['menuList','systemId',"currentSystem", "systemList"]  // 持久化的数据
 })
 
 export default createStore({
   state:():AppState =>({
     systemList:[],
     menuList: getMenuList(),  // 所有菜单
-    Slist:[],
     currentSystem: {
       systemId:"",
       path:"",
@@ -35,9 +33,9 @@ export default createStore({
       state.currentSystem = handConfig.systemList.find(item=> item.systemId === type)
       console.log(state.currentSystem, 'store----');
     },
-    setSystemList(state: any, data) {
-      state.Slist = data
-      console.log(state.Slist, 'state.Slist')
+    setSystemList(state: AppState, data) {
+      state.systemList = data
+      console.log(state.systemList, 'state.Slist')
     }
   },
   actions: {

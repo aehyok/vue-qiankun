@@ -6,7 +6,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Home',
     component: Home,
-    redirect: '/map-app/leaflet',
+    redirect: '/map-app/cesium',
   },
   {
     path: '/map-app/about',
@@ -19,26 +19,22 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/map-app/leaflet',
     name: 'Leaflet',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/leaflet/index.vue'),
+    component: () => import(/* webpackChunkName: "leaflet" */ '../views/leaflet/index.vue'),
   },
   {
     path: '/map-app/geoman',
     name: 'Geoman',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/leaflet/geoman.vue'),
+    component: () => import(/* webpackChunkName: "geoman" */ '../views/leaflet/geoman.vue'),
   },
   {
     path: '/map-app/vue-leaflet',
     name: 'Vue-leaflet',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/leaflet/vue-leaflet.vue'),
+    component: () => import(/* webpackChunkName: "vue-leaflet" */ '../views/leaflet/vue-leaflet.vue'),
+  },
+  {
+    path: '/map-app/cesium',
+    name: 'cesium',
+    component: () => import(/* webpackChunkName: "cesium" */ '../views/cesium/index.vue'),
   },
 ];
 

@@ -15,8 +15,16 @@ module.exports = {
       library: `${packageName}`,
       libraryTarget: "umd",
       jsonpFunction: `webpackJsonp_${packageName}`
-    }
+    },
+    plugins: [
+      new webpack.DefinePlugin({
+        CESIUM_BASE_URL:JSON.stringify('')
+      }),
+    ],
   },
+
+
+
   devServer: {
     port: 5000,
     headers: {
