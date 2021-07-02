@@ -6,7 +6,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Home',
     component: Home,
-    redirect: '/map-app/cesium',
+    redirect: '/map-app/leaflet',
   },
   {
     path: '/map-app/about',

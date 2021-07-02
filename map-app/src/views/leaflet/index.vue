@@ -1,4 +1,19 @@
 <template>
+  <el-upload
+  class="upload-demo"
+  action="https://jsonplaceholder.typicode.com/posts/"
+  :before-upload="beforeUpload"
+  :on-success="onSuccess"
+  :limit="1"
+  :on-exceed="handleExceed"
+  :file-list="fileList"
+>
+  <el-button size="small" type="primary">点击上传</el-button>
+  <template #tip>
+    <div class="el-upload__tip">只能上传 jpg/png 文件，且不超过 500kb</div>
+  </template>
+</el-upload>
+
     <el-button type="info" @click="open">open</el-button>
     <div id="map" style=" width:1000px;height:1200px;"></div>
 </template>
@@ -9,6 +24,7 @@ import 'leaflet/dist/leaflet.css'
 import { Icon } from 'leaflet';
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
+import '../../../public/L.KML.js'
 export default  defineComponent({
     setup() {
         let map = {}
@@ -17,6 +33,28 @@ export default  defineComponent({
             console.log('open')
         }
 
+        const beforeUpload = (file) => {
+          console.log(file, 'beforeUpload----上传文件')
+          let fileReader = new FileReader()
+          fileReader.readAsBinaryString(file)
+
+          fileReader.onload = () => {
+            console.log(fileReader.result, 'fileReader.result')
+            const parser = new DOMParser();
+                    const kml = parser.parseFromString(fileReader.result, 'text/xml');
+                    const track = new L.KML(kml);
+                    console.log(track, 'track');
+                    map.addLayer(track);
+
+                    // Adjust map to show the kml
+                    const bounds = track.getBounds();
+                    map.fitBounds(bounds);
+          }
+        }
+
+        const onSuccess = (response,file,fileList) => {
+          console.log('success----on',response, file)
+        }
         onMounted(()=> {
             delete Icon.Default.prototype._getIconUrl;
             Icon.Default.mergeOptions({
@@ -53,10 +91,10 @@ export default  defineComponent({
             map.pm.setLang('zh');
 
             map.pm.setGlobalOptions(
-            { 
-                pinning: true, 
+            {
+                pinning: true,
                 snappable: true,   // 可吸附于附近的某一个点
-                measurements: { measurement: true } 
+                measurements: { measurement: true }
             });
 
             const satellite = L.tileLayer(
@@ -96,7 +134,9 @@ export default  defineComponent({
             L.marker([44.41318342260997, 125.1389239572005],{ icon: greenIcon, pmIgnore: true}).addTo(map);
         })
         return {
-            open
+            open,
+            beforeUpload,
+            onSuccess
         }
     },
 })
