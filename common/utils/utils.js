@@ -36,7 +36,7 @@ export const getRangeInteger = (min,max) => {
 }
 
   /**
-   * 获取随机字符串
+   * 获取随机字符串  
    * @param {*默认32位长度} length
    */
 export const stringRandom = (length) => {
