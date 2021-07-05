@@ -34,3 +34,18 @@ export const getRangeInteger = (min,max) => {
     const tempNum = Math.floor(Math.random() * (max-min) + min)
     return tempNum
 }
+
+  /**
+   * 获取随机字符串
+   * @param {*默认32位长度} length
+   */
+export const stringRandom = (length) => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const maxPos = chars.length;
+    let noceStr = '';
+    let i;
+    for (i = 0; i < (length || 32); i += 1) {
+      noceStr += chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return noceStr;
+  },
