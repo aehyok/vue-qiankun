@@ -6,7 +6,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Home',
     component: Home,
-    redirect: '/map-app/leaflet',
+    redirect: '/map-app/index',
   },
   {
     path: '/map-app/about',
@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
   {
-    path: '/map-app/leaflet',
+    path: '/map-app/index',
     name: 'Leaflet',
     component: () => import(/* webpackChunkName: "leaflet" */ '../views/leaflet/index.vue'),
   },
@@ -27,9 +27,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "geoman" */ '../views/leaflet/geoman.vue'),
   },
   {
-    path: '/map-app/vue-leaflet',
+    path: '/map-app/leaflet',
     name: 'Vue-leaflet',
-    component: () => import(/* webpackChunkName: "vue-leaflet" */ '../views/leaflet/vue-leaflet.vue'),
+    component: () => import(/* webpackChunkName: "vue-leaflet" */ '../views/leaflet/leaflet.vue'),
   },
   {
     path: '/map-app/cesium',

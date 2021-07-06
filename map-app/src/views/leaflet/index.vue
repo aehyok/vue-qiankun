@@ -1,13 +1,9 @@
 <template>
   <el-upload
-  class="upload-demo"
-  action="https://jsonplaceholder.typicode.com/posts/"
-  :before-upload="beforeUpload"
-  :on-success="onSuccess"
-  :limit="1"
-  :on-exceed="handleExceed"
-  :file-list="fileList"
->
+    class="upload-demo"
+    action="https://jsonplaceholder.typicode.com/posts/"
+    :before-upload="beforeUpload"
+    :on-success="onSuccess">
   <el-button size="small" type="primary">点击上传</el-button>
   <template #tip>
     <div class="el-upload__tip">只能上传 jpg/png 文件，且不超过 500kb</div>
@@ -72,6 +68,10 @@ export default  defineComponent({
                 zoomControl: true,
                 doubleClickZoom: false,
                 attributionControl: false,
+            });
+
+            map.on('click', function(ev) {
+                console.log(ev, 'map--click')
             });
 
             map.pm.addControls({
