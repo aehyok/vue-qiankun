@@ -1,19 +1,14 @@
 <template>
-    <div id="map" style="width:1000px;height:800px;"></div>
+    <div id="map" style="width:100vw;height:800px;"></div>
 </template>
-<script>
+<script setup>
 import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { defineComponent, onMounted, reactive } from 'vue';
-export default  defineComponent({
-    name:'about',
-    components: {
-    },
-    setup() {
-        const state = reactive({
+import { onMounted, reactive } from 'vue';
+    let state = reactive({
         map: {},
         drawObj: {}
-        })
+    })
     onMounted(() => {
         delete L.Icon.Default.prototype._getIconUrl;
         L.Icon.Default.mergeOptions({
@@ -146,8 +141,18 @@ export default  defineComponent({
         
         drawObj.on('click',function (e) {
             // this.map.fitBounds(drawObj.getBounds());
+
+            // 定位到center
+            // state.map.flyTo({lat:34.261982635377585 , lng: 108.01560670137407})
+            let lb = L.latLngBounds(arrayList[0].fences)
+
+            let latlng = L.latLng(lb.getCenter().lat, lb.getCenter().lng);
+            console.log(lb.getCenter(),'center')
+
+            state.map.flyTo(latlng, state.map.getZoom())
+            // state.map.flyToBounds(arrayList[0].fences)
             if(e.sourceTarget.id) {
-                console.log(e.sourceTarget.id, '地块Id 去获取数据')
+                console.log(e.sourceTarget.id, '地块Id 去获取数据',e)
             }
         })
         // this.drawObj.on("pm:edit", (obj) => {
@@ -155,7 +160,5 @@ export default  defineComponent({
         // });
         });
     })
-    },
-})
 </script>
   

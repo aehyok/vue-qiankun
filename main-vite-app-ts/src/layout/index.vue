@@ -112,7 +112,7 @@
         () => store.state.systemId,
         (newValue) => {
           if (newValue) {
-            const menu = store.state.menuList.find((item) => item.path === newValue)
+            const menu = store.state.menuList.find((item: any) => item.path === newValue)
             if(menu && menu.source){
               state.showLeft = menu.source.showLeft
             }

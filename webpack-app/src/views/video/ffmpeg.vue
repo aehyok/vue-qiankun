@@ -19,7 +19,7 @@ export default defineComponent({
     const message = ref("Click Start to Transcode");
     const video = ref("");
     const file =
-      process.env.NODE_ENV === "production" ? "/flame.avi" : "/bootvideo.ts";
+      process.env.NODE_ENV === "production" ? "/flame.avi" : "/bipbop_16x9_variant.m3u8";
     // methods
     async function transcode() {
       message.value = "Loading ffmeg-core.js";
