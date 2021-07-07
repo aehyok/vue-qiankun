@@ -49,111 +49,7 @@
             </swiper-slide>
         </swiper>
       </div>
-      <div class="echarts" v-if="showHome">
-        <div class="center">
-          <div class="left">
-            <!-- 人口概况 -->
-          </div>
-          <div class="right">
-            <!-- 账号信息 -->
-            <div class="me-info">
-              <div class="me-avator">
-                <img :src="avator" class="me-avator-img"/>
-              </div>
-              <div class="me-name">
-                <div>{{nickName}}</div>
-                <div style="margin-top:15px;">
-                  <el-button @click="updatePasswordClick" type="primary" size="medium">修改密码</el-button>
-                  <el-button @click="logoutClick" type="primary" size="medium">退出</el-button>
-                </div>
-              </div>
-            </div>
-            <!-- 杨陵概况 -->
-            <div class="intro">
-                <div class="intro-title">杨陵概况</div>
-                <div class="charts-line"></div>
-                <div class="swiper">
-                  <el-carousel height="200px">
-                    <el-carousel-item v-for="item in introduceList" :key="item">
-                      <img :src="item" class="con-top-img"/>
-                    </el-carousel-item>
-                  </el-carousel>
-                </div>
-                <div class="intro-content">杨陵，是陕西杨凌农业高新技术产业示范区下辖唯一县级行政区。地处陕西关中平原,因隋文帝杨坚陵寝在此而得名。全区总面积135平方公里，人口24万，是陇海铁路、郑西高铁、连霍高速沿线的重要节点城市，也是西安国际化大都市圈的重要组成部分和关中——天水经济区中最具发展活力的战略板块。</div>
-                <div class="intro-button">
-                  <el-button @click="goInfo" type="primary">
-                    查看详情<i class="el-icon-arrow-right el-icon--right"></i>
-                  </el-button>
-                </div>
-                <!-- 外出务工情况 -->
-                <outWorker  :num="echartsNum" :data="chartsData7" :key="new Date().getTime()" class="mt-10" />
-                <!-- 乡村治理居民参与情况 -->
-                <participation  :num="echartsNum" :data1="chartsData9" :data2="chartsData10" :key="new Date().getTime()" class="mt-10"/>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- 详情 -->
-      <div v-if="!showHome" class="info-class">
-        <div class="info">
-          <img :src="closeImage" class="info-close-img" @click="showHome = true"/>
-          <div class="info-title">杨陵区情概况</div> 
-          <div class="info-list">
-            <span class="sub-title">政区划分</span>
-            区辖两镇（五泉镇、揉谷镇）三办（杨陵街道办事处、李台街道办事处、大寨街道办事处），54个行政村，22个社区。
-          </div>
-          <div class="info-list">
-            <span class="sub-title">人口面积</span>
-            全区总面积135平方公里，城区面积26.6平方公里，总人口24万人，耕地面积7.81万亩。
-          </div>
-          <div class="info-list">
-            <span class="sub-title">自然特征</span>
-            区内三面环水，南界为渭河，东界为漆水河，北界为小湋河。宝鸡峡二支渠、渭惠渠、高干渠等人工渠系越境而过，水资源丰富、水利条件优越。区内地势南低北高，依次形成三道塬坡，海拔435-563米。境内塬、坡、滩地交错，土壤肥沃，适宜多种农作物生长。年降水量635.1—663.9毫米，年均气温12.9℃，属暖温带季风半湿润气候区。
-          </div>
-          <div class="info-list">
-            <span class="sub-title">经济概况</span>
-            2020年全年地区生产总值151.7亿元；固定资产投资增长4.5%；农业增加值增长4.3%；城乡居民人均可支配收入分别增长4.3%和7.8%。
-          </div>
-          <div class="info-list">
-            <span class="sub-title">工业发展</span>
-            紧盯高质量发展目标，全力促进工业稳增长，农副产品加工、饲料生产、农化生物平稳健康发展，占全区规上工业总产值68.7%。培育规上工业企业3家、亿元企业2家、农业科技小巨人3家。申报创新创业团队7家、“专精特新”企业6家、民营经济转型升级示范企业5家。锣鼓产业园和化建新材料产业园共入驻企业21家。
-          </div>
-          <div class="info-list">
-            <span class="sub-title">乡村振兴</span>
-            扎实推进特色现代农业建设，现代农业融合体验园建成投用，特色现代农业示范园等项目建设进展顺利，建成单品冠军园5个。建成新式大棚2032亩，推广基质栽培技术1029亩、有机肥2670亩，小麦、玉米平均亩产达470余公斤，畜禽总存栏23.02万头（羽）。新成立农业专家试验示范基地5个，百名专家服务团推广新技术、新品种30余项。开展农业培训21场，对外输出农技劳务1万余人。累计发展农业龙头企业49家、专业合作社321家，培训职业农民1453人。
-          </div>
-          <div class="info-list">
-            坚持把农村人居环境整治作为实施乡村振兴战略的基础，“八清一改”扎实开展，“厕所革命”深入实施，无害化卫生厕所占比达90.79%，建成农村“三园”369座，生活垃圾有效治理村达到100%，83%的农村污水实现有效管控，村容村貌明显转变。 
-          </div> 
-          <div class="info-list">
-            脱贫攻坚成果持续巩固，建立健全防返贫监测机制和常态化帮扶机制，常态化落实兜底政策，“两不愁三保障”和农村安全饮水问题基本解决。积极引进引导帮助相对困难群众发展农业产业，推进巩固脱贫攻坚成果与乡村振兴有效衔接。
-          </div> 
-          <div class="info-list">
-            <span class="sub-title">第三产业</span>
-            始终把“三产兴区”作为重要战略任务，大力发展夜间经济、假日经济，杨凌风情商业街夜间经济聚集区繁荣发展，“箱遇星空”后备箱集市、会展旅游节等导流促销活动成功举办。王上村守望田园民宿、马家底湋水乡邻康乐谷建成投用，研学游、周末游、采摘游等蓬勃开展。全年预计接待游客428万人次，旅游综合收入20.6亿元。
-          </div>
-          <div class="info-list">
-            <span class="sub-title">城市品质</span>
-            坚持以人为本不断提高城市精细化管理水平，省道107项目即将竣工，国道344、杨扶路(高干渠-孟杨路段）等项目扎实推进。老城区雨污分流、供热管网和街心花园建设、城市“六乱”专项整治取得实效，老旧小区改造加快实施。国有物业公司成功接管14个安置小区，曹新庄垃圾填埋场二期加快建设，购置新能源纯电动公交车30辆。五泉重点示范镇建设位列全省前三、揉谷镇进入第一方阵。
-          </div>
-          <div class="info-list">
-            <span class="sub-title">人文自然景观</span>
-            境内有国家一级文物保护单位泰陵（即杨坚陵）、古农师后稷封地（古邰国遗址）、唐太宗李世民出生地（庆善宫遗址）等文物古迹。后稷教稼园、周尧昆虫博物馆、水保所人工降雨大厅、中国克隆动物基地、新天地设施农业园等一大批富具科普内容的旅游景点蜚声海外。亚洲第一规模的水上运动中心、邰城休闲广场、杨陵“蘸水面”、绿色无公害蔬菜等令游人留恋忘返、赞不绝口。
-          </div>
-          <div class="info-list">
-            <span class="sub-title">生态环境</span>
-            严格落实“限煤、降尘、控车、减排、增绿、打违”六大治理措施，全年空气质量优良天数242天。以饮水安全、污水收集、流域达标为基准，常态化开展“三河两渠”巡查管控。严格落实“一控两减三基本”管控措施，农药化肥使用实现“零增长”，秸秆综合利用率、畜禽资源化利用率分别达到96%和88%。
-          </div>
-          <div class="info-list">
-            <span class="sub-title">社会事业</span>
-            稳就业举措扎实有效，举办创业培训班6期，新开发公益性岗位232个，召开线上、线下招聘活动14场次，为1万余名劳动力找到合适岗位。恒大小学二期项目等加快建设，11所校园环境改造提升工程全面完成，新投用公办幼儿园4所。教师职称评审、全员聘用制等改革基本完成，岗位工资升级分档改革积极推进，“两支队伍”综合素质持续提升。基层卫生院（室）提升改造项目正在收尾，健康促进区创建积极开展，家庭医生签约有序进行，医药卫生体制改革不断深化。打造幸福院改造提升示范点10个，建成养老驿站5所，社区志愿服务站实现全覆盖。
-          </div>
-          <div class="info-list">
-            <span class="sub-title">社会治理</span>
-            坚持扫黑除恶专项斗争和无黑无恶创建两线作战、惩治黑恶与社会治理融合推进,一批乱象乱点问题得到有效整治，涉黑涉恶问题线索办结率99.3%，基本实现了行业无乱象、黑恶滋生无空间。矛盾纠纷排查化解工作扎实推进，矛盾纠纷化解率94.9%，网格事件办结率98.64%。突出重点领域监管，强化源头管控，安全生产、食品药品安全和市场监管扎实有效。
-          </div>
-        </div> 
-      </div>
     </div>
     <UpdatePassword v-model="updateDialogVisible"  @cancel="close"/>
 	</div>
@@ -412,7 +308,7 @@
   .content{
     .con-top{
       position: relative;
-      width:1280px;
+      width:100%;
       margin:0 auto;
       .banner-center{
         width:459px;
