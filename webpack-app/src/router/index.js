@@ -6,10 +6,10 @@ import ffmpeg from "../views/video/ffmpeg.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/wp-app/home"
+    redirect: "/webpack-app/home"
   },
   {
-    path: "/wp-app/home",
+    path: "/webpack-app/home",
     name: "Home",
     component: Home,
     children: [
@@ -30,12 +30,12 @@ const routes = [
     ]
   },
   {
-    path: "/wp-app/table",
+    path: "/webpack-app/table",
     name: "table",
     component: Table
   },
   {
-    path: "/wp-app/metable",
+    path: "/webpack-app/metable",
     name: "metable",
     component: MeTable
   },
@@ -45,7 +45,7 @@ const routes = [
     component: ffmpeg
   },
   {
-    path: "/wp-app/about",
+    path: "/webpack-app/about",
     name: "about",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")

@@ -5,6 +5,7 @@
 - main 主应用和 child 子应用不限制接入的技术栈，具备完全的自主权，可以选择 Vue、React、Angular、JQuery 等其他前端框架。
 - main 主应用和 child 子应用可完全独立开发、独立部署、 实现解耦
 
+### 基于乾坤搭建的公司项目已经线上发布，目前运行平稳，特此搭建一个demo，为日后继续升级或记录使用。
 ### 1、main-vite-app-ts 主应用 http://localhost:1000
 
 - 使用 Vue3 + Vite2 +TypeScript + Element Plus 搭建
@@ -16,6 +17,10 @@
 ### 2、form-app 子应用 主要处理表单相关子菜单 http://localhost:2000
 
 ### 3、table-app 子应用 主要处理 table 列表相关子菜单 http://localhost:3000
+
+### 4、map-app 子应用  主要处理 leaflet地图相关插件  http://localhost:5000(目前正在处理中2021年7月)
+
+
 
 ### 1、创建项目命令 https://cn.vitejs.dev/guide/#scaffolding-your-first-vite-project
 
@@ -58,7 +63,8 @@
     ├── child/                # 存放所有微应用的文件夹
     |   ├── webpack-app/      # 存放微应用 webpack-app 的文件夹
     |   ├── form-app/         # 存放微应用 form-app 的文件夹
-    |   ├── ....-app/         # 存放微应用 ....-app 的文件夹
+    |   ├── table-app/        # 存放微应用 table-app 的文件夹
+    |   ├── map-app/          # 存放微应用 map-app 的文件夹
     ├── index.html            # 主应用的index.html
     ├── css/                  # 主应用的css文件夹
     ├── js/                   # 主应用的js文件夹

@@ -42,11 +42,11 @@
         const array =
         [
           {
-            name:'wp-app',
-            productionEntry: "/child/wp-app/" ,
+            name:'webpack-app',
+            productionEntry: "/child/webpack-app/" ,
             developmentEntry:  "//localhost:4000/",
             title: "数字农业",
-            homePath:"/wp-app/home",
+            homePath:"/webpack-app/home",
             normal:"images/module/dvs-farm-normal.png",
 			      selected: "images/module/dvs-farm-selected.png",
           },
@@ -75,10 +75,10 @@
             activeRule: getActiveRule("#/table-app")
           },
           {
-            name: "wp-app",
-            entry: process.env.NODE_ENV === "production" ? "/child/wp-app/" : "//localhost:4000/",
+            name: "webpack-app",
+            entry: process.env.NODE_ENV === "production" ? "/child/webpack-app/" : "//localhost:4000/",
             container: "#mainwrapper",
-            activeRule: getActiveRule("#/wp-app")
+            activeRule: getActiveRule("#/webpack-app")
           },
           {
             name: "map-app",

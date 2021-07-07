@@ -60,22 +60,22 @@ function MenuList_Wp():Menu[] {
     {
       id:1,
       title:"home",
-      path:"/wp-app/home",
+      path:"/webpack-app/home",
     },
     {
       id: 2,
       title:"table",
-      path:"/wp-app/table",
+      path:"/webpack-app/table",
     },
     {
       id: 3,
       title:"metable",
-      path:"/wp-app/metable",
+      path:"/webpack-app/metable",
     },
     {
       id: 4,
       title:"about",
-      path:"/wp-app/about",
+      path:"/webpack-app/about",
     },
   ]
 }

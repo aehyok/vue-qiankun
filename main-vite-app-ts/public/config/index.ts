@@ -2,8 +2,8 @@
 const handConfig ={
 	systemList:[
 		{
-			systemId: "wp-app", 
-			path:"/wp-app/home",
+			systemId: "webpack-app", 
+			path:"/webpack-app/home",
 			title:"阿里巴巴",
 			normal:"images/module/dvs-farm-normal.png",
 			selected: "images/module/dvs-farm-selected.png",
