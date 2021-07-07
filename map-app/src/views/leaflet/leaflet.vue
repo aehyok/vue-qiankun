@@ -5,11 +5,14 @@
 import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { onMounted, reactive } from 'vue';
-    let state = reactive({
-        map: {},
-        drawObj: {}
+    let map= {}
+    const state = reactive({
+        longitude: 0,  //经度
+        latitude:  0,  //纬度
+        altitude: 0,   // 高度
     })
     onMounted(() => {
+        // TODO 设置marker标记的默认图片
         delete L.Icon.Default.prototype._getIconUrl;
         L.Icon.Default.mergeOptions({
             iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -19,176 +22,81 @@ import { onMounted, reactive } from 'vue';
         let array = [34.263742732916505, 108.01650524139406]
 
         //TODO  初始化map
-        state.map = L.map("map", {
-            zoom: 16,
-            minZoom: 16,
-            maxZoom: 22,
+        map = L.map("map", {
+            zoom: 16,     // 设置初始进入的zoom
+            minZoom: 13,  // 可缩小的最小值
+            maxZoom: 20,   // 可放大的最大值,取决定性作用，设置为20了，则其他设置更大也无效。
             center: [array[0],array[1]],
             zoomControl: true,
             doubleClickZoom: false,
             attributionControl: false,
             tap: false, // 设置为false,阻止click事件执行两次
         });
+
+        // Marker标记图层
+        const layerGroupMarkers = L.layerGroup()
+        layerGroupMarkers.addTo(map)
+
+        map.on("zoomend", (event) => {
+            console.log(event, 'zoomend')
+        })
+
+        // 地图单击事件
+        map.on('click',function(event) {
+            // 清除所有的Marker图层
+            layerGroupMarkers.clearLayers()
+
+            //TODO  通过Marker icon设置 label
+            var myIcon = L.divIcon({
+                html: "狗子",
+                className: 'my-div-icon',
+                iconSize:40
+            });
+
+            // 获取经纬度后生成marker,并添加到对应的图层
+            let marker = L.marker([event.latlng.lat,event.latlng.lng]).addTo(map);
+            state.longitude = event.latlng.lng
+            state.latitude = event.latlng.lat
+            // state.altitude = 0
+            layerGroupMarkers.addLayer(marker)
+        })
         
-        // TODO 设置图层
+        // TODO 瓦片图层
         const satellite = L.tileLayer(
             'https://mt{s}.sea.utuapp.cn/610403/satellite/{z}/{x}/{y}.png',
             {
                 subdomains: ['1', '2', '3', '4'],
+                minZoom: 10,
+                maxZoom: 20,  // 默认最大值位18，19后就看不到此图层
             }
         );
+
+        // 路网图层
         const overlay = L.tileLayer(
             'https://mt{s}.sea.utuapp.cn/610403/overlay/{z}/{x}/{y}.png',
             {
                 subdomains: ['1', '2', '3', '4'],
+                minZoom: 10,
+                maxZoom: 20, // 默认最大值位18，19后就看不到此图层
             }
         );
         
+        // 村的正射影像
         const village = L.tileLayer(
             'https://mt{s}.sea.utuapp.cn/610403/models/610403102210/{z}/{x}/{y}.png',
             {
                 subdomains: ['1', '2', '3', '4'],
+                minZoom: 10,
+                maxZoom: 22, // 默认最大值位18，19后就看不到此图层
             }
         );
-        // 图层分组
-        const layerGroup = L.layerGroup([satellite, overlay,village])
-        layerGroup.addTo(state.map)
-
-        const json =[
-            {
-                "pane":'10001',
-                "fences": [
-                    {
-                        "longitude": 108.0142602324486,
-                        "latitude": 34.26235061851283,
-                    },
-                    {
-                        "longitude": 108.01443994045259,
-                        "latitude": 34.262253080971156,
-                    },
-                    {
-                        "longitude": 108.01457136869433,
-                        "latitude": 34.262348401751794,
-                    },
-                    {
-                        "longitude": 108.0144238471985,
-                        "latitude": 34.26239052020185,
-                    }
-                ],
-            },
-            {
-                "pane":'10002',
-                "fences": [
-                    {
-                        "longitude": 108.01374256610872,
-                        "latitude": 34.26210234091152,
-                    },
-                    {
-                        "longitude": 108.01445603370668,
-                        "latitude": 34.2618629296733,
-                    },
-                    {
-                        "longitude": 108.01394104957582,
-                        "latitude": 34.26151267867119,
-                    }
-                ],
-            },
-            {
-                "pane":'10003',
-                "fences": [
-                    {
-                        "longitude": 108.01560670137407,
-                        "latitude": 34.261982635377585,
-                    },
-                    {
-                        "longitude": 108.0158427357674,
-                        "latitude": 34.26185184580317,
-                    },
-                    {
-                        "longitude": 108.0158132314682,
-                        "latitude": 34.26202475401081,
-                    }
-                ],
-            }
-        ]
-        let arrayList = []
-
-        json.forEach(item => {
-            let list = []
-            if (item.fences && item.fences.length > 0) {
-                item.fences.forEach(child => {
-                    list.push([child.latitude,child.longitude])
-                })
-                arrayList.push({
-                    id: item.pane,
-                    fences: list
-                })
-            }
-        })
-
-        arrayList.forEach((element) => {
-            // TODO 加载多边形
-            let drawObj = L.polygon(element.fences, { color: "orange", id: element.id }).addTo(state.map)
-            drawObj.id = element.id + 'id'
-            
-            let lb = L.latLngBounds(element.fences)
-            let center = lb.getCenter()
-            let latlng = L.latLng(center.lat, center.lng);
-
-            console.log(element, latlng, 'element-latlng')
-            // TODO popup 弹窗
-            // L.popup({
-            //     keepInView: true,
-            //     closeButton: false,
-            // })
-            // .setLatLng(latlng)
-            // .setContent('地块名称信息')
-            // .openOn(state.map);
-
-            //TODO  通过Marker icon设置 label
-            // var myIcon = L.divIcon({
-            //     html: "狗子",
-            //     className: 'my-div-icon',
-            //     iconSize:40
-            // });
-            // L.marker([center.lat,center.lng], { icon: myIcon }).addTo(state.map);
-
-            console.log(latlng,'center')
-
-            // TODO 小窗体ToolTip
-            // drawObj.bindTooltip(
-            //   "<div>My 1111111</div>",
-            //   {
-            //     direction:"center",
-            //     permanent: true,
-            //   }).openTooltip()
-            
-            drawObj.on('click',function (e) {
-
-                //TODO  定位到center
-                // state.map.flyTo({lat:34.261982635377585 , lng: 108.01560670137407})
-                // let lb = L.latLngBounds(element.fences)
-
-                // let latlng = L.latLng(lb.getCenter().lat, lb.getCenter().lng);
-                // console.log(lb.getCenter(),'center')
-
-                // state.map.flyTo(latlng, state.map.getZoom())
-
-                if(e.sourceTarget.id) {
-                    console.log(e.sourceTarget.id, '地块Id 去获取数据',e)
-                }
-            })
-            // this.drawObj.on("pm:edit", (obj) => {
-            //   obj.target.setStyle({ color: "orange" })
-            // });
-        });
+        // TODO 地图图层单独为一个图层组（并且图层是有顺序的，先 satellite、overlay、village）
+        const layerGroup = L.layerGroup([satellite,overlay,village])
+        layerGroup.addTo(map)
     })
 </script>
 <style lang="scss" scoped>
     .my-div-icon {
         color: white;
     }
-    // ::v-deep .leaflet-popup-content {
-        
-    // }
 </style>

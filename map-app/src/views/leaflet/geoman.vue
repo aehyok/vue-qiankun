@@ -18,6 +18,7 @@ import { onMounted, reactive } from 'vue';
         });
         let array = [34.263742732916505, 108.01650524139406]
 
+        //TODO  初始化map
         state.map = L.map("map", {
             zoom: 16,
             minZoom: 16,
@@ -26,8 +27,10 @@ import { onMounted, reactive } from 'vue';
             zoomControl: true,
             doubleClickZoom: false,
             attributionControl: false,
+            tap: false, // 设置为false,阻止click事件执行两次
         });
-
+        
+        // TODO 设置图层
         const satellite = L.tileLayer(
             'https://mt{s}.sea.utuapp.cn/610403/satellite/{z}/{x}/{y}.png',
             {
@@ -111,54 +114,81 @@ import { onMounted, reactive } from 'vue';
         let arrayList = []
 
         json.forEach(item => {
-        let list = []
-        if (item.fences && item.fences.length > 0) {
-            item.fences.forEach(child => {
-            list.push([child.latitude,child.longitude])
-            })
-            arrayList.push(
-            {
-                id: item.pane,
-                fences: list
+            let list = []
+            if (item.fences && item.fences.length > 0) {
+                item.fences.forEach(child => {
+                    list.push([child.latitude,child.longitude])
+                })
+                arrayList.push({
+                    id: item.pane,
+                    fences: list
+                })
             }
-            )
-        }
         })
 
         arrayList.forEach((element) => {
-        console.log(element,'el');
+            // TODO 加载多边形
+            let drawObj = L.polygon(element.fences, { color: "orange", id: element.id }).addTo(state.map)
+            drawObj.id = element.id + 'id'
+            
+            let lb = L.latLngBounds(element.fences)
+            let center = lb.getCenter()
+            let latlng = L.latLng(center.lat, center.lng);
 
-        let drawObj = L.polygon(element.fences, { color: "orange", id: element.id }).addTo(state.map)
-        drawObj.id = element.id + 'id'
+            console.log(element, latlng, 'element-latlng')
+            // TODO popup 弹窗
+            // L.popup({
+            //     keepInView: true,
+            //     closeButton: false,
+            // })
+            // .setLatLng(latlng)
+            // .setContent('地块名称信息')
+            // .openOn(state.map);
 
-        // this.drawObj.bindTooltip(
-        //   "<div style=\"background: red;\">My 1111111</div>",
-        //   {
-        //     direction:"center",
-        //     permanent: true,
-        //     opacity: '1'
-        //   }).openTooltip()
-        
-        drawObj.on('click',function (e) {
-            // this.map.fitBounds(drawObj.getBounds());
+            //TODO  通过Marker icon设置 label
+            // var myIcon = L.divIcon({
+            //     html: "狗子",
+            //     className: 'my-div-icon',
+            //     iconSize:40
+            // });
+            // L.marker([center.lat,center.lng], { icon: myIcon }).addTo(state.map);
 
-            // 定位到center
-            // state.map.flyTo({lat:34.261982635377585 , lng: 108.01560670137407})
-            let lb = L.latLngBounds(arrayList[0].fences)
+            console.log(latlng,'center')
 
-            let latlng = L.latLng(lb.getCenter().lat, lb.getCenter().lng);
-            console.log(lb.getCenter(),'center')
+            // TODO 小窗体ToolTip
+            // drawObj.bindTooltip(
+            //   "<div>My 1111111</div>",
+            //   {
+            //     direction:"center",
+            //     permanent: true,
+            //   }).openTooltip()
+            
+            drawObj.on('click',function (e) {
 
-            state.map.flyTo(latlng, state.map.getZoom())
-            // state.map.flyToBounds(arrayList[0].fences)
-            if(e.sourceTarget.id) {
-                console.log(e.sourceTarget.id, '地块Id 去获取数据',e)
-            }
-        })
-        // this.drawObj.on("pm:edit", (obj) => {
-        //   obj.target.setStyle({ color: "orange" })
-        // });
+                //TODO  定位到center
+                // state.map.flyTo({lat:34.261982635377585 , lng: 108.01560670137407})
+                // let lb = L.latLngBounds(element.fences)
+
+                // let latlng = L.latLng(lb.getCenter().lat, lb.getCenter().lng);
+                // console.log(lb.getCenter(),'center')
+
+                // state.map.flyTo(latlng, state.map.getZoom())
+
+                if(e.sourceTarget.id) {
+                    console.log(e.sourceTarget.id, '地块Id 去获取数据',e)
+                }
+            })
+            // this.drawObj.on("pm:edit", (obj) => {
+            //   obj.target.setStyle({ color: "orange" })
+            // });
         });
     })
 </script>
-  
+<style lang="scss" scoped>
+    .my-div-icon {
+        color: white;
+    }
+    // ::v-deep .leaflet-popup-content {
+        
+    // }
+</style>

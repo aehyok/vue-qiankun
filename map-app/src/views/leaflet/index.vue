@@ -37,14 +37,14 @@ export default  defineComponent({
           fileReader.onload = () => {
             console.log(fileReader.result, 'fileReader.result')
             const parser = new DOMParser();
-                    const kml = parser.parseFromString(fileReader.result, 'text/xml');
-                    const track = new L.KML(kml);
-                    console.log(track, 'track');
-                    map.addLayer(track);
+            const kml = parser.parseFromString(fileReader.result, 'text/xml');
+            const track = new L.KML(kml);
+            console.log(track, 'track');
+            map.addLayer(track);
 
-                    // Adjust map to show the kml
-                    const bounds = track.getBounds();
-                    map.fitBounds(bounds);
+            // Adjust map to show the kml
+            const bounds = track.getBounds();
+            map.fitBounds(bounds);
           }
         }
 
