@@ -124,7 +124,7 @@
         })
       }
 
-      const handleCommand = (command) => {
+      const handleCommand = (command:any) => {
         if (command === 'a') {
           state.updateDialogVisible = true
         }
@@ -153,7 +153,7 @@
         state.versionDialogVisible = false
       }
 
-      const selectMenu = (e) => {
+      const selectMenu = (e:any) => {
         store.commit('header', e)
       }
 

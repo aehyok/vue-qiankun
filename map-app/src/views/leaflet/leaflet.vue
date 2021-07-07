@@ -1,15 +1,46 @@
 <template>
     <div id="map" style="width:100vw;height:800px;"></div>
+    <el-popover
+  placement="right"
+  :width="400"
+  trigger="click"
+>
+    <template #reference>
+        <el-button>click 激活</el-button>
+    </template>
+    <el-table :data="state.gridData">
+        <el-table-column width="150" property="date" label="日期"></el-table-column>
+        <el-table-column width="100" property="name" label="姓名"></el-table-column>
+        <el-table-column width="300" property="address" label="地址"></el-table-column>
+    </el-table>
+    </el-popover>
 </template>
 <script setup>
 import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { onMounted, reactive } from 'vue';
+import { onMounted, reactive, toRefs } from 'vue';
     let map= {}
     const state = reactive({
         longitude: 0,  //经度
         latitude:  0,  //纬度
         altitude: 0,   // 高度
+        gridData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }]
     })
     onMounted(() => {
         // TODO 设置marker标记的默认图片
@@ -54,7 +85,23 @@ import { onMounted, reactive } from 'vue';
             });
 
             // 获取经纬度后生成marker,并添加到对应的图层
-            let marker = L.marker([event.latlng.lat,event.latlng.lng]).addTo(map);
+            let marker = L.marker([event.latlng.lat,event.latlng.lng],{
+                draggable: true
+            }).addTo(map);
+
+            // TODO marker 拖拽结束事件
+            marker.on('dragend',function(e){
+                console.log('dragend',e)
+            })
+
+            // TODO marker 移动结束事件
+            marker.on('moveend',function(e){
+                console.log('moveend',e)
+            })
+            marker.on('click',function(e){
+                console.log('click',e)
+                alert('')
+            })
             state.longitude = event.latlng.lng
             state.latitude = event.latlng.lat
             // state.altitude = 0
@@ -93,6 +140,7 @@ import { onMounted, reactive } from 'vue';
         // TODO 地图图层单独为一个图层组（并且图层是有顺序的，先 satellite、overlay、village）
         const layerGroup = L.layerGroup([satellite,overlay,village])
         layerGroup.addTo(map)
+
     })
 </script>
 <style lang="scss" scoped>
