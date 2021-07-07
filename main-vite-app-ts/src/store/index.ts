@@ -41,13 +41,12 @@ export default createStore({
   actions: {
     async fetchSystemList({ commit }) {
       try {
-        const res = await getSystemList()
+        const res:any = await getSystemList()
 
-        if (res) {
-          localStorage.setItem('loginInfo', res.data)
-          console.log(res, 'fetchSystemList')
+        if (res?.code === 200) {
+          commit('setSystemList', res.data)
         }
-        commit('setSystemList', res.data)
+       
       } catch (error) {
         console.log(error, 'fetchSystemList-error')
       }
