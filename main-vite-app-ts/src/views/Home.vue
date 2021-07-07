@@ -4,7 +4,7 @@
 		<div class="header">
 			<div class="header-left">
 				<img :src="headerSetting.logoUrl" />
-				<div class="left-title">杨陵区数字乡村综合服务平台</div>
+				<div class="left-title">qiankun综合服务平台</div>
 			</div>
       <div class="right-notice">				
         <img :src="headerSetting.hornUrl" class="new-img"/>

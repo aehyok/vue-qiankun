@@ -1,74 +1,73 @@
 <template>
   <div class="login-page">
-    <main class="content-wrapper">
-      <div class="left">
-        <img :src="loginImage" alt="" />
-      </div>
-
-      <div class="right">
-        <h3 class="project-name">{{projectName}}</h3>
-        <el-form
-          :model="loginForm"
-          :rules="rules"
-          ref="form"
-          size="large"
-          @submit.native.prevent
-        >
-          <el-form-item prop="account">
-            <el-input
-              type="text"
-              placeholder="用户名"
-              v-model="loginForm.account"
-            />
-          </el-form-item>
-          <el-form-item prop="password">
-            <el-input
-              type="password"
-              placeholder="密码"
-              v-model="loginForm.password"
-            />
-          </el-form-item>
-          <el-form-item class="smbot" prop="captchaValue">
-            <div class="form-row">
-              <el-input
-                placeholder="验证码"
-                v-model="loginForm.captchaValue"
-                style="flex: 1;"
-              />
-              <div class="verCodeImg">
-                <img :src="vcodeImg" />
-                <!-- <div class="svgbox" v-html="vcodeImg"></div> -->
-                <span
-                  @click="getImageVerifyCode"
-                  style="margin-left: 20px; cursor: pointer;"
-                >
-                  换一张
-                </span>
-              </div>
-            </div>
-          </el-form-item>
+    <div class="left-login"></div>
+    <div class="right-login"></div>
+    <div class="content-wrapper">
+      <div class="project-name">{{projectName}}</div>
+      <el-form
+        :model="loginForm"
+        :rules="rules"
+        ref="form"
+        class="form-class"
+        @submit.native.prevent
+      >
+        <el-form-item prop="account" >
+          <img src="../../../public/images/login/icon-1.png" />
+          <el-input
+            type="text"
+            placeholder="用户名"
+            v-model="loginForm.account"
+          />
+        </el-form-item>
+        <el-form-item prop="password">
+          <img src="../../../public/images/login/icon-2.png" />
+          <el-input
+            type="password"
+            placeholder="密码"
+            v-model="loginForm.password"
+          />
+        </el-form-item>
+        <el-form-item class="smbot" prop="captchaValue">
           <div class="form-row">
-            <el-checkbox v-model="rememberPasCbox" size="large">
-              记住用户名和密码
-            </el-checkbox>
-            <el-button type="text" @click="dialogVisible = true">
-              忘记密码
-            </el-button>
+            <img src="../../../public/images/login/icon-2.png" />
+            <el-input
+              placeholder="验证码"
+              v-model="loginForm.captchaValue"
+              style="flex: 1;"
+            />
+            <div class="verCodeImg">
+              <img :src="vcodeImg" />
+              <!-- <div class="svgbox" v-html="vcodeImg"></div> -->
+              <span
+                @click="getImageVerifyCode"
+                style="margin-left: 20px; cursor: pointer;"
+              >
+                换一张
+              </span>
+            </div>
           </div>
-          <el-button
-            size="large"
-            type="primary"
-            style="width: 100%;margin-top: 20px;height: 50px;"
-            @click="submitForm"
-            :loading="loading"
-            native-type="submit"
-          >
-            登 录
+        </el-form-item>
+        <div class="form-row">
+          <el-checkbox v-model="rememberPasCbox" size="large">
+            记住用户名和密码
+          </el-checkbox>
+          <el-button type="text" @click="dialogVisible = true">
+            忘记密码
           </el-button>
-        </el-form>
-      </div>
-      <find-password v-model="dialogVisible" @cancel="cancel" />
-    </main>
+        </div>
+        <el-button
+          size="large"
+          type="primary"
+          class="btn-class"
+          @click="submitForm"
+          :loading="loading"
+          native-type="submit"
+        >
+          登 录
+        </el-button>
+      </el-form>
+    </div>
+    <find-password v-model="dialogVisible" @cancel="cancel"/>
   </div>
 </template>
 
@@ -212,6 +211,7 @@ export default defineComponent({
             account:state.loginForm.account
           }))
           store.dispatch("fetchSystemList")
+          window.location.href="/"
         }else {
           warnMessage('用户名或密码输入有误，请重新输入')
         }
@@ -241,70 +241,98 @@ export default defineComponent({
 })
 </script>
 
+
 <style lang="scss" scoped>
 .login-page {
+  width:100%;
   height: 100vh;
-  background: url('../../../public/images/login/bg.jpg');
-
-  :deep(.el-input) {
-    font-size: 16px;
-  }
-
-  :deep(.el-input__inner) {
-    height: 50px;
-  }
-}
-
-.project-name {
-  text-align: center;
-  font-size: 27px;
-  font-weight: 600;
-  color: #099e45;
-  margin-bottom: 90px;
-}
-
-.content-wrapper {
-  display: flex;
-  background: #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 88%;
-  height: 794px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  .left {
-    flex: 0 0 56.5%;
-
-    > img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  .right {
-    flex: 1;
-    padding: 7% 7% 0;
-  }
-}
-
-.verCodeImg {
-  margin-left: 10px;
-  display: flex;
-  align-items: center;
-  .svgbox {
-    position: relative;
-    top: 6px;
-  }
-  img {
-    height: 100%;
-  }
-}
-.form-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
+  background: url('../../../public/images/login/bg.png');
+  background-size:100% 100%;
+  .left-login{
+    width:1110px;
+    height:100vh;
+    max-height: 1081px;
+    background: url('../../../public/images/login/bg_left.png');
+    background-size:100% 100%;
+  }
+  .right-login{
+    width:426px;
+    height:100vh;
+    max-height: 1081px;
+    background: url('../../../public/images/login/bg_right.png');
+    background-size:100% 100%;
+  }
 }
+.content-wrapper {
+  position: absolute;
+  top: 50%;
+  right: 120px;
+  transform: translate(0, -50%);
+  background: url('../../../public/images/login/bg_login.png');
+  background-size:100% 100%;
+  width:561px;
+  height: 898px;
+  padding-top:180px;
+  box-sizing: border-box;
+  .project-name {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: #0091FF;
+    line-height: 33px;
+  }
+  .verCodeImg {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    .svgbox {
+      position: relative;
+      top: 6px;
+    }
+    img {
+      height: 100%;
+    }
+  }
+  .form-class{
+    padding: 72px 90px;
+  }
+  :deep(.el-input__inner) {
+    height: 50px;
+    color:#fff;
+    border:none;
+    background: none;
+    &::placeholder{
+      color:#0091FF;
+    }
+  }
+  :deep(.el-form-item__content){
+    display: flex;
+    align-items: center;
+    border-bottom:1px solid #0091FF;
+  }
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color:#0091FF;
+  }
+  .el-checkbox{
+    color:#0091FF;
+  }
+  .btn-class{
+    width: 100%;
+    margin-top: 20px;
+    height: 50px;
+    background: linear-gradient(180deg, #00B3FF 0%, #007CFF 100%)
+  }
+  :deep(input:-webkit-autofill) { 
+    box-shadow: 0 0 1000px 0 #071b5a inset !important;
+    -webkit-text-fill-color: #fff;
+  }
+}
+
 </style>
+
