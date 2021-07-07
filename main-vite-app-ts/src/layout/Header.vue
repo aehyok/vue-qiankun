@@ -203,7 +203,6 @@
   .header-right{
     display: flex;
     line-height: 60px;
-    margin-right: 280px;
     .common-right{
       margin-left: 45px;
       display: flex;
