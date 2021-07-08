@@ -73,7 +73,8 @@ export default  defineComponent({
             map.on('click', function(ev) {
                 console.log(ev, 'map--click')
             });
-
+            
+            map.pm.enableGlobalEditMode()
             map.pm.addControls({
                 position: "topleft",
                 editMode: true, //  添加按钮编辑多边形

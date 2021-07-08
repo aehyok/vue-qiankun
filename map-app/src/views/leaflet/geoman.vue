@@ -1,14 +1,20 @@
 <template>
+    <el-button type="primary"  @click="open">oepn</el-button>
     <div id="map" style="width:100vw;height:800px;"></div>
 </template>
 <script setup>
 import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { onMounted, reactive } from 'vue';
-    let state = reactive({
-        map: {},
-        drawObj: {}
-    })
+import '@geoman-io/leaflet-geoman-free';
+import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
+import { onMounted } from 'vue';
+    let map = {}
+
+    const open = () => {
+        map.pm.enableGlobalEditMode({
+            allowSelfIntersection: false,
+        });
+    }
     onMounted(() => {
         delete L.Icon.Default.prototype._getIconUrl;
         L.Icon.Default.mergeOptions({
@@ -19,7 +25,7 @@ import { onMounted, reactive } from 'vue';
         let array = [34.263742732916505, 108.01650524139406]
 
         //TODO  初始化map
-        state.map = L.map("map", {
+        map = L.map("map", {
             zoom: 16,
             minZoom: 16,
             maxZoom: 22,
@@ -29,7 +35,7 @@ import { onMounted, reactive } from 'vue';
             attributionControl: false,
             tap: false, // 设置为false,阻止click事件执行两次
         });
-        
+
         // TODO 设置图层
         const satellite = L.tileLayer(
             'https://mt{s}.sea.utuapp.cn/610403/satellite/{z}/{x}/{y}.png',
@@ -50,9 +56,9 @@ import { onMounted, reactive } from 'vue';
                 subdomains: ['1', '2', '3', '4'],
             }
         );
-        // 图层分组
+        // TODO 图层分组设置
         const layerGroup = L.layerGroup([satellite, overlay,village])
-        layerGroup.addTo(state.map)
+        layerGroup.addTo(map)
 
         const json =[
             {
@@ -128,9 +134,18 @@ import { onMounted, reactive } from 'vue';
 
         arrayList.forEach((element) => {
             // TODO 加载多边形
-            let drawObj = L.polygon(element.fences, { color: "orange", id: element.id }).addTo(state.map)
+            let drawObj = L.polygon(element.fences, { color: "orange", id: element.id }).addTo(map)
             drawObj.id = element.id + 'id'
             
+            // TODO单个层进行编辑, 禁用编辑为disable
+            drawObj.pm.enable({
+                allowSelfIntersection: false,
+            })
+
+            // TODO单个图层设置进行拖动，禁用拖动 disableLayerDrag
+            // 如果想设置拖动状态前，先禁用其他状态
+            drawObj.pm.enableLayerDrag();
+
             let lb = L.latLngBounds(element.fences)
             let center = lb.getCenter()
             let latlng = L.latLng(center.lat, center.lng);
