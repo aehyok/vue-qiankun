@@ -1,0 +1,5 @@
+{
+    "editor.defaultFormatter":"octref.vetur",
+    "editor.formatOnSave": true,
+    "vetur.format.defaultFormatter.js": "prettier"
+}
