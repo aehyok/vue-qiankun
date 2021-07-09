@@ -37,6 +37,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "marker" */ '../views/leaflet/marker.vue'),
   },
   {
+    path: '/map-app/polygon',
+    name: 'polygon',
+    component: () => import(/* webpackChunkName: "marker" */ '../views/leaflet/polygon.vue'),
+  },
+  {
     path: '/map-app/marker-polygon',
     name: 'marker-polygon',
     component: () => import(/* webpackChunkName: "marker-polygon" */ '../views/leaflet/marker-polygon.vue'),

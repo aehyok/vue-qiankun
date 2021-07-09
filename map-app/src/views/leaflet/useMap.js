@@ -1,22 +1,22 @@
 import * as L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { Icon } from "leaflet";
 import "@geoman-io/leaflet-geoman-free";
 import "@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css";
 import 'leaflet-contextmenu'
 import 'leaflet-contextmenu/dist/leaflet.contextmenu.css'
 
 export function useMap() {
-    let map = {}
-    const init = (centerPoint,contextmenuItems) => {
+
+    // 初始化入口
+    const init = (centerPoint) => {
         console.log('进入hooks useMap')
-        return initMap(centerPoint,contextmenuItems)
+        return initMap(centerPoint)
     }
 
     // TODO 初始化Map地图
-    const initMap = (centerPoint,contextmenuItems) =>{
+    const initMap = (centerPoint) =>{
         initMarkerIcon()
-        map = L.map("map", {
+        let map = L.map("map", {
             zoom: 13,
             minZoom: 10,
             maxZoom: 22,
@@ -25,20 +25,18 @@ export function useMap() {
             zoomControl: false, // 不显示默认的放大缩小按钮，可通过control.zoom进行控制
             attributionControl: false,
             tap: false, // 设置为false,阻止click事件执行两次
-            contextmenu: true,
-            contextmenuWidth: 75,
-            contextmenuItems: contextmenuItems
         });
-        initControl()
 
-        initTileLayer()
+        initControl(map)
 
-        initGeoman()
+        initTileLayer(map)
+
+        initGeoman(map)
         return map
     }
 
+    // TODO 设置marker标记的默认图片
     const initMarkerIcon = () => {
-        // TODO 设置marker标记的默认图片
         delete L.Icon.Default.prototype._getIconUrl;
         L.Icon.Default.mergeOptions({
             iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -48,7 +46,7 @@ export function useMap() {
     }
 
     // TODO 初始化图层
-    const initTileLayer = () => {
+    const initTileLayer = (map) => {
         const satellite = L.tileLayer(
             "https://mt{s}.sea.utuapp.cn/610403/satellite/{z}/{x}/{y}.png",
             {
@@ -76,7 +74,7 @@ export function useMap() {
     }
 
     // TODO 放大 缩小 按钮控制
-    const initControl = () => {
+    const initControl = (map) => {
         //TODO 设置为true 
         // L.PM.setOptIn(true);
         L.control
@@ -87,7 +85,7 @@ export function useMap() {
     }
 
     // TODO 编辑图层的基础设置
-    const initGeoman = () => {
+    const initGeoman = (map) => {
         // TODO 设置翻译语言
         map.pm.setLang("zh");
 
@@ -126,9 +124,21 @@ export function useMap() {
         });
     }
 
+    const removePolygon = (map) => {
+        // 只保留最后一次点击的Marker
+        map.eachLayer(function (layer) {
+            if (
+            layer.pm &&
+            layer.pm._shape === "Polygon"
+            ) {
+            layer.remove();
+            }
+        });
+    }
     return {
         init,
         removeAllMarkers,
         removeHistoryMarkers,
+        removePolygon,
     }
 }

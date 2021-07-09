@@ -1,90 +1,141 @@
 <template>
-  <div id="map" style="width: 100vw; height: 1200px"></div>
+  <div
+    id="map"
+    ref="refMap"
+    style="
+      width: 100vw;
+      height: 1200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    "
+    v-contextmenu:contextmenu
+  ></div>
+
+  <v-contextmenu ref="contextmenu">
+    <v-contextmenu-group title="">
+      <v-contextmenu-item @click="saveMarker">
+        <img :src="url" class="image-size" />
+      </v-contextmenu-item>
+      <v-contextmenu-item @click="deleteMarker">
+        <img :src="url" class="image-size" />
+      </v-contextmenu-item>
+    </v-contextmenu-group>
+  </v-contextmenu>
 </template>
-  <script>
+<script>
 import { useMap } from "./useMap";
-import { defineComponent, onMounted, reactive } from "vue";
+import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
+import { warnMessage, successMessage } from "../../../../common/utils/message";
+import {
+  directive,
+  Contextmenu,
+  ContextmenuItem,
+  ContextmenuDivider,
+  ContextmenuSubmenu,
+  ContextmenuGroup,
+} from "v-contextmenu";
+import "v-contextmenu/dist/themes/default.css";
 export default defineComponent({
+  directives: {
+    contextmenu: directive,
+  },
+  components: {
+    [Contextmenu.name]: Contextmenu,
+    [ContextmenuItem.name]: ContextmenuItem,
+    [ContextmenuDivider.name]: ContextmenuDivider,
+    [ContextmenuSubmenu.name]: ContextmenuSubmenu,
+    [ContextmenuGroup.name]: ContextmenuGroup,
+  },
   setup() {
     let map = {};
     const state = reactive({
+      url: "../logo.png",
       markerPoint: {
         longitude: 0,
         latitude: 0,
       }, // Marker标记
-      plotPolygon: [], // Polygon多边形
     });
+    const contextmenu = ref(null);
+    const refMap = ref(null);
+    const open = () => {
+      console.log("open", refMap.value);
+      const targetDimensions = refMap.value.getBoundingClientRect();
+
+      const postition = {
+        top:
+          Math.random() * targetDimensions.height +
+          targetDimensions.top +
+          window.scrollY,
+        left:
+          Math.random() * targetDimensions.width +
+          targetDimensions.left +
+          window.scrollX,
+      };
+      console.log();
+      contextmenu.value.show(postition);
+    };
 
     function deleteMarker(e) {
       console.log("deleteMarker");
-      removeAllMarkers(map);
+      if (
+        state.markerPoint.longitude === 0 ||
+        state.markerPoint.latitude === 0
+      ) {
+        warnMessage("请先进行标记");
+      } else {
+        removeAllMarkers(map);
+        successMessage("标记移除成功");
+        state.markerPoint.longitude = 0;
+        state.markerPoint.latitude = 0;
+      }
     }
 
     function saveMarker(e) {
       console.log("saveMarker");
+      if (
+        state.markerPoint.longitude === 0 ||
+        state.markerPoint.latitude === 0
+      ) {
+        warnMessage("请先进行标记");
+      }
     }
     const { init, removeAllMarkers } = useMap();
     onMounted(() => {
-      let contextmenuItems = [
-        {
-          text: "保存",
-          icon: "../logo.png",
-          callback: saveMarker,
-        },
-        {
-          text: "删除",
-          icon: "../logo.png",
-          callback: deleteMarker,
-        },
-      ];
-      map = init([34.263742732916505, 108.01650524139406], contextmenuItems);
+      map = init([34.263742732916505, 108.01650524139406]);
 
       map.on("click", function (e) {
         state.markerPoint.longitude = e.latlng.lng;
         state.markerPoint.latitude = e.latlng.lat;
         removeAllMarkers(map);
-        let marker = L.marker(
-          [state.markerPoint.latitude, state.markerPoint.longitude],
-          {
-            draggable: true,
-          }
-        ).addTo(map);
-        console.log(map.contextmenu);
-        // {
-        //     draggable: true,
-        //     contextmenu: true,
-        //     contextmenuWidth: 70,
-        //     contextmenuItems: [
-        //       {
-        //         text: "保存",
-        //         icon: "../logo.png",
-        //         callback: saveMarker,
-        //       },
-        //       {
-        //         text: "删除",
-        //         icon: "../logo.png",
-        //         callback: deleteMarker,
-        //       },
-        //     ],
-        //   }
-
-        marker.on("contextmenu", function (event) {
-          console.log(event, "111111111");
-        });
+        L.marker([state.markerPoint.latitude, state.markerPoint.longitude], {
+          draggable: true,
+        }).addTo(map);
       });
     });
-    return {};
+    return {
+      ...toRefs(state),
+      open,
+      refMap,
+      contextmenu,
+      saveMarker,
+      deleteMarker,
+    };
   },
 });
 </script>
-    <style lang="scss" scoped>
+<style lang="scss" scoped>
 .operation {
   position: absolute;
   z-index: 10000;
   top: 20px;
   right: 10px;
   padding: 2px;
-  // width: 120px;
   height: 30px;
+}
+
+.image-size {
+  width: 18px;
+  height: 18px;
 }
 </style>
