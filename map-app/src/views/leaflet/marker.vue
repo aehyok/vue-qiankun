@@ -1,5 +1,5 @@
 <template>
-  <div id="map" style="width: 1000px; height: 1200px"></div>
+  <div id="map" style="width: 100vw; height: 1200px"></div>
 </template>
   <script>
 import { useMap } from "./useMap";
@@ -49,6 +49,7 @@ export default defineComponent({
             draggable: true,
           }
         ).addTo(map);
+        console.log(map.contextmenu);
         // {
         //     draggable: true,
         //     contextmenu: true,
