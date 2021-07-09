@@ -40,7 +40,7 @@
     </div>
   </div>
 </template>
-<script>
+  <script>
 import { useMap } from "./useMap";
 import { defineComponent, onMounted, reactive, ref, watch } from "vue";
 import "../../../public/L.KML.js";
@@ -146,7 +146,7 @@ export default defineComponent({
   },
 });
 </script>
-  <style lang="scss" scoped>
+    <style lang="scss" scoped>
 .operation {
   position: absolute;
   z-index: 10000;
