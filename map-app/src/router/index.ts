@@ -6,7 +6,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Home',
     component: Home,
-    redirect: '/map-app/marker-polygon',
+    redirect: '/map-app/marker',
   },
   {
     path: '/map-app/about',
@@ -30,6 +30,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/map-app/leaflet',
     name: 'Vue-leaflet',
     component: () => import(/* webpackChunkName: "vue-leaflet" */ '../views/leaflet/leaflet.vue'),
+  },
+  {
+    path: '/map-app/marker',
+    name: 'marker',
+    component: () => import(/* webpackChunkName: "marker" */ '../views/leaflet/marker.vue'),
   },
   {
     path: '/map-app/marker-polygon',

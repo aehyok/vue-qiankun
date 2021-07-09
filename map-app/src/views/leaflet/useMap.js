@@ -3,16 +3,18 @@ import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 import "@geoman-io/leaflet-geoman-free";
 import "@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css";
+import 'leaflet-contextmenu'
+import 'leaflet-contextmenu/dist/leaflet.contextmenu.css'
 
 export function useMap() {
     let map = {}
-    const init = (centerPoint) => {
+    const init = (centerPoint,contextmenuItems) => {
         console.log('进入hooks useMap')
-        return initMap(centerPoint)
+        return initMap(centerPoint,contextmenuItems)
     }
 
     // TODO 初始化Map地图
-    const initMap = (centerPoint) =>{
+    const initMap = (centerPoint,contextmenuItems) =>{
         initMarkerIcon()
         map = L.map("map", {
             zoom: 13,
@@ -22,6 +24,10 @@ export function useMap() {
             doubleClickZoom: false, // 禁用双击放大
             zoomControl: false, // 不显示默认的放大缩小按钮，可通过control.zoom进行控制
             attributionControl: false,
+            tap: false, // 设置为false,阻止click事件执行两次
+            contextmenu: true,
+            contextmenuWidth: 75,
+            contextmenuItems: contextmenuItems
         });
         initControl()
 
@@ -71,6 +77,8 @@ export function useMap() {
 
     // TODO 放大 缩小 按钮控制
     const initControl = () => {
+        //TODO 设置为true 
+        // L.PM.setOptIn(true);
         L.control
         .zoom({
         position: "bottomleft",
@@ -90,7 +98,37 @@ export function useMap() {
             fillOpacity: 0.3,
         });
     }
+
+    // TODO 移除历史的Markers
+    const removeHistoryMarkers = (e, map) => {
+        // 只保留最后一次点击的Marker
+        console.log(e,'eee')
+        map.eachLayer(function (layer) {
+            if (
+            layer.pm &&
+            layer.pm._shape === "Marker" &&
+            e.marker._leaflet_id !== layer._leaflet_id
+            ) {
+            layer.remove();
+            }
+        });
+    }
+
+    const removeAllMarkers = (map) => {
+        // 只保留最后一次点击的Marker
+        map.eachLayer(function (layer) {
+            if (
+            layer.pm &&
+            layer.pm._shape === "Marker"
+            ) {
+            layer.remove();
+            }
+        });
+    }
+
     return {
         init,
+        removeAllMarkers,
+        removeHistoryMarkers,
     }
 }

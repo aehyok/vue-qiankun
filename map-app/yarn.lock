@@ -5874,6 +5874,11 @@ launch-editor@^2.2.1:
     chalk "^2.3.0"
     shell-quote "^1.6.1"
 
+leaflet-contextmenu@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/leaflet-contextmenu/-/leaflet-contextmenu-1.4.0.tgz#e2bda481af1026080eabaa32997e531fd44f605c"
+  integrity sha1-4r2kga8QJggOq6oymX5TH9RPYFw=
+
 leaflet@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.7.1.tgz#10d684916edfe1bf41d688a3b97127c0322a2a19"
