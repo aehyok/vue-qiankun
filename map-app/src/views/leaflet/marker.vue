@@ -4,7 +4,7 @@
     ref="refMap"
     style="
       width: 100vw;
-      height: 1200px;
+      height: 800px;
       display: flex;
       justify-content: center;
       align-items: center;

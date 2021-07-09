@@ -2,7 +2,7 @@
   <div
     id="map"
     ref="refMap"
-    style="width: 1000px; height: 1200px"
+    style="width: 1000px; height: 800px"
     v-contextmenu:contextmenu
   >
     <div class="operation">
@@ -32,10 +32,10 @@
   </div>
   <v-contextmenu ref="contextmenu">
     <v-contextmenu-group title="">
-      <v-contextmenu-item @click="saveMarker">
+      <v-contextmenu-item @click="savePolygon">
         <img :src="url" class="image-size" />
       </v-contextmenu-item>
-      <v-contextmenu-item @click="deleteMarker">
+      <v-contextmenu-item @click="deletePolygon">
         <img :src="url" class="image-size" />
       </v-contextmenu-item>
     </v-contextmenu-group>
@@ -44,7 +44,6 @@
 <script>
 import { useMap } from "./useMap";
 import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
-import "../../../public/L.KML.js";
 import {
   directive,
   Contextmenu,
@@ -54,7 +53,10 @@ import {
   ContextmenuGroup,
 } from "v-contextmenu";
 import "v-contextmenu/dist/themes/default.css";
-import { warnMessage } from "../../../../main-vite-app-ts/src/utils/message";
+import {
+  warnMessage,
+  successMessage,
+} from "../../../../main-vite-app-ts/src/utils/message";
 export default defineComponent({
   directives: {
     contextmenu: directive,
@@ -108,8 +110,8 @@ export default defineComponent({
       map.pm.enableGlobalDragMode();
     };
 
-    function deleteMarker(e) {
-      console.log("deleteMarker");
+    function deletePolygon(e) {
+      console.log("deletePolygon");
       if (state.plotPolygon.length === 0) {
         warnMessage("请先进行标绘");
       } else {
@@ -119,8 +121,8 @@ export default defineComponent({
       }
     }
 
-    function saveMarker(e) {
-      console.log("saveMarker");
+    function savePolygon(e) {
+      console.log("savePolygon");
       if (state.plotPolygon.length === 0) {
         warnMessage("请先进行标绘");
       }
@@ -154,8 +156,8 @@ export default defineComponent({
       plot,
       drag,
       edit,
-      saveMarker,
-      deleteMarker,
+      savePolygon,
+      deletePolygon,
       refMap,
       contextmenu,
     };
