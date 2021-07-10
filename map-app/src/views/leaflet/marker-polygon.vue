@@ -1,62 +1,99 @@
 <template>
-  <div id="map" style="width: 1000px; height: 1200px">
+  <div
+    id="map"
+    ref="refMap"
+    style="width: 1000px; height: 800px"
+    v-contextmenu:contextmenu
+  >
     <div class="operation">
       <!--click.stop阻止事件继续传递执行-->
       <el-button
         type="primary"
         icon="el-icon-share"
         size="mini"
-        @click.stop="mark"
+        @click.stop="markClick"
         >绘制标记</el-button
       >
       <el-button
         type="primary"
         icon="el-icon-share"
         size="mini"
-        @click.stop="plot"
+        @click.stop="plotClick"
         >绘制多边形</el-button
       >
       <el-button
         type="primary"
         icon="el-icon-share"
         size="mini"
-        @click.stop="drag"
+        @click.stop="dragClick"
         >拖动多边形</el-button
       >
       <el-button
         type="primary"
         icon="el-icon-share"
         size="mini"
-        @click.stop="edit"
+        @click.stop="editClick"
         >编辑多边形</el-button
       >
       <el-button
         type="primary"
         icon="el-icon-share"
         size="mini"
-        @click.stop="edit"
-        >绘制多边形</el-button
+        @click.stop="importClick"
+        >导入行政边界（KML文件）</el-button
       >
     </div>
   </div>
+  <v-contextmenu ref="contextmenu">
+    <v-contextmenu-group title="">
+      <v-contextmenu-item @click="savePolygon">
+        <img :src="url" class="image-size" />
+      </v-contextmenu-item>
+      <v-contextmenu-item @click="deletePolygon">
+        <img :src="url" class="image-size" />
+      </v-contextmenu-item>
+    </v-contextmenu-group>
+  </v-contextmenu>
 </template>
 <script>
 import { useMap } from "./useMap";
-import { defineComponent, onMounted, reactive, ref, watch } from "vue";
+import { defineComponent, onMounted, reactive, ref, toRefs, watch } from "vue";
 import "../../../public/L.KML.js";
+import {
+  directive,
+  Contextmenu,
+  ContextmenuItem,
+  ContextmenuDivider,
+  ContextmenuSubmenu,
+  ContextmenuGroup,
+} from "v-contextmenu";
+import "v-contextmenu/dist/themes/default.css";
 export default defineComponent({
+  directives: {
+    contextmenu: directive,
+  },
+  components: {
+    [Contextmenu.name]: Contextmenu,
+    [ContextmenuItem.name]: ContextmenuItem,
+    [ContextmenuDivider.name]: ContextmenuDivider,
+    [ContextmenuSubmenu.name]: ContextmenuSubmenu,
+    [ContextmenuGroup.name]: ContextmenuGroup,
+  },
   setup() {
+    const contextmenu = ref(null);
+    const refMap = ref(null);
     let map = {};
     const state = reactive({
+      url: "../logo.png",
       markerPoint: {}, // Marker标记
       plotPolygon: [], // Polygon多边形
     });
 
     // const { init } = useMap();
-    const mark = () => {
-      map.pm.enableDraw("Marker", {});
+    const markClick = () => {
+      map.pm.enableDraw("Marker");
     };
-    const plot = () => {
+    const plotClick = () => {
       console.log("open");
       map.pm.enableDraw("Polygon", {
         pinning: true,
@@ -65,15 +102,20 @@ export default defineComponent({
       });
     };
 
-    const edit = () => {
-      map.pm.enable({
+    const editClick = () => {
+      map.pm.enableGlobalEditMode({
         allowSelfIntersection: false,
+        preventMarkerRemoval: false,
       });
     };
 
-    const drag = () => {
+    const dragClick = () => {
       console.log("drag");
       map.pm.enableGlobalDragMode();
+    };
+
+    const importClick = () => {
+      console.log("导入kml");
     };
 
     const beforeUpload = (file) => {
@@ -104,7 +146,7 @@ export default defineComponent({
       map = init([34.263742732916505, 108.01650524139406]);
 
       // 图层创建成功结束时调用的方法（目前针对Marker和Polygon多边形）
-      map.on("pm:create", (e) => {
+      map.on("pm:create111111", (e) => {
         // Polygon 多边形
         if (e.shape === "Polygon") {
           console.log("绘制多边形", e);
@@ -136,10 +178,14 @@ export default defineComponent({
       });
     });
     return {
-      plot,
-      drag,
-      mark,
-      edit,
+      ...toRefs(state),
+      refMap,
+      contextmenu,
+      plotClick,
+      dragClick,
+      markClick,
+      editClick,
+      importClick,
       beforeUpload,
       onSuccess,
     };
@@ -151,9 +197,14 @@ export default defineComponent({
   position: absolute;
   z-index: 10000;
   top: 20px;
-  right: 10px;
+  left: 10px;
   padding: 2px;
   // width: 120px;
   height: 30px;
+}
+
+.image-size {
+  width: 18px;
+  height: 18px;
 }
 </style>
