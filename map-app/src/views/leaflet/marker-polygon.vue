@@ -97,6 +97,7 @@ export default defineComponent({
       console.log("open");
       map.pm.enableDraw("Polygon", {
         pinning: true,
+        // finishOn: "click",
         snappable: true, // 可吸附于附近的某一个点
         measurements: { measurement: true },
       });
@@ -105,7 +106,6 @@ export default defineComponent({
     const editClick = () => {
       map.pm.enableGlobalEditMode({
         allowSelfIntersection: false,
-        preventMarkerRemoval: false,
       });
     };
 
@@ -146,7 +146,7 @@ export default defineComponent({
       map = init([34.263742732916505, 108.01650524139406]);
 
       // 图层创建成功结束时调用的方法（目前针对Marker和Polygon多边形）
-      map.on("pm:create111111", (e) => {
+      map.on("pm:create", (e) => {
         // Polygon 多边形
         if (e.shape === "Polygon") {
           console.log("绘制多边形", e);
@@ -165,6 +165,8 @@ export default defineComponent({
               layer.remove();
             }
           });
+          // map.pm.disableDraw();
+          // map.pm.disableGlobalEditMode();
         }
 
         e.layer.on("click", function () {

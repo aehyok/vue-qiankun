@@ -133,9 +133,4 @@ export default defineComponent({
   padding: 2px;
   height: 30px;
 }
-
-.image-size {
-  width: 18px;
-  height: 18px;
-}
 </style>
