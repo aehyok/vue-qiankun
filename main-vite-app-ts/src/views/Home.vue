@@ -94,9 +94,9 @@ export default defineComponent({
       closeImage: "images/home/close.png",
       swiperImageList: [
         // 轮播图片列表
-        "images/home/banner-01.png",
-        "images/home/banner-02.png",
-        "images/home/banner-03.png"
+        "images/home/banner-01.png"
+        // "images/home/banner-02.png",
+        // "images/home/banner-03.png"
       ],
       introduceList: [
         // 轮播图片列表

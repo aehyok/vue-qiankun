@@ -68,7 +68,7 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
-const childrenPath = ["/dvs-village", "/dvs-cons", "/dvs-basic", "/dvs-digital",'webpack-app', 'map-app', 'form-app', 'table-app']
+const childrenPath = ['webpack-app', 'map-app', 'form-app', 'table-app']
 let child = handConfig.systemList.map(item => {
   return item.systemId
 })

@@ -2,7 +2,10 @@ import axios from 'axios'
 import { ElMessage as Message, ElMessageBox as MessageBox } from 'element-plus'
 
 const service = axios.create({
-  baseURL: "/infra",//process.env.VUE_APP_BASE_API, // url = base url + request url
+  baseURL: process.env.NODE_ENV === "development"
+  // ? "http://139.9.184.171:10088/"
+  ? "http://rap2api.taobao.org/app/mock/283135/"
+  : 'http://rap2api.taobao.org/app/mock/283135/',
   timeout: 5000
   // withCredentials: true // send cookies when cross-domain requests
 })
@@ -17,7 +20,7 @@ service.interceptors.request.use(
     if(Object.keys(token)){
       config.headers = {
         "Authorization": token.authorization || '',
-        "Content-Type": "application/json", 
+        "Content-Type": "application/json",
       };
     }
     return config

@@ -32,24 +32,24 @@ export function getMenuList(): SystemMenu[] {
 function MenuList_Map():Menu[] {
   return [
     {
-      id:1,
-      title:"leaflet",
-      path:"/map-app/leaflet",
-    },
-    {
-      id: 2,
+      id: 4,
       title:"about",
       path:"/map-app/about",
     },
     {
-      id: 3,
-      title:"geoman",
-      path:"/map-app/geoman",
+      id:1,
+      title:"marker",
+      path:"/map-app/marker",
     },
     {
-      id: 4,
-      title:"vue-leaflet",
-      path:"/map-app/vue-leaflet",
+      id: 2,
+      title:"polygon",
+      path:"/map-app/polygon",
+    },
+    {
+      id: 3,
+      title:"marker-polygon",
+      path:"/map-app/marker-polygon",
     },
   ]
 }

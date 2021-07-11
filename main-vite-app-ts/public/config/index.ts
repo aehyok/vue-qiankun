@@ -10,7 +10,7 @@ const handConfig ={
 		},
 		{
 			systemId: "map-app",
-			path: '/map-app/leaflet',
+			path: '/map-app/about',
 			title:"腾讯",
 			normal:"images/module/dvs-village-normal.png",
 			selected: "images/module/dvs-village-selected.png",
