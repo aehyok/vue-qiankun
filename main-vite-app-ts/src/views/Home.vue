@@ -37,7 +37,6 @@
             <img :src="item" class="con-top-img" />
           </el-carousel-item>
         </el-carousel>
-        <img :src="swiperCenterImage" alt="" class="banner-center" />
       </div>
       <!-- 子系统模块 -->
       <div class="system" v-if="showHome">
@@ -62,14 +61,14 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs, getCurrentInstance, onMounted, ref } from "vue"
+import { defineComponent, reactive, toRefs, getCurrentInstance, onMounted } from "vue"
 import { Swiper, SwiperSlide } from "swiper/vue"
 import "swiper/swiper.scss"
 import "swiper/components/pagination/pagination.min.css"
 import "swiper/components/navigation/navigation.min.css"
 import { useRouter } from "vue-router"
-import handConfig from "../../public/config/index"
 import { useStore } from "vuex"
+import handConfig from "../../public/config/index"
 import { logout } from "../services"
 import UpdatePassword from "../components/update-password.vue"
 import SwiperCore, { Pagination, Navigation } from "swiper/core"
@@ -454,4 +453,4 @@ function useEchartsSetting(proxy: any, router: any) {
     }
   }
 }
-</style>  
+</style>

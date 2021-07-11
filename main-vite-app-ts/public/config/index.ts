@@ -2,15 +2,14 @@
 const handConfig ={
 	systemList:[
 		{
-			systemId: "webpack-app", 
+			systemId: "webpack-app",
 			path:"/webpack-app/home",
 			title:"阿里巴巴",
 			normal:"images/module/dvs-farm-normal.png",
 			selected: "images/module/dvs-farm-selected.png",
 		},
 		{
-			systemId: "map-app", 
-			// path:"/dvs-village/home?pageType=1",
+			systemId: "map-app",
 			path: '/map-app/leaflet',
 			title:"腾讯",
 			normal:"images/module/dvs-village-normal.png",
@@ -18,28 +17,21 @@ const handConfig ={
 		},
 		{
 			systemId: "dvs-digital",
-			path:"/dvs-digital/digital-home",
+			path:"/webpack-app/home",
 			title:"字节跳动",
 			normal:"images/module/dvs-digital-normal.png",
 			selected: "images/module/dvs-digital-selected.png",
 		},
 		{
 			systemId: "dvs-cons",
-			path:"/dvs-cons/three-things",
+			path:"/webpack-app/home",
 			title:"京东",
 			normal:"images/module/dvs-cons-normal.png",
 			selected: "images/module/dvs-cons-selected.png",
 		},
 		{
-			systemId: "dvs-geography",
-			path:"/map-app/leaflet",
-			title:"字节跳动",
-			normal:"images/module/dvs-geography-normal.png",
-			selected: "images/module/dvs-geography-selected.png",
-		},
-		{
 			systemId: "dvs-basic",
-			path:"/dvs-basic/user-manage/public",
+			path:"/webpack-app/home",
 			title:"美团",
 			normal:"images/module/dvs-basic-normal.png",
 			selected: "images/module/dvs-basic-selected.png",

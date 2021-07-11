@@ -5,23 +5,23 @@ export function getMenuList(): SystemMenu[] {
   return [
     {
       Key:'dvs-basic',
-      MenuList: MenuList_Basic()
+      MenuList: [], //MenuList_Basic()
     },
     {
       Key:'dvs-cons',
-      MenuList: MenuList_Cons()
+      MenuList: [], // MenuList_Cons()
     },
     {
       Key:'dvs-digital',
-      MenuList: MenuList_Digital()
+      MenuList:[], // MenuList_Digital()
     },
     {
-      Key:'dvs-village',
+      Key:'webpack-app',
       // MenuList: MenuList_Village()
       MenuList: MenuList_Wp()
     },
     {
-      Key:'dvs-geography',
+      Key:'map-app',
       // MenuList: MenuList_Village()
       MenuList: MenuList_Map()
     }
@@ -30,7 +30,7 @@ export function getMenuList(): SystemMenu[] {
 
 // Form表单菜单列表
 function MenuList_Map():Menu[] {
-  return [ 
+  return [
     {
       id:1,
       title:"leaflet",
@@ -56,7 +56,7 @@ function MenuList_Map():Menu[] {
 
 // Form表单菜单列表
 function MenuList_Wp():Menu[] {
-  return [ 
+  return [
     {
       id:1,
       title:"home",
@@ -84,7 +84,7 @@ function MenuList_Wp():Menu[] {
 
 // 乡村治理菜单列表
 function MenuList_Digital():Menu[] {
-  return [ 
+  return [
     {
         id:1,
         title:"首页",
@@ -117,7 +117,7 @@ function MenuList_Digital():Menu[] {
 
 // 乡村治理菜单列表
 function MenuList_Basic():Menu[] {
-  return [ 
+  return [
     {
       id: 1,
       title:"用户管理",
@@ -154,7 +154,7 @@ function MenuList_Basic():Menu[] {
       id: 3,
       title:"类目管理",
       path:"/dvs-basic/cat-manage/category",
-    },    
+    },
     {
       id: 4,
       title:"区域管理",
@@ -165,7 +165,7 @@ function MenuList_Basic():Menu[] {
 
 // 乡村治理菜单列表
 function MenuList_Village():Menu[] {
-  return [ 
+  return [
     {
         id:1,
         title:"户码管理",
@@ -218,7 +218,7 @@ function MenuList_Village():Menu[] {
 
 // 便民服务菜单列表
 function MenuList_Cons():Menu[] {
-  return [ 
+  return [
     {
       id: 1,
       title:"信息公开",

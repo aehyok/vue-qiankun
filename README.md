@@ -2,8 +2,8 @@
 
 ### 基于乾坤搭建的公司项目已经线上发布，目前运行平稳，特此搭建一个demo，为日后继续升级或记录使用，并且将持续打磨将日常使用的模版demo引入。目前本项目所使用的一些常用开源框架如下
     ├── qiankun                #  微前端搭建框架，在主应用中
-    ├── leaflet and geoman     #   web地图展示和编辑图层的组件，在map-app子应用中
-    ├──                        # 
+    ├── leaflet and geoman     #  web地图展示和编辑图层的组件，在map-app子应用中
+    ├── rap2                   #  本项目静态数据都放到了rap2中，作为一个api数据提供者，很方便
     ├──                        # 
 ### 微前端乾坤官网教程 https://qiankun.umijs.org/zh/cookbook
 

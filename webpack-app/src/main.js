@@ -1,5 +1,5 @@
 import "../../common/qiankun/public-path.js";
-import actions from "../../common/qiankun/actions.js";
+// import actions from "../../common/qiankun/actions.js";
 import { createApp } from "vue";
 import ElementPlus from "element-plus";
 import "element-plus/lib/theme-chalk/index.css";
@@ -26,7 +26,7 @@ let instance = null;
 function render(props = {}) {
   if (props) {
     // 注入 actions 实例
-    actions.setActions(props);
+    // actions.setActions(props);
   }
   const { container } = props;
   const router = createRouter({
