@@ -91,7 +91,9 @@ export default defineComponent({
 
     // const { init } = useMap();
     const markClick = () => {
-      map.pm.enableDraw("Marker");
+      map.pm.enableDraw("Marker", {
+        continueDrawing: false, // 设置后  marker标记完一个后，右键不会移除
+      });
     };
     const plotClick = () => {
       console.log("open");
