@@ -103,7 +103,6 @@ export default defineComponent({
     const { init, removeAllMarkers } = useMap();
     onMounted(() => {
       map = init([34.263742732916505, 108.01650524139406]);
-
       map.on("click", function (e) {
         state.markerPoint.longitude = e.latlng.lng;
         state.markerPoint.latitude = e.latlng.lat;
