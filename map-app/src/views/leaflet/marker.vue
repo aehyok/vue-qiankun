@@ -36,6 +36,7 @@ import {
   ContextmenuGroup,
 } from "v-contextmenu";
 import "v-contextmenu/dist/themes/default.css";
+
 export default defineComponent({
   directives: {
     contextmenu: directive,

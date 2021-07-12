@@ -44,6 +44,7 @@
       >
     </div>
   </div>
+
   <v-contextmenu ref="contextmenu">
     <v-contextmenu-group title="">
       <v-contextmenu-item @click="savePolygon">
