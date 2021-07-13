@@ -41,14 +41,12 @@ export default defineComponent({
   components: {
     [Contextmenu.name]: Contextmenu,
     [ContextmenuItem.name]: ContextmenuItem,
-    [ContextmenuDivider.name]: ContextmenuDivider,
-    [ContextmenuSubmenu.name]: ContextmenuSubmenu,
     [ContextmenuGroup.name]: ContextmenuGroup,
   },
   setup() {
     let map = {};
     const state = reactive({
-      url: "../logo.png",
+      url: "../map.png",
       markerPoint: {
         longitude: 0,
         latitude: 0,

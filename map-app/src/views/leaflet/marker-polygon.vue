@@ -85,7 +85,7 @@ export default defineComponent({
     const refMap = ref(null);
     let map = {};
     const state = reactive({
-      url: "../logo.png",
+      url: "../map.png",
       markerPoint: {}, // Marker标记
       plotPolygon: [], // Polygon多边形
     });
