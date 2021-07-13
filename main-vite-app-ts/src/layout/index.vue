@@ -38,6 +38,7 @@ export default defineComponent({
     })
 
     onMounted(() => {
+      console.log(store.state, "ssss")
       console.log("start loading")
       const array = [
         {

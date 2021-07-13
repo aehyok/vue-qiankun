@@ -6,7 +6,7 @@
     ├── leaflet and geoman     #  web地图展示和编辑图层的组件，在map-app子应用中
     ├── rap2                   #  本项目静态数据都放到了rap2中，作为一个api数据提供者，很方便
     ├── swiper                 #  可实现很多效果的轮播图
-    @ffmpeg/ffmpeg             #  视频转码工具可通过wasm调用
+    ├── @ffmpeg/ffmpeg         #  视频转码工具可通过wasm调用
     ├── swiper                 #  可实现很多效果的轮播图
     ├── vuex-persistedstate    #  针对vuex 进行缓存设置
     ├── v-contextmenu          #  鼠标右键事件触发弹窗 
