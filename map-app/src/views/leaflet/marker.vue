@@ -102,9 +102,16 @@ export default defineComponent({
         state.markerPoint.longitude = e.latlng.lng;
         state.markerPoint.latitude = e.latlng.lat;
         removeAllMarkers(map);
-        L.marker([state.markerPoint.latitude, state.markerPoint.longitude], {
-          draggable: true,
-        }).addTo(map);
+        let temp = L.marker(
+          [state.markerPoint.latitude, state.markerPoint.longitude],
+          {
+            draggable: true,
+          }
+        ).addTo(map);
+
+        temp.on("moveend", function (e) {
+          console.log(e, "dragend");
+        });
       });
     });
     return {
