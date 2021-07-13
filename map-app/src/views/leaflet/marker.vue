@@ -1,4 +1,14 @@
 <template>
+  <v-contextmenu ref="contextMenu">
+    <v-contextmenu-group title="">
+      <v-contextmenu-item @click="saveMarker">
+        <img :src="url" class="right-image-size" />
+      </v-contextmenu-item>
+      <v-contextmenu-item @click="deleteMarker">
+        <img :src="url" class="right-image-size" />
+      </v-contextmenu-item>
+    </v-contextmenu-group>
+  </v-contextmenu>
   <div
     id="map"
     ref="refMap"
@@ -9,19 +19,8 @@
       justify-content: center;
       align-items: center;
     "
-    v-contextmenu:contextmenu
+    v-contextmenu:contextMenu
   ></div>
-
-  <v-contextmenu ref="contextmenu">
-    <v-contextmenu-group title="">
-      <v-contextmenu-item @click="saveMarker">
-        <img :src="url" class="image-size" />
-      </v-contextmenu-item>
-      <v-contextmenu-item @click="deleteMarker">
-        <img :src="url" class="image-size" />
-      </v-contextmenu-item>
-    </v-contextmenu-group>
-  </v-contextmenu>
 </template>
 <script>
 import { useMap } from "./useMap";
@@ -31,8 +30,6 @@ import {
   directive,
   Contextmenu,
   ContextmenuItem,
-  ContextmenuDivider,
-  ContextmenuSubmenu,
   ContextmenuGroup,
 } from "v-contextmenu";
 import "v-contextmenu/dist/themes/default.css";
@@ -57,7 +54,7 @@ export default defineComponent({
         latitude: 0,
       }, // Marker标记
     });
-    const contextmenu = ref(null);
+    const contextMenu = ref(null);
     const refMap = ref(null);
     const open = () => {
       console.log("open", refMap.value);
@@ -93,7 +90,6 @@ export default defineComponent({
     }
 
     function saveMarker(e) {
-      console.log("saveMarker");
       if (
         state.markerPoint.longitude === 0 ||
         state.markerPoint.latitude === 0
@@ -117,7 +113,7 @@ export default defineComponent({
       ...toRefs(state),
       open,
       refMap,
-      contextmenu,
+      contextMenu,
       saveMarker,
       deleteMarker,
     };
@@ -132,5 +128,9 @@ export default defineComponent({
   right: 10px;
   padding: 2px;
   height: 30px;
+}
+.right-image-size {
+  width: 18px;
+  height: 18px;
 }
 </style>
