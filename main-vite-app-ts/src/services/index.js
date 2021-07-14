@@ -9,6 +9,16 @@ export const getVerifyCode = () => {
     });
   };
 
+ /**
+ *  获取系统子模块列表
+*/
+export const getSystemList = () => {
+  console.log('request - getSystemList')
+  return request('/api/getSystemList', {
+    method: "get",
+  });
+};
+
 /**
  *  登录暂存用户列表
 */

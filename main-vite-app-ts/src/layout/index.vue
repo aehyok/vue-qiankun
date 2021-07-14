@@ -38,7 +38,7 @@ export default defineComponent({
     })
 
     onMounted(() => {
-      console.log(store.state, "ssss")
+      console.log(store.state.systemList, "ssss")
       console.log("start loading")
       const array = [
         {
@@ -60,6 +60,7 @@ export default defineComponent({
           selected: "images/module/dvs-village-selected.png"
         }
       ]
+
       // 在主应用中注册微应用
       registerMicroApps([
         // {

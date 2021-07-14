@@ -6,8 +6,8 @@ const service = axios.create({
   // ? "http://139.9.184.171:10088/"
   ? "http://rap2api.taobao.org/app/mock/283135/"
   : 'http://rap2api.taobao.org/app/mock/283135/',
-  timeout: 5000
-  // withCredentials: true // send cookies when cross-domain requests
+  timeout: 5000,
+  withCredentials: true // send cookies when cross-domain requests
 })
 
 // Request interceptors

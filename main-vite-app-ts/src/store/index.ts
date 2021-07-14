@@ -3,7 +3,7 @@ import { getMenuList } from './data.d'
 import createPersistedState  from 'vuex-persistedstate'
 import { SystemMenu, SystemInfo } from '../../types/models'
 import handConfig from '../../public/config'
-import { getSystemList } from '../services/base'
+import { getSystemList } from '../services/index'
 
 interface AppState {
   menuList: SystemMenu[];
@@ -45,6 +45,7 @@ export default createStore({
 
         if (res?.code === 200) {
           commit('setSystemList', res.data)
+          window.location.href = "/"
         }
        
       } catch (error) {
