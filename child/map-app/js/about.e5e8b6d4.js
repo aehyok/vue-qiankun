@@ -1,0 +1,1 @@
+(window["webpackJsonp_map-app"]=window["webpackJsonp_map-app"]||[]).push([["about"],{f820:function(p,a,n){"use strict";function o(p,a){return"map-app about"}n.r(a);const t={};t.render=o;a["default"]=t}}]);
