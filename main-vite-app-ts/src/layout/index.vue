@@ -40,15 +40,17 @@ export default defineComponent({
     onMounted(() => {
       console.log(store.state.systemList, "ssss")
 
-      let array: any = store.state.systemList.map((item: any) => {
-        return {
-          name: item.name,
-          entry:
-            process.env.NODE_ENV === "production" ? item.productionEntry : item.developmentEntry,
-          container: "#mainwrapper",
-          activeRule: getActiveRule(`#/${item.name}`)
-        }
-      })
+      let array: any = store.state.systemList
+        .filter((item: any) => item.enabled === true)
+        .map((item: any) => {
+          return {
+            name: item.name,
+            entry:
+              process.env.NODE_ENV === "production" ? item.productionEntry : item.developmentEntry,
+            container: "#mainwrapper",
+            activeRule: getActiveRule(`#/${item.name}`)
+          }
+        })
       console.log("start loading")
       // TODO  在主应用中注册微应用
       registerMicroApps([...array])
