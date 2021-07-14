@@ -39,56 +39,21 @@ export default defineComponent({
 
     onMounted(() => {
       console.log(store.state.systemList, "ssss")
-      console.log("start loading")
-      const array = [
-        {
-          name: "webpack-app",
-          productionEntry: "/child/webpack-app/",
-          developmentEntry: "//localhost:4000/",
-          title: "数字农业",
-          homePath: "/webpack-app/home",
-          normal: "images/module/dvs-farm-normal.png",
-          selected: "images/module/dvs-farm-selected.png"
-        },
-        {
-          name: "map-app",
-          productionEntry: "/child/map-app/",
-          developmentEntry: "//localhost:5000/",
-          title: "乡村治理",
-          homePath: "/map-app/leaflet",
-          normal: "images/module/dvs-village-normal.png",
-          selected: "images/module/dvs-village-selected.png"
-        }
-      ]
 
-      // 在主应用中注册微应用
-      registerMicroApps([
-        // {
-        //   name: "form-app",
-        //   entry: process.env.NODE_ENV === "production" ? "/child/form-app/" : "//localhost:2000/",
-        //   container: "#mainwrapper",
-        //   activeRule: getActiveRule("#/form-app"),
-        // },
-        // {
-        //   name: "table-app",
-        //   entry: process.env.NODE_ENV === "production" ? "/child/table-app/" : "//localhost:3000/",
-        //   container: "#mainwrapper",
-        //   activeRule: getActiveRule("#/table-app")
-        // },
-        {
-          name: "webpack-app",
+      let array: any = store.state.systemList.map((item: any) => {
+        return {
+          name: item.name,
           entry:
-            process.env.NODE_ENV === "production" ? "/child/webpack-app/" : "//localhost:4000/",
+            process.env.NODE_ENV === "production" ? item.productionEntry : item.developmentEntry,
           container: "#mainwrapper",
-          activeRule: getActiveRule("#/webpack-app")
-        },
-        {
-          name: "map-app",
-          entry: process.env.NODE_ENV === "production" ? "/child/map-app/" : "//localhost:5000/",
-          container: "#mainwrapper",
-          activeRule: getActiveRule("#/map-app")
+          activeRule: getActiveRule(`#/${item.name}`)
         }
-      ])
+      })
+      console.log("start loading")
+      // TODO  在主应用中注册微应用
+      registerMicroApps([...array])
+
+      // TODO 启动微应用
       start({
         prefetch: "all",
         sandbox: {
