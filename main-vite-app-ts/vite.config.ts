@@ -23,7 +23,7 @@ export default defineConfig({
   },
   base: "./", // 设置打包路径
   build: {
-    outDir: "../qiankun/main"
+    outDir: "../../qiankun/main"
   },
   // 本地运行配置，及反向代理配置
   server: {

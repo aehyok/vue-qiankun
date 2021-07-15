@@ -1,57 +1,53 @@
 <template>
-    <el-dialog
-      title="修改密码"
-      v-model="visible"
-      width="40%"
-      :close-on-click-modal=closeOnClickModal
-      :append-to-body="true"
-      @close="close"
-    >
-      <el-form :model="form" :rules="rules" ref="updateForm" label-width="100px">
-        <el-form-item label="原密码" prop="oldPassword">
-          <el-input
-            v-model="form.oldPassword"
-            type="password"
-            show-password
-            placeholder="请输入原密码"
-          />
-        </el-form-item>
-        <el-form-item label="新密码" prop="newPassword">
-          <el-input
-            v-model="form.newPassword"
-            type="password"
-            placeholder="输入密码6位以上"
-          ></el-input>
-        </el-form-item>
-        <el-form-item label="确认密码" prop="checkPwd">
-          <el-input
-            v-model="form.checkPwd"
-            type="password"
-            placeholder="再次输入新密码"
-          ></el-input>
-        </el-form-item>
-      </el-form>
-      <template #footer>
-        <el-button @click="close">取消</el-button>
-        <el-button type="primary" @click="submitPassword">确定修改</el-button>
-      </template>
-    </el-dialog>
+  <el-dialog
+    title="修改密码"
+    v-model="visible"
+    width="40%"
+    :close-on-click-modal="closeOnClickModal"
+    :append-to-body="true"
+    @close="close"
+  >
+    <el-form :model="form" :rules="rules" ref="updateForm" label-width="100px">
+      <el-form-item label="原密码" prop="oldPassword">
+        <el-input
+          v-model="form.oldPassword"
+          type="password"
+          show-password
+          placeholder="请输入原密码"
+        />
+      </el-form-item>
+      <el-form-item label="新密码" prop="newPassword">
+        <el-input
+          v-model="form.newPassword"
+          type="password"
+          placeholder="输入密码6位以上"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="确认密码" prop="checkPwd">
+        <el-input v-model="form.checkPwd" type="password" placeholder="再次输入新密码"></el-input>
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <el-button @click="close">取消</el-button>
+      <el-button type="primary" @click="submitPassword">确定修改</el-button>
+    </template>
+  </el-dialog>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs, ref} from 'vue'
-import { changedSelf, logout } from '../services'
-import { successMessage } from '../utils/message'
-import { useRouter } from 'vue-router'
-import md5 from 'js-md5'
+import { defineComponent, reactive, toRefs, ref } from "vue"
+import { changedSelf, logout } from "../services"
+import { successMessage } from "../utils/message"
+import { useRouter } from "vue-router"
+import md5 from "js-md5"
 export default defineComponent({
-  name: 'UpdatePassword',
+  name: "UpdatePassword",
   props: {
-    updateDialogVisible: { 
+    updateDialogVisible: {
       type: Boolean,
       default: false
-    },
+    }
   },
-  emits:["cancel"],
+  emits: ["cancel"],
   setup(props, context) {
     const router = useRouter()
     const updateForm = ref(null)
@@ -60,11 +56,11 @@ export default defineComponent({
       closeOnClickModal: false,
       loading: false,
       form: {
-          oldPassword: '',
-          newPassword: '',
-          checkPwd: ''
-        },
-      rules: [],
+        oldPassword: "",
+        newPassword: "",
+        checkPwd: ""
+      },
+      rules: []
     })
 
     // const checkPsdVal = (_rules, value, callback) => {
@@ -76,9 +72,8 @@ export default defineComponent({
     //   }
     // }
     const checkPsdVal = (_rules, value, callback) => {
-      
-      if (value.length< 6) {
-        callback(new Error('密码长度不够，请重新输入'))
+      if (value.length < 6) {
+        callback(new Error("密码长度不够，请重新输入"))
       } else {
         callback()
       }
@@ -86,67 +81,67 @@ export default defineComponent({
 
     const checkPassword = (_rules, value, callback) => {
       if (value !== state.form.newPassword) {
-        callback(new Error('两次密码输入不一致'))
+        callback(new Error("两次密码输入不一致"))
       } else {
         callback()
       }
     }
-    const rules:any = {
+    const rules: any = {
       oldPassword: [
         {
           required: true,
-          message: '请输入原密码',
-          trigger: ['blur']
+          message: "请输入原密码",
+          trigger: ["blur"]
         }
       ],
       newPassword: [
         {
           required: true,
-          message: '请输入新密码',
-          trigger: ['blur']
+          message: "请输入新密码",
+          trigger: ["blur"]
         },
         {
           validator: checkPsdVal,
-          trigger: ['blur']
+          trigger: ["blur"]
         }
       ],
       checkPwd: [
         {
           required: true,
-          message: '请再次输入新密码',
-          trigger: ['blur']
+          message: "请再次输入新密码",
+          trigger: ["blur"]
         },
         {
           validator: checkPsdVal,
-          trigger: ['blur']
+          trigger: ["blur"]
         },
         {
           validator: checkPassword,
-          trigger: ['blur']
+          trigger: ["blur"]
         }
       ]
     }
 
     const close = () => {
-      context.emit('cancel')
+      context.emit("cancel")
       // updateForm.value.reset
     }
     const changedSelfApi = () => {
       changedSelf({
-        password:md5(state.form.newPassword)
+        password: md5(state.form.newPassword)
       }).then((res: any) => {
-        if(res.code === 200) {
-          successMessage('修改成功,请重新登录')
+        if (res.code === 200) {
+          successMessage("修改成功,请重新登录")
           close()
           loginOutApi()
         }
       })
     }
     const loginOutApi = () => {
-      logout().then((res:any ) => {
-        console.log('登出成功', res);
+      logout().then((res: any) => {
+        console.log("登出成功", res)
         localStorage.clear()
-        router.push('/login')
+        router.push("/login")
       })
     }
     const submitPassword = () => {
@@ -156,7 +151,7 @@ export default defineComponent({
         }
       })
     }
-      
+
     return {
       ...toRefs(state),
       close,
@@ -164,7 +159,7 @@ export default defineComponent({
       rules,
       updateForm
     }
-  },
+  }
 })
 </script>
 <style lang="scss" scoped>

@@ -3,7 +3,7 @@ var webpack = require( 'webpack' )
 module.exports = {
   lintOnSave: false,
   publicPath: './',
-  outputDir: "../qiankun/main/child/map-app",
+  outputDir: "../../qiankun/main/child/map-app",
   productionSourceMap: false,
   chainWebpack: (config) => {
     config.module.rule('fonts').use('url-loader').loader('url-loader').options({}).end();

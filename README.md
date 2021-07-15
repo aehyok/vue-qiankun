@@ -1,5 +1,5 @@
 # vue-qiankun
-
+- 目前代码可基于dev分支进行下载测试
 ### 基于乾坤搭建的公司项目已经线上发布，目前运行平稳，特此搭建一个demo，为日后继续升级或记录使用，并且将持续打磨将日常使用的模版demo引入。目前本项目所使用的一些常用开源框架如下
     ├── aehyok-form-vue3       #  自己封装的json表单生成器，架构已有，待优化细节
     ├── qiankun                #  微前端搭建框架，在主应用中
@@ -10,6 +10,8 @@
     ├── swiper                 #  可实现很多效果的轮播图
     ├── vuex-persistedstate    #  针对vuex 进行缓存设置
     ├── v-contextmenu          #  鼠标右键事件触发弹窗 
+    ├── jsoneditor             #  json阅读编辑器 
+    
 
     > aehyok-form-vue3 细节可访问 https://github.com/aehyok/vue3-ele-form
 ### 微前端乾坤官网教程 https://qiankun.umijs.org/zh/cookbook
