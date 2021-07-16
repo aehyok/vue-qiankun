@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.10.0",
-    "aehyok-form-vue3": "^1.0.38",
+    "aehyok-form-vue3": "^1.0.46",
     "core-js": "^3.6.5",
     "element-plus": "^1.0.2-beta.41",
     "eslint-import-resolver-webpack": "^0.13.0",
