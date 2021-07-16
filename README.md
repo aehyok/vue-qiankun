@@ -1,7 +1,7 @@
 # vue-qiankun
 - 目前代码可基于dev分支进行下载测试
 ### 基于乾坤搭建的公司项目已经线上发布，目前运行平稳，特此搭建一个demo，为日后继续升级或记录使用，并且将持续打磨将日常使用的模版demo引入。目前本项目所使用的一些常用开源框架如下
-    ├── aehyok-form-vue3       #  自己封装的json表单生成器，架构已有，待优化细节
+    ├── aehyok-form-vue3       #  自己封装的json表单生成器，JSON Table列表生成器、JSON阅读器 架构已有，待优化细节
     ├── qiankun                #  微前端搭建框架，在主应用中
     ├── leaflet and geoman     #  web地图展示和编辑图层的组件，在map-app子应用中
     ├── rap2                   #  本项目静态数据都放到了rap2中，作为一个api数据提供者，很方便
@@ -50,7 +50,7 @@
     ├── css/                  # 主应用的css文件夹
     ├── js/                   # 主应用的js文件夹
 
-##### 5、nginx 部署配置（根路径qiankun.conf）
+##### 5、nginx 部署配置（根路径 qiankun.conf）
     ```javascript
         server {
             listen 8080;
@@ -61,7 +61,7 @@
             }
         }
     ```
-##### 6、多个项目一起打包的脚本（build.sh）
+##### 6、多个项目一起打包的脚本（根路径 build.sh）
     ```javascript
         // shell sh脚本进行多个项目一起打包发布部署
         // 打包完成后可以通过 scp命令拷贝到指定的服务器上

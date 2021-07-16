@@ -5,7 +5,8 @@
       @handleSelectionChange="handleSelectionChange"
       :options="options"
       :columns="columns"
-      :operates="operates"
+      v-model:pageModel="pageModel"
+      @search="search"
     >
     </sl-table>
   </div>
@@ -32,6 +33,11 @@ export default defineComponent({
       console.log(" row:", row);
     };
     const state = reactive({
+      pageModel: {
+        page: 1,
+        limit: 10,
+        total: 17
+      },
       list: [
         {
           id: "24",
