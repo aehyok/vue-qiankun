@@ -14,7 +14,7 @@
 <script>
 import { SlTable } from "aehyok-form-vue3";
 import { defineComponent, reactive, toRefs } from "vue";
-import { list, columns_test } from "./tableConfig";
+import { list_test, columns_test } from "./tableConfig";
 export default defineComponent({
   components: { SlTable },
   setup() {
@@ -45,33 +45,33 @@ export default defineComponent({
         width: 200,
         fixed: "right",
         list: [
-          {
-            id: "1",
-            label: "编辑",
-            type: "warning",
-            show: true,
-            plain: true,
-            disabled: false,
-            method: (index, row, ss) => {
-              handleEdit(index, row, ss);
-            }
-          },
-          {
-            id: "2",
-            label: "删除",
-            type: "danger",
-            show: true,
-            plain: false,
-            disabled: false,
-            method: (index, row) => {
-              handleDel(index, row);
-            }
-          }
+          // {
+          //   id: "1",
+          //   label: "编辑",
+          //   type: "warning",
+          //   show: true,
+          //   plain: true,
+          //   disabled: false,
+          //   method: (index, row, ss) => {
+          //     handleEdit(index, row, ss);
+          //   }
+          // },
+          // {
+          //   id: "2",
+          //   label: "删除",
+          //   type: "danger",
+          //   show: true,
+          //   plain: false,
+          //   disabled: false,
+          //   method: (index, row) => {
+          //     handleDel(index, row);
+          //   }
+          // }
         ]
       } // 列操作按钮
     });
 
-    state.list = list;
+    state.list = list_test;
     state.columns = columns_test;
     const search = () => {
       state.list = [...state.list];

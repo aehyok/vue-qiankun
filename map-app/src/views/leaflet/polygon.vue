@@ -73,7 +73,7 @@ export default defineComponent({
     const refMap = ref(null);
     let map = {};
     const state = reactive({
-      url: "../logo.png",
+      url: "../images/map-app/btn-save-normal.png",
       plotPolygon: [], // Polygon多边形
     });
 

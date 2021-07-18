@@ -1,6 +1,5 @@
 import * as L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { Icon } from "leaflet";
 import "@geoman-io/leaflet-geoman-free";
 import "@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css";
 
@@ -14,8 +13,8 @@ export function useMap() {
 
     //TODO 初始化Marker 图标
     const initMarkerIcon = () => {
-        delete Icon.Default.prototype._getIconUrl;
-        Icon.Default.mergeOptions({
+        delete L.Icon.Default.prototype._getIconUrl;
+        L.Icon.Default.mergeOptions({
             iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
             iconUrl: require("leaflet/dist/images/marker-icon.png"),
             shadowUrl: require("leaflet/dist/images/marker-shadow.png"),

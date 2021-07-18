@@ -85,7 +85,7 @@ export default defineComponent({
     const refMap = ref(null);
     let map = {};
     const state = reactive({
-      url: "../map.png",
+      url: "../images/map-app/btn-save-normal.png",
       markerPoint: {}, // Marker标记
       plotPolygon: [], // Polygon多边形
     });

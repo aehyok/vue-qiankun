@@ -27,7 +27,7 @@
           </el-submenu>
           <el-menu-item :index="item.path" :key="item.id" v-else>
             <!-- <i class="el-icon-menu"></i> -->
-            <template #title>{{item.title}}</template>
+            <template #title>{{ item.title }}</template>
           </el-menu-item>
         </template>
       </el-menu>
@@ -36,96 +36,96 @@
   </div>
 </template>
 <script lang="ts">
-  import { reactive, computed, onMounted, defineComponent, toRefs, watch } from 'vue'
-  import { useRoute } from 'vue-router'
-  import { useStore } from 'vuex'
-  import { Menu } from '../../types/models'
-  
-  interface DataProp {
-    displayMenuTree? : Menu[];
-    version: string;
-    openeds?: string[];
-  }
-  export default defineComponent({
-    setup() {
-      const store = useStore()
-      const route = useRoute()
+import { reactive, computed, onMounted, defineComponent, toRefs, watch } from "vue"
+import { useRoute } from "vue-router"
+import { useStore } from "vuex"
+import { Menu } from "../../types/models"
 
-      const state: DataProp = reactive({
-        version: '',
-      })
-      // TODO watch store
-      watch(
-        () => store.state.systemId,
-        (newValue, oldValue) => {
-          state.displayMenuTree = store.state.menuList.find(item => item.Key===newValue)?.MenuList
-        },
-        {
-          immediate: true,
-          deep: true
-        }
-      )
-      const activeMenu = computed(() => {
-        return route.path
-      })
+interface DataProp {
+  displayMenuTree?: Menu[]
+  version: string
+  openeds?: string[]
+}
+export default defineComponent({
+  setup() {
+    const store = useStore()
+    const route = useRoute()
 
-      const handleSelect = ((_key, _keyPath) => {
-        // 
-      })
-
-      const getVersion = () => {
-        const res = {
-          code: 200,
-          message: 'success',
-          data: { code: '2.0.0.012', updateDate: '2021.06.17', description: '' }
-        }
-        state.version = res.data.code
+    const state: DataProp = reactive({
+      version: ""
+    })
+    // TODO watch store
+    watch(
+      () => store.state.systemId,
+      (newValue, oldValue) => {
+        state.displayMenuTree = store.state.menuList.find((item) => item.Key === newValue)?.MenuList
+      },
+      {
+        immediate: true,
+        deep: true
       }
-      onMounted(() => {
-        getVersion()
-      })
-      return {
-        ...toRefs(state),
-        activeMenu,
-        handleSelect
-      }
+    )
+    const activeMenu = computed(() => {
+      return route.path
+    })
+
+    const handleSelect = (_key, _keyPath) => {
+      //
     }
-  })
+
+    const getVersion = () => {
+      const res = {
+        code: 200,
+        message: "success",
+        data: { code: "0.1.012", updateDate: "2021.76.18", description: "" }
+      }
+      state.version = res.data.code
+    }
+    onMounted(() => {
+      getVersion()
+    })
+    return {
+      ...toRefs(state),
+      activeMenu,
+      handleSelect
+    }
+  }
+})
 </script>
 <style lang="scss" scoped>
-  .scroll-wrap {
-    overflow: hidden;
-    height: 100%;
-    :deep(.el-scrollbar__view) {
-      position: relative;
-    }
-  }
-  .menu-container {
+.scroll-wrap {
+  overflow: hidden;
+  height: 100%;
+  :deep(.el-scrollbar__view) {
     position: relative;
-    height: calc(100vh - 60px);
-    display: flex;
-    flex-direction: column;
-    background: #0F2144;
-    :deep(.el-scrollbar__wrap) {
-      overflow-x: hidden;
-    }
   }
-  .version {
-    color: #fff;
-    width: 100%;
-    text-align: center;
-    color: #bcbcbc;
-    flex: 0;
-    line-height: 30px;
+}
+.menu-container {
+  position: relative;
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  background: #0f2144;
+  :deep(.el-scrollbar__wrap) {
+    overflow-x: hidden;
   }
-  :deep(.el-submenu__title i) {
-    color:#FFFFFF;
-  }
+}
+.version {
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  color: #bcbcbc;
+  flex: 0;
+  line-height: 30px;
+}
+:deep(.el-submenu__title i) {
+  color: #ffffff;
+}
 
-  // :deep(.el-submenu__title) {
-  //   font-size: 18px;
-  // }
-  // :deep(.el-menu-item) {
-  //   font-size:18px;
-  // }
+// :deep(.el-submenu__title) {
+//   font-size: 18px;
+// }
+// :deep(.el-menu-item) {
+//   font-size:18px;
+// }
 </style>

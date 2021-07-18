@@ -46,7 +46,7 @@ export default defineComponent({
   setup() {
     let map = {};
     const state = reactive({
-      url: "../map.png",
+      url: "../images/map-app/btn-save-normal.png",
       markerPoint: {
         longitude: 0,
         latitude: 0,

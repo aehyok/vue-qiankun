@@ -1,4 +1,4 @@
-const list =
+const list_test =
 [
     {
         id: "24",
@@ -75,6 +75,6 @@ const columns_test = [
     }
   ]
 export {
-    list,
+    list_test,
     columns_test
 }
