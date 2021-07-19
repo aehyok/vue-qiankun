@@ -2,7 +2,6 @@ import { createStore } from "vuex"
 import { getMenuList } from './data.d'
 import createPersistedState  from 'vuex-persistedstate'
 import { SystemMenu, SystemInfo } from '../../types/models'
-import handConfig from '../../public/config'
 import { getSystemList } from '../services/index'
 
 interface AppState {
@@ -30,7 +29,7 @@ export default createStore({
     // 切换系统
     changeSystem(state: AppState, type: string) {
       state.systemId = type
-      state.currentSystem = handConfig.systemList.find(item=> item.systemId === type)
+      state.currentSystem = state.systemList.find(item=> item.systemId === type)
       console.log(state.currentSystem, 'store----');
     },
     setSystemList(state: AppState, data) {

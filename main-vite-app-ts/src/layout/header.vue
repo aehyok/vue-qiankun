@@ -55,7 +55,6 @@ interface headerProp {
 import { defineComponent, reactive, ref, toRefs, getCurrentInstance, watch } from "vue"
 import { useRouter } from "vue-router"
 import { useStore } from "vuex"
-import handConfig from "../../public/config"
 import { SystemInfo } from "../../types/models"
 import { logout } from "../services"
 import UpdatePassword from "../components/update-password.vue"
@@ -88,8 +87,7 @@ export default defineComponent({
 
     state.systemInfo = store.state.currentSystem
 
-    state.systemInfo
-    const childSystemList = handConfig.systemList
+    const childSystemList = store.state.systemList
 
     // 顶部切换系统
     const changeSystem = (item: SystemInfo) => {

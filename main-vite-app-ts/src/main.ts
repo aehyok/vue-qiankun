@@ -8,7 +8,8 @@ import locale from 'element-plus/lib/locale/lang/zh-cn' //中文
 import App from './App.vue'
 import router from './router'
 import store from './store'
+
 const app = createApp(App)
 
-app.use(router).use(ElementPlus, { locale }).use(store)
+app.use(store).use(router).use(ElementPlus, { locale })
 app.mount('#app')

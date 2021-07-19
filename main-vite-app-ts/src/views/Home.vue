@@ -68,7 +68,6 @@ import "swiper/components/pagination/pagination.min.css"
 import "swiper/components/navigation/navigation.min.css"
 import { useRouter } from "vue-router"
 import { useStore } from "vuex"
-import handConfig from "../../public/config/index"
 import { logout } from "../services"
 import UpdatePassword from "../components/update-password.vue"
 import SwiperCore, { Pagination, Navigation } from "swiper/core"
@@ -170,7 +169,7 @@ export default defineComponent({
 })
 
 function useModuleSetting(router: any, store: any, proxy: any) {
-  const modeuleList = reactive(handConfig.systemList)
+  const modeuleList = reactive(store.state.systemList)
   const jumpChildSystem = (child: any) => {
     // console.log(child, 'jumpChildSystem')
     store.commit("changeSystem", child.systemId)

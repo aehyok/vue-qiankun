@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router"
 import NProgress from "../utils/progress"
-import handConfig  from "../../public/config"
+
+// TODO 此处无法通过引用 import { useStore } from 'vuex'
+import store from "@/store/index"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -68,15 +70,17 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
-const childrenPath = ['webpack-app', 'map-app', 'form-app', 'table-app']
-let child = handConfig.systemList.map(item => {
+// const childrenPath = ['webpack-app', 'map-app', 'form-app', 'table-app']
+// 获取子模块路由前缀 判断是否为子路由
+const childrenPath = store.state.systemList.map((item:any) => {
   return item.systemId
 })
+console.log(childrenPath, 'childrenPath')
 
-console.log(child, '----------child-----------')
 router.beforeEach((to, _from, next) => {
   NProgress.start()
 
+  console.log(store.state.systemList, '----useStore----')
   if (to.path === '/login' || to.path === '/init-password') {
     next()
     return false;
