@@ -42,6 +42,17 @@
         @click.stop="importClick"
         >导入行政边界（KML文件）</el-button
       >
+
+      <el-upload
+        class="upload-demo"
+        action="https://jsonplaceholder.typicode.com/posts/"
+        :before-upload="beforeUpload"
+        :on-success="onSuccess"
+      >
+        <el-button size="small" type="primary"
+          >导入行政边界（KML文件）</el-button
+        >
+      </el-upload>
     </div>
   </div>
 
