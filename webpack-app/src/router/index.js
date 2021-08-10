@@ -45,6 +45,12 @@ const routes = [
     component: ffmpeg
   },
   {
+    path: "/webpack-app/dragger",
+    name: "dragger",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Dragger.vue")
+  },
+  {
     path: "/webpack-app/about",
     name: "about",
     component: () =>
