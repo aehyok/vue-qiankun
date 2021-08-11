@@ -1,54 +1,43 @@
 <template>
   <div style="width: 1000px; height: 800px; border: 1px solid blue">
-    <draggable
-      v-model="myArray"
-      group="people"
-      @start="drag = true"
-      @end="drag = false"
-      item-key="id"
+    <VueDragResize
+      :isActive="true"
+      :w="200"
+      :h="200"
+      v-on:resizing="resize"
+      v-on:dragging="resize"
     >
-      <template #item="{ element }">
-        <div
-          style="
-            width: 400px;
-            height: 300;
-            border: 1px dashed red;
-            padding: 10px;
-            margin: 10px;
-          "
-        >
-          {{ element.name }}
-        </div>
-      </template>
-    </draggable>
+      <h3>Hello World!</h3>
+      <p>{{ top }} х {{ left }}</p>
+      <p>{{ width }} х {{ height }}</p>
+    </VueDragResize>
   </div>
 </template>
 <script>
-import draggable from "vuedraggable";
+import VueDragResize from "vue-drag-resize";
+
 import { reactive, toRefs } from "vue";
 export default {
   components: {
-    draggable
+    VueDragResize
   },
   setup() {
     const state = reactive({
-      myArray: [
-        {
-          id: 1,
-          name: "1"
-        },
-        {
-          id: 2,
-          name: "2"
-        },
-        {
-          id: 3,
-          name: "3"
-        }
-      ]
+      width: 0,
+      height: 0,
+      top: 0,
+      left: 0
     });
+
+    const resize = (newRect) => {
+      state.width = newRect.width;
+      state.height = newRect.height;
+      state.top = newRect.top;
+      state.left = newRect.left;
+    };
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      resize
     };
   }
 };

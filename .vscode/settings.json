@@ -1,5 +1,24 @@
+// {
+//     "editor.defaultFormatter":"octref.vetur",
+//     "editor.formatOnSave": true,
+//     "vetur.format.defaultFormatter.js": "prettier"
+// }
+
+
 {
-    "editor.defaultFormatter":"octref.vetur",
-    "editor.formatOnSave": true,
-    "vetur.format.defaultFormatter.js": "prettier"
-}
+    // Use the project's typescript version
+    "typescript.tsdk": "node_modules/typescript/lib",
+  
+    "cSpell.enabledLanguageIds": ["markdown", "plaintext", "text", "yml"],
+  
+    // Use prettier to format typescript, javascript and JSON files
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+  }
