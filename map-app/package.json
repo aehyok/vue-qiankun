@@ -10,13 +10,14 @@
   "dependencies": {
     "@geoman-io/leaflet-geoman-free": "^2.11.2",
     "@vue-leaflet/vue-leaflet": "^0.6.1",
+    "@vue/compiler-sfc": "^3.2.4",
     "cesium": "^1.82.1",
     "core-js": "^3.6.5",
     "element-plus": "^1.0.2-beta.48",
     "leaflet": "^1.7.1",
     "leaflet-contextmenu": "^1.4.0",
     "v-contextmenu": "^3.0.0",
-    "vue": "^3.0.0",
+    "vue": "^3.2.4",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
@@ -30,7 +31,6 @@
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-airbnb": "^5.0.2",
     "@vue/eslint-config-typescript": "^7.0.0",
     "eslint": "^6.7.2",
