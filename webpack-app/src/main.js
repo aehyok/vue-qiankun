@@ -10,6 +10,7 @@ import store from "./store";
 import "xe-utils";
 import VXETable from "vxe-table";
 import "vxe-table/lib/style.css";
+import { autoComponentRegister } from "../../common/utils/auto-component-register";
 import plugins from "./plugins";
 
 // function useTable (app: App) {
@@ -42,6 +43,7 @@ function render(props = {}) {
     .use(router)
     .use(plugins)
     .mount(container ? container.querySelector("#webpackapp") : "#webpackapp");
+  autoComponentRegister(instance);
 }
 
 // 独立运行时
