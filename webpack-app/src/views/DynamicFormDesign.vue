@@ -41,7 +41,7 @@
 </template>
 <script setup>
 import { ref, reactive } from 'vue';
-import FormView from "../../../common/components/form/index.vue";
+import FormView from "../../../common/components/form/drag-index.vue";
 import shortid from 'shortid';
     const componentList = ref([])
     const activeName = ref('first')
