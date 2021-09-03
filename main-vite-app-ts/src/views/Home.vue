@@ -49,7 +49,11 @@
               @mouseover="activeModule = item.systemId"
               @mouseleave="activeModule = ''"
             >
-              <img :src="item.systemId == activeModule ? item.selected : item.normal" />
+              <img
+                :src="
+                  item.systemId == activeModule ? item.selected : item.normal
+                "
+              />
               <div class="module-title">{{ item.title }}</div>
             </div>
           </swiper-slide>
@@ -61,28 +65,34 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs, getCurrentInstance, onMounted } from "vue"
-import { Swiper, SwiperSlide } from "swiper/vue"
-import "swiper/swiper.scss"
-import "swiper/components/pagination/pagination.min.css"
-import "swiper/components/navigation/navigation.min.css"
-import { useRouter } from "vue-router"
-import { useStore } from "vuex"
-import { logout } from "../services"
-import UpdatePassword from "../components/update-password.vue"
-import SwiperCore, { Pagination, Navigation } from "swiper/core"
+import {
+  defineComponent,
+  reactive,
+  toRefs,
+  getCurrentInstance,
+  onMounted,
+} from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/swiper.scss";
+import "swiper/components/pagination/pagination.min.css";
+import "swiper/components/navigation/navigation.min.css";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+import { logout } from "../services";
+import UpdatePassword from "../components/update-password.vue";
+import SwiperCore, { Pagination, Navigation } from "swiper/core";
 // install Swiper modules
-SwiperCore.use([Pagination, Navigation])
+SwiperCore.use([Pagination, Navigation]);
 export default defineComponent({
   components: {
     Swiper,
     SwiperSlide,
-    UpdatePassword
+    UpdatePassword,
   },
   setup() {
-    const { proxy } = getCurrentInstance()
-    const router = useRouter()
-    const store = useStore()
+    const { proxy } = getCurrentInstance();
+    const router = useRouter();
+    const store = useStore();
     const state = reactive({
       showHome: true,
       updateDialogVisible: false,
@@ -93,18 +103,18 @@ export default defineComponent({
       closeImage: "images/home/close.png",
       swiperImageList: [
         // 轮播图片列表
-        "images/home/banner-01.png"
+        "images/home/banner-01.png",
         // "images/home/banner-02.png",
         // "images/home/banner-03.png"
       ],
       introduceList: [
         // 轮播图片列表
-        "images/home/introduce-01.png"
+        "images/home/introduce-01.png",
       ],
       headerSetting: {
         // 顶部导航
         logoUrl: "images/home/icon_logo.png",
-        hornUrl: "images/home/icon_horn.png"
+        hornUrl: "images/home/icon_horn.png",
       },
       activeModule: "", // 系统模块
       treeData: {},
@@ -124,36 +134,40 @@ export default defineComponent({
       chartsData7: [], // 外出务工情况
       chartsData8: [], // 农作物占耕地统计
       chartsData9: [], // 乡村治理居民参与情况 男女
-      chartsData10: [] // 乡村治理居民参与情况 年龄段
-    })
+      chartsData10: [], // 乡村治理居民参与情况 年龄段
+    });
     // 获取下拉框数据
-    const getTreeData = async () => {}
+    const getTreeData = async () => {};
     // 模块列表
-    const { modeuleList, jumpChildSystem } = useModuleSetting(router, store, proxy)
+    const { modeuleList, jumpChildSystem } = useModuleSetting(
+      router,
+      store,
+      proxy
+    );
     const updatePasswordClick = () => {
       // console.log('updatePassword')
-      state.updateDialogVisible = true
-    }
+      state.updateDialogVisible = true;
+    };
     // 获取echart数据
     const getChartData = () => {
-      state.echartsNum++
-    }
+      state.echartsNum++;
+    };
     onMounted(() => {
-      getTreeData()
-      getNews()
-    })
+      getTreeData();
+      getNews();
+    });
     // 获取顶部的消息滚动
-    const getNews = async () => {}
+    const getNews = async () => {};
     // // 查看详情
     const goInfo = () => {
-      state.showHome = false
-      window.scroll(0, 0)
-    }
+      state.showHome = false;
+      window.scroll(0, 0);
+    };
     const close = () => {
-      state.updateDialogVisible = false
-    }
+      state.updateDialogVisible = false;
+    };
     // echarts 统计报表
-    const { logoutClick } = useEchartsSetting(proxy, router)
+    const { logoutClick } = useEchartsSetting(proxy, router);
     return {
       ...toRefs(state),
       logoutClick,
@@ -163,26 +177,26 @@ export default defineComponent({
       goInfo,
       getTreeData,
       getChartData,
-      close
-    }
-  }
-})
+      close,
+    };
+  },
+});
 
 function useModuleSetting(router: any, store: any, proxy: any) {
-  const modeuleList = reactive(store.state.systemList)
+  const modeuleList = reactive(store.state.systemList);
   const jumpChildSystem = (child: any) => {
     // console.log(child, 'jumpChildSystem')
-    store.commit("changeSystem", child.systemId)
+    store.commit("changeSystem", child.systemId);
     if (child.path) {
-      router.push(child.path)
+      router.push(child.path);
     } else {
-      proxy.$alert("请联系管理员，配置相关子系统！")
+      proxy.$alert("请联系管理员，配置相关子系统！");
     }
-  }
+  };
   return {
     modeuleList,
-    jumpChildSystem
-  }
+    jumpChildSystem,
+  };
 }
 
 function useEchartsSetting(proxy: any, router: any) {
@@ -191,22 +205,22 @@ function useEchartsSetting(proxy: any, router: any) {
       .$confirm("请问是否退出登录?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
+        type: "warning",
       })
       .then(() => {
         logout().then((res: any) => {
-          console.log("登出成功", res)
-          localStorage.clear()
-          router.push("/login")
-        })
+          console.log("登出成功", res);
+          localStorage.clear();
+          router.push("/login");
+        });
       })
       .catch(() => {
-        return false
-      })
-  }
+        return false;
+      });
+  };
   return {
-    logoutClick
-  }
+    logoutClick,
+  };
 }
 </script>
 <style lang="scss" scoped>

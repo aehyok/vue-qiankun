@@ -24,7 +24,6 @@
                     <form-view
                         :columnList="state.formConfig.formListItem"
                         :formData="state.formConfig.formData"
-                        :columnSpan="state.formConfig.columnSpan"
                         @componentExampleClick = "componentExampleClick"
                     />
                 </el-form>
@@ -55,7 +54,6 @@ import shortid from 'shortid';
         },
         show: true,
         formConfig: {
-        columnSpan: 24,
         formListItem: [
             
         ],
@@ -105,19 +103,19 @@ import shortid from 'shortid';
             id: 4,
             name:"select",
             title: "下拉框",
-            codeTable: true
+            dictionary: true
         },
         {
             id: 5,
             name:"radio",
             title: "单选框",
-            codeTable: true
+            dictionary: true
         },
         {
             id: 6,
             name:"checkbox",
             title: "多选框",
-            codeTable: true
+            dictionary: true
         },
         {
             id: 7,
@@ -152,8 +150,17 @@ import shortid from 'shortid';
             type: item.name,
             title: item.title
         }
-        if(item.codeTable) {
-            column.codeTable = []
+        if(["select","radio","checkbox"].includes(item.type)) {
+            column.dictionary = [
+                {
+                    code:1,
+                    name:"图片"
+                },
+                {
+                    code:2,
+                    name:"视频"
+                }
+            ]
         }
         state.formConfig.formListItem.push(column)
     }

@@ -84,7 +84,7 @@ export default defineComponent({
     onMounted(() => {
       const user = JSON.parse(localStorage.getItem('token'))
       state.headers = {
-        Authorization: user.authorization,
+        // Authorization: user.authorization,
         // Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoiYWRtaW4iLCJ1aWQiOjQsImNyZWF0ZVRpbWUiOjE2MjI2MDkwNzQsImNsaWVudElwIjoiMTI3LjAuMC4xIiwiZXh0ZW5kVG9rZW4iOiIifQ.TWqb8gO9wY2mjh0Wq4FgusCRrxybOnTw1JIQ_-3ed-Y',
       }
       const prefix = process.env.NODE_ENV === 'development' ? '/infra' : ''

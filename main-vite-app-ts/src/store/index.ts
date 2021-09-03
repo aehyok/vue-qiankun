@@ -1,40 +1,40 @@
 import { createStore } from "vuex"
-import { getMenuList } from './data.d'
-import createPersistedState  from 'vuex-persistedstate'
-import { SystemMenu, SystemInfo } from '../../types/models'
-import { getSystemList } from '../services/index'
+import createPersistedState from "vuex-persistedstate"
+import { getMenuList } from "./data.d"
+import { SystemMenu, SystemInfo } from "../../types/models"
+import { getSystemList } from "../services/index"
 
 interface AppState {
-  menuList: SystemMenu[];
-  systemId?: string;
-  currentSystem?: SystemInfo;
-  systemList: [],
+  menuList: SystemMenu[]
+  systemId?: string
+  currentSystem?: SystemInfo
+  systemList: []
 }
 
 const dataState = createPersistedState({
-    paths: ['menuList','systemId',"currentSystem", "systemList"]  // 持久化的数据
+  paths: ["menuList", "systemId", "currentSystem", "systemList"] // 持久化的数据
 })
 
 export default createStore({
-  state:():AppState =>({
-    systemList:[],
-    menuList: getMenuList(),  // 所有菜单
+  state: (): AppState => ({
+    systemList: [],
+    menuList: getMenuList(), // 所有菜单
     currentSystem: {
-      systemId:"",
-      path:"",
-      title:""
-    },
+      systemId: "",
+      path: "",
+      title: ""
+    }
   }),
   mutations: {
     // 切换系统
     changeSystem(state: AppState, type: string) {
       state.systemId = type
-      state.currentSystem = state.systemList.find(item=> item.systemId === type)
-      console.log(state.currentSystem, 'store----');
+      state.currentSystem = state.systemList.find((item: any) => item.systemId === type)
+      // console.log(state.currentSystem, "store----")
     },
     setSystemList(state: AppState, data) {
       state.systemList = data
-      console.log(state.systemList, 'state.Slist')
+      // console.log(state.systemList, "state.Slist")
     }
   },
   actions: {

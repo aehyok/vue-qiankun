@@ -12,7 +12,7 @@
     "@vue/compiler-sfc": "^3.2.4",
     "aehyok-form-vue3": "^1.0.53",
     "core-js": "^3.6.5",
-    "element-plus": "^1.0.2-beta.41",
+    "element-plus": "^1.1.0-beta.8",
     "eslint-import-resolver-webpack": "^0.13.0",
     "leaflet": "^1.7.1",
     "sass-loader": "^10.0.1",

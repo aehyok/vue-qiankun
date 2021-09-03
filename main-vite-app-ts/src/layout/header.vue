@@ -31,8 +31,8 @@
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item command="a">修改密码</el-dropdown-item>
-              <el-dropdown-item command="b">安全退出</el-dropdown-item>
               <el-dropdown-item command="c">版本信息</el-dropdown-item>
+              <el-dropdown-item command="b">安全退出</el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -43,15 +43,6 @@
   </div>
 </template>
 <script lang="ts">
-interface headerProp {
-  systemInfo?: SystemInfo
-  logoImage: string
-  avatorImage: string
-  userName?: string
-  updateDialogVisible: boolean
-  versionDialogVisible: boolean
-}
-
 import { defineComponent, reactive, ref, toRefs, getCurrentInstance, watch } from "vue"
 import { useRouter } from "vue-router"
 import { useStore } from "vuex"
@@ -59,6 +50,7 @@ import { SystemInfo } from "../../types/models"
 import { logout } from "../services"
 import UpdatePassword from "../components/update-password.vue"
 import Version from "../components/version.vue"
+import { headerProp } from "./headerProp"
 
 export default defineComponent({
   name: "Header",

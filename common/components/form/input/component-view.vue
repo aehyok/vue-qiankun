@@ -1,5 +1,5 @@
 <template>
-  <el-col :span="columnSpan">
+  <el-col :span="columnSpan" style="width:100%;">
     <!--不包含View则是npm组件库中的-->
     <component
       v-if="

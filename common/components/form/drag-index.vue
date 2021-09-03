@@ -1,45 +1,20 @@
 <template>
   <el-row :gutter="20">
-    <template v-for="(item, index) in columnList" :key="index + 'formView'">
-      <component-view
-        :columnSpan="columnSpan"
-        :column="item"
-        :formData="formData"
-        @click="componentExampleClick"
+    <draggable  v-model="columnList"   @start="drag=true" 
+  @end="drag=false"  item-key="name" class="dragClass">
+      <template #item="{ element }">
+        <component-view
+          :columnSpan="columnSpan"
+          :column="element"
+          :formData="formData"
       />
-      <template v-for="child in item.controls">
-        <template v-if="formData[item.name] === child.value">
-          <template
-            v-for="(childColumn, columnIndex) in child.showCondition"
-            :key="columnIndex + 'childColumnView'"
-          >
-            <component-view
-              :columnSpan="columnSpan"
-              :column="childColumn"
-              :formData="formData"
-            />
-            <template v-for="son in childColumn.controls">
-              <template v-if="formData[childColumn.name] === son.value">
-                <template
-                  v-for="(sonColumn, sonColumnIndex) in son.showCondition"
-                  :key="sonColumnIndex + 'sonColumnView'"
-                >
-                  <component-view
-                    :columnSpan="columnSpan"
-                    :column="sonColumn"
-                    :formData="formData"
-                  />
-                </template>
-              </template>
-            </template>
-          </template>
-        </template>
       </template>
-    </template>
+    </draggable>
   </el-row>
 </template>
 <script setup>
 import ComponentView from './input/component-view.vue'
+import { ref } from 'vue'
 import draggable from 'vuedraggable'
 const props = defineProps({
   columnList: {
@@ -61,5 +36,11 @@ const props = defineProps({
     }
   }
 })
+
+const drag = ref(false)
 </script>
-<style scoped></style>
+<style lang="scss" scoped>
+.dragClass{
+  width: 100%;
+}
+</style>

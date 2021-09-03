@@ -32,18 +32,11 @@
     </el-row>
   </div>
 </template>
-<script>
+<script setup>
 import { defineComponent, reactive, toRefs, ref } from "vue";
-import FormView, { VueJsonEditor } from "aehyok-form-vue3";
-// import VJsoneditor from "v-jsoneditor"
+import FormView from "../../../common/components/form/index.vue";
 
-export default defineComponent({
-  components: {
-    FormView,
-    VueJsonEditor
-  },
-  setup() {
-    let formDom = ref(null);
+let formDom = ref(null);
 
     const state = reactive({
       options: {
@@ -112,7 +105,7 @@ export default defineComponent({
           {
             name: "type",
             type: "radio",
-            codeTable: "type",
+            dictionary: "type",
             title: "栏目类型",
             controls: [
               {
@@ -121,7 +114,7 @@ export default defineComponent({
                   {
                     name: "show",
                     type: "radio",
-                    codeTable: [
+                    dictionary: [
                       { id: 1, text: "China" },
                       { id: 2, text: "English" }
                     ],
@@ -150,7 +143,7 @@ export default defineComponent({
           {
             name: "requireType",
             type: "radio",
-            codeTable: "isp",
+            dictionary: "isp",
             title: "图文类型",
             required: true
           },
@@ -158,7 +151,7 @@ export default defineComponent({
             name: "range",
             type: "checkbox",
             title: "发布范围",
-            codeTable: "isp",
+            dictionary: "isp",
             required: true
           },
           {
@@ -170,7 +163,7 @@ export default defineComponent({
             name: "creType",
             type: "select",
             // multiple: true,
-            codeTable: "politicalstatus",
+            dictionary: "politicalstatus",
             title: "证件类型"
           },
           {
@@ -204,12 +197,5 @@ export default defineComponent({
         return false;
       });
     };
-    return {
-      ...toRefs(state),
-      submitForm,
-      formDom
-    };
-  }
-});
 </script>
 <style scoped></style>
