@@ -8,14 +8,26 @@
       class="dragClass"
     >
       <template #item="{ element, index }">
-        <component-view
+        <div
+          class="drag-default"
           @mouseover="mouseOverClick(index)"
-          @mouseleave="mouseLeaveClick(index)"
-          :class="selectIndex === index ? 'select-class' : ''"
-          :columnSpan="columnSpan"
-          :column="element"
-          :formData="formData"
-        />
+          @mouseout="mouseLeaveClick(index)"
+        >
+          <component-view
+            :columnSpan="columnSpan"
+            :column="element"
+            :formData="formData"
+            :class="[selectIndex === index ? 'drag-select' : '']"
+          >
+          </component-view>
+          <div
+            :class="[selectIndex === index ? 'drag-operation' : 'drag-hidden']"
+          >
+            <i class="el-icon-close"></i>
+            <el-button type="primary"><i class="el-icon-search"></i></el-button>
+            </el-icon>
+          </div>
+        </div>
       </template>
     </draggable>
   </el-row>
@@ -68,10 +80,38 @@ const mouseLeaveClick = (index) => {
 <style lang="scss" scoped>
 .dragClass {
   width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
 }
-.select-class {
-  border: 1px dashed black;
-  cursor: pointer;
+
+.drag-default {
   position: relative;
+  width: 100%;
+  height: 65px;
+}
+.drag-select {
+  position: absolute;
+  border: 1px dashed red;
+  left: 0px;
+  top: 0px;
+  cursor: pointer;
+}
+
+.drag-component {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.drag-operation {
+  position: absolute;
+  right: 35px;
+  width: 100%;
+  bottom: 3px;
+  width: 100px;
+}
+.drag-hidden {
+  display: none;
 }
 </style>
