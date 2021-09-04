@@ -1,6 +1,10 @@
 <template>
   <div class="menu-container">
-    <el-scrollbar class="scroll-wrap" :noresize="false" view-style="{ height: '100%' }">
+    <el-scrollbar
+      class="scroll-wrap"
+      :noresize="false"
+      view-style="{ height: '100%' }"
+    >
       <el-menu
         :default-active="activeMenu"
         :unique-opened="true"
@@ -11,7 +15,11 @@
         @select="handleSelect"
       >
         <template v-for="item in displayMenuTree">
-          <el-submenu :index="item.path" :key="item.id" v-if="item.children?.length">
+          <el-sub-menu
+            :index="item.path"
+            :key="item.id"
+            v-if="item.children?.length"
+          >
             <template #title>
               <!-- <i class="el-icon-location"></i> -->
               <span>{{ item.title }}</span>
@@ -24,8 +32,8 @@
             >
               {{ child.title }}
             </el-menu-item>
-          </el-submenu>
-          <el-menu-item :index="item.path" :key="item.id" v-else>
+          </el-sub-menu>
+          <el-menu-item :index="item.path" v-else>
             <!-- <i class="el-icon-menu"></i> -->
             <template #title>{{ item.title }}</template>
           </el-menu-item>
@@ -36,61 +44,70 @@
   </div>
 </template>
 <script lang="ts">
-import { reactive, computed, onMounted, defineComponent, toRefs, watch } from "vue"
-import { useRoute } from "vue-router"
-import { useStore } from "vuex"
-import { Menu } from "../../types/models"
+import {
+  reactive,
+  computed,
+  onMounted,
+  defineComponent,
+  toRefs,
+  watch,
+} from "vue";
+import { useRoute } from "vue-router";
+import { useStore } from "vuex";
+import { Menu } from "../../types/models";
 
 interface DataProp {
-  displayMenuTree?: Menu[]
-  version: string
-  openeds?: string[]
+  displayMenuTree?: Menu[];
+  version: string;
+  openeds?: string[];
 }
 export default defineComponent({
   setup() {
-    const store = useStore()
-    const route = useRoute()
+    const store = useStore();
+    const route = useRoute();
 
     const state: DataProp = reactive({
-      version: ""
-    })
+      version: "",
+    });
     // TODO watch store
     watch(
       () => store.state.systemId,
       (newValue, oldValue) => {
-        state.displayMenuTree = store.state.menuList.find((item) => item.Key === newValue)?.MenuList
+        state.displayMenuTree = store.state.menuList.find(
+          (item) => item.Key === newValue
+        )?.MenuList;
       },
       {
         immediate: true,
-        deep: true
+        deep: true,
       }
-    )
+    );
     const activeMenu = computed(() => {
-      return route.path
-    })
+      return route.path;
+    });
 
     const handleSelect = (_key, _keyPath) => {
       //
-    }
+    };
 
     const getVersion = () => {
       const res = {
         code: 200,
         message: "success",
-        data: { code: "0.1.012", updateDate: "2021.76.18", description: "" }
-      }
-      state.version = res.data.code
-    }
+        data: { code: "0.1.012", updateDate: "2021.76.18", description: "" },
+      };
+      state.version = res.data.code;
+    };
     onMounted(() => {
-      getVersion()
-    })
+      getVersion();
+    });
     return {
       ...toRefs(state),
       activeMenu,
-      handleSelect
-    }
-  }
-})
+      handleSelect,
+    };
+  },
+});
 </script>
 <style lang="scss" scoped>
 .scroll-wrap {

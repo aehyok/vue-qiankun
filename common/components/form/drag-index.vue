@@ -23,8 +23,7 @@
           <div
             :class="[selectIndex === index ? 'drag-operation' : 'drag-hidden']"
           >
-            <i class="el-icon-close"></i>
-            <el-button type="primary"><i class="el-icon-search"></i></el-button>
+            <i class="el-icon-close" @click="deleteComponentClick(index)"></i>
           </div>
         </div>
       </template>
@@ -68,12 +67,21 @@ const dragEnd = (event) => {
 }
 const mouseOverClick = (index) => {
   selectIndex.value = index
-  console.log(index, '1111111111111')
+  let currentSelectColumn = props.columnList[index]
+  console.log(currentSelectColumn, '1111111111111')
 }
 
 const mouseLeaveClick = (index) => {
   selectIndex.value = -1
   console.log(index, '2222222222')
+}
+
+const deleteComponentClick = (index) => {
+  console.log('deleteComponentClick', index)
+}
+
+const deleteComponentButtonClick = (index) => {
+  console.log("deleteComponentButtonClick", index)
 }
 </script>
 <style lang="scss" scoped>
