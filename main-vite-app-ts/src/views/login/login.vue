@@ -54,7 +54,6 @@
 
 <script>
 import { getVerifyCode, login } from "../../services/index"
-import { getList } from "../../services/system"
 import md5 from "js-md5"
 import { encode, decode } from "js-base64"
 import { defineComponent, onBeforeMount, reactive, toRefs, ref } from "vue"
@@ -170,26 +169,6 @@ export default defineComponent({
       console.log(md5(state.loginForm.password).toLocaleLowerCase())
       state.loading = true
 
-      /* TODO 登录接口静态数据
-      {
-        "data": [
-          {
-            "account": "YWRtaW4=",
-            "password": "e10adc3949ba59abbe56e057f20f883e",
-            "success": "200",
-            "nickName": "admin"
-          },
-          {
-            "account": "YWVoeW9r",
-            "password": "e10adc3949ba59abbe56e057f20f883e",
-            "success": "200",
-            "nickName": "aehyok"
-          }
-        ],
-        "code": 200,
-        "message": "success"
-      }
-       */
       const res = await login({
         account: encode(state.loginForm.account),
         captchaValue: "0yta", //state.loginForm.captchaValue,
