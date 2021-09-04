@@ -25,7 +25,6 @@
           >
             <i class="el-icon-close"></i>
             <el-button type="primary"><i class="el-icon-search"></i></el-button>
-            </el-icon>
           </div>
         </div>
       </template>
@@ -106,7 +105,7 @@ const mouseLeaveClick = (index) => {
 
 .drag-operation {
   position: absolute;
-  right: 35px;
+  right: 0px;
   width: 100%;
   bottom: 3px;
   width: 100px;
