@@ -31,6 +31,12 @@ const state = reactive({
   list: []
 })
 
+const getList = (type) => {
+  // getContentTypeList(type).then(res => {
+  //   state.list = res.data
+  // })
+}
+
 if (typeof dictionary === 'object' && dictionary.constructor === Array) {
   state.list = dictionary
 } else if (typeof dictionary === 'string') {
@@ -60,11 +66,5 @@ const value = computed({
 const radioChange = (e) => {
   console.log(e, column, 'this.radioChange')
   // emit('update:data', val)
-}
-
-const getList = (type) => {
-  // getContentTypeList(type).then(res => {
-  //   state.list = res.data
-  // })
 }
 </script>
