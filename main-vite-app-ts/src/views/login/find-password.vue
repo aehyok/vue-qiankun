@@ -45,10 +45,10 @@
     </el-dialog>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs, ref } from 'vue'
-import { warnMessage, successMessage } from '../../utils/message'
-import { validateMobile } from '../../../../common/utils/form-validator'
-import { changedForMobile, sendMobileValidateCode } from '../../services'
+  import { defineComponent, reactive, toRefs, ref } from "vue"
+  import { warnMessage, successMessage } from '../../utils/message'
+  import { validateMobile } from '../../../../common/utils/form-validator'
+  import { changedForMobile, sendMobileValidateCode } from '../../services'
 import md5 from 'js-md5'
 export default defineComponent({
   props: {

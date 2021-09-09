@@ -18,18 +18,9 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    path: "/about",
-    name: "About",
-    component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
-    meta: {
-      title: "关于",
-      main: true
-    }
-  },
-  {
     path: "/login",
     name: "Login",
-    component: () => import(/* webpackChunkName: "login" */ "../views//login/login.vue"),
+    component: () => import(/* webpackChunkName: "login" */ "../views/login/login.vue"),
     meta: {
       title: "登录",
       showLayout: false
