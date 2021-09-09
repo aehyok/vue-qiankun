@@ -15,7 +15,6 @@
     setup() {
       const route = useRoute()
       const showLayout = ref(false)
-
       // 监测路由判断是主应用路由还是子应用路由
       watch(
         () => route.path,

@@ -1,4 +1,4 @@
-import request from "../utils/request.js";
+import request from "../utils/request.js"
 
 /**
  * 获取验证码
@@ -18,10 +18,34 @@ export const getVerifyCode = () => {
 /**
  *  获取系统子模块列表
  */
-export const getSystemList = () => {
-  return request("/api/getSystemList", {
-    method: "get"
-  })
+export const getSystemList = async () => {
+  return {
+    data: [
+      {
+        systemId: "webpack-app",
+        name: "webpack-app",
+        productionEntry: "/child/webpack-app/",
+        developmentEntry: "//localhost:4000/",
+        title: "webpack-app",
+        path: "/webpack-app/about",
+        normal: "images/module/dvs-farm-normal.png",
+        selected: "images/module/dvs-farm-selected.png",
+        enabled: true
+      },
+      {
+        systemId: "map-app",
+        name: "map-app",
+        productionEntry: "/child/map-app/",
+        developmentEntry: "//localhost:5000/",
+        title: "map-app",
+        path: "/map-app/about",
+        normal: "images/module/dvs-village-normal.png",
+        selected: "images/module/dvs-village-selected.png",
+        enabled: true
+      }
+    ],
+    code: 200
+  }
 }
 
 /**
@@ -52,8 +76,24 @@ export const login = () => {
  * 获取版本号
  */
 export const getVersion = () => {
-  return request("/api/version", {
-    method: "get"
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      console.log("执行完成Promise")
+      resolve({
+        code: 200,
+        message: "success",
+        data: {
+          dvs20: {
+            "webpack-app": {
+              version: ["2.3.0.001"]
+            },
+            "map-app": {
+              version: ["2.3.0.001"]
+            }
+          }
+        }
+      })
+    }, 1)
   })
 }
 
@@ -61,9 +101,11 @@ export const getVersion = () => {
  * 退出登录
  */
 export const logout = () => {
-  return request("/api/logout", {
-    method: "post"
-  })
+  return {
+    code: 200,
+    message: "注销登录",
+    data: {}
+  }
 }
 
 /**
@@ -151,7 +193,7 @@ export const GetYearIncome = (data) => {
 export const GetVillageHonor = (data) => {
   return request("/village/console/statistics/GetVillageHonor", {
     method: "get",
-    data,
+    data
   })
 }
 // 外出务工情况

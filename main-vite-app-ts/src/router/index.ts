@@ -14,7 +14,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "Home",
     component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
     meta: {
-      title: "首页",
+      title: "首页"
     }
   },
   {
@@ -66,18 +66,18 @@ const router = createRouter({
 const childrenPath = store.state.systemList.map((item:any) => {
   return item.systemId
 })
-console.log(childrenPath, 'childrenPath')
+console.log(childrenPath, "childrenPath")
 
 router.beforeEach((to, _from, next) => {
   NProgress.start()
 
-  console.log(store.state.systemList, '----useStore----')
-  if (to.path === '/login' || to.path === '/init-password') {
+  console.log(store.state.systemList, "----useStore----")
+  if (to.path === "/login" || to.path === "/init-password") {
     next()
-    return false;
+    return false
   }
-  if (!localStorage.getItem('token')) {
-    next('/login')
+  if (!localStorage.getItem("token")) {
+    next("/login")
     return false
   }
   if (to.name) {
@@ -86,7 +86,7 @@ router.beforeEach((to, _from, next) => {
   }
   if (childrenPath.some((item) => to.path.includes(item))) {
     next()
-    console.log('child');
+    console.log("child")
 
     return false
   }
@@ -94,7 +94,6 @@ router.beforeEach((to, _from, next) => {
   next("/404")
   return false
 })
-
 
 // 页面进入之后
 router.afterEach(() => {

@@ -1,4 +1,4 @@
-import { SystemInfo } from "../../types/models";
+import { SystemInfo } from "../../types/models"
 
 export interface headerProp {
   systemInfo?: SystemInfo

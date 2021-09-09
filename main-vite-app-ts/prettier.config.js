@@ -4,12 +4,12 @@ module.exports = {
   useTabs: false,
   semi: false, // 未尾逗号
   vueIndentScriptAndStyle: true,
-  singleQuote: false, // 单引号
+  singleQuote: true, // 单引号
   quoteProps: "as-needed",
   bracketSpacing: true,
   trailingComma: "none", // 未尾分号
   jsxBracketSameLine: false,
-  jsxSingleQuote: false,
+  jsxSingleQuote: true,
   arrowParens: "always",
   insertPragma: false,
   requirePragma: false,
