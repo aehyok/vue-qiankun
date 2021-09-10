@@ -67,8 +67,9 @@
       FindPassword
     },
     setup() {
-      let form = ref(null)
-      let store = useStore()
+      const form = ref(null)
+      const store = useStore()
+
       const validatePass = (rule, value, callback) => {
         if (value === "") {
           callback(new Error("请输入密码"))
@@ -117,11 +118,6 @@
         }
       })
 
-      onBeforeMount(() => {
-        checkRemPass()
-        getImageVerifyCode()
-      })
-
       // 判断是否已缓存账号密码
       const checkRemPass = () => {
         const loginRemInfo = localStorage.getItem("loginRemInfo")
@@ -132,6 +128,21 @@
           state.rememberPasCbox = true
         }
       }
+
+      // 获取验证码
+      const getImageVerifyCode = async () => {
+        const res = await getVerifyCode()
+        if (res.code === 200) {
+          state.loginForm.captchaId = res.data.key
+          state.vcodeImg = res.data.b64s
+        }
+        console.log(res)
+      }
+
+      onBeforeMount(() => {
+        checkRemPass()
+        getImageVerifyCode()
+      })
 
       // 判断是否需要记住账号密码
       const checkNeedRemPass = () => {
@@ -144,16 +155,6 @@
         } else {
           localStorage.removeItem("loginRemInfo")
         }
-      }
-
-      // 获取验证码
-      const getImageVerifyCode = async () => {
-        const res = await getVerifyCode()
-        if (res.code === 200) {
-          state.loginForm.captchaId = res.data.key
-          state.vcodeImg = res.data.b64s
-        }
-        console.log(res)
       }
 
       // 验证登录

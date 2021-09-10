@@ -35,18 +35,52 @@
       <div class="right-component">
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="组件配置" name="first">
-              <el-row>
-                <el-col span="24">
-                  <el-form-item label="id："><el-input placeholder="请输入内容"></el-input></el-form-item>
-                  <el-form-item label="name："><el-input placeholder="请输入内容"></el-input></el-form-item>
+              <el-row class="component-config-row">
+                <el-col :span="8" class="component-config-right">
+                  组件id:
+                </el-col>
+                <el-col :span="16" class="component-config-left">
+                  <el-input placeholder="请输入内容"></el-input>
                 </el-col>
               </el-row>
+              <el-row class="component-config-row">
+                <el-col :span="8" class="component-config-right">
+                  组件name:
+                </el-col>
+                <el-col :span="16" class="component-config-left">
+                  <el-input placeholder="请输入内容"></el-input>
+                </el-col>
+              </el-row>
+              <el-row class="component-config-row">
+                <el-col :span="8" class="component-config-right">
+                  组件label:
+                </el-col>
+                <el-col :span="16" class="component-config-left">
+                  <el-input placeholder="请输入内容"></el-input>
+                </el-col>
+              </el-row>   
+              <el-row class="component-config-row">
+                <el-col :span="8" class="component-config-right">
+                  是否必填:
+                </el-col>
+                <el-col :span="16" class="component-config-left">
+                  <el-switch></el-switch>
+                </el-col>
+              </el-row>
+                <el-row class="component-config-row">
+                <el-col :span="8" class="component-config-right">
+                  maxlength:
+                </el-col>
+                <el-col :span="16" class="component-config-left">
+                  <el-input placeholder="请输入内容"></el-input>
+                </el-col>
+              </el-row>                 
           </el-tab-pane>
           <el-tab-pane label="组件样式" name="second">组件样式</el-tab-pane>
           <el-tab-pane label="表单配置" name="third">表单配置</el-tab-pane>
         </el-tabs>
       </div>
-    </div>/
+    </div>
   </div>
 </template>
 <script setup>
@@ -229,9 +263,21 @@ const componentClick = (item) => {
   color: white;
   cursor: pointer;
 }
-.component-rows {
+.component-config-row {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 5px;
 }
-</style>
+.component-config-right{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 15px;
+}
+
+.component-config-left{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 15px;
+}
+</style> 
