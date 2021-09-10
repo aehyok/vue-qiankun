@@ -34,12 +34,19 @@
       </div>
       <div class="right-component">
         <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="组件配置" name="first">组件配置</el-tab-pane>
+          <el-tab-pane label="组件配置" name="first">
+              <el-row>
+                <el-col span="24">
+                  <el-form-item label="id："><el-input placeholder="请输入内容"></el-input></el-form-item>
+                  <el-form-item label="name："><el-input placeholder="请输入内容"></el-input></el-form-item>
+                </el-col>
+              </el-row>
+          </el-tab-pane>
           <el-tab-pane label="组件样式" name="second">组件样式</el-tab-pane>
           <el-tab-pane label="表单配置" name="third">表单配置</el-tab-pane>
         </el-tabs>
       </div>
-    </div>
+    </div>/
   </div>
 </template>
 <script setup>
@@ -80,7 +87,6 @@ const state = reactive({
     }
   }
 });
-
 
 componentList.value = [
   {
@@ -222,5 +228,10 @@ const componentClick = (item) => {
   background: #2e73ff;
   color: white;
   cursor: pointer;
+}
+.component-rows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

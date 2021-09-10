@@ -1,4 +1,3 @@
-import  { ref } from 'vue'
 import { getDictionaryList } from '../services/common'
 export function useMock() {
 
@@ -6,9 +5,9 @@ export function useMock() {
     console.log('queryList,', type)
     const { data } = await getDictionaryList({
       code: type
-    });
+    })
     return data
-};
+  }
   return {
     getDictionaryListApi
   }
