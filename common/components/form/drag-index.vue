@@ -10,8 +10,7 @@
       <template #item="{ element, index }">
         <div
           class="drag-default"
-          @mouseover="mouseOverClick(index)"
-          @mouseout="mouseLeaveClick(index)"
+          @click="mouseOverClick(index)"
         >
           <component-view
             :columnSpan="columnSpan"
@@ -23,7 +22,8 @@
           <div
             :class="[selectIndex === index ? 'drag-operation' : 'drag-hidden']"
           >
-            <i class="el-icon-close" @click="deleteComponentClick(index)"></i>
+          <el-button type="primary"><i class="el-icon-close" @click="deleteComponentClick(index)"></i></el-button>
+            
           </div>
         </div>
       </template>
@@ -113,10 +113,11 @@ const deleteComponentButtonClick = (index) => {
 
 .drag-operation {
   position: absolute;
-  right: 0px;
-  width: 100%;
+  right: 10px;
   bottom: 3px;
   width: 100px;
+  display: flex;
+  justify-content: flex-end;
 }
 .drag-hidden {
   display: none;
