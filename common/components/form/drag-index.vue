@@ -83,6 +83,21 @@ const deleteComponentClick = (index) => {
 const deleteComponentButtonClick = (index) => {
   console.log("deleteComponentButtonClick", index)
 }
+
+const handleDrop = () => {
+  console.log('handleDrop')
+}
+
+const handleMouseDown = () => {
+  console.log('handleMouseDown')
+}
+
+const deselectCurComponent = () => {
+  console.log('deselectCurComponent')
+}
+const handleDragOver = () => {
+  console.log('handleDragOver')
+}
 </script>
 <style lang="scss" scoped>
 .dragClass {

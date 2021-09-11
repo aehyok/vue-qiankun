@@ -11,11 +11,14 @@
       <div class="left-component">
         <div style="font-weight: 600; margin: 15px">表单组件</div>
         <el-row>
-          <template v-for="item in componentList">
+          <template v-for="(item, index) in componentList">
             <el-col
               :span="12"
-              @click="componentClick(item)"
+             
+              @dragstart="dragStartClick"
+              :data-index="index"
               class="item-component"
+              draggable="true"
             >
               <i class="el-icon-apple"></i>
               {{ item.title }}
@@ -23,12 +26,15 @@
           </template>
         </el-row>
       </div>
-      <div class="center">
+      <div class="center"     
+          id="content"
+          @dragover="dragOverClick"
+          @drop="dropClick"
+            >
         <el-form :model="state.formConfig.formData" label-width="120px">
-          <form-view
+          <drag-view
             :columnList="state.formConfig.formListItem"
             :formData="state.formConfig.formData"
-            @componentExampleClick="componentExampleClick"
           />
         </el-form>
       </div>
@@ -84,8 +90,8 @@
   </div>
 </template>
 <script setup>
-import { ref, reactive } from 'vue';
-import FormView from "../../../common/components/form/drag-index.vue";
+import { ref, reactive, onMounted } from 'vue';
+import DragView from "../../../common/components/form/drag-index.vue";
 import shortid from 'shortid';
 const componentList = ref([])
 const activeName = ref('first')
@@ -183,8 +189,74 @@ componentList.value = [
   },
 ]
 
-const componentExampleClick = (item) => {
-  console.log('ssssssssss')
+onMounted(() => {
+  let content = document.getElementById("content")
+  
+  content.ondragover = function (e) {
+    console.log('dragover')
+    e.preventDefault()
+    e.dataTransfer.dropEffect = 'copy'
+  }
+})
+
+
+// 组件列表拖拽的事件
+const dragStartClick = (e) => {
+  console.log(e, 'dragStartClick')
+  e.dataTransfer.setData('index', e.target.dataset.index)
+}
+
+const dragOverClick = (e) => {
+  console.log('dragOverClick')
+}
+
+// 调用drop事件需要dropOver的支持
+const dropClick = (e) => {
+  console.log('drop')
+  e.preventDefault()
+  e.stopPropagation()
+
+  const index = e.dataTransfer.getData('index')
+  console.log(index,componentList.value[index],'dropClick')
+  let item = componentList.value[index]
+  console.log("当前组件为: ", item);
+  let column = {
+    name: shortid.generate(),
+    type: item.name,
+    title: item.title
+  }
+  if (["select", "radio", "checkbox"].includes(item.type)) {
+    column.dictionary = [
+      {
+        code: 1,
+        name: "图片"
+      },
+      {
+        code: 2,
+        name: "视频"
+      }
+    ]
+  }
+  state.formConfig.formListItem.push(column)
+
+
+  // const rectInfo = this.editor.getBoundingClientRect()
+  // if (index) {
+  //     const component = deepCopy(componentList[index])
+  //     component.style.top = e.clientY - rectInfo.y
+  //     component.style.left = e.clientX - rectInfo.x
+  //     component.id = generateID()
+  //     this.$store.commit('addComponent', { component })
+  //     this.$store.commit('recordSnapshot')
+  // }
+}
+
+const dragEndClick = (item) => {
+  console.log(item,'end')
+}
+
+const dragClick = (item) => {
+  console.log(item, 'drag')
 }
 
 const componentClick = (item) => {
