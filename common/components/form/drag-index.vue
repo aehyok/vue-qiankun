@@ -11,6 +11,7 @@
         <div
           class="drag-default"
           @click="mouseOverClick(index)"
+          @mouseup="mouseEnterClick(element)"
         >
           <component-view
             :columnSpan="columnSpan"
@@ -22,8 +23,9 @@
           <div
             :class="[selectIndex === index ? 'drag-operation' : 'drag-hidden']"
           >
-          <el-button type="primary"><i class="el-icon-close" @click="deleteComponentClick(index)"></i></el-button>
-            
+          <el-button type="primary"><i class="el-icon-top" @click="TopComponentClick(true,index)"></i></el-button>
+          <el-button type="primary"><i class="el-icon-bottom" @click="TopComponentClick(false,index)"></i></el-button>
+          <el-button type="primary"><i class="el-icon-close" @click="deleteComponentClick(index)"></i></el-button>  
           </div>
         </div>
       </template>
@@ -34,6 +36,7 @@
 import ComponentView from './input/component-view.vue'
 import { ref } from 'vue'
 import draggable from 'vuedraggable'
+const emit = defineEmits(["update:data"])
 const props = defineProps({
   columnList: {
     type: Array,
@@ -84,6 +87,26 @@ const deleteComponentButtonClick = (index) => {
   console.log("deleteComponentButtonClick", index)
 }
 
+const swapItems = function(arr, index1, index2){
+　　arr[index1] = arr.splice(index2,1,arr[index1])[0]
+　　return arr
+}
+
+const upData = (arr, index) => {
+　　if (arr.length > 1 && index !== 0) {
+　　　　newArr = swapItems(arr, index, index - 1)
+　　}
+}
+
+const TopComponentClick = (type, index) => {
+  let array = props.columnList
+  // let type = 1 
+  array.splice(type ? index : index - 1, 1, ...array.splice(type ? index + 1 : index, 1, array[type ? index : index - 1]))
+  console.log(array,'11111111111111111111111111')
+  emit("update:columnList", array)
+  
+}
+
 const handleDrop = () => {
   console.log('handleDrop')
 }
@@ -97,6 +120,10 @@ const deselectCurComponent = () => {
 }
 const handleDragOver = () => {
   console.log('handleDragOver')
+}
+
+const mouseEnterClick = (element) => {
+  console.log('mouseUpClick', element)
 }
 </script>
 <style lang="scss" scoped>
@@ -131,6 +158,7 @@ const handleDragOver = () => {
   right: 10px;
   bottom: 3px;
   width: 100px;
+  z-index: 100;
   display: flex;
   justify-content: flex-end;
 }

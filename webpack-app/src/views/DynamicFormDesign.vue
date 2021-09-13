@@ -14,7 +14,6 @@
           <template v-for="(item, index) in componentList">
             <el-col
               :span="12"
-             
               @dragstart="dragStartClick"
               :data-index="index"
               class="item-component"
@@ -33,7 +32,7 @@
             >
         <el-form :model="state.formConfig.formData" label-width="120px">
           <drag-view
-            :columnList="state.formConfig.formListItem"
+            v-model:columnList="state.formConfig.formListItem"
             :formData="state.formConfig.formData"
           />
         </el-form>
@@ -80,7 +79,7 @@
                 <el-col :span="16" class="component-config-left">
                   <el-input placeholder="请输入内容"></el-input>
                 </el-col>
-              </el-row>                 
+              </el-row>     
           </el-tab-pane>
           <el-tab-pane label="组件样式" name="second">组件样式</el-tab-pane>
           <el-tab-pane label="表单配置" name="third">表单配置</el-tab-pane>
@@ -184,8 +183,18 @@ componentList.value = [
   },
   {
     id: 10,
-    name: "text",
-    title: "文本框"
+    name: "editor",
+    title: "富文本"
+  },
+  {
+    id: 11,
+    name: "image",
+    title: "图片"
+  },
+  {
+    id: 12,
+    name: "video",
+    title: "视频"
   },
 ]
 
