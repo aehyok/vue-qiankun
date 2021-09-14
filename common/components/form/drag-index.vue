@@ -74,33 +74,10 @@ const mouseOverClick = (index,e) => {
   console.log(currentSelectColumn, 'mouseOverClick',e)
 }
 
-const mouseLeaveClick = (index) => {
-  selectIndex.value = -1
-  console.log(index, '2222222222')
-}
-
 const deleteComponentClick = (index) => {
   let array = props.columnList
   array.splice(index,1)
   emit("update:columnList", array)
-}
-
-const deleteComponentButtonClick = (index) => {
-  let array = props.columnList
-  array.splice(index, 1)
-  emit("update:columnList", array)
-  console.log("deleteComponentButtonClick", index)
-}
-
-const swapItems = function(arr, index1, index2){
-　　arr[index1] = arr.splice(index2,1,arr[index1])[0]
-　　return arr
-}
-
-const upData = (arr, index) => {
-　　if (arr.length > 1 && index !== 0) {
-　　　　newArr = swapItems(arr, index, index - 1)
-　　}
 }
 
 // 组件的向上和向下移动
@@ -133,21 +110,6 @@ const moveComponentClick = (type, index, e) => {
   }
 }
 
-const handleDrop = () => {
-  console.log('handleDrop')
-}
-
-const handleMouseDown = () => {
-  console.log('handleMouseDown')
-}
-
-const deselectCurComponent = () => {
-  console.log('deselectCurComponent')
-}
-const handleDragOver = () => {
-  console.log('handleDragOver')
-}
-
 </script>
 <style lang="scss" scoped>
 .dragClass {
@@ -160,8 +122,7 @@ const handleDragOver = () => {
 .drag-default {
   position: relative;
   width: 100%;
-  height: 65px;
-  z-index: 10;
+  height: 100%;
 }
 .drag-select {
   position: absolute;
@@ -182,7 +143,6 @@ const handleDragOver = () => {
   right: 10px;
   bottom: 3px;
   width: 100px;
-  z-index: 100;
   display: flex;
   justify-content: flex-end;
 }
