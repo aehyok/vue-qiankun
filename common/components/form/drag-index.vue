@@ -10,8 +10,7 @@
       <template #item="{ element, index }">
         <div
           class="drag-default"
-          @click="mouseOverClick(index)"
-          @mouseup="mouseEnterClick(element)"
+          @click="mouseOverClick(index,$event)"
         >
           <component-view
             :columnSpan="columnSpan"
@@ -23,9 +22,9 @@
           <div
             :class="[selectIndex === index ? 'drag-operation' : 'drag-hidden']"
           >
-          <el-button type="primary"><i class="el-icon-top" @click="TopComponentClick(true,index)"></i></el-button>
-          <el-button type="primary"><i class="el-icon-bottom" @click="TopComponentClick(false,index)"></i></el-button>
-          <el-button type="primary"><i class="el-icon-close" @click="deleteComponentClick(index)"></i></el-button>  
+          <el-button type="primary" @click="moveComponentClick(0,index,$event)"><i class="el-icon-top" ></i></el-button>
+          <el-button type="primary" @click="moveComponentClick(1,index,$event)"><i class="el-icon-bottom"></i></el-button>
+          <el-button type="primary" @click="deleteComponentClick(index)"><i class="el-icon-close" ></i></el-button>  
           </div>
         </div>
       </template>
@@ -68,10 +67,11 @@ const dragStart = (event) => {
 const dragEnd = (event) => {
   console.log(event, 'dragEnd')
 }
-const mouseOverClick = (index) => {
+
+const mouseOverClick = (index,e) => {
   selectIndex.value = index
   let currentSelectColumn = props.columnList[index]
-  console.log(currentSelectColumn, '1111111111111')
+  console.log(currentSelectColumn, 'mouseOverClick',e)
 }
 
 const mouseLeaveClick = (index) => {
@@ -80,10 +80,15 @@ const mouseLeaveClick = (index) => {
 }
 
 const deleteComponentClick = (index) => {
-  console.log('deleteComponentClick', index)
+  let array = props.columnList
+  array.splice(index,1)
+  emit("update:columnList", array)
 }
 
 const deleteComponentButtonClick = (index) => {
+  let array = props.columnList
+  array.splice(index, 1)
+  emit("update:columnList", array)
   console.log("deleteComponentButtonClick", index)
 }
 
@@ -98,11 +103,13 @@ const upData = (arr, index) => {
 　　}
 }
 
-const TopComponentClick = (type, index) => {
+// 组件的向上和向下移动
+const moveComponentClick = (type, index, e) => {
+  e.stopPropagation();
+  
   let array = props.columnList
-  // let type = 1 
   array.splice(type ? index : index - 1, 1, ...array.splice(type ? index + 1 : index, 1, array[type ? index : index - 1]))
-  console.log(array,'11111111111111111111111111')
+  console.log(array,'moveComponentClickmoveComponentClickmoveComponentClickmoveComponentClick')
   emit("update:columnList", array)
   
 }
@@ -122,9 +129,6 @@ const handleDragOver = () => {
   console.log('handleDragOver')
 }
 
-const mouseEnterClick = (element) => {
-  console.log('mouseUpClick', element)
-}
 </script>
 <style lang="scss" scoped>
 .dragClass {
@@ -138,6 +142,7 @@ const mouseEnterClick = (element) => {
   position: relative;
   width: 100%;
   height: 65px;
+  z-index: 10;
 }
 .drag-select {
   position: absolute;
