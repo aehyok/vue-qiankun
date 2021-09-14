@@ -22,9 +22,9 @@
           <div
             :class="[selectIndex === index ? 'drag-operation' : 'drag-hidden']"
           >
-          <el-button type="primary" @click="moveComponentClick(0,index,$event)"><i class="el-icon-top" ></i></el-button>
-          <el-button type="primary" @click="moveComponentClick(1,index,$event)"><i class="el-icon-bottom"></i></el-button>
-          <el-button type="primary" @click="deleteComponentClick(index)"><i class="el-icon-close" ></i></el-button>  
+          <el-button type="primary" size="small" @click="moveComponentClick(0,index,$event)"><i class="el-icon-top" ></i></el-button>
+          <el-button type="primary"  size="small" @click="moveComponentClick(1,index,$event)"><i class="el-icon-bottom"></i></el-button>
+          <el-button type="primary" size="small" @click="deleteComponentClick(index)"><i class="el-icon-close" ></i></el-button>  
           </div>
         </div>
       </template>
@@ -106,12 +106,31 @@ const upData = (arr, index) => {
 // 组件的向上和向下移动
 const moveComponentClick = (type, index, e) => {
   e.stopPropagation();
-  
   let array = props.columnList
-  array.splice(type ? index : index - 1, 1, ...array.splice(type ? index + 1 : index, 1, array[type ? index : index - 1]))
-  console.log(array,'moveComponentClickmoveComponentClickmoveComponentClickmoveComponentClick')
-  emit("update:columnList", array)
+  console.log(type === 0,selectIndex, "selectIndex up ")
   
+  if(type === 0) {
+    if(selectIndex.value > 0)  {
+      array.splice(type ? index : index - 1, 1, ...array.splice(type ? index + 1 : index, 1, array[type ? index : index - 1]))
+      emit("update:columnList", array)
+      console.log(selectIndex,"shang")
+      selectIndex.value = selectIndex.value -1 
+      console.log(selectIndex,"xia")
+    } else {
+      selectIndex.value = 0
+    }
+  }
+
+  if(type === 1) {
+    if(selectIndex.value < array.length-1) {
+      array.splice(type ? index : index - 1, 1, ...array.splice(type ? index + 1 : index, 1, array[type ? index : index - 1]))
+      emit("update:columnList", array)
+      selectIndex.value = selectIndex.value + 1 
+    } else {
+      selectIndex.value = array.length -1
+    }
+    console.log(type,selectIndex, "selectIndex down")
+  }
 }
 
 const handleDrop = () => {
