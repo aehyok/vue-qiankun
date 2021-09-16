@@ -10,6 +10,7 @@
           <FormView
             :columnList="state.formConfig.formListItem"
             :formData="state.formConfig.formData"
+            :columnSpan="state.formConfig.cols"
           />
         </el-form>
       </el-col>

@@ -35,7 +35,7 @@
 import ComponentView from './input/component-view.vue'
 import { ref } from 'vue'
 import draggable from 'vuedraggable'
-const emit = defineEmits(["update:data"])
+const emit = defineEmits(["update:data", "setCurrentColumn"])
 const props = defineProps({
   columnList: {
     type: Array,
@@ -72,6 +72,7 @@ const mouseOverClick = (index,e) => {
   selectIndex.value = index
   let currentSelectColumn = props.columnList[index]
   console.log(currentSelectColumn, 'mouseOverClick',e)
+  emit('setCurrentColumn', currentSelectColumn)
 }
 
 const deleteComponentClick = (index) => {

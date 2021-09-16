@@ -34,52 +34,14 @@
           <drag-view
             v-model:columnList="state.formConfig.formListItem"
             :formData="state.formConfig.formData"
+            @setCurrentColumn="setCurrentColumn"
           />
         </el-form>
       </div>
       <div class="right-component">
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="组件配置" name="first">
-              <el-row class="component-config-row">
-                <el-col :span="8" class="component-config-right">
-                  组件id:
-                </el-col>
-                <el-col :span="16" class="component-config-left">
-                  <el-input placeholder="请输入内容"></el-input>
-                </el-col>
-              </el-row>
-              <el-row class="component-config-row">
-                <el-col :span="8" class="component-config-right">
-                  组件name:
-                </el-col>
-                <el-col :span="16" class="component-config-left">
-                  <el-input placeholder="请输入内容"></el-input>
-                </el-col>
-              </el-row>
-              <el-row class="component-config-row">
-                <el-col :span="8" class="component-config-right">
-                  组件label:
-                </el-col>
-                <el-col :span="16" class="component-config-left">
-                  <el-input placeholder="请输入内容"></el-input>
-                </el-col>
-              </el-row>   
-              <el-row class="component-config-row">
-                <el-col :span="8" class="component-config-right">
-                  是否必填:
-                </el-col>
-                <el-col :span="16" class="component-config-left">
-                  <el-switch></el-switch>
-                </el-col>
-              </el-row>
-                <el-row class="component-config-row">
-                <el-col :span="8" class="component-config-right">
-                  maxlength:
-                </el-col>
-                <el-col :span="16" class="component-config-left">
-                  <el-input placeholder="请输入内容"></el-input>
-                </el-col>
-              </el-row>     
+            <config-view :column="currentColumn" ></config-view>
           </el-tab-pane>
           <el-tab-pane label="组件样式" name="second">组件样式</el-tab-pane>
           <el-tab-pane label="表单配置" name="third">表单配置</el-tab-pane>
@@ -91,9 +53,11 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue';
 import DragView from "../../../common/components/form/drag-index.vue";
+import ConfigView from "../../../common/components/form/config-index.vue";
 import shortid from 'shortid';
 const componentList = ref([])
 const activeName = ref('first')
+const currentColumn = ref({})
 const handleClick = (tab, event) => {
   console.log(tab, event);
 }
@@ -219,6 +183,10 @@ const dragOverClick = (e) => {
   console.log('dragOverClick')
 }
 
+const setCurrentColumn = (column) => {
+  currentColumn.value = column
+  console.log(column, 'setCurrentColumn')
+}
 // 调用drop事件需要dropOver的支持
 const dropClick = (e) => {
   console.log('drop')
@@ -247,17 +215,6 @@ const dropClick = (e) => {
     ]
   }
   state.formConfig.formListItem.push(column)
-
-
-  // const rectInfo = this.editor.getBoundingClientRect()
-  // if (index) {
-  //     const component = deepCopy(componentList[index])
-  //     component.style.top = e.clientY - rectInfo.y
-  //     component.style.left = e.clientX - rectInfo.x
-  //     component.id = generateID()
-  //     this.$store.commit('addComponent', { component })
-  //     this.$store.commit('recordSnapshot')
-  // }
 }
 
 const dragEndClick = (item) => {
