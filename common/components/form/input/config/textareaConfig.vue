@@ -40,3 +40,6 @@
         </el-col>
     </el-row>
 </template>
+<script setup>
+    console.log('textarea')
+</script>
