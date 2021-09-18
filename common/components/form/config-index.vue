@@ -1,5 +1,4 @@
 <template>
-{{column.type}}
     <component
       :is="column.type + 'Config'"
       :column="column"

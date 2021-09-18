@@ -43,3 +43,22 @@
 <script setup>
     console.log('text')
 </script>
+<style lang="scss" scoped>
+.component-config-row {
+  display: flex;
+  padding: 5px;
+}
+.component-config-right{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 15px;
+}
+
+.component-config-left{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 15px;
+}
+</style>
