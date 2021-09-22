@@ -123,7 +123,7 @@ const moveComponentClick = (type, index, e) => {
 .drag-default {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 85px;
 }
 .drag-select {
   position: absolute;

@@ -109,7 +109,10 @@ const state = reactive({
       {
         name: "type",
         type: "radio",
-        dictionary: "type",
+        dictionary: [
+          { code: 1, name: "横版栏目" },
+          { code: 2, name: "竖版栏目" }
+        ],
         title: "栏目类型",
         controls: [
           {
@@ -119,8 +122,8 @@ const state = reactive({
                 name: "show",
                 type: "radio",
                 dictionary: [
-                  { id: 1, text: "China" },
-                  { id: 2, text: "English" }
+                  { code: 1, name: "China" },
+                  { code: 2, name: "English" }
                 ],
                 title: "测试类型",
                 required: true
@@ -147,7 +150,10 @@ const state = reactive({
       {
         name: "requireType",
         type: "radio",
-        dictionary: "isp",
+        dictionary: [
+           { code: 1, name: "类型一" },
+           { code: 2, name: "类型二" }
+        ],
         title: "图文类型",
         required: true
       },
@@ -155,7 +161,10 @@ const state = reactive({
         name: "range",
         type: "checkbox",
         title: "发布范围",
-        dictionary: "isp",
+        dictionary: [
+           { code: 1, name: "范围一" },
+           { code: 2, name: "范围二" }
+        ],
         required: true
       },
       {
@@ -167,7 +176,10 @@ const state = reactive({
         name: "creType",
         type: "select",
         // multiple: true,
-        dictionary: "politicalstatus",
+        dictionary: [
+           { code: 1, name: "身份证" },
+           { code: 2, name: "居住证" }
+        ],
         title: "证件类型"
       },
       {

@@ -94,70 +94,74 @@ const state = reactive({
 componentList.value = [
   {
     id: 0,
-    name: "static",
+    type: "static",
     title: "静态文本",
+    value: "静态文本",
   },
   {
     id: 1,
-    name: "text",
-    title: "文本框"
+    type: "text",
+    title: "文本框",
+    value: "文本框",
   },
   {
     id: 2,
-    name: "textarea",
-    title: "多行文本"
+    type: "textarea",
+    title: "多行文本",
+    value: "多行文本"
   },
   {
     id: 3,
-    name: "number",
-    title: "数字框"
+    type: "number",
+    title: "数字框",
+    value : 0
   },
   {
     id: 4,
-    name: "select",
+    type: "select",
     title: "下拉框",
-    dictionary: true
+    dictionary: []
   },
   {
     id: 5,
-    name: "radio",
+    type: "radio",
     title: "单选框",
-    dictionary: true
+    dictionary: []
   },
   {
     id: 6,
-    name: "checkbox",
+    type: "checkbox",
     title: "多选框",
-    dictionary: true
+    dictionary: []
   },
   {
     id: 7,
-    name: "date",
+    type: "date",
     title: "日期选择"
   },
   {
     id: 8,
-    name: "daterange",
+    type: "daterange",
     title: "日期范围"
   },
   {
     id: 9,
-    name: "switch",
+    type: "switch",
     title: "开关"
   },
   {
     id: 10,
-    name: "editor",
+    type: "editor",
     title: "富文本"
   },
   {
     id: 11,
-    name: "image",
+    type: "image",
     title: "图片"
   },
   {
     id: 12,
-    name: "video",
+    type: "video",
     title: "视频"
   },
 ]
@@ -198,8 +202,9 @@ const dropClick = (e) => {
   let item = componentList.value[index]
   console.log("当前组件为: ", item);
   let column = {
+    id: shortid.generate(),
     name: shortid.generate(),
-    type: item.name,
+    type: item.type,
     title: item.title
   }
   if (["select", "radio", "checkbox"].includes(item.type)) {
@@ -214,6 +219,7 @@ const dropClick = (e) => {
       }
     ]
   }
+  console.log(column, '--column--')
   state.formConfig.formListItem.push(column)
 }
 

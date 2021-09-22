@@ -2,8 +2,8 @@
 <template>
   <el-form-item :label="column.title + '：'" :prop="column.name" :rules="rules">
     <el-radio-group v-model="value" @change="radioChange">
-      <el-radio v-for="item in state.list" :label="item.id" :key="item.id">
-        {{ item.text }}
+      <el-radio v-for="item in state.list" :label="item.code" :key="item.code">
+        {{ item.name }}
       </el-radio>
     </el-radio-group>
   </el-form-item>

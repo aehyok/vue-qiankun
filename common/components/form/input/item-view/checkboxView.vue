@@ -2,8 +2,8 @@
 <template>
   <el-form-item :label="column.title + '：'" :prop="column.columnName">
     <el-checkbox-group v-model="value">
-      <el-checkbox v-for="item in state.list" :label="item.id" :key="item.id">{{
-        item.text
+      <el-checkbox v-for="item in state.list" :label="item.code" :key="item.code">{{
+        item.name
       }}</el-checkbox>
     </el-checkbox-group>
   </el-form-item>
