@@ -4,7 +4,7 @@
             组件id:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入内容"></el-input>
+            <el-input placeholder="请输入内容" v-model="column.id"></el-input>
         </el-col>
     </el-row>
     <el-row class="component-config-row">
@@ -12,7 +12,7 @@
             组件name:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入内容"></el-input>
+            <el-input placeholder="请输入内容" v-model="column.name"></el-input>
         </el-col>
     </el-row>
     <el-row class="component-config-row">
@@ -20,9 +20,9 @@
             组件label:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入内容"></el-input>
+            <el-input placeholder="请输入内容" v-model="column.placeholder"></el-input>
         </el-col>
-    </el-row>   
+    </el-row>
     <el-row class="component-config-row">
         <el-col :span="8" class="component-config-right">
             是否必填:
@@ -41,13 +41,21 @@
     </el-row>
 </template>
 <script setup>
-    console.log('text')
+    const props = defineProps({
+        column: {
+            type: Object,
+            default: () => { },
+        }
+    })
+    console.log(props.column, 'text-props-column')
 </script>
 <style lang="scss" scoped>
+
 .component-config-row {
   display: flex;
   padding: 5px;
 }
+
 .component-config-right{
   display: flex;
   justify-content: flex-end;
