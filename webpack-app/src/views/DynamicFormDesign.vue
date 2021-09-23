@@ -72,21 +72,7 @@ const state = reactive({
 
     ],
     formData: {
-      staticData: '测试数据组合',
-      name: "主菜单栏目",
-      total: null,
-      count: null,
-      createDate: 1606730360386,
-      type: 1,
-      requireType: undefined,
-      creType: undefined,
-      range: [],
-      isExpired: false,
-      isValid: true,
-      type11: 1,
-      area: "2",
-      unit: "1",
-      requireType: 1,
+
     }
   }
 });
@@ -96,7 +82,6 @@ componentList.value = [
     id: 0,
     type: "static",
     title: "静态文本",
-    value: "静态文本",
   },
   {
     id: 1,
@@ -251,6 +236,10 @@ const componentClick = (item) => {
     ]
   }
   state.formConfig.formListItem.push(column)
+  state.formConfig.formData = {
+    ...state.formConfig.formData,
+    [column.name]: "默认值"
+  }
 }
 </script>
 <style scoped="scss">

@@ -123,20 +123,15 @@ const moveComponentClick = (type, index, e) => {
 .drag-default {
   position: relative;
   width: 100%;
-  height: 85px;
+  min-height: 90px;
 }
+
 .drag-select {
-  position: absolute;
+  // position: absolute;
   border: 1px dashed red;
   left: 0px;
   top: 0px;
   cursor: pointer;
-}
-
-.drag-component {
-  position: absolute;
-  right: 15px;
-  top: 15px;
 }
 
 .drag-operation {
@@ -147,6 +142,7 @@ const moveComponentClick = (type, index, e) => {
   display: flex;
   justify-content: flex-end;
 }
+
 .drag-hidden {
   display: none;
 }
