@@ -16,15 +16,6 @@ export function useMap() {
         return initMap(centerPoint)
     }
 
-    //TODO 用于数字农业和乡村治理
-    const initLeaflet = () => {
-        let centerPoint = window.config.VUE_APP_CENTER
-        let map = initMapBase(centerPoint)
-        initTileLayer(map, false)
-
-        return map
-    }
-
     const initMapBase = (centerPoint) => {
         initMarkerIcon()
         let map = L.map("lefletMap", {
