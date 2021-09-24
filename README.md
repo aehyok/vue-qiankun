@@ -2,9 +2,9 @@
 
 > 大家好，我是aehyok🎋，一个住在深圳城市的佛系码农🧚🏻‍♀️，如果你喜欢我的文章📚，可以通过点赞帮我聚集灵力⭐️。
 
-> 个人github仓库地址： [https:github.com/aehyok](https:github.com/aehyok)
+> 个人github仓库地址： [https://github.com/aehyok](https://github.com/aehyok)
 
-> 本文讲解微前端qiankun demo仓库地址 ：  [https:github.com/aehyok/vue-qiankun](https:github.com/aehyok/vue-qiankun) 目前基于dev分支进行开发和测试
+> 本文讲解微前端qiankun demo仓库地址 ：  [https://github.com/aehyok/vue-qiankun](https://github.com/aehyok/vue-qiankun) 目前基于dev分支进行开发和测试
 
 > 本demo已部署腾讯云 [http://139.186.205.7:8080/](http://139.186.205.7:8080/)（服务器配置较低，如有访问比较慢，请耐心等待）
 
