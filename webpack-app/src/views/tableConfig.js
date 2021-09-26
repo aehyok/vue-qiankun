@@ -63,7 +63,8 @@ const columns_test = [
       prop: "createTime",
       label: "创建时间",
       align: "center",
-      dateFormat: "yyyy-MM-dd HH:mm:ss"
+      dateFormat: "yyyy-MM-dd HH:mm:ss",
+      sortable: true
     },
     {
       prop: "state",
