@@ -12,7 +12,8 @@
   </div>
 </template>
 <script>
-import { SlTable } from "aehyok-form-vue3";
+// import { SlTable } from "aehyok-form-vue3";
+import SlTable from '../../../common/components/table/index.vue'
 import { defineComponent, reactive, toRefs } from "vue";
 import { list_test, columns_test } from "./tableConfig";
 export default defineComponent({
@@ -45,28 +46,26 @@ export default defineComponent({
         width: 200,
         fixed: "right",
         list: [
-          // {
-          //   id: "1",
-          //   label: "编辑",
-          //   type: "warning",
-          //   show: true,
-          //   plain: true,
-          //   disabled: false,
-          //   method: (index, row, ss) => {
-          //     handleEdit(index, row, ss);
-          //   }
-          // },
-          // {
-          //   id: "2",
-          //   label: "删除",
-          //   type: "danger",
-          //   show: true,
-          //   plain: false,
-          //   disabled: false,
-          //   method: (index, row) => {
-          //     handleDel(index, row);
-          //   }
-          // }
+          {
+            id: "1",
+            label: "编辑",
+            type: "text",
+            show: true,
+            disabled: false,
+            method: (index, row, ss) => {
+              handleEdit(index, row, ss);
+            }
+          },
+          {
+            id: "2",
+            label: "删除",
+            type: "text",
+            show: true,
+            disabled: false,
+            method: (index, row) => {
+              handleDel(index, row);
+            }
+          }
         ]
       } // 列操作按钮
     });
