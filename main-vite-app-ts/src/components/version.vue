@@ -20,14 +20,14 @@
   import { defineComponent, reactive, toRefs, onMounted } from "vue"
 
   export default defineComponent({
-    name: "Version",
+    name: 'Version',
     props: {
       versionDialogVisible: {
         type: Boolean,
         default: false
       }
     },
-    emits: ["cancel"],
+    emits: ['cancel'],
     setup(props, context) {
       const state = reactive({
         visible: props.versionDialogVisible,
@@ -36,11 +36,11 @@
       })
 
       onMounted(() => {
-        console.log("sssss")
+        console.log('sssss')
       })
 
       const close = () => {
-        context.emit("cancel")
+        context.emit('cancel')
       }
 
       return {

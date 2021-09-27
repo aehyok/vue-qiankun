@@ -59,29 +59,7 @@
       jumpChildSystem
     }
   }
-  function useEchartsSetting(proxy: any, router: any) {
-    const logoutClick = () => {
-      proxy
-        .$confirm('请问是否退出登录?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        })
-        .then(() => {
-          logout().then((res: any) => {
-            console.log('登出成功', res)
-            localStorage.clear()
-            router.push('/login')
-          })
-        })
-        .catch(() => {
-          return false
-        })
-    }
-    return {
-      logoutClick
-    }
-  }
+
   // install Swiper modules
   SwiperCore.use([Pagination, Navigation])
   export default defineComponent({
@@ -97,21 +75,6 @@
       const state = reactive({
         showHome: true,
         updateDialogVisible: false,
-        avator: 'images/home/icon-avator.png',
-        nickName: JSON.parse(localStorage.getItem('token') || '{}').nickName, // 账户名称
-        newList: [], // 顶部消息列表
-        swiperCenterImage: 'images/home/swiper-title.png',
-        closeImage: 'images/home/close.png',
-        swiperImageList: [
-          // 轮播图片列表
-          'images/home/banner-01.png'
-          // "images/home/banner-02.png",
-          // "images/home/banner-03.png"
-        ],
-        introduceList: [
-          // 轮播图片列表
-          'images/home/introduce-01.png'
-        ],
         headerSetting: {
           // 顶部导航
           logoUrl: 'images/home/icon_logo.png',
@@ -125,33 +88,14 @@
       // eslint-disable-next-line no-use-before-define
       const { modeuleList, jumpChildSystem } = useModuleSetting(router, store, proxy)
 
-      const {  logoutClick } = useEchartsSetting()
-      const updatePasswordClick = () => {
-        // console.log('updatePassword')
-        state.updateDialogVisible = true
-      }
       onMounted(() => {
         getTreeData()
       })
 
-      // // 查看详情
-      const goInfo = () => {
-        state.showHome = false
-        window.scroll(0, 0)
-      }
-      const close = () => {
-        state.updateDialogVisible = false
-      }
-
       return {
         ...toRefs(state),
-        logoutClick,
         modeuleList,
-        jumpChildSystem,
-        updatePasswordClick,
-        goInfo,
-        getTreeData,
-        close
+        jumpChildSystem
       }
     }
   })

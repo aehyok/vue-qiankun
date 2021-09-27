@@ -24,7 +24,7 @@ export default defineComponent({
       console.log("handleSelectionChange-val:", val);
     };
     // 编辑
-    const handleEdit = (index, row, idx) => {
+    const handleDetail = (index, row, idx) => {
       console.log("index:", index, idx);
       console.log("row:", row);
     };
@@ -48,12 +48,12 @@ export default defineComponent({
         list: [
           {
             id: "1",
-            label: "编辑",
+            label: "查看",
             type: "text",
             show: true,
             disabled: false,
             method: (index, row, ss) => {
-              handleEdit(index, row, ss);
+              handleDetail(index, row, ss);
             }
           },
           {
@@ -79,8 +79,6 @@ export default defineComponent({
     return {
       ...toRefs(state),
       handleSelectionChange,
-      handleEdit,
-      handleDel,
       search
     };
   }

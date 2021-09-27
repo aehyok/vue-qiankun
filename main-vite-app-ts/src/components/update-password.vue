@@ -34,21 +34,21 @@
   </el-dialog>
 </template>
 <script lang="ts">
-  import { defineComponent, reactive, toRefs, ref } from "vue"
-  import { useRouter } from "vue-router"
-  import md5 from "js-md5"
-  import { changedSelf, logout } from "../services"
-  import { successMessage } from "../utils/message"
+  import { defineComponent, reactive, toRefs, ref } from 'vue'
+  import { useRouter } from 'vue-router'
+  import md5 from 'js-md5'
+  import { changedSelf, logout } from '../services'
+  import { successMessage } from '../utils/message'
 
   export default defineComponent({
-    name: "UpdatePassword",
+    name: 'UpdatePassword',
     props: {
       updateDialogVisible: {
         type: Boolean,
         default: false
       }
     },
-    emits: ["cancel"],
+    emits: ['cancel'],
     setup(props, context) {
       const router = useRouter()
       const updateForm = ref(null)
@@ -57,9 +57,9 @@
         closeOnClickModal: false,
         loading: false,
         form: {
-          oldPassword: "",
-          newPassword: "",
-          checkPwd: ""
+          oldPassword: '',
+          newPassword: '',
+          checkPwd: ''
         },
         rules: []
       })
@@ -74,7 +74,7 @@
       // }
       const checkPsdVal = (_rules: any, value: any, callback: any) => {
         if (value.length < 6) {
-          callback(new Error("密码长度不够，请重新输入"))
+          callback(new Error('密码长度不够，请重新输入'))
         } else {
           callback()
         }
@@ -82,7 +82,7 @@
 
       const checkPassword = (_rules: any, value: any, callback: any) => {
         if (value !== state.form.newPassword) {
-          callback(new Error("两次密码输入不一致"))
+          callback(new Error('两次密码输入不一致'))
         } else {
           callback()
         }
@@ -91,48 +91,48 @@
         oldPassword: [
           {
             required: true,
-            message: "请输入原密码",
-            trigger: ["blur"]
+            message: '请输入原密码',
+            trigger: ['blur']
           }
         ],
         newPassword: [
           {
             required: true,
-            message: "请输入新密码",
-            trigger: ["blur"]
+            message: '请输入新密码',
+            trigger: ['blur']
           },
           {
             validator: checkPsdVal,
-            trigger: ["blur"]
+            trigger: ['blur']
           }
         ],
         checkPwd: [
           {
             required: true,
-            message: "请再次输入新密码",
-            trigger: ["blur"]
+            message: '请再次输入新密码',
+            trigger: ['blur']
           },
           {
             validator: checkPsdVal,
-            trigger: ["blur"]
+            trigger: ['blur']
           },
           {
             validator: checkPassword,
-            trigger: ["blur"]
+            trigger: ['blur']
           }
         ]
       }
 
       const close = () => {
-        context.emit("cancel")
+        context.emit('cancel')
         // updateForm.value.reset
       }
 
       const loginOutApi = () => {
         logout().then((res: any) => {
-          console.log("登出成功", res)
+          console.log('登出成功', res)
           localStorage.clear()
-          router.push("/login")
+          router.push('/login')
         })
       }
 
@@ -141,14 +141,14 @@
           password: md5(state.form.newPassword)
         }).then((res: any) => {
           if (res.code === 200) {
-            successMessage("修改成功,请重新登录")
+            successMessage('修改成功,请重新登录')
             close()
             loginOutApi()
           }
         })
       }
       const submitPassword = () => {
-        updateForm.value.validate(async (valid) => {
+        updateForm.value.validate(async (valid: any) => {
           if (valid) {
             changedSelfApi()
           }
@@ -166,23 +166,23 @@
   })
 </script>
 <style lang="scss" scoped>
-.form-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-}
+  .form-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+  }
 
-.verCodeImg {
-  margin-left: 10px;
-  display: flex;
-  align-items: center;
-  .svgbox {
-    position: relative;
-    top: 6px;
+  .verCodeImg {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    .svgbox {
+      position: relative;
+      top: 6px;
+    }
+    img {
+      height: 100%;
+    }
   }
-  img {
-    height: 100%;
-  }
-}
 </style>

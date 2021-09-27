@@ -1,8 +1,8 @@
-import { createStore } from "vuex"
-import createPersistedState from "vuex-persistedstate"
-import { getMenuList } from "./data.d"
-import { SystemMenu, SystemInfo } from "../../types/models"
-import { getSystemList } from "../services/index"
+import { createStore } from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+import { getMenuList } from './data.d'
+import { SystemMenu, SystemInfo } from '../../types/models'
+import { getSystemList } from '../services/index'
 
 interface AppState {
   menuList: SystemMenu[]
@@ -12,7 +12,7 @@ interface AppState {
 }
 
 const dataState = createPersistedState({
-  paths: ["menuList", "systemId", "currentSystem", "systemList"] // 持久化的数据
+  paths: ['menuList', 'systemId', 'currentSystem', 'systemList'] // 持久化的数据
 })
 
 export default createStore({
@@ -20,9 +20,9 @@ export default createStore({
     systemList: [],
     menuList: getMenuList(), // 所有菜单
     currentSystem: {
-      systemId: "",
-      path: "",
-      title: ""
+      systemId: '',
+      path: '',
+      title: ''
     }
   }),
   mutations: {
@@ -43,11 +43,11 @@ export default createStore({
         const res: any = await getSystemList()
 
         if (res?.code === 200) {
-          commit("setSystemList", res.data)
-          window.location.href = "/"
+          commit('setSystemList', res.data)
+          window.location.href = '/'
         }
       } catch (error) {
-        console.log(error, "fetchSystemList-error")
+        console.log(error, 'fetchSystemList-error')
       }
     }
   },
