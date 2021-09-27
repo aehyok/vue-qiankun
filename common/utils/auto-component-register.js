@@ -25,7 +25,8 @@ export const autoComponentRegister = (app) => {
     true,
     /View.vue$/
   );
-  const view = [itemView, composeView];
+  const detail = require.context('../components/detail/item', true, /.vue$/)
+  const view = [itemView, composeView, detail];
   view.forEach((item) => {
     register(item);
   });
