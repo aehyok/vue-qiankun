@@ -47,7 +47,7 @@ const list_test =
 const columns_test = [
     {
         type:'checkbox',
-      },
+    },
     {
       prop: "id",
       label: "编号",
