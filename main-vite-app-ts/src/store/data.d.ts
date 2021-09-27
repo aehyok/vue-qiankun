@@ -31,31 +31,41 @@ export function webpackList(): Menu[] {
   return [
     {
       id: 1,
-      title: '1、form表单配置器',
-      path: '/webpack-app/home'
+      title: '1、table列表form表单detail详情',
+      path: '/webpack-app/tableandformanddetail'
+    },
+    {
+      id: 2,
+      title: '2、table列表封装',
+      path: '/webpack-app/table'
     },
     {
       id: 3,
-      title: '2、table列表封装',
-      path: '/webpack-app/metable'
-    },
-    {
-      id: 6,
-      title: '3、动态表单设计器',
-      path: '/webpack-app/dynamicformdesign'
+      title: '3、form表单配置器',
+      path: '/webpack-app/form'
     },
     {
       id: 4,
+      title: '4、列表详情查看器',
+      path: '/webpack-app/detail'
+    },
+    {
+      id: 5,
+      title: '5、动态表单设计器',
+      path: '/webpack-app/dynamicformdesign'
+    },
+    {
+      id: 6,
       title: 'about',
       path: '/webpack-app/about'
     },
     {
-      id: 5,
+      id: 7,
       title: 'dragger',
       path: '/webpack-app/dragger'
     },
     {
-      id: 2,
+      id: 8,
       title: 'table',
       path: '/webpack-app/table'
     }
