@@ -1,40 +1,38 @@
 <template>
-  <div>
     <el-row :gutter="20">
-      <el-col :span="12">
+        <el-col :span="12">
         <el-form
-          :model="state.formConfig.formData"
-          label-width="120px"
-          ref="formDom"
+            :model="state.formConfig.formData"
+            label-width="120px"
+            ref="formDom"
         >
-          <FormView
+            <FormView
             :columnList="state.formConfig.formListItem"
             :formData="state.formConfig.formData"
             :columnSpan="state.formConfig.cols"
-          />
+            />
         </el-form>
-      </el-col>
-      <el-col :span="12">
+        </el-col>
+        <el-col :span="12">
         <vue-json-editor
-          v-model:value="state.formConfig"
-          :options="state.options"
-          :plus="false"
-          height="800px"
+            v-model:value="state.formConfig"
+            :options="state.options"
+            :plus="false"
+            height="800px"
         />
-      </el-col>
+        </el-col>
     </el-row>
     <el-row>
-      <el-button
+        <el-button
         size="large"
         type="primary"
         style="margin-left: 120px; height: 50px"
         @click="submitForm"
         native-type="submit"
-      >
+        >
         提交
-      </el-button>
+        </el-button>
     </el-row>
-  </div>
 </template>
 <script setup>
 import { defineComponent, reactive, toRefs, ref } from "vue";

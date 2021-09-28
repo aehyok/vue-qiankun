@@ -2,7 +2,7 @@
   <div
     id="map"
     ref="refMap"
-    style="width: 1000px; height: 800px"
+    class="leaflet-map-class"
     v-contextmenu:contextmenu
   >
     <div class="operation">
@@ -208,19 +208,26 @@ export default defineComponent({
   },
 });
 </script>
-  <style lang="scss" scoped>
-.operation {
-  position: absolute;
-  z-index: 10000;
-  top: 20px;
-  left: 10px;
-  padding: 2px;
-  // width: 120px;
-  height: 30px;
-}
+<style lang="scss" scoped>
+  .leaflet-map-class {
+    width: calc(100vw - 270px); 
+    height: calc(100vh - 90px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .operation {
+    position: absolute;
+    z-index: 10000;
+    top: 20px;
+    left: 10px;
+    padding: 2px;
+    // width: 120px;
+    height: 30px;
+  }
 
-.image-size {
-  width: 18px;
-  height: 18px;
-}
+  .image-size {
+    width: 18px;
+    height: 18px;
+  }
 </style>
