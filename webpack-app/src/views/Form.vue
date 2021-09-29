@@ -9,7 +9,7 @@
             <FormView
             :columnList="state.formConfig.formListItem"
             :formData="state.formConfig.formData"
-            :columnSpan="state.formConfig.cols"
+            v-model:columnSpan="state.formConfig.cols"
             />
         </el-form>
         </el-col>
@@ -19,23 +19,24 @@
             :options="state.options"
             :plus="false"
             height="800px"
+            @changeModel="changeModel"
         />
         </el-col>
     </el-row>
     <el-row>
         <el-button
-        size="large"
-        type="primary"
-        style="margin-left: 120px; height: 50px"
-        @click="submitForm"
-        native-type="submit"
+            size="large"
+            type="primary"
+            style="margin-left: 120px; height: 50px"
+            @click="submitForm"
+            native-type="submit"
         >
         提交
         </el-button>
     </el-row>
 </template>
 <script setup>
-import { defineComponent, reactive, toRefs, ref } from "vue";
+import { reactive, watch, ref } from "vue";
 import FormView from "../../../common/components/form/index.vue";
 import VueJsonEditor from '../../../common/components/json/vue-json-editor.vue'
 let formDom = ref(null);
@@ -211,5 +212,18 @@ const submitForm = () => {
     return false;
   });
 };
+
+const changeModel = (value) => {
+    console.log(value,'changeModel')
+    state.formConfig = value
+}
+watch(state,
+    ()=> (newValue, oldValue) => {
+    console.log(state.formConfig.formListItem,'ssssssssssssssss')
+},{
+    immediate: true,
+    deep: true
+})
+
 </script>
 <style scoped></style>

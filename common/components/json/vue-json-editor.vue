@@ -5,13 +5,12 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import JSONEditor from "jsoneditor/dist/jsoneditor.min.js"
 import 'jsoneditor/dist/jsoneditor.min.css'
-import { defineComponent, onMounted, onUnmounted, watch, reactive, nextTick, computed, ref, toRefs } from 'vue';
-export default defineComponent({
-  name: "VueJsonEditor",
-  props: {
+import { onMounted, onUnmounted, watch, reactive, nextTick, computed, ref } from 'vue';
+
+  const props = defineProps({
     options: {
       type: Object,
       default: () => {
@@ -26,97 +25,94 @@ export default defineComponent({
       type: Boolean,
       default: true
     }
-  },
-  setup(props, context) {
-    console.log(props.height, 'height');
-    const jsoneditor = ref(null);
-    const state = reactive({
-      editor: null,
-      style: {},
-      max: false,
-      internalChange: false
-    })
-    onMounted(() => {
-      console.log(jsoneditor.value, 'jsoneditor.value');
-      initView()
-    })
-    onUnmounted(() => {
-      destroyView()
-    })
-    const onChange = () => {
-      let error = null
-      let json = {}
-      try {
-        json = state.editor.get()
-      } catch (err) {
-        error = err
-      }
-      if (error) {
-        context.emit("error", error)
-      } else {
-        if (state.editor) {
-          state.internalChange = true
-          context.emit("update:value", json)
-          nextTick(() => {
-            state.internalChange = false
-          })
-        }
-      }
-      props.options.onChange && props.options.onChange(...arguments)
-    }
-    const initView = () => {
-      if (!state.editor) {
-        const container = jsoneditor.value
-        let cacheChange = props.options.onChange
-        delete props.options.onChange
-        const options = Object.assign(props.options, {
-          onChange: onChange
-        })
-        console.log(container, 'sssss');
-        state.editor = new JSONEditor(container, props.options)
-        props.options.onChange = cacheChange
-      }
-      console.log(props.value, 'value');
-      state.editor.set(props.value || {})
-    }
-    const destroyView = () => {
-      if (state.editor) {
-        state.editor.destroy()
-        state.editor = null
-      }
-    }
-    watch(() => props.value, (newValue, oldValue) => {
-      if (state.editor && newValue && !state.internalChange) {
-        state.editor.set(newValue)
-      }
-    },
-      {
-        immediate: true,
-        deep: true
-      })
-    watch(() => state.max, (newValue, oldValue) => {
-      nextTick(() => {
-        initView()
-      })
-    },
-      {
-        immediate: true
-      })
+  })
 
-    const getHeight = computed(() => {
-      if (props.height && !state.max) {
-        return {
-          height: props.height
-        }
+  const emit = defineEmits(['update:value','error','changeModel'])
+
+  const jsoneditor = ref(null);
+  const max = ref (false)
+  const state = reactive({
+    editor: null,
+    style: {},
+    internalChange: false
+  })
+  onMounted(() => {
+    console.log(jsoneditor.value, 'jsoneditor.value');
+    initView()
+  })
+  onUnmounted(() => {
+    destroyView()
+  })
+
+  const onChange = () => {
+    let error = null
+    let json = {}
+    try {
+      json = state.editor.get()
+    } catch (err) {
+      error = err
+    }
+    if (error) {
+      emit("error", error)
+    } else {
+      if (state.editor) {
+        state.internalChange = true
+        console.log(json, 'json---------value---')
+        emit('update:value', json)
+        emit('changeModel',json)
+        nextTick(() => {
+          state.internalChange = false
+        })
       }
-    })
-    return {
-      jsoneditor,
-      ...toRefs(state),
-      getHeight,
+    }
+    props.options.onChange && props.options.onChange(...arguments)
+  }
+  const initView = () => {
+    if (!state.editor) {
+      const container = jsoneditor.value
+      let cacheChange = props.options.onChange
+      delete props.options.onChange
+      const options = Object.assign(props.options, {
+        onChange: onChange
+      })
+      console.log(container, 'sssss');
+      state.editor = new JSONEditor(container, props.options)
+      props.options.onChange = cacheChange
+    }
+    console.log(props.value, 'value');
+    state.editor.set(props.value || {})
+  }
+  const destroyView = () => {
+    if (state.editor) {
+      state.editor.destroy()
+      state.editor = null
     }
   }
-})
+  watch(() => props.value, (newValue, oldValue) => {
+    if (state.editor && newValue && !state.internalChange) {
+      state.editor.set(newValue)
+    }
+  },
+    {
+      immediate: true,
+      deep: true
+    })
+  watch(() => state.max, (newValue, oldValue) => {
+    nextTick(() => {
+      initView()
+    })
+  },
+    {
+      immediate: true
+    })
+
+  const getHeight = computed(() => {
+    if (props.height && !state.max) {
+      return {
+        height: props.height
+      }
+    }
+  })
 </script>
 
 <style lang="scss" scoped>
