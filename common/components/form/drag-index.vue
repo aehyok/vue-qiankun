@@ -121,16 +121,13 @@ const moveComponentClick = (type, index, e) => {
 }
 
 .drag-default {
-  position: relative;
   width: 100%;
-  min-height: 90px;
+  position: relative;
+  display: inline-block;
 }
 
 .drag-select {
-  // position: absolute;
   border: 1px dashed red;
-  left: 0px;
-  top: 0px;
   cursor: pointer;
 }
 
