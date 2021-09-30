@@ -9,7 +9,7 @@
         >
     </div>
     <div>
-      <sl-search :searchParameters="searchParameters" />
+      <sl-search :searchParameters="searchParameters"  @search="search"/>
     </div>
   </div>
 
@@ -60,7 +60,7 @@ import { defineComponent, reactive, toRefs, ref } from "vue";
 import { table_DataList, table_ColumnList, form_ColumnList, form_Data, detail_ColumnList, detail_Data } from "./TableAndFormAndDetail";
 import { ElMessageBox, ElMessage } from "element-plus"
 export default defineComponent({
-  components: { SlTable, SlDialog,SlForm ,SlDetail, SlSearch},
+  components: { SlTable, SlDialog,SlForm ,SlDetail, SlSearch },
   setup() {
     const showEdit = ref (false)
     const showDetail = ref (false)
@@ -77,7 +77,9 @@ export default defineComponent({
           dictionary: [
             { code: 1, name:"事件一"},
             { code: 2, name: "事件二"}
-          ]
+          ],
+          defaultSelected: 1,
+          showClear: true,
         },
         {
           type: "input",

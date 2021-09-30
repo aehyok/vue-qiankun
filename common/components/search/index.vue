@@ -13,7 +13,7 @@
       <template v-if="item.type == 'select'">
         {{ item.title }}：
         <el-select
-          v-model="item.defaultSelecte"
+          v-model="item.defaultSelected"
           :clearable="item.showClear ? true : false"
           class="select-search"
           :placeholder="'请选择' + item.placeholder"
@@ -127,18 +127,10 @@ const timeDefault = computed(() => {
       : "0" + String(endDateNs.getDate() - 1));
   return defalutEndTime;
 });
-const editorContent = computed((parameter) => {
-  return parameter;
-  // re
-  // get() {
-  //     return props.propEditorContent;
-  // },
-  // set(value) {
-  //     updateval(value);
-  //     context.emit("dochange", value, state.editor.txt.text());
-  // },
-});
-const changeSelectClick = () => {};
+
+const changeSelectClick = (item) => {
+    console.log('item--item', item)
+};
 const clearClick = () => {};
 const changeDate = () => {};
 
@@ -151,7 +143,7 @@ const search = () => {
       return false;
     }
   }
-  // console.log(props.searchParameters,'searchParameters');
+
   let option = props.searchParameters.find((res) => res.type == "select");
   if (!option) {
     option = {}; 
@@ -163,7 +155,7 @@ const search = () => {
   emit(
     "search",
     state.keyword,
-    option.defaultSelecte,
+    option.defaultSelected,
     state.publishDate,
     state.startDate,
     state.endDate
@@ -174,7 +166,7 @@ const reset = () => {
   if (!option) {
     option = {};
   }
-  option.defaultSelecte = state.getDefault;
+  option.defaultSelected = state.getDefault;
   state.keyword = "";
   state.publishDate = [];
   state.startDate = "";
@@ -195,8 +187,7 @@ const disabledDate = (time) => {
 onMounted(() => {
   props.searchParameters.map((res) => {
     if (res.type == "select") {
-      state.getDefault = res.defaultSelecte;
-      console.log(state.getDefault, "打雷了打雷了");
+      state.getDefault = res.defaultSelected;
     }
   });
 });
