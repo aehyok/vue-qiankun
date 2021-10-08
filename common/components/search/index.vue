@@ -1,16 +1,17 @@
 <template>
-  <div>
     <template v-for="(item, index) in searchParameters" :key="index">
       <!-- 输入框 -->
-      <el-input
+      <searchInput :column="item"  v-model:data="state.keyword" @search="search" v-if="item.type == 'input'"/>
+      <!-- <el-input
         v-if="item.type == 'input'"
         :placeholder="item.placeholder"
         v-model="state.keyword"
         class="input-search"
         @keyup.enter="search"
-      ></el-input>
+      ></el-input> -->
       <!-- 选择器 -->
-      <template v-if="item.type == 'select'">
+      <searchSelect :column="item" v-model="item.defaultSelected" v-if="item.type == 'select'"></searchSelect>
+      <!-- <template v-if="item.type == 'select'">
         {{ item.title }}：
         <el-select
           v-model="item.defaultSelected"
@@ -28,8 +29,9 @@
           >
           </el-option>
         </el-select>
-      </template>
-      <template v-if="item.type == 'dateSelect'">
+      </template> -->
+      <searchDate v-model:data="state.publishDate"  :column="item" v-if="item.type == 'dateSelect'"/>
+      <!-- <template v-if="item.type == 'dateSelect'">
         {{ item.title }}：
         <el-date-picker
           v-model="state.publishDate"
@@ -41,10 +43,10 @@
           format="YYYY-MM-DD"
           value-format="YYYY-MM-DD"
         >
-          <!-- :default-value="[timeDefault, timeDefault]" -->
         </el-date-picker>
-      </template>
-      <template v-if="item.type == 'startDateSelect'">
+      </template> -->
+      <searchDateRange v-model:data="state.publishDate"  :column="item" v-if="item.type == 'startDateSelect'"/>
+      <!-- <template v-if="item.type == 'startDateSelect'">
         {{ item.title }}：
         <el-date-picker
           v-model="state.startDate"
@@ -65,7 +67,8 @@
           :disabled-date="disabledDate"
         >
         </el-date-picker>
-      </template>
+      </template> -->
+
     </template>
     <el-button class="global-btn" plain type="primary" @click="search"
       >查询</el-button
@@ -73,9 +76,12 @@
     <el-button class="global-btn" plain type="primary" @click="reset"
       >重置</el-button
     >
-  </div>
 </template>
 <script setup>
+import searchInput  from './column/inputSearch.vue'
+import searchSelect  from './column/selectSearch.vue'
+import searchDate from './column/dateSearch.vue'
+import searchDateRange from './column/daterangeSearch.vue'
 import {
   computed,
   onMounted,
@@ -98,41 +104,9 @@ const state = reactive({
   startDate: "",
   endDate: "",
 });
-const timeDefault = computed(() => {
-  let date = new Date();
-  let defalutStartTime = date.getTime() - 7 * 24 * 3600 * 1000; // 转化为时间戳
-  let defalutEndTime = date.getTime();
-  let startDateNs = new Date(defalutStartTime);
-  let endDateNs = new Date(defalutEndTime);
-  // 月，日 不够10补0
-  defalutStartTime =
-    startDateNs.getFullYear() +
-    "-" +
-    (startDateNs.getMonth() + 1 >= 10
-      ? startDateNs.getMonth() + 1
-      : "0" + (startDateNs.getMonth() + 1)) +
-    "-" +
-    (startDateNs.getDate() >= 10
-      ? startDateNs.getDate()
-      : "0" + startDateNs.getDate());
-  defalutEndTime =
-    endDateNs.getFullYear() +
-    "-" +
-    (endDateNs.getMonth() + 1 >= 10
-      ? endDateNs.getMonth() + 1
-      : "0" + (endDateNs.getMonth() + 1)) +
-    "-" +
-    (endDateNs.getDate() >= 10
-      ? endDateNs.getDate() - 1
-      : "0" + String(endDateNs.getDate() - 1));
-  return defalutEndTime;
-});
 
-const changeSelectClick = (item) => {
-    console.log('item--item', item)
-};
-const clearClick = () => {};
-const changeDate = () => {};
+
+
 
 const search = () => {
   if (state.startDate && state.endDate) {
@@ -181,9 +155,7 @@ const reset = () => {
     state.endDate
   );
 };
-const disabledDate = (time) => {
-  return time.getTime() > Date.now();
-};
+
 onMounted(() => {
   props.searchParameters.map((res) => {
     if (res.type == "select") {
@@ -193,12 +165,5 @@ onMounted(() => {
 });
 </script>
 <style scoped>
-.input-search {
-  width: 220px;
-  margin-left: 12px;
-}
-.select-search {
-  width: 220px;
-  margin-right: 12px;
-}
+
 </style>

@@ -15,18 +15,27 @@ export const autoComponentRegister = (app) => {
     });
   };
 
-  const itemView = require.context(
-    "../components/form/input/item-view",
+  // form表单组件
+  const formItem = require.context(
+    "../components/form/column/item-view",
     true,
     /View.vue$/
   );
-  const composeView = require.context(
-    "../components/form/input/compose-view",
+  
+  // form表单组合组件
+  const formCompose = require.context(
+    "../components/form/column/compose-view",
     true,
     /View.vue$/
   );
-  const detail = require.context('../components/detail/item', true, /.vue$/)
-  const view = [itemView, composeView, detail];
+
+  // 列表详情组件
+  const detail = require.context('../components/detail/column', true, /.vue$/)
+
+  // 列表查询条件组件
+  const search = require.context('../components/search/column', true, /.vue$/)
+
+  const view = [formItem, formCompose, detail, search];
   view.forEach((item) => {
     register(item);
   });

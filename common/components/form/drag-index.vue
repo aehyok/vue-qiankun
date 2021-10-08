@@ -32,7 +32,7 @@
   </el-row>
 </template>
 <script setup>
-import ComponentView from './input/component-view.vue'
+import ComponentView from './column/component-view.vue'
 import { ref } from 'vue'
 import draggable from 'vuedraggable'
 const emit = defineEmits(["update:data", "setCurrentColumn"])
