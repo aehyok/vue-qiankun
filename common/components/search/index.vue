@@ -1,7 +1,11 @@
 <template>
     <template v-for="(item, index) in searchParameters" :key="index">
+      <component
+        :is="item.type + 'Search'"
+        :column="item"
+      />
       <!-- 输入框 -->
-      <searchInput :column="item"  v-model:data="state.keyword" @search="search" v-if="item.type == 'input'"/>
+      <!-- <searchInput :column="item"  v-model:data="state.keyword" @search="search" v-if="item.type == 'input'"/> -->
       <!-- <el-input
         v-if="item.type == 'input'"
         :placeholder="item.placeholder"
@@ -10,7 +14,7 @@
         @keyup.enter="search"
       ></el-input> -->
       <!-- 选择器 -->
-      <searchSelect :column="item" v-model="item.defaultSelected" v-if="item.type == 'select'"></searchSelect>
+      <!-- <searchSelect :column="item" v-model:data="item.defaultSelected" v-if="item.type == 'select'"></searchSelect> -->
       <!-- <template v-if="item.type == 'select'">
         {{ item.title }}：
         <el-select
@@ -30,7 +34,7 @@
           </el-option>
         </el-select>
       </template> -->
-      <searchDate v-model:data="state.publishDate"  :column="item" v-if="item.type == 'dateSelect'"/>
+      <!-- <searchDate v-model:data="state.publishDate"  :column="item" v-if="item.type == 'dateSelect'"/> -->
       <!-- <template v-if="item.type == 'dateSelect'">
         {{ item.title }}：
         <el-date-picker
@@ -45,7 +49,7 @@
         >
         </el-date-picker>
       </template> -->
-      <searchDateRange v-model:data="state.publishDate"  :column="item" v-if="item.type == 'startDateSelect'"/>
+      <!-- <searchDateRange v-model:data="state.publishDate"  :column="item" v-if="item.type == 'startDateSelect'"/> -->
       <!-- <template v-if="item.type == 'startDateSelect'">
         {{ item.title }}：
         <el-date-picker
