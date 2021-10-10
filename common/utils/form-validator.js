@@ -29,7 +29,7 @@ const dateTimeReg = /^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2}) (\d{1,2}):(\d{1,2}):(\
 const intReg = /^[-+]?\d*$/
 
 //10、小数的校验
-const floatReg = /^[-\+]?\d+(\.\d+)?$/
+const floatReg1 = /^[-\+]?\d+(\.\d+)?$/
 
 //11、保留n位小数
 function checkFloat(n) {
