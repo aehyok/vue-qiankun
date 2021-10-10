@@ -1,56 +1,85 @@
 <template>
-  <vxe-table :align="allAlign" :data="tableData1">
-    <vxe-table-column type="seq" width="60"></vxe-table-column>
-    <vxe-table-column field="name" title="Name"></vxe-table-column>
-    <vxe-table-column field="sex" title="Sex"></vxe-table-column>
-    <vxe-table-column field="age" title="Age"></vxe-table-column>
-  </vxe-table>
+  <div>
+    <sl-table
+      :list="list"
+      @handleSelectionChange="handleSelectionChange"
+      :columns="columns"
+      :operates="operates"
+      v-model:pageModel="pageModel"
+      @search="search"
+    >
+    </sl-table>
+  </div>
 </template>
 <script>
-import { defineComponent, ref } from "vue";
-
+// import { SlTable } from "aehyok-form-vue3";
+import SlTable from '../../../common/components/table/index.vue'
+import { defineComponent, reactive, toRefs } from "vue";
+import { list_test, columns_test } from "./tableConfig";
 export default defineComponent({
+  components: { SlTable },
   setup() {
-    const allAlign = ref(null);
+    // 选中行
+    const handleSelectionChange = (val) => {
+      console.log("handleSelectionChange-val:", val);
+    };
+    // 编辑
+    const handleDetail = (index, row, idx) => {
+      console.log("index:", index, idx);
+      console.log("row:", row);
+    };
+    // 删除
+    const handleDel = (index, row) => {
+      console.log(" index:", index);
+      console.log(" row:", row);
+    };
 
-    const tableData1 = ref([
-      {
-        id: 10001,
-        name: "Test1",
-        role: "Develop",
-        sex: "Man",
-        age: 28,
-        address: "vxe-table 从入门到放弃"
+    const state = reactive({
+      pageModel: {
+        page: 1,
+        limit: 10,
+        total: 17
       },
-      {
-        id: 10002,
-        name: "Test2",
-        role: "Test",
-        sex: "Women",
-        age: 22,
-        address: "Guangzhou"
-      },
-      {
-        id: 10003,
-        name: "Test3",
-        role: "PM",
-        sex: "Man",
-        age: 32,
-        address: "Shanghai"
-      },
-      {
-        id: 10004,
-        name: "Test4",
-        role: "Designer",
-        sex: "Women ",
-        age: 24,
-        address: "Shanghai"
-      }
-    ]);
+      list: [], // table数据
+      columns: [], // 需要展示的列
+      operates: {
+        width: 200,
+        fixed: "right",
+        list: [
+          {
+            id: "1",
+            label: "查看",
+            type: "text",
+            show: true,
+            disabled: false,
+            method: (index, row, ss) => {
+              handleDetail(index, row, ss);
+            }
+          },
+          {
+            id: "2",
+            label: "删除",
+            type: "text",
+            show: true,
+            disabled: false,
+            method: (index, row) => {
+              handleDel(index, row);
+            }
+          }
+        ]
+      } // 列操作按钮
+    });
 
+    state.list = list_test;
+    state.columns = columns_test;
+    const search = () => {
+      state.list = [...state.list];
+      console.log(state.pageModel, "state.pageModel");
+    };
     return {
-      allAlign,
-      tableData1
+      ...toRefs(state),
+      handleSelectionChange,
+      search
     };
   }
 });

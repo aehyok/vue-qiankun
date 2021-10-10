@@ -12,13 +12,7 @@
   <div
     id="map"
     ref="refMap"
-    style="
-      width: 100vw;
-      height: 800px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    "
+    class="leaflet-map-class"
     v-contextmenu:contextMenu
   ></div>
 </template>
@@ -126,16 +120,23 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-.operation {
-  position: absolute;
-  z-index: 10000;
-  top: 20px;
-  right: 10px;
-  padding: 2px;
-  height: 30px;
-}
-.right-image-size {
-  width: 18px;
-  height: 18px;
-}
+  .leaflet-map-class {
+    width: calc(100vw - 270px); 
+    height: calc(100vh - 90px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .operation {
+    position: absolute;
+    z-index: 10000;
+    top: 20px;
+    right: 10px;
+    padding: 2px;
+    height: 30px;
+  }
+  .right-image-size {
+    width: 18px;
+    height: 18px;
+  }
 </style>

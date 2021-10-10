@@ -3,45 +3,93 @@ const list_test =
     {
         id: "24",
         title: "编号3",
-        // state: 0,
-        state: '待审核'
+        state: 0,
+        createTime:"2021-09-23T17:57:09",
+        remark: "自定义"
     },
     {
         id: "23",
         title: "编号4",
-        // state: 1
-        state: '已审核',
+        state: 1,
+        createTime:"2021-09-23T17:57:19",
+        remark: "自定义"
     },
     {
         id: "23",
         title: "编号5",
-        // state: 2
-        state: '未审核'
+        state: 2,
+        createTime:"2021-09-23T17:57:29",
+        remark: "自定义"
     },
     {
-        id: "2",
-        title: "编号3",
-        // state: 0
-        state: '未审核'
+       id: "23",
+       title: "编号5",
+       state: 1,
+       createTime:"2021-09-23T17:57:39",
+       remark: "自定义111"
     },
     {
         id: "223",
         title: "编号3",
-        // state: 1
-        state: '已审核'
+        state: 1,
+        createTime:"2021-09-23T17:57:49",
+        remark: "22222"
     },
     {
         id: "2444",
         title: "编号3",
-        // state: 1
-        state: '待审核'
-    }
+        state: 0,
+        createTime:"2021-09-23T17:57:59",
+        remark: "333333"
+    },
+    {
+      id: "24",
+      title: "编号3",
+      state: 0,
+      createTime:"2021-09-23T17:57:09",
+      remark: "自定义"
+  },
+  {
+      id: "23",
+      title: "编号4",
+      state: 1,
+      createTime:"2021-09-23T17:57:19",
+      remark: "自定义"
+  },
+  {
+      id: "23",
+      title: "编号5",
+      state: 2,
+      createTime:"2021-09-23T17:57:29",
+      remark: "自定义"
+  },
+  {
+     id: "23",
+     title: "编号5",
+     state: 1,
+     createTime:"2021-09-23T17:57:39",
+     remark: "自定义111"
+  },
+  {
+      id: "223",
+      title: "编号3",
+      state: 1,
+      createTime:"2021-09-23T17:57:49",
+      remark: "22222"
+  },
+  {
+      id: "2444",
+      title: "编号3",
+      state: 0,
+      createTime:"2021-09-23T17:57:59",
+      remark: "333333"
+  }
 ]
 
 const columns_test = [
     {
         type:'checkbox',
-      },
+    },
     {
       prop: "id",
       label: "编号",
@@ -54,24 +102,29 @@ const columns_test = [
       align: "center",
     },
     {
+      prop: "createTime",
+      label: "创建时间",
+      align: "center",
+      dateFormat: "yyyy-MM-dd HH:mm:ss",
+      sortable: true
+    },
+    {
       prop: "state",
       label: "状态",
       align: "center",
-      render: (row, column) => {
-        return `<el-tag type="success">${row[column.prop]}</el-tag>`;
+      dictionary: [
+        { code: 0, name: "待审核"},
+        { code: 1, name: "已审核"},
+        { code: 2, name: "审核中"},
+      ]
+    },
+    {
+      prop:"custom",
+      label:"自定义",
+      align: "center",
+      html: (row, column) => {
+        return row.title==="编号3" ? `<span style="color: red;">${ row.remark }</span>`:`未定义`
       }
-      // render: (h, params) => {
-      //   return h(
-      //     "el-tag",
-      //     {
-      //       props: {
-      //         type:
-      //           params.row.state === 0 ? "success" : params.row.state === 1 ? "info" : "danger"
-      //       } // 组件的props
-      //     },
-      //     params.row.state === 0 ? "上架" : params.row.state === 1 ? "下架" : "审核中"
-      //   );
-      // }
     }
   ]
 export {

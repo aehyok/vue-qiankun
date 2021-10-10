@@ -6,8 +6,8 @@
 </template>
 
 <script>
-    import textConfig from './input/config/textConfig.vue'
-    import textareaConfig from './input/config/textareaConfig.vue'
+    import textConfig from './column/config/textConfig.vue'
+    import textareaConfig from './column/config/textareaConfig.vue'
     import { defineComponent, watch } from 'vue'
     export default defineComponent({
         props:{

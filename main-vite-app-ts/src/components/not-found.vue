@@ -6,12 +6,12 @@
 </template>
 <script lang="ts">
   import { onMounted, ref } from 'vue'
-  import { useRoute, useRouter } from 'vue-router'
+  import { useRouter } from 'vue-router'
   import { useStore } from 'vuex'
 
   export default {
     setup() {
-      const route = useRoute()
+      // const route = useRoute()
       const router = useRouter()
       const store = useStore()
       onMounted(() => {

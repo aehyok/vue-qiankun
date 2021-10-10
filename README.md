@@ -6,7 +6,7 @@
 
 > 本文讲解微前端qiankun demo仓库地址 ：  [https://github.com/aehyok/vue-qiankun](https://github.com/aehyok/vue-qiankun) 目前基于dev分支进行开发和测试
 
-> 本demo已部署腾讯云 [http://139.186.205.7:8080/](http://139.186.205.7:8080/)（服务器配置较低，如有访问比较慢，请耐心等待）
+> 本demo已部署腾讯云 [http://vue.tuokecat.com](http://vue.tuokecat.com)（服务器配置较低，如有访问比较慢，请耐心等待）
 
 微前端的讲解概念和理论的文章非常多，这里我就不谈了，我讲的肯定没有他们好。同样的github上的demo也非常多，然后我在公司项目引入时还是发现了许多问题，可能是时间太过于仓促，在github上clone下来的demo就真的是demo级别，根本谈不上应用。于是乎，我在公司微前端项目稳定了一段时间后，对qiankun乾坤微前端项目进行了简单的整理，特此发文进行记录，以及让更多入门的程序yuan们，在接触qiankun乾坤微前端框架时能够更快速的找到问题所在。
 

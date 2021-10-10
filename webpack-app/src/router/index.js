@@ -1,7 +1,9 @@
 import Home from "../views/Home.vue";
+import TableAndFormAndDetail from "../views/TableAndFormAndDetail.vue";
 import Table from "../views/Table.vue";
-import MeTable from "../views/MeTable.vue";
 import ffmpeg from "../views/video/ffmpeg.vue";
+import Form from '../views/Form.vue'
+import Detail from '../views/Detail.vue'
 
 const routes = [
   {
@@ -30,14 +32,24 @@ const routes = [
     ]
   },
   {
+    path: "/webpack-app/tableandformanddetail",
+    name: "TableAndFormAndDetail",
+    component: TableAndFormAndDetail
+  },
+  {
+    path: "/webpack-app/form",
+    name: "form",
+    component: Form
+  },
+  {
+    path: "/webpack-app/detail",
+    name: "detail",
+    component: Detail
+  },
+  {
     path: "/webpack-app/table",
     name: "table",
     component: Table
-  },
-  {
-    path: "/webpack-app/metable",
-    name: "metable",
-    component: MeTable
   },
   {
     path: "/ffmpeg",
@@ -56,7 +68,6 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/DynamicFormDesign.vue")
   },
-
   {
     path: "/webpack-app/about",
     name: "about",

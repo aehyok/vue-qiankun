@@ -53,16 +53,16 @@
 </template>
 
 <script>
-  import md5 from "js-md5"
-  import { encode, decode } from "js-base64"
-  import { defineComponent, onBeforeMount, reactive, toRefs, ref } from "vue"
-  import { useStore } from "vuex"
-  import FindPassword from "./find-password.vue"
-  import { warnMessage } from "../../utils/message"
-  import { getVerifyCode, login } from "../../services/index"
+  import md5 from 'js-md5'
+  import { encode, decode } from 'js-base64'
+  import { defineComponent, onBeforeMount, reactive, toRefs, ref } from 'vue'
+  import { useStore } from 'vuex'
+  import FindPassword from './find-password.vue'
+  import { warnMessage } from '../../utils/message'
+  import { getVerifyCode, login } from '../../services/index'
 
   export default defineComponent({
-    name: "Login",
+    name: 'Login',
     components: {
       FindPassword
     },
@@ -71,56 +71,56 @@
       const store = useStore()
 
       const validatePass = (rule, value, callback) => {
-        if (value === "") {
-          callback(new Error("请输入密码"))
+        if (value === '') {
+          callback(new Error('请输入密码'))
         } else {
-          if (state.loginForm.account !== "") {
-            form.value.validateField("account")
+          if (state.loginForm.account !== '') {
+            form.value.validateField('account')
           }
           callback()
         }
       }
 
       const validateAccount = (rule, value, callback) => {
-        if (value === "") {
-          callback(new Error("请输入用户名"))
+        if (value === '') {
+          callback(new Error('请输入用户名'))
         } else {
           callback()
         }
       }
 
       const validatorVerCode = (rule, value, callback) => {
-        if (value === "") {
-          callback(new Error("请输入验证码"))
+        if (value === '') {
+          callback(new Error('请输入验证码'))
         } else {
           callback()
         }
       }
 
       const state = reactive({
-        projectName: "qiankun综合服务平台",
-        vcodeImg: "",
-        imgUrl: "",
-        loginImage: "images/login/systhetic.jpg",
+        projectName: 'qiankun综合服务平台',
+        vcodeImg: '',
+        imgUrl: '',
+        loginImage: 'images/login/systhetic.jpg',
         rememberPasCbox: false,
         loading: false,
         loginForm: {
-          account: "admin",
-          password: "123456",
-          captchaValue: "oyta",
-          captchaId: ""
+          account: 'admin',
+          password: '123456',
+          captchaValue: 'oyta',
+          captchaId: ''
         },
         dialogVisible: false,
         rules: {
-          password: [{ validator: validatePass, trigger: ["blur", "change"] }],
-          account: [{ validator: validateAccount, trigger: ["blur", "change"] }],
-          captchaValue: [{ validator: validatorVerCode, trigger: ["blur", "change"] }]
+          password: [{ validator: validatePass, trigger: ['blur', 'change'] }],
+          account: [{ validator: validateAccount, trigger: ['blur', 'change'] }],
+          captchaValue: [{ validator: validatorVerCode, trigger: ['blur', 'change'] }]
         }
       })
 
       // 判断是否已缓存账号密码
       const checkRemPass = () => {
-        const loginRemInfo = localStorage.getItem("loginRemInfo")
+        const loginRemInfo = localStorage.getItem('loginRemInfo')
         if (loginRemInfo) {
           const jsonInof = JSON.parse(decode(loginRemInfo))
           state.loginForm.account = jsonInof.account
@@ -151,9 +151,9 @@
             account: state.loginForm.account,
             password: state.loginForm.password
           }
-          localStorage.setItem("loginRemInfo", encode(JSON.stringify(info)))
+          localStorage.setItem('loginRemInfo', encode(JSON.stringify(info)))
         } else {
-          localStorage.removeItem("loginRemInfo")
+          localStorage.removeItem('loginRemInfo')
         }
       }
 
@@ -164,7 +164,7 @@
 
         const res = await login({
           account: encode(state.loginForm.account),
-          captchaValue: "0yta",
+          captchaValue: '0yta',
           password: md5(state.loginForm.password).toLocaleLowerCase(),
           captchaId: state.loginForm.captchaId
         })
@@ -175,17 +175,18 @@
           const result = res.data.find(
             (item) => item.account === account && item.password === password
           )
-          if (result?.success === "200") {
+          if (result?.success === '200') {
             localStorage.setItem(
-              "token",
+              'token',
               JSON.stringify({
                 ...result,
                 account: state.loginForm.account
               })
             )
-            store.dispatch("fetchSystemList")
+            localStorage.removeItem('vuex')
+            store.dispatch('fetchSystemList')
           } else {
-            warnMessage("用户名或密码输入有误，请重新输入")
+            warnMessage('用户名或密码输入有误，请重新输入')
           }
         } else {
           getImageVerifyCode()
