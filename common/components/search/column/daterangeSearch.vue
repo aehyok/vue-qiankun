@@ -5,7 +5,7 @@
         format="YYYY-MM-DD"
         value-format="YYYY-MM-DD"
         type="date"
-        :placeholder="column.startDateSelect.placeholder"
+        :placeholder="placeholder"
         :disabled-date="disabledDate"
     >
     </el-date-picker>
@@ -22,6 +22,7 @@
 </template>
 <script setup>
 import { computed } from 'vue'
+
 const emit = defineEmits(["update:data"])
 
 const props = defineProps({
@@ -43,6 +44,8 @@ const value = computed({
     emit('update:data', val)
   }
 })
+
+const placeOrder = props.column.startDateSelect ? props.column.startDateSelect.placeholder: ''
 
 const disabledDate = (time) => {
   return time.getTime() > Date.now();
