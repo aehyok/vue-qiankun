@@ -98,5 +98,5 @@
         label: "自定义",
         align: "center",
         sortable: "custom",  // 通过传递的search查询函数中添加了orders排序字段
-     },
+     }
     ```
