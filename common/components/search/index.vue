@@ -3,6 +3,7 @@
       <component
         :is="item.type + 'Search'"
         :column="item"
+        v-model:data="item.value"
       />
       <!-- 输入框 -->
       <!-- <searchInput :column="item"  v-model:data="state.keyword" @search="search" v-if="item.type == 'input'"/> -->
@@ -108,9 +109,6 @@ const state = reactive({
   startDate: "",
   endDate: "",
 });
-
-
-
 
 const search = () => {
   if (state.startDate && state.endDate) {

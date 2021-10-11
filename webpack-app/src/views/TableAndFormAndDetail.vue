@@ -78,12 +78,19 @@ export default defineComponent({
             { code: 1, name:"事件一"},
             { code: 2, name: "事件二"}
           ],
-          defaultSelected: 1,
+          value: 1,
           showClear: true,
         },
         {
+          title: '发布日期',
+          type: "daterange",
+          placeholder: '请输入问题描述关键字',
+          value: undefined
+        },
+        {
           type: "input",
-          placeholder: '请输入问题描述关键字'
+          placeholder: '请输入问题描述关键字',
+          value: ''
         },
       ]
      // 编辑
