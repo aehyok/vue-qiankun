@@ -3,7 +3,7 @@
     <!-- 顶部 -->
     <div class="header">
       <div class="header-left">
-        <img :src="headerSetting.logoUrl" />
+        <img :src="headerSetting.logoUrl" @click="homeClick" />
         <div class="left-title">qiankun综合服务平台</div>
       </div>
     </div>
@@ -40,7 +40,7 @@
   import { useRouter } from 'vue-router'
   import { useStore } from 'vuex'
   import SwiperCore, { Pagination, Navigation } from 'swiper/core'
-  import { logout } from '../services'
+  import { formSave } from '../services'
   import UpdatePassword from '../components/update-password.vue'
 
   function useModuleSetting(router: any, store: any, proxy: any) {
@@ -92,10 +92,23 @@
         getTreeData()
       })
 
+      const homeClick = () => {
+        formSave({
+          FormId: 'aehyok',
+          data: {
+            name: 'aehyok',
+            age: 11,
+            type: 2
+          }
+        }).then((res: any) => {
+          console.log(res, 'res----res----res')
+        })
+      }
       return {
         ...toRefs(state),
         modeuleList,
-        jumpChildSystem
+        jumpChildSystem,
+        homeClick
       }
     }
   })

@@ -1,7 +1,7 @@
-import axios from "axios";
-import { ElMessage } from "element-plus";
+import axios from 'axios'
+import { ElMessage } from 'element-plus'
 export const baseUrl =
-  process.env.NODE_ENV === "development"
+  process.env.NODE_ENV === 'development'
     // ? "http://139.9.184.171:10088/"
     ? "/infra/"
     : 'http://rap2api.taobao.org/app/mock/283135/';
@@ -16,7 +16,7 @@ instance.interceptors.request.use(
   (request) => {
     const token = localStorage.token
       ? JSON.parse(localStorage.token)
-      : {};
+      : 'aehyok';
     request.headers = {
       "Authorization": token.authorization || '',
       "Content-Type": "application/json", // 便民服务子系统

@@ -1,5 +1,11 @@
 import request from '../utils/request.js'
 
+export const formSave = (data) => {
+  return request('/Form/Save', {
+    method: 'post',
+    data
+  })
+}
 /**
  * 获取验证码
  */

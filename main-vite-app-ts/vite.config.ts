@@ -1,7 +1,7 @@
-import { defineConfig } from "vite"
-import vue from "@vitejs/plugin-vue"
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
-import { resolve } from "path"
+import { resolve } from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   define: {
@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src") // 设置 `@` 指向 `src` 目录
+      '@': resolve(__dirname, 'src') // 设置 `@` 指向 `src` 目录
     }
   },
   // 全局css样式变量
@@ -21,9 +21,9 @@ export default defineConfig({
       }
     }
   },
-  base: "./", // 设置打包路径
+  base: './', // 设置打包路径
   build: {
-    outDir: "../../qiankun/main"
+    outDir: '../../qiankun/main'
   },
   // 本地运行配置，及反向代理配置
   server: {
@@ -32,8 +32,8 @@ export default defineConfig({
     // open: true, // 在服务器启动时自动在浏览器中打开应用程序
     //  反向代理配置，注意rewrite写法，开始没看文档在这里踩了坑
     proxy: {
-      "/infra": {
-        target: "http://rap2api.taobao.org/app/mock/283135/",   // 代理接口
+      '/infra': {
+        target: 'http://139.186.205.7:5000/api', // 代理接口
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/infra/, '')
       }
