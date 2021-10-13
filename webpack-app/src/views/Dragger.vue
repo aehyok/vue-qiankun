@@ -1,16 +1,21 @@
 <template>
-  <div style="width: 1000px; height: 800px; border: 1px solid blue">
+  <div style="width:90vw ; height: 100vh; border: 1px solid blue">
+      <template v-for="(item,index) in list">
     <VueDragResize
       :isActive="true"
-      :w="200"
-      :h="200"
+      :w="item.width"
+      :h="item.height"
+      :t="item.top"
+      :l="item.left"
+      :index="index"
       v-on:resizing="resize"
       v-on:dragging="resize"
     >
-      <h3>Hello World!</h3>
-      <p>{{ top }} х {{ left }}</p>
-      <p>{{ width }} х {{ height }}</p>
+      <h3>{{item.name}}</h3>
+      <p>{{ item.top }} х {{ item.left }}</p>
+      <p>{{ item.width }} х {{ item.height }}</p>
     </VueDragResize>
+    </template>
   </div>
 </template>
 <script>
@@ -44,10 +49,42 @@ export default {
       width: 0,
       height: 0,
       top: 0,
-      left: 0
-    });
+      left: 0,
+      list: [
+        {
+          width: 200,
+          height:200,
+          top:0,
+          left: 0,
+          name: "柱状图"
+        },
+        {
+          width: 300,
+          height:300,
+          top:0,
+          left: 0,
+          name: "折线图"
+        },
+        {
+          width: 300,
+          height:300,
+          top:0,
+          left: 0,
+          name: "饼图"
+        },
+        {
+          width: 300,
+          height:300,
+          top:0,
+          left: 0,
+          name: "柱状和折线"
+        },
+      ]
+    },
+    );
 
     const resize = (newRect) => {
+      console.log(newRect, 'index-newRect')
       state.width = newRect.width;
       state.height = newRect.height;
       state.top = newRect.top;
