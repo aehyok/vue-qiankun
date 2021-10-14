@@ -8,8 +8,8 @@
       :t="item.top"
       :l="item.left"
       :index="index"
-      v-on:resizing="resize"
-      v-on:dragging="resize"
+      v-on:resizing="resize($event,index)"
+      v-on:dragging="resize($event,index)"
     >
       <h3>{{item.name}}</h3>
       <p>{{ item.top }} х {{ item.left }}</p>
@@ -83,12 +83,12 @@ export default {
     },
     );
 
-    const resize = (newRect) => {
-      console.log(newRect, 'index-newRect')
-      state.width = newRect.width;
-      state.height = newRect.height;
-      state.top = newRect.top;
-      state.left = newRect.left;
+    const resize = (newRect,index) => {
+      console.log(newRect, index, 'index-newRect')
+      state.list[index].width = newRect.width;
+      state.list[index].height = newRect.height;
+      state.list[index].top = newRect.top;
+      state.list[index].left = newRect.left;
     };
     return {
       ...toRefs(state),
