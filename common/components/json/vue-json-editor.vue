@@ -11,12 +11,6 @@ import 'jsoneditor/dist/jsoneditor.min.css'
 import { onMounted, onUnmounted, watch, reactive, nextTick, computed, ref } from 'vue';
 
   const props = defineProps({
-    options: {
-      type: Object,
-      default: () => {
-        return {}
-      }
-    },
     value: [Object, Array, Number, String, Boolean],
     height: {
       type: String
@@ -26,6 +20,11 @@ import { onMounted, onUnmounted, watch, reactive, nextTick, computed, ref } from
       default: true
     }
   })
+
+  const options =  {
+    mode: "code",
+    mainMenuBar: false
+  }
 
   const emit = defineEmits(['update:value','error','changeModel'])
 
@@ -59,25 +58,20 @@ import { onMounted, onUnmounted, watch, reactive, nextTick, computed, ref } from
         state.internalChange = true
         console.log(json, 'json---------value---')
         emit('update:value', json)
-        emit('changeModel',json)
+        // emit('changeModel', json)
         nextTick(() => {
           state.internalChange = false
         })
       }
     }
-    props.options.onChange && props.options.onChange(...arguments)
   }
   const initView = () => {
     if (!state.editor) {
       const container = jsoneditor.value
-      let cacheChange = props.options.onChange
-      delete props.options.onChange
-      const options = Object.assign(props.options, {
+      const _options = Object.assign(options, {
         onChange: onChange
       })
-      console.log(container, 'sssss');
-      state.editor = new JSONEditor(container, props.options)
-      props.options.onChange = cacheChange
+      state.editor = new JSONEditor(container, _options)
     }
     console.log(props.value, 'value');
     state.editor.set(props.value || {})
