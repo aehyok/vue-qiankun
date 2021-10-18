@@ -1,9 +1,9 @@
 {
-  "name": "demo",
+  "name": "my-vue-app",
   "version": "0.0.0",
   "scripts": {
     "start": "vite",
-    "build": "vite build",
+    "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"
   },
   "dependencies": {
@@ -11,7 +11,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.3",
-    "@vitejs/plugin-vue-jsx": "^1.2.0",
-    "vite": "^2.6.4"
+    "typescript": "^4.4.3",
+    "vite": "^2.6.4",
+    "vue-tsc": "^0.3.0"
   }
 }
