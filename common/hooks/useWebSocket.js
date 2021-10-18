@@ -1,8 +1,10 @@
 import { useStore } from "vuex";
 import { useRouter } from 'vue-router'
+import { useOperation } from '../utils/demoroomOperation'
 const useWebSocket = () => {
     const store = useStore()
     const router = useRouter()
+    const { jumpOperation } = useOperation()
     const initWebSocket = () => {
         if (store.state.isDestroyed) {
             console.log(
@@ -14,13 +16,13 @@ const useWebSocket = () => {
 
         if (store.state.websock) {
             store.state.websock.close();
-            console.log('onclose-关闭结束----')
+            store.commit('set_websock', '')
         }
 
-        let wsuri = "ws://";
+        let wsuri = "ws://47.111.217.26:5980/socket?roomNo=102A8206";
 
         if (process.env.NODE_ENV === "production") {
-            wsuri = "wss://";
+            wsuri = "wss://socket.sea.utuapp.cn/socket?roomNo=102A8206";
         }
 
         console.log("ws: " + wsuri);
@@ -41,12 +43,11 @@ const useWebSocket = () => {
                         ) {
                             // store.state.lastHeartbeatRspPrintTime = nowTime;
                             store.commit('set_lastHeartbeatRspPrintTime', nowTime)
-                            console.log(store.state.serialNo + " RCU ==> ", states);
                         }
                         setHeartbeatStatus(true);
                     } else {
                         console.log(
-                            store.state.serialNo + " RCU ==> " + "states.code=" + states.code,
+                            store.state.serialNo + " RCU --------------------==> " + "states.code=" + states.code,
                             states
                         );
                     }
@@ -55,38 +56,31 @@ const useWebSocket = () => {
                 if (states.method && states.method === "setScreenOperation") {
                     console.log(states, '----------陈家店村委屏幕-------')
                     if (states.data.length > 0) {
-                        if (states.data[0].code === 700100) {
-                            router.push('/home')
-                        }
-                        if (states.data[0].code === 700701) {
-                            router.push('/governance')
-                        }
-                        if (states.data[0].code === 700300) {
-                            router.push('/grid')
-                        }
-                        if (states.data[0].code === 700400) {
-                            router.push('/agriculture')
-                        }
-                        if (states.data[0].code === 700500) {
-                            router.push('/workOutside')
-                        }
-                        if (states.data[0].code === 700600) {
-                            router.push('/blackLand')
+                        switch (states.data[0].code) {
+                            case 700100: case 700200: case 700300: case 700400: case 700500: case 700600:
+                                console.log('跳转菜单', states.data[0].code)
+                                jumpOperation(states.data[0].code, router)
+                                break;
+                            default:
+                                let commonFunction = store.state.commonFunction
+                                commonFunction(states.data[0].code)
+                                break;
                         }
                     }
                 }
             } catch (e) {
                 console.log(e);
             }
-        };
+        }
 
         store.state.websock.onopen = function () {
-            console.log("onopen, No.serialNo" + store.state.serialNo);
+            console.log("onopen, websocket" + store.state.serialNo);
             setWebSocketStatus(true);
         };
 
         store.state.websock.onclose = function (e) {
-            console.log("onclose! No.serialNo" + store.state.serialNo, e);
+            console.log("onclose! websocket" + store.state.serialNo);
+            store.commit('set_websock', '')
             setWebSocketStatus(false);
             clearTimeout(store.state.websockTimeout);
             // store.state.websockTimeout = setTimeout(() => {
@@ -111,7 +105,7 @@ const useWebSocket = () => {
             }, 2000);
             store.commit('set_websockTimeout', websockTimeout)
         };
-    }
+    };
 
     const setWebSocketStatus = (ok) => {
         if (!ok) {
@@ -122,15 +116,15 @@ const useWebSocket = () => {
             // store.state.heartbeatFailCnt = 0;
             store.commit('set_heartbeatFailCnt', 0)
             clearInterval(store.state.heartbeatTimer);
-            requestHeartbeatToServer();
             // store.state.heartbeatTimer = setInterval(() => {
             //     setHeartbeatStatus(false);
             //     requestHeartbeatToServer();
             // }, 1000);
+
             let heartbeatTimer = setInterval(() => {
                 setHeartbeatStatus(false);
                 requestHeartbeatToServer();
-            }, 1000);
+            }, 3000);
             store.commit('set_heartbeatTimer', heartbeatTimer)
 
             console.log("this.heartbeatTimer-serialNo", store.state.heartbeatTimer, store.state.serialNo);
@@ -172,13 +166,16 @@ const useWebSocket = () => {
         }
     }
 
-    const install = () => {
+    const openWebSocket = (commonFunction) => {
+        store.commit('set_clear', false)
+
+        store.commit('set_commonFunction', commonFunction)
         store.commit('set_serialNo', store.state.serialNo + 1)
         setWebSocketStatus(false);
         initWebSocket()
     }
 
-    const unInstall = () => {
+    const closeWebSocket = () => {
         // store.state.isDestroyed = true;
         store.commit('set_isDestroyed', true)
         if (store.state.websock) {
@@ -195,11 +192,10 @@ const useWebSocket = () => {
     }
 
     return {
-        install,
-        unInstall
+        openWebSocket,
+        closeWebSocket
     }
 }
-
 export {
     useWebSocket
 }
