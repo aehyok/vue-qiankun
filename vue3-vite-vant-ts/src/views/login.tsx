@@ -5,7 +5,7 @@ export default defineComponent({
   setup() {
     return () =>
       <>
-        <div>About</div>
+        <div>login</div>
       </>
   }
 })
