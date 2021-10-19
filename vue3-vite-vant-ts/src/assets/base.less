@@ -1,0 +1,74 @@
+body {
+  padding: 0;
+  margin: 0;
+  width: 80%;
+  height: 100vh;
+  margin: 50px auto;
+
+  #app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid transparent;
+
+    .child {
+      position: absolute;
+      left: 0;
+      top: 0;
+      .render-component {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 50px;
+      }
+    }
+
+    .el-dropdown {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .login-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .el-descriptions {
+      margin-top: 100px;
+    }
+
+    .todo-list {
+      margin-top: 16px;
+
+      .list-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        margin: 10px 0px;
+        text-align: center;
+        border-radius: 4px;
+        background: #ecf5ff;
+        color: #409eff;
+        transition: all 0.3s;
+
+        .el-icon-delete {
+          position: absolute;
+          right: 15px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        .el-checkbox {
+          position: absolute;
+          left: 15px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+}
