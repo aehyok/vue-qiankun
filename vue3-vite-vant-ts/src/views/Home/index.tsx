@@ -10,6 +10,7 @@ export default defineComponent({
     return () =>
       <>
         <div>Home</div>
+        <el-button type="primary">测试</el-button>
         <child data = {data} />
       </>
   }

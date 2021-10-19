@@ -8,6 +8,7 @@
     "lint:fix": "eslint src --fix --ext .ts,.tsx"
   },
   "dependencies": {
+    "element-plus": "^1.1.0-beta.21",
     "vant": "^3.2.5",
     "vue": "^3.2.14",
     "vue-router": "4.0.8",
