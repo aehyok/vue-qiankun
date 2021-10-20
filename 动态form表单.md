@@ -11,7 +11,7 @@
 > table封装路径为根路径下的 vue-qiankun/common/components/form/
 
 
-### table列表json配置生成器
+### form表单json配置生成器
 
   - 1、 在PC端日常的使用中，使用最多的莫过于表单和列表了，故此对table列表和form表单进行了统一的封装，通过json配置就可以快速适配table列表和form表单。
   - 2、本章节主要记录自己的form表单封装
