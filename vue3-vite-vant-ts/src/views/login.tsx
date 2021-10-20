@@ -1,11 +1,13 @@
 import { defineComponent } from 'vue'
-import { RouterView } from 'vue-router'
 import { format } from 'date-fns'
 import style from './login.scss'
-import _Row from 'element-plus/es/components/row'
+
 export default defineComponent({
   setup() {
     const date = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+    const onChangeStatusClick =(index: number) => {
+      console.log(index, '--index--')
+    }
     const tableData = [
       {
         id: 1,
@@ -21,7 +23,7 @@ export default defineComponent({
         count: 1000,
         times: 0,
         remark: '每年自动得分值，不累计叠加',
-        status: 0,
+        status: 1,
       },
       {
         id: 1,
@@ -45,7 +47,7 @@ export default defineComponent({
         count: 1000,
         times: 0,
         remark: '户码默认分值',
-        status: 0,
+        status: 1,
       },
       {
         id: 1,
@@ -85,7 +87,7 @@ export default defineComponent({
         count: 1000,
         times: 0,
         remark: '户码默认分值',
-        status: 0,
+        status: 1,
       },
       {
         id: 1,
@@ -127,12 +129,20 @@ export default defineComponent({
             default: ({ row }: { $index: number,row: any }) => {
               console.log(row.times,row, '2-1-4')
               return (row.times > 0 ?                         
-                <el-button type="danger"> 删除</el-button>: "删除")
+                <el-input placeholder={"请输入---"}/> : "--")
             }
           }}
           </el-table-column>
           <el-table-column prop="remark" label="备注" />
-          <el-table-column prop="address" label="启用状态" />
+          <el-table-column prop="address" label="启用状态" >
+          {{
+            default: ({ $index,row }: { $index: number,row: any }) => {
+              console.log(row.times,row, '2-1-4')
+              const value = row.status===1 ? true: false
+              return <el-switch v-model={value}  change ={onChangeStatusClick($index)}/>
+            }
+          }}
+          </el-table-column>
         </el-table>
       </>
   }
