@@ -1,13 +1,15 @@
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { format } from 'date-fns'
 import style from './login.scss'
 
 export default defineComponent({
   setup() {
     const date = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
-    const onChangeStatusClick =(index: number) => {
-      console.log(index, '--index--')
+    const onChangeStatusClick =(val:any) => {
+      console.log('--index--', val)
+      test = val
     }
+    let test = false
     const tableData = [
       {
         id: 1,
@@ -110,26 +112,23 @@ export default defineComponent({
     return () =>
       <>
         <div>login</div>
+        <el-switch v-model={test}  onChange ={onChangeStatusClick} />
         {date}
         <el-table data={tableData} style={{ width: '100%' }}>
           <el-table-column prop="item" label="积分项" width="180" />
           <el-table-column prop="count" label="分值" width="180">
             {{
-                      default: ({ $index }: { $index: number }) => (
-                        <el-button
-                          type="danger"
-                        >
-                          删除
-                        </el-button>
-                      )
-                    }}
+              default: ({ $index, row }: { $index: number, row: any }) => {
+                return <el-input-Number controls={false} v-model={row.count}/>
+              }
+            }}
           </el-table-column>
           <el-table-column prop="times" label="上限次数" >
           {{
             default: ({ row }: { $index: number,row: any }) => {
               console.log(row.times,row, '2-1-4')
               return (row.times > 0 ?                         
-                <el-input placeholder={"请输入---"}/> : "--")
+                <el-input placeholder={"请输入---"} v-model={row.times}/> : "--")
             }
           }}
           </el-table-column>
@@ -138,8 +137,13 @@ export default defineComponent({
           {{
             default: ({ $index,row }: { $index: number,row: any }) => {
               console.log(row.times,row, '2-1-4')
-              const value = row.status===1 ? true: false
-              return <el-switch v-model={value}  change ={onChangeStatusClick($index)}/>
+              let value = row.status===1 ? true: false
+              return <el-switch v-model={value}  onChange ={onChangeStatusClick
+                // (val: any)=> {
+                //   console.log(val, 'value-value')
+                //   onChangeStatusClick(val,$index)
+                // }
+              }/>
             }
           }}
           </el-table-column>
