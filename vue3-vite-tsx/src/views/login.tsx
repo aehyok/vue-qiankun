@@ -9,8 +9,9 @@ export default defineComponent({
       console.log('--index--', val, index)
       data.test = val
       data.inputValue = data.inputValue +'111'
-      console.log('status----',data.tableData[index].status ? 1: 0)
-      data.tableData[index].status = data.tableData[index].status ? 1: 0
+      console.log('status----',data.tableData[index].status)
+      data.tableData[index].status = !data.tableData[index].status ? 1: 0
+      data.tableData[index].times ++
     }
 
     const data = reactive({
