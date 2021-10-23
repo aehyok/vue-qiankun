@@ -1,6 +1,7 @@
 import { defineComponent, ref, reactive } from 'vue'
 import { format } from 'date-fns'
 import style from './login.scss'
+// import TableModel from '../types/models'
 
 export default defineComponent({
   setup() {
@@ -13,6 +14,7 @@ export default defineComponent({
       data.tableData[index].status = !data.tableData[index].status ? 1: 0
       data.tableData[index].times ++
     }
+
 
     const data = reactive({
       inputValue: '111111',
@@ -119,7 +121,7 @@ export default defineComponent({
     
     return () =>
       <>
-        <div>login</div>
+        <div class={style.widthss}>login</div>
         <el-switch v-model={data.test}  onChange ={onChangeStatusClick} />
         <el-input v-model={data.inputValue} />
         {date}

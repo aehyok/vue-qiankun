@@ -60,7 +60,7 @@ onMounted(() => {
   state.upLoadUrl = `${prefix}/sunfs/upload?ra=no&r=${Math.random()}`;
   const token = JSON.parse(localStorage.getItem("token"));
   state.headers = {
-    Authorization: token.authorization,
+    Authorization: token?.authorization,
   };
   state.editor = new E(editorRef.value);
   let editorConfig = state.editor.config;
