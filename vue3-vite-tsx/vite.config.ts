@@ -28,7 +28,9 @@ export default ({ mode }) =>
     ],
     base: mode === 'development' ? '/' : './',
     server: {
-      port: 8888
+      port: 8888,
+      host: '0.0.0.0', // 可查看到局域网IP地址
+      https: true,     // 可开启https
     },
     resolve: {
       alias: {
