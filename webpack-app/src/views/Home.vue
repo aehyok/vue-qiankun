@@ -114,38 +114,6 @@ const state = reactive({
           { code: 2, name: "竖版栏目" }
         ],
         title: "栏目类型",
-        controls: [
-          {
-            value: 1,
-            showCondition: [
-              {
-                name: "show",
-                type: "radio",
-                dictionary: [
-                  { code: 1, name: "China" },
-                  { code: 2, name: "English" }
-                ],
-                title: "测试类型",
-                required: true
-              },
-              {
-                name: "image1",
-                type: "ImageTypeView",
-                title: "文件"
-              }
-            ]
-          },
-          {
-            value: 2,
-            showCondition: [
-              {
-                name: "isValids",
-                type: "switch",
-                title: "是否有效"
-              }
-            ]
-          }
-        ]
       },
       {
         name: "requireType",

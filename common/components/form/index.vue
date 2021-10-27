@@ -5,42 +5,13 @@
         :columnSpan="columnSpan"
         :column="item"
         :formData="formData"
-        @click="componentExampleClick"
+        v-if="ifshow(item,formData)"
       />
-      <template v-for="child in item.controls">
-        <template v-if="formData[item.name] === child.value">
-          <template
-            v-for="(childColumn, columnIndex) in child.showCondition"
-            :key="columnIndex + 'childColumnView'"
-          >
-            <component-view
-              :columnSpan="columnSpan"
-              :column="childColumn"
-              :formData="formData"
-            />
-            <template v-for="son in childColumn.controls">
-              <template v-if="formData[childColumn.name] === son.value">
-                <template
-                  v-for="(sonColumn, sonColumnIndex) in son.showCondition"
-                  :key="sonColumnIndex + 'sonColumnView'"
-                >
-                  <component-view
-                    :columnSpan="columnSpan"
-                    :column="sonColumn"
-                    :formData="formData"
-                  />
-                </template>
-              </template>
-            </template>
-          </template>
-        </template>
-      </template>
     </template>
   </el-row>
 </template>
 <script setup>
 import ComponentView from './column/component-view.vue'
-
 const props = defineProps({
   columnList: {
     type: Array,
@@ -53,13 +24,15 @@ const props = defineProps({
   columnSpan: {
     type: Number,
     default: 24,
-  },
-  componentExampleClick: {
-    type: Function,
-    default: () => {
-
-    }
   }
 })
+
+const ifshow = (column,formData) => {
+  if(column && column.ifshow) {
+    return column.ifshow(formData)
+  } else {
+    return true
+  }
+}
 </script>
 <style scoped></style>

@@ -112,59 +112,35 @@ const state = reactive({
           { code: 1, name: "横版栏目" },
           { code: 2, name: "竖版栏目" }
         ],
-        title: "栏目类型",
-        controls: [
-          {
-            value: 1,
-            showCondition: [
-              {
-                name: "show",
-                type: "radio",
-                dictionary: [
-                  { code: 1, name: "China" },
-                  { code: 2, name: "English" }
-                ],
-                title: "测试类型",
-                required: true
-              },
-              {
-                name: "image1",
-                type: "ImageTypeView",
-                title: "文件"
-              }
-            ]
-          },
-          {
-            value: 2,
-            showCondition: [
-              {
-                name: "isValids",
-                type: "switch",
-                title: "是否有效"
-              }
-            ]
-          }
-        ]
+        title: "栏目类型"
       },
       {
         name: "requireType",
         type: "radio",
         dictionary: [
            { code: 1, name: "类型一" },
-           { code: 2, name: "类型二" }
+           { code: 2, name: "类型2二" }
         ],
         title: "图文类型",
-        required: true
+        required: true,
+        ifshow: (data) => {
+            console.log(data, 'ifshow--ifshow')
+            return data.type === 1
+        },
       },
       {
         name: "range",
         type: "checkbox",
         title: "发布范围",
         dictionary: [
-           { code: 1, name: "范围一" },
-           { code: 2, name: "范围二" }
+           { code: 1, name: "范围1一" },
+           { code: 2, name: "范围2二" }
         ],
-        required: true
+        required: true,
+        ifshow: (data) => {
+            console.log(data, 'ifshow--ifshow')
+            return data.requireType === 2
+        },
       },
       {
         name: "dateRange",
@@ -192,7 +168,7 @@ const state = reactive({
       total: null,
       count: null,
       createDate: 1606730360386,
-      type: 1,
+      type: 2,
       requireType: undefined,
       creType: "",
       range: [],
