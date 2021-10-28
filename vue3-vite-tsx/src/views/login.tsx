@@ -1,7 +1,7 @@
 import { defineComponent, ref, reactive } from 'vue'
 import { format } from 'date-fns'
-import style from './login.scss'
-// import TableModel from '../types/models'
+import './login.scss'
+import { TableModel } from '../types/models'
 
 export default defineComponent({
   setup() {
@@ -15,6 +15,7 @@ export default defineComponent({
       data.tableData[index].times ++
     }
 
+    
 
     const data = reactive({
       inputValue: '111111',
@@ -121,7 +122,7 @@ export default defineComponent({
     
     return () =>
       <>
-        <div class={style.widthss}>login</div>
+        <div class="word-color">注：以家庭户为单位进行积分，户下家庭成员都可参与家庭积分。</div>
         <el-switch v-model={data.test}  onChange ={onChangeStatusClick} />
         <el-input v-model={data.inputValue} />
         {date}
@@ -157,6 +158,7 @@ export default defineComponent({
           }}
           </el-table-column>
         </el-table>
+        <div class="word-color">每日签到（连续7天），中断后重新开始</div>
       </>
   }
 })
