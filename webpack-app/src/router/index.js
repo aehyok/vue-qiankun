@@ -69,6 +69,12 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/DynamicFormDesign.vue")
   },
   {
+    path: "/webpack-app/visualdesign",
+    name: "VisualDesign",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/VisualDesign.vue")
+  },
+  {
     path: "/webpack-app/about",
     name: "about",
     component: () =>

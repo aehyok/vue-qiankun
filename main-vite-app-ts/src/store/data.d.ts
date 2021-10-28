@@ -56,16 +56,21 @@ export function webpackList(): Menu[] {
     },
     {
       id: 6,
+      title: '6、可视化表单设计器',
+      path: '/webpack-app/visualdesign'
+    },
+    {
+      id: 7,
       title: 'about',
       path: '/webpack-app/about'
     },
     {
-      id: 7,
+      id: 8,
       title: 'dragger',
       path: '/webpack-app/dragger'
     },
     {
-      id: 8,
+      id: 9,
       title: 'table',
       path: '/webpack-app/table'
     }
@@ -74,6 +79,7 @@ export function webpackList(): Menu[] {
 
 // 系统所有菜单列表
 export function getMenuList(): SystemMenu[] {
+  console.log(webpackList(), 'webpackmenuList')
   return [
     {
       Key: 'webpack-app',

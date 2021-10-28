@@ -3,6 +3,11 @@
     <div class="header">
       <div>Dynamic Form Design</div>
       <div>
+        <el-button type="primary" size="mini">PC</el-button>
+        <el-button type="primary" size="mini">H5</el-button>
+      </div>
+      <div>
+        <el-button type="primary" size="mini">预览</el-button>
         <el-button type="primary" size="mini">导入JSON</el-button>
         <el-button type="primary" size="mini">生成JSON</el-button>
       </div>
