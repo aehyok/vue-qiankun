@@ -1,15 +1,19 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts" setup>
+import { Button as VanButton } from 'vant';
+
+const onClick = () => {
+  alert(1111)
+}
 </script>
 
 <template>
+  <div class="word-color">11111111</div>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <van-button type="primary" @click="onClick">主要按钮</van-button>
+
 </template>
 
-<style>
+<style lang="scss" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
