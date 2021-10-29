@@ -1,57 +1,39 @@
 <template>
-  <div id="vvv">
-    <!-- 列表 -->
-    <van-list
-      v-model="loading"
-      :finished="finished"
-      finished-text="没有更多了"
-      @load="onLoad"
-    >
-      <div v-for="(item, index) in state.list" :key="item">
-      <!-- 固定部分 -->
-        <van-sticky offset-top="50px" v-if="item % 10 == 0">
-          <!-- 固定内容 -->
-          <div style="background: #07c160">
-            {{ index }}
-          </div>
-        </van-sticky>
-        <van-cell :title="item" />
-      </div>
-    </van-list>
-  </div>
+    <van-nav-bar title="积分明细" left-arrow fixed />
+    <div class="container">
+        <template v-for="(item, index) in state.list" :key="item" >
+            <van-sticky :offset-top="50" v-if="item % 10 === 1" >
+                <div style="background: #07c160;width: 100px;">
+                    {{ item }}
+                </div>
+            </van-sticky>
+            <div class="item item-1" v-else-if="index ===1">{{item}}</div>
+            <div class="item" v-else>{{item}}</div>
+        </template>
+    </div>
 </template>
  
 <script lang="ts" setup>
 import {  reactive,ref } from 'vue'
 import {
-    List as VanList,
+    NavBar as VanNavBar,
     Sticky as VanSticky,
-    Cell as VanCell
 } from 'vant'
-
-const loading = ref(false)
-const finished = ref(false)
 let state = reactive({
     list: []
 })
 
-const onLoad = () => {
-    // 异步更新数据
-    // setTimeout 仅做示例，真实场景中一般为 ajax 请求
-    for (let i = 0; i < 100; i++) {
-        state.list.push(state.list.length + 1 )
-    }
+for (let i = 0; i < 100; i++) {
+    state.list.push(state.list.length + 1 )
 }
-
 </script>
 
 <style lang="scss" scoped>
-.van-cell__title {
-  padding: 50px;
+.item {
+    border:1px solid red;
 }
-.van-sticky{
-  >div{
-     padding: 50px;
-  }
+.item-1 {
+    margin-top: 50px;
 }
+
 </style>
