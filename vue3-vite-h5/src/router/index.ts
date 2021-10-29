@@ -13,6 +13,15 @@ const routes: Array<RouteRecordRaw> = [
       title: "首页",
       showLayout: false,
     }
+  },
+  {
+    path: "/test",
+    name: "Test",
+    component: () => import(/* webpackChunkName: "test" */ "../views/Test.vue"),
+    meta: {
+      title: "测试",
+      showLayout: false,
+    }
   }
 ]
 const router = createRouter({

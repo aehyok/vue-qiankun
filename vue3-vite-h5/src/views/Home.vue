@@ -1,24 +1,32 @@
 <script lang="ts" setup>
-import { Button as VanButton } from 'vant';
-console.log(['11home'])
-const onClick = () => {
-  alert(1111)
-}
+import 
+{ 
+    Button as VanButton,
+    Sticky as VanSticky,
+    NavBar  as VanNavBar,
+} from 'vant'
+import style from '../styles/home.scss'
 </script>
 
 <template>
-  <div class="word-color">11111111</div>
-  <img alt="Vue logo" src="../assets/logo.png" />
-  <van-button type="primary" @click="onClick">主要按钮</van-button>
+  <van-nav-bar title="积分明细" left-arrow fixed />
+  <van-sticky :offset-top="50">
+    <van-button type="primary">10月份展示</van-button>
+    <div class="div-height">1</div>
+    <van-button type="primary">9月份展示</van-button>
+    <div class="div-height">1</div>
+     <van-button type="primary">8月份展示</van-button>
+    <div class="div-height">2</div>
+     <van-button type="primary">月份展示</van-button>
+    <div class="div-height">3</div>
+     <van-button type="primary">月份展示</van-button>
+    <div class="div-height">4</div>
+  </van-sticky>
 </template>
 
 <style lang="scss" scoped>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.div-height {
+  height: 500px;
+  border: 1px solid blue;
 }
 </style>
