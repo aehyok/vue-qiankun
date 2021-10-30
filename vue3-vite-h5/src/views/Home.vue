@@ -5,13 +5,18 @@ import
     Sticky as VanSticky,
     NavBar  as VanNavBar,
 } from 'vant'
+import { useStore } from '../store'
+
+const store = useStore()
+const title = store.title
+console.log(title, '--title--')
 import style from '../styles/home.scss'
 </script>
 
 <template>
   <van-nav-bar title="积分明细" left-arrow fixed />
   <van-sticky :offset-top="50">
-    <van-button type="primary">10月份展示</van-button>
+    <van-button type="primary">{{title}}</van-button>
     <div class="div-height">1</div>
     <van-button type="primary">9月份展示</van-button>
     <div class="div-height">1</div>
