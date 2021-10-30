@@ -5,5 +5,5 @@ import { createPinia } from 'pinia'
 
 const app = createApp(App)
 app.use(router)
-.use(createPinia)
+.use(createPinia())
 .mount('#app')
