@@ -35,43 +35,43 @@
 </template>
 <script >
 import { createApp, defineComponent } from 'vue'
-import textView from './item-view/textView.vue'
-import textareaView from './item-view/textareaView.vue'
-import numberView from './item-view/numberView.vue'
-import dateView from './item-view/dateView.vue'
-import radioView from './item-view/radioView.vue'
-import checkboxView from './item-view/checkboxView.vue'
-import daterangeView from './item-view/daterangeView.vue'
-import selectView from './item-view/selectView.vue'
-import imageView from './item-view/imageView.vue'
-import videoView from './item-view/videoView.vue'
-import staticView from './item-view/staticView.vue'
-import switchView from './item-view/switchView.vue'
-import citySelectView from './item-view/citySelectView.vue'
-import editorView from './item-view/editorView.vue'
+// import textView from './item-view/textView.vue'
+// import textareaView from './item-view/textareaView.vue'
+// import numberView from './item-view/numberView.vue'
+// import dateView from './item-view/dateView.vue'
+// import radioView from './item-view/radioView.vue'
+// import checkboxView from './item-view/checkboxView.vue'
+// import daterangeView from './item-view/daterangeView.vue'
+// import selectView from './item-view/selectView.vue'
+// import imageView from './item-view/imageView.vue'
+// import videoView from './item-view/videoView.vue'
+// import staticView from './item-view/staticView.vue'
+// import switchView from './item-view/switchView.vue'
+// import citySelectView from './item-view/citySelectView.vue'
+// import editorView from './item-view/editorView.vue'
 
-// 组合式录入控件
-import textSelectView from './compose-view/textSelectView.vue'
-import numberSelectView from './compose-view/numberSelectView.vue'
+// // 组合式录入控件
+// import textSelectView from './compose-view/textSelectView.vue'
+// import numberSelectView from './compose-view/numberSelectView.vue'
 export default defineComponent({
   name: 'formView',
   components: {
-    textView,
-    textareaView,
-    numberView,
-    dateView,
-    daterangeView,
-    switchView,
-    radioView,
-    checkboxView,
-    selectView,
-    imageView,
-    videoView,
-    staticView,
-    editorView,
-    textSelectView,
-    numberSelectView,
-    citySelectView
+    // textView,
+    // textareaView,
+    // numberView,
+    // dateView,
+    // daterangeView,
+    // switchView,
+    // radioView,
+    // checkboxView,
+    // selectView,
+    // imageView,
+    // videoView,
+    // staticView,
+    // editorView,
+    // textSelectView,
+    // numberSelectView,
+    // citySelectView
   },
   props: {
     column: {
