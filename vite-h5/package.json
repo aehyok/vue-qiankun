@@ -4,7 +4,8 @@
   "scripts": {
     "start": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "prettier": "npx prettier --write ."
   },
   "dependencies": {
     "pinia": "^2.0.0-rc.10",
@@ -14,6 +15,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.3",
+    "prettier": "^2.4.1",
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
     "typescript": "^4.4.3",

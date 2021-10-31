@@ -1,40 +1,40 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router"
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
-    name: "main",
-    redirect: "/home",
-    component: () => import(/* webpackChunkName: "main" */ "../components/main-layout.vue"),
+    path: '/',
+    name: 'main',
+    redirect: '/home',
+    component: () => import(/* webpackChunkName: "main" */ '../components/main-layout.vue'),
     meta: {
-      title: "主页",
+      title: '主页'
     },
     children: [
       {
-        path: "/home",
-        name: "Home",
-        component: () => import(/* webpackChunkName: "home" */ "../views/main/home.vue"),
+        path: '/home',
+        name: 'Home',
+        component: () => import(/* webpackChunkName: "home" */ '../views/main/home.vue'),
         meta: {
-          title: "首页",
+          title: '首页'
         }
       },
       {
-        path: "/mine",
-        name: "Mine",
-        component: () => import(/* webpackChunkName: "mine" */ "../views/main/mine.vue"),
+        path: '/mine',
+        name: 'Mine',
+        component: () => import(/* webpackChunkName: "mine" */ '../views/main/mine.vue'),
         meta: {
-          title: "我的",
+          title: '我的'
         }
-      },
+      }
     ]
   },
-  
+
   {
-    path: "/test",
-    name: "Test",
-    component: () => import(/* webpackChunkName: "test" */ "../views/Test.vue"),
+    path: '/test',
+    name: 'Test',
+    component: () => import(/* webpackChunkName: "test" */ '../views/Test.vue'),
     meta: {
-      title: "测试",
+      title: '测试'
     }
   }
 ]

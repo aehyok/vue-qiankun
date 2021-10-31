@@ -1,3 +1,1 @@
-<template>
-    mine
-</template>
+<template>mine</template>

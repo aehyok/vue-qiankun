@@ -11,9 +11,9 @@ export default defineConfig({
         {
           libraryName: 'vant',
           esModule: true,
-          resolveStyle: (name) => `vant/es/${name}/style`,
-        },
-      ],
+          resolveStyle: (name) => `vant/es/${name}/style`
+        }
+      ]
     })
   ],
   // 全局css样式变量
@@ -26,7 +26,7 @@ export default defineConfig({
   },
   server: {
     port: 8000,
-    host: '0.0.0.0', // 可查看到局域网IP地址
+    host: '0.0.0.0' // 可查看到局域网IP地址
     // https: true // 可开启https
   }
 })

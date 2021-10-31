@@ -1,11 +1,10 @@
 <script lang="ts" setup>
-import 
-{ 
-    Button as VanButton,
-    Sticky as VanSticky,
-    NavBar  as VanNavBar,
-    Tabbar as VanTabbar,
-    TabbarItem as VanTabbarItem,
+import {
+  Button as VanButton,
+  Sticky as VanSticky,
+  NavBar as VanNavBar,
+  Tabbar as VanTabbar,
+  TabbarItem as VanTabbarItem
 } from 'vant'
 import { useStore } from '../store'
 
@@ -15,43 +14,36 @@ console.log(title, '--title--')
 const active = 0
 
 const home = {
-    active: '/images/main/btn-home-selected.png',
-    inactive: '/images/main/btn-home-normal.png',
+  active: '/images/main/btn-home-selected.png',
+  inactive: '/images/main/btn-home-normal.png'
 }
-const  mine = {
-    active: '/images/main/btn-mine-selected.png',
-    inactive: '/images/main/btn-mine-normal.png',
+const mine = {
+  active: '/images/main/btn-mine-selected.png',
+  inactive: '/images/main/btn-mine-normal.png'
 }
 </script>
 
 <template>
-    <div class="container">
-        <van-nav-bar title="杨陵数字乡村" placeholder fixed />
-        <router-view />
-        <!-- 底部导航 -->
-        <van-tabbar v-model="active" route :placeholder="true" class="bottom-tab">
-            <van-tabbar-item replace to="/home">
-                <span class="active-color">首页</span>
-                <template #icon="props">
-                <img
-                    :src="active == 0 || active == 1 ? home.active : home.inactive"
-                    alt=""
-                />
-                </template>
-            </van-tabbar-item>
-            <van-tabbar-item
-                class="scan"
-                :icon="'/images/main/btn-scan.png'"
-            >
-            </van-tabbar-item>
-            <van-tabbar-item to="/mine" replace>
-                <span>我的</span>
-                <template #icon="props">
-                <img :src="active == 2 ? mine.active : mine.inactive" alt="" />
-                </template>
-            </van-tabbar-item>
-        </van-tabbar>
-    </div>
+  <div class="container">
+    <van-nav-bar title="杨陵数字乡村" placeholder fixed />
+    <router-view />
+    <!-- 底部导航 -->
+    <van-tabbar v-model="active" route :placeholder="true" class="bottom-tab">
+      <van-tabbar-item replace to="/home">
+        <span class="active-color">首页</span>
+        <template #icon="props">
+          <img :src="active == 0 || active == 1 ? home.active : home.inactive" alt />
+        </template>
+      </van-tabbar-item>
+      <van-tabbar-item class="scan" :icon="'/images/main/btn-scan.png'"></van-tabbar-item>
+      <van-tabbar-item to="/mine" replace>
+        <span>我的</span>
+        <template #icon="props">
+          <img :src="active == 2 ? mine.active : mine.inactive" alt />
+        </template>
+      </van-tabbar-item>
+    </van-tabbar>
+  </div>
 </template>
 
 <style lang="scss" scoped>
