@@ -1,0 +1,3 @@
+<template>
+    mine
+</template>
