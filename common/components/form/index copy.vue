@@ -39,6 +39,7 @@
   </el-row>
 </template>
 <script setup>
+// TODO 通过嵌套实现组件联动效果的功能
 import ComponentView from './column/component-view.vue'
 
 const props = defineProps({

@@ -116,44 +116,41 @@
           }
         ],
         "title": "栏目类型",
-        "controls": [
+      },
+      {
+        "name": "show",
+        "type": "radio",
+        "dictionary": [
           {
-            "value": 1,
-            "showCondition": [
-              {
-                "name": "show",
-                "type": "radio",
-                "dictionary": [
-                  {
-                    "code": 1,
-                    "name": "China"
-                  },
-                  {
-                    "code": 2,
-                    "name": "English"
-                  }
-                ],
-                "title": "测试类型",
-                "required": true
-              },
-              {
-                "name": "image1",
-                "type": "ImageTypeView",
-                "title": "文件"
-              }
-            ]
+            "code": 1,
+            "name": "China"
           },
           {
-            "value": 2,
-            "showCondition": [
-              {
-                "name": "isValids",
-                "type": "switch",
-                "title": "是否有效"
-              }
-            ]
+            "code": 2,
+            "name": "English"
           }
-        ]
+        ],
+        "title": "测试类型",
+        "required": true,
+        "ifshow": (data) => {
+          return data.type === 1
+        }
+      },
+      {
+        "name": "image1",
+        "type": "ImageTypeView",
+        "title": "文件",
+        "ifshow": (data) => {
+          return data.type === 1
+        }
+      },
+      {
+        "name": "isValids",
+        "type": "switch",
+        "title": "是否有效",
+        "ifshow": (data) => {
+          return data.type === 2
+        }
       },
       {
         "name": "requireType",
@@ -245,6 +242,9 @@
         type: "static",  // 字段类型只读文本
         name: "name",   //与后台对接字段
         title: "名称",  // 前端展示字段
+        ifshow: (data) => {   // 那么只有字段type ===1 的时候才会显示
+          return data.type === 1 
+        }
       },
     ```
 
