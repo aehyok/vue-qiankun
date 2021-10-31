@@ -1,10 +1,4 @@
-import {
-  createRouter,
-  RouteRecordRaw,
-  NavigationGuardNext,
-  createWebHashHistory,
-  RouteLocationNormalized
-} from 'vue-router'
+import { createRouter, RouteRecordRaw, createWebHashHistory } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -14,17 +8,16 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/home',
     name: 'home',
-    meta: {
-      type: 'home'
-    },
-    component: () => import('@/views/Home')
+    component: () => import('@/views/home')
+  },
+  {
+    path: '/table',
+    name: 'table',
+    component: () => import('@/views/table')
   },
   {
     path: '/login',
     name: 'login',
-    meta: {
-      type: 'login'
-    },
     component: () => import('@/views/login')
   },
   {

@@ -8,6 +8,7 @@ export default defineComponent({
             console.log('status----',data.tableData[index].status)
             data.tableData[index].status = !data.tableData[index].status ? 1: 0
           }
+
           const data = reactive({
             inputValue: '111111',
             test: false,

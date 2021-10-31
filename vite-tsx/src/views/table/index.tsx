@@ -1,14 +1,13 @@
 import { defineComponent, ref, reactive } from 'vue'
 import { format } from 'date-fns'
-import './login.scss'
-import { TableModel } from '../types/models'
-import table1 from './table/table1'
-import table2 from './table/table2'
+import table1 from './table1'
+import table2 from './table2'
 export default defineComponent({
   components: {
     table1, table2
   },
   setup() {
+    console.log('table in console')
     const date = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
     return () =>
       <>
