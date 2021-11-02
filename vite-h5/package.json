@@ -8,13 +8,15 @@
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^1.9.3",
+    "jsqr": "^1.4.0",
     "pinia": "^2.0.0-rc.10",
     "vant": "^3.2.6",
     "vconsole": "^3.9.4",
     "vite": "^2.6.4",
     "vite-plugin-style-import": "^1.2.1",
     "vue": "^3.2.16",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "webrtc-adapter": "^8.1.0"
   },
   "devDependencies": {
     "@types/node": "^16.11.6",

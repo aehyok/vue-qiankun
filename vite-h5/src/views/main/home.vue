@@ -7,7 +7,7 @@
 <script lang="ts" setup>
   import { Button as VanButton } from 'vant';
   import { useRouter } from 'vue-router';
-
+  import { onMounted } from 'vue';
   const router = useRouter();
   console.log('test');
   const jump = () => {
@@ -19,6 +19,11 @@
     height: '200px',
     border: '1px solid green',
   };
+
+  onMounted(() => {
+    console.log('11-22-33');
+    console.timeEnd('11');
+  });
 </script>
 
 <style module="classes">

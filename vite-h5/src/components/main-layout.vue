@@ -10,7 +10,8 @@
           <img :src="active == 0 || active == 1 ? home.active : home.inactive" alt="" />
         </template>
       </van-tabbar-item>
-      <van-tabbar-item class="scan" :icon="'/images/main/btn-scan.png'"> </van-tabbar-item>
+      <van-tabbar-item class="scan" :icon="'/images/main/btn-scan.png'" to="/scan">
+      </van-tabbar-item>
       <van-tabbar-item to="/mine" replace>
         <span>我的</span>
         <template #icon="props">
@@ -22,8 +23,10 @@
 </template>
 <script lang="ts" setup>
   import { NavBar as VanNavBar, Tabbar as VanTabbar, TabbarItem as VanTabbarItem } from 'vant';
+  import { useRouter } from 'vue-router';
   import useStore from '../store';
 
+  const router = useRouter();
   const store = useStore();
   const { title } = store;
   console.log(title, '--title--');
@@ -36,6 +39,10 @@
   const mine = {
     active: '/images/main/btn-mine-selected.png',
     inactive: '/images/main/btn-mine-normal.png',
+  };
+  const scan = () => {
+    console.log('scan');
+    router.push('/scan');
   };
 </script>
 <style lang="scss" scoped>

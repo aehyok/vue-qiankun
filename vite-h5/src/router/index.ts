@@ -28,13 +28,20 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
-
   {
     path: '/test',
     name: 'Test',
     component: () => import(/* webpackChunkName: "test" */ '../views/Test.vue'),
     meta: {
       title: '测试',
+    },
+  },
+  {
+    path: '/scan',
+    name: 'Scan',
+    component: () => import(/* webpackChunkName: "scan" */ '../views/Scan.vue'),
+    meta: {
+      title: '扫描',
     },
   },
 ];

@@ -1,3 +1,4 @@
+console.time('11');
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import VConsole from 'vconsole';
