@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <van-nav-bar title="杨陵数字乡村" placeholder fixed />
+    <van-nav-bar title="H5 Vant App" placeholder fixed />
     <router-view />
     <!-- 底部导航 -->
     <van-tabbar v-model="active" route :placeholder="true" class="bottom-tab">

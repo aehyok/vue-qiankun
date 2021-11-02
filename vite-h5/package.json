@@ -7,13 +7,14 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@vitejs/plugin-vue": "^1.9.3",
     "pinia": "^2.0.0-rc.10",
     "vant": "^3.2.6",
-    "vue": "^3.2.16",
-    "vue-router": "^4.0.12",
-    "@vitejs/plugin-vue": "^1.9.3",
+    "vconsole": "^3.9.4",
     "vite": "^2.6.4",
-    "vite-plugin-style-import": "^1.2.1"
+    "vite-plugin-style-import": "^1.2.1",
+    "vue": "^3.2.16",
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@types/node": "^16.11.6",
