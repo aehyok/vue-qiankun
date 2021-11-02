@@ -21,15 +21,14 @@
   const router = useRouter();
   console.error('test');
   const list = ref<number[]>([]);
-  // const ei: number = 10;
-  // eslint-disable-next-line no-plusplus
+
   for (let i = 0; i < 100; i++) {
     list.value.push(list.value.length + 1);
   }
 
-  const leftClick = () => {
+  function leftClick() {
     router.push('/');
-  };
+  }
 </script>
 
 <style lang="scss" scoped>
