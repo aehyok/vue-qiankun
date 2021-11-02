@@ -4,23 +4,31 @@
   "scripts": {
     "start": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview",
-    "prettier": "npx prettier --write ."
+    "serve": "vite preview"
   },
   "dependencies": {
     "pinia": "^2.0.0-rc.10",
     "vant": "^3.2.6",
     "vue": "^3.2.16",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "@vitejs/plugin-vue": "^1.9.3",
+    "vite": "^2.6.4",
+    "vite-plugin-style-import": "^1.2.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.9.3",
+    "@types/node": "^16.11.6",
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.0.3",
     "prettier": "^2.4.1",
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
     "typescript": "^4.4.3",
-    "vite": "^2.6.4",
-    "vite-plugin-style-import": "^1.2.1",
     "vue-tsc": "^0.3.0"
   }
 }

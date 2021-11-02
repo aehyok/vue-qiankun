@@ -1,11 +1,11 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
-export const useStore = defineStore({
+export default defineStore({
   id: 'aehyok',
   state: () => {
     return {
       count: 0,
-      title: 'hello aehyok'
-    }
-  }
-})
+      title: 'hello aehyok',
+    };
+  },
+});

@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -7,7 +7,7 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/home',
     component: () => import(/* webpackChunkName: "main" */ '../components/main-layout.vue'),
     meta: {
-      title: '主页'
+      title: '主页',
     },
     children: [
       {
@@ -15,18 +15,18 @@ const routes: Array<RouteRecordRaw> = [
         name: 'Home',
         component: () => import(/* webpackChunkName: "home" */ '../views/main/home.vue'),
         meta: {
-          title: '首页'
-        }
+          title: '首页',
+        },
       },
       {
         path: '/mine',
         name: 'Mine',
         component: () => import(/* webpackChunkName: "mine" */ '../views/main/mine.vue'),
         meta: {
-          title: '我的'
-        }
-      }
-    ]
+          title: '我的',
+        },
+      },
+    ],
   },
 
   {
@@ -34,14 +34,14 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Test',
     component: () => import(/* webpackChunkName: "test" */ '../views/Test.vue'),
     meta: {
-      title: '测试'
-    }
-  }
-]
+      title: '测试',
+    },
+  },
+];
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
-})
+  routes,
+});
 
 // router.beforeEach((to, _from, next) => {
 //   next()
@@ -51,4 +51,4 @@ const router = createRouter({
 // router.afterEach(() => {
 // })
 
-export default router
+export default router;
