@@ -1,24 +1,40 @@
 <template>
-  <van-form ref="form" :model="state.formConfig.formData">
-    <formView
-      :columnList="state.formConfig.formListItem"
-      :formData="state.formConfig.formData"
-      v-model:columnSpan="state.formConfig.cols"
-    />
-    <div style="margin: 16px">
-      <van-button round block type="primary" native-type="submit"> 提交 </van-button>
-    </div>
-  </van-form>
+  <div class="home-container">
+    <banner></banner>
 
-  <van-button type="primary" @click="jump">测试跳转</van-button>
-  <div :class="classes.homered">Home</div>
-  <div :class="$style.hometwo">Home</div>
-  <div class="homethree">Home</div>
+    <module></module>
+
+    <collection></collection>
+
+    <van-form ref="form" :model="state.formConfig.formData">
+      <formView
+        :columnList="state.formConfig.formListItem"
+        :formData="state.formConfig.formData"
+        v-model:columnSpan="state.formConfig.cols"
+      />
+      <div style="margin: 16px">
+        <van-button round block type="primary" native-type="submit"> 提交 </van-button>
+      </div>
+    </van-form>
+
+    <van-button type="primary" @click="jump">测试跳转</van-button>
+    <div :class="classes.homered">Home</div>
+    <div :class="$style.hometwo">Home</div>
+    <div class="homethree">Home</div>
+  </div>
 </template>
 <script lang="ts" setup>
-  import { Button as VanButton, Form as VanForm } from 'vant';
+  import {
+    Button as VanButton,
+    Form as VanForm,
+    Swipe as VanSwipe,
+    SwipeItem as VanSwipeItem,
+  } from 'vant';
   import { useRouter } from 'vue-router';
   import { onMounted, reactive } from 'vue';
+  import banner from '../home/banner.vue';
+  import module from '../home/module.vue';
+  import collection from '../home/collection.vue';
   import formView from '../../components/form/index.vue';
   const router = useRouter();
   console.log('test');
@@ -90,5 +106,13 @@
   .homethree {
     height: v-bind('theme.height');
     border: v-bind('theme.border');
+  }
+
+  .home-container {
+    background-color: #f5f7fa;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    // padding: 0 4vw;
   }
 </style>

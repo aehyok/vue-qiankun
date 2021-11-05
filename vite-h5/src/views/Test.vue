@@ -1,5 +1,5 @@
 <template>
-  <van-nav-bar title="积分明细" left-arrow fixed @click-left="leftClick" />
+  <van-nav-bar title="我的账单" left-arrow fixed @click-left="leftClick" />
   <div class="container">
     <template v-for="(item, index) in list">
       <van-sticky :offset-top="50" v-if="item % 10 === 1" :key="item">
