@@ -1,6 +1,10 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
 import styleImport from 'vite-plugin-style-import';
+function pathResolve(dir: string) {
+  return resolve(process.cwd(), '.', dir);
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,6 +20,24 @@ export default defineConfig({
       ],
     }),
   ],
+  resolve: {
+    alias: [
+      {
+        find: 'vue-i18n',
+        replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
+      },
+      // /@/xxxx => src/xxxx
+      {
+        find: /\/@\//,
+        replacement: pathResolve('src') + '/',
+      },
+      // /#/xxxx => types/xxxx
+      {
+        find: /\/#\//,
+        replacement: pathResolve('types') + '/',
+      },
+    ],
+  },
   // 全局css样式变量
   css: {
     preprocessorOptions: {
