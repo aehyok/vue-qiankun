@@ -1,5 +1,5 @@
 <template>
-  <van-grid :border="false" :column-num="4">
+  <van-grid :border="false" :column-num="4" class="module">
     <van-grid-item :icon="state.newIcon1" text="form表单" @click="jumpRouter('test')" />
 
     <van-grid-item :icon="state.newIcon2" text="动态列表" @click="jumpRouter('test')" />
@@ -14,9 +14,6 @@
 
     <van-grid-item :icon="state.newIcon5" text="动态列表" @click="jumpRouter('test')" />
 
-    <van-grid-item :icon="state.newIcon5" text="动态列表" @click="jumpRouter('test')" />
-
-    <van-grid-item :icon="state.newIcon6" text="动态列表" @click="jumpRouter('test')" />
     <van-grid-item :icon="state.newIcon6" text="动态列表" @click="jumpRouter('test')" />
   </van-grid>
 </template>
@@ -49,5 +46,21 @@
     .van-grid-item__text {
       font-size: 12px;
     }
+  }
+
+  :deep(.van-grid-item__content) {
+    padding: 2vw 0vw;
+    background: none;
+  }
+
+  .module {
+    border-radius: 10px;
+    margin: 10px 0;
+    border-radius: 1.06667vw;
+  }
+
+  .module :deep(.van-icon__image) {
+    width: 1.5em;
+    height: 1.5em;
   }
 </style>

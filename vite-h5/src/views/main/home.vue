@@ -6,6 +6,8 @@
 
     <collection-data></collection-data>
 
+    <news-list></news-list>
+
     <van-form ref="form" :model="state.formConfig.formData">
       <formView
         :columnList="state.formConfig.formListItem"
@@ -24,17 +26,13 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import {
-    Button as VanButton,
-    Form as VanForm,
-    Swipe as VanSwipe,
-    SwipeItem as VanSwipeItem,
-  } from 'vant';
+  import { Button as VanButton, Form as VanForm } from 'vant';
   import { useRouter } from 'vue-router';
   import { onMounted, reactive } from 'vue';
   import banner from '../home/banner.vue';
   import module from '../home/module.vue';
   import collectionData from '../home/collection-data.vue';
+  import newsList from '../home/news-list.vue';
   import formView from '../../components/form/index.vue';
   const router = useRouter();
   console.log('test');

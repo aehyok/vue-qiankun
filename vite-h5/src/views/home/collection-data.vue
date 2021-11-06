@@ -1,6 +1,6 @@
 <!--首页六个板块-->
 <template>
-  <div class="boxModule">
+  <div class="collection">
     <div class="paddingEdge">
       <van-image
         v-for="(item, index) in data"
@@ -41,7 +41,7 @@
 
 <script lang="ts" setup>
   import { Image as VanImage } from 'vant';
-  import { reactive, defineProps } from 'vue';
+  import { reactive } from 'vue';
   import { useRouter } from 'vue-router';
   const jumpTo = (item: any) => {
     console.log('11111111', item);
@@ -88,7 +88,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .boxModule {
+  .collection {
     width: 100%;
     .paddingEdge {
       width: 100%;

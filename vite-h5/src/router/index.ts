@@ -44,6 +44,14 @@ const routes: Array<RouteRecordRaw> = [
       title: '扫描',
     },
   },
+  {
+    path: '/news-list',
+    name: 'NewsList',
+    component: () => import(/* webpackChunkName: "news-list" */ '../views/news-list/index.vue'),
+    meta: {
+      title: '博客列表',
+    },
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),

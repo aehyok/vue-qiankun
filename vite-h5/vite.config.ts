@@ -24,6 +24,14 @@ export default defineConfig({
       },
     },
   },
+  base: './', // 设置打包路径
+  build: {
+    target: 'es2015',
+    outDir: '../../qiankun/main/h5/',
+    // Turning off brotliSize display can slightly reduce packaging time
+    brotliSize: false,
+    chunkSizeWarningLimit: 2000,
+  },
   server: {
     port: 8888,
     host: '0.0.0.0', // 可查看到局域网IP地址
