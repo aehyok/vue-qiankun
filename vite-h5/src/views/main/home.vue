@@ -4,7 +4,7 @@
 
     <module></module>
 
-    <collection></collection>
+    <collection-data></collection-data>
 
     <van-form ref="form" :model="state.formConfig.formData">
       <formView
@@ -34,7 +34,7 @@
   import { onMounted, reactive } from 'vue';
   import banner from '../home/banner.vue';
   import module from '../home/module.vue';
-  import collection from '../home/collection.vue';
+  import collectionData from '../home/collection-data.vue';
   import formView from '../../components/form/index.vue';
   const router = useRouter();
   console.log('test');
