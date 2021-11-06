@@ -1,8 +1,7 @@
-<!--首页最新动态-->
 <template>
   <div class="qrcode-panel">
     <div class="head">
-      <div class="title">最新动态</div>
+      <div class="title">博客列表</div>
       <div class="more" @click="goto">更多<img src="/images/newslist/btn_more.png" /></div>
     </div>
     <div class="main">

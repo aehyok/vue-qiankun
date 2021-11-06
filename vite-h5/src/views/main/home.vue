@@ -33,7 +33,7 @@
   import module from '../home/module.vue';
   import collectionData from '../home/collection-data.vue';
   import newsList from '../home/news-list.vue';
-  import formView from '../../components/form/index.vue';
+  import formView from '/@/components/form/index.vue';
   const router = useRouter();
   console.log('test');
   const jump = () => {
