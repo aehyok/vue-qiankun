@@ -16,7 +16,7 @@
       <div class="main">
         <div
           class="flex"
-          v-for="item: NewsModel in state.dataList"
+          v-for="item: NewsModel in dataList"
           :key="item.id"
           @click="goDetails(item.id)"
         >
@@ -40,42 +40,64 @@
 </template>
 <script lang="ts" setup>
   import { PullRefresh as VanPullRefresh, List as VanList, Empty as VanEmpty } from 'vant';
-  import { onBeforeMount, ref } from 'vue';
+  import { onBeforeMount, ref, reactive } from 'vue';
   import type { NewsModel } from '/@/types/models';
   import { list } from './data.d';
 
   const state = {
     tabHeadList: ['全部', '三务公开', '党建宣传', '精神文明', '便民信息'],
-    page: 1,
-    limit: 5,
     offset: 6, // 滚动条与底部距离小于 offset 时触发load事件
-    total: 14,
     nodata: false,
     active: 0,
-    dataList: {},
   };
+  const dataList = ref<NewsModel[]>();
+
+  const pageSetting = reactive({
+    page: 1,
+    limit: 15,
+    total: list.length,
+  });
 
   const isRefresh = ref(false);
   const isFinished = ref(false);
   const isListLoading = ref(false);
 
   onBeforeMount(() => {
-    state.dataList = list;
+    getList();
   });
 
+  const getList = () => {
+    let start = pageSetting.limit * (pageSetting.page - 1);
+    let end = pageSetting.limit * pageSetting.page;
+    let tempList = list.slice(start, end);
+    console.log(tempList, 'tempList');
+    if (pageSetting.page === 1) {
+      dataList.value = tempList;
+    } else {
+      // dataList.value?.push(tempList);
+      tempList.forEach((item) => {
+        dataList.value?.push(item);
+      });
+    }
+    tempList;
+  };
+
   const refreshClick = () => {
-    console.log('onRefresh', 'ssss----ssfds', isRefresh.value);
     setTimeout(() => {
       isRefresh.value = false;
       isFinished.value = false; // 不写会导致你上拉到底过后在下拉刷新将不能触发下拉加载事件
       isListLoading.value = false;
       // 通过接口调用数据
       console.log('调用接口成功');
+      pageSetting.page = 1;
+      getList();
     }, 500);
   };
 
   const onLoad = () => {
     console.log('onLoad--start');
+    pageSetting.page = pageSetting.page + 1;
+    getList();
   };
 
   const goDetails = (item: any) => {
