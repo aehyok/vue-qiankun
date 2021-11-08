@@ -6,7 +6,7 @@
 
     <van-grid-item :icon="state.newIcon3" text="图文消息" @click="jumpRouter('test')" />
 
-    <van-grid-item :icon="state.newIcon4" text="动态列表" @click="jumpRouter('test')" />
+    <van-grid-item :icon="state.newIcon4" text="我的账单" @click="jumpRouter('my-bill')" />
 
     <van-grid-item :icon="state.newIcon8" text="动态列表" @click="jumpRouter('test')" />
 
@@ -14,7 +14,7 @@
 
     <van-grid-item :icon="state.newIcon5" text="动态列表" @click="jumpRouter('test')" />
 
-    <van-grid-item :icon="state.newIcon6" text="动态列表" @click="jumpRouter('test')" />
+    <van-grid-item :icon="state.newIcon6" text="" @click="jumpRouter('test')" />
   </van-grid>
 </template>
 <script lang="ts" setup>

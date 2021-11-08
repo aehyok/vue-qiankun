@@ -42,13 +42,7 @@
   import { PullRefresh as VanPullRefresh, List as VanList, Empty as VanEmpty } from 'vant';
   import { onBeforeMount, ref } from 'vue';
   import type { NewsModel } from '/@/types/models';
-  // export interface NewsModel {
-  //   id: number;
-  //   messageName: string;
-  //   url?: string;
-  //   createdAt: string;
-  //   createdByDeptName: string;
-  // }
+  import { list } from './data.d';
 
   const state = {
     tabHeadList: ['全部', '三务公开', '党建宣传', '精神文明', '便民信息'],
@@ -64,105 +58,6 @@
   const isRefresh = ref(false);
   const isFinished = ref(false);
   const isListLoading = ref(false);
-  const images = 'http://vue.tuokecat.com/cdn/h5/newslist.jpg';
-  let list: NewsModel[] = [
-    {
-      id: 74,
-      messageName: '长图片',
-      createdAt: '2021-07-27T17:06:19',
-      createdByDeptName: '田西村',
-      url: images,
-    },
-    {
-      id: 71,
-      messageName: '小心哦哦奥',
-      createdAt: '2021-07-26T14:15:44',
-      createdByDeptName: '田西村',
-      url: images,
-    },
-    {
-      id: 70,
-      messageName: '11111',
-      createdAt: '2021-07-26T14:08:33',
-      createdByDeptName: '田西村',
-      url: images,
-    },
-    {
-      id: 69,
-      messageName: '11133',
-      createdAt: '2021-07-22T11:13:28',
-      createdByDeptName: '田西村',
-      url: images,
-    },
-    {
-      id: 68,
-      messageName: '22',
-      createdAt: '2021-07-22T11:12:58',
-
-      createdByDeptName: '田西村',
-      url: images,
-    },
-    {
-      id: 64,
-      messageName: '123',
-      createdAt: '2021-07-19T10:00:16',
-      createdByDeptName: '田西村',
-      url: images,
-    },
-    {
-      id: 62,
-      messageName: 'ddddd',
-      createdAt: '2021-06-18T20:20:55',
-      createdByDeptName: '田西村',
-      url: images,
-    },
-    {
-      id: 61,
-      messageName: 'asdfasdfa',
-      createdAt: '2021-06-18T20:14:30',
-      createdByDeptName: '田西村',
-      url: images,
-    },
-    {
-      id: 59,
-      messageName: 'asdfasf',
-
-      createdAt: '2021-06-18T11:45:02',
-      createdByDeptName: '田西村',
-      url: images,
-    },
-    {
-      id: 58,
-      messageName: '神舟12号发射成功',
-      createdAt: '2021-06-17T11:54:09',
-      createdByDeptName: '田西村',
-      url: images,
-    },
-    {
-      id: 56,
-      messageName: '444444444',
-      createdAt: '2021-06-17T10:30:56',
-      createdByDeptName: '田西村',
-    },
-    {
-      id: 53,
-      messageName: '学习防疫医务工作者忘我工作精神',
-      createdAt: '2021-06-16T19:25:01',
-      createdByDeptName: '田西村',
-    },
-    {
-      id: 51,
-      messageName: '神舟12号发射',
-      createdAt: '2021-06-16T18:46:24',
-      createdByDeptName: '田西村',
-    },
-    {
-      id: 50,
-      messageName: '11111haaaahhhaaaaa',
-      createdAt: '2021-06-16T18:39:17',
-      createdByDeptName: '田西村',
-    },
-  ];
 
   onBeforeMount(() => {
     state.dataList = list;
@@ -183,7 +78,9 @@
     console.log('onLoad--start');
   };
 
-  const goDetails = (item: any) => {};
+  const goDetails = (item: any) => {
+    console.log(item, 'data');
+  };
 </script>
 
 <style lang="scss" scoped>
