@@ -14,6 +14,15 @@ const { pics: eee, morss } = data;
 
 console.log(eee, 'pics-----ssssssssssss');
 
+async function asyncFn() {
+  return { code: 200 };
+}
+const res = asyncFn();
+res.then((item) => {
+  console.log('res1111', item);
+});
+console.log('res22222', res);
+
 const images = 'http://vue.tuokecat.com/cdn/h5/newslist.jpg';
 export const list: NewsModel[] = [
   {

@@ -52,6 +52,23 @@ const routes: Array<RouteRecordRaw> = [
       title: '博客列表',
     },
   },
+  {
+    path: '/news-detail',
+    name: 'news-detail',
+    component: () =>
+      import(/* webpackChunkName: "news-detail" */ '../views/news-list/news-detail.vue'),
+    meta: {
+      title: '详情',
+    },
+  },
+  {
+    path: '/slot',
+    name: 'slot',
+    component: () => import(/* webpackChunkName: "slot" */ '../views/slot/index.vue'),
+    meta: {
+      title: '博客列表',
+    },
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),

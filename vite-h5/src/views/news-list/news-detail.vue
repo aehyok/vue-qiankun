@@ -21,14 +21,18 @@
   import { format } from 'date-fns';
   import { onMounted, reactive } from 'vue';
   import { NavBar as VanNavBar, Divider as VanDivider } from 'vant';
-
+  import { useRouter } from 'vue-router';
+  console.log('detail');
   const timer = (val) => {
     return format(new Date(val), 'yyyy-MM-dd HH:mm:ss');
   };
 
+  const router = useRouter();
   const goBack = () => {
     console.log('goBack--');
+    router.push('/news-list');
   };
+
   const objData = reactive({
     id: 54,
     messageName: '绵绵秋雨中，他们默默筑起“安全堤”',
