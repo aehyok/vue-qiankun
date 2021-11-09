@@ -1,4 +1,18 @@
-import { NewsModel } from './../../types/models.d';
+import { NewsModel } from '/#/models/index.d';
+
+let data = {
+  pics: {
+    aaaaa: {
+      aa: 'aa',
+      bb: 'bb',
+    },
+  },
+  morss: {},
+};
+
+const { pics: eee, morss } = data;
+
+console.log(eee, 'pics-----ssssssssssss');
 
 const images = 'http://vue.tuokecat.com/cdn/h5/newslist.jpg';
 export const list: NewsModel[] = [
@@ -16,6 +30,7 @@ export const list: NewsModel[] = [
     createdByDeptName: '田西村',
     url: images,
   },
+
   {
     id: 3,
     messageName: '11111',

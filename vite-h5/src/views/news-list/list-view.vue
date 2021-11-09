@@ -9,7 +9,7 @@
       v-model="isListLoading"
       :finished="isFinished"
       :offset="state.offset"
-      finished-text="暂无更多"
+      finished-text="数据已加载完毕"
       :immediate-check="false"
       @load="onLoad"
     >
@@ -41,9 +41,10 @@
 <script lang="ts" setup>
   import { PullRefresh as VanPullRefresh, List as VanList, Empty as VanEmpty } from 'vant';
   import { onBeforeMount, ref, reactive } from 'vue';
-  import type { NewsModel } from '/@/types/models';
+  import type { NewsModel } from '../../types/models';
   import { list } from './data.d';
-
+  import { useRouter } from 'vue-router';
+  const router = useRouter();
   const state = {
     tabHeadList: ['全部', '三务公开', '党建宣传', '精神文明', '便民信息'],
     offset: 6, // 滚动条与底部距离小于 offset 时触发load事件
@@ -56,6 +57,7 @@
     page: 1,
     limit: 15,
     total: list.length,
+    pages: Math.round(list.length / 15),
   });
 
   const isRefresh = ref(false);
@@ -71,15 +73,20 @@
     let end = pageSetting.limit * pageSetting.page;
     let tempList = list.slice(start, end);
     console.log(tempList, 'tempList');
+    if (pageSetting.page === pageSetting.pages) {
+      isFinished.value = true;
+    } else {
+      isFinished.value = false;
+    }
+
     if (pageSetting.page === 1) {
       dataList.value = tempList;
     } else {
-      // dataList.value?.push(tempList);
       tempList.forEach((item) => {
         dataList.value?.push(item);
       });
+      console.log(dataList.value, 'dataList.value', dataList.value?.length);
     }
-    tempList;
   };
 
   const refreshClick = () => {
@@ -95,13 +102,14 @@
   };
 
   const onLoad = () => {
-    console.log('onLoad--start');
+    console.log('onLoad--start', pageSetting);
     pageSetting.page = pageSetting.page + 1;
     getList();
   };
 
-  const goDetails = (item: any) => {
+  const goDetails = (item: number) => {
     console.log(item, 'data');
+    router.push('./news-detail');
   };
 </script>
 

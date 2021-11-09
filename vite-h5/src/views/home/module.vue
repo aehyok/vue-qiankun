@@ -14,7 +14,7 @@
 
     <van-grid-item :icon="state.newIcon5" text="动态列表" @click="jumpRouter('test')" />
 
-    <van-grid-item :icon="state.newIcon6" text="" @click="jumpRouter('test')" />
+    <van-grid-item :icon="state.newIcon6" text="动态列表" @click="jumpRouter('test')" />
   </van-grid>
 </template>
 <script lang="ts" setup>
