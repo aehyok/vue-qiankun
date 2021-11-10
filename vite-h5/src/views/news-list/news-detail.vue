@@ -88,7 +88,7 @@
         width: 100vw;
       }
       .text {
-        ::v-deep p {
+        :deep(p) {
           margin: 0;
         }
       }

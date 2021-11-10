@@ -9,7 +9,9 @@
     @click-left="onClickLeft"
   />
   <!-- tab切换区 -->
-  <component :is="tabIndex"></component>
+  <keep-alive include="tabIndex">
+    <component :is="tabIndex"></component>
+  </keep-alive>
 </template>
 
 <script lang="ts" setup>
