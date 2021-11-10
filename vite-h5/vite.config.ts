@@ -55,7 +55,7 @@ export default defineConfig({
     chunkSizeWarningLimit: 2000,
   },
   server: {
-    port: 8888,
+    port: 9528,
     host: '0.0.0.0', // 可查看到局域网IP地址
     // https: true, // 可开启https
   },

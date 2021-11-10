@@ -62,6 +62,14 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/form',
+    name: 'form',
+    component: () => import(/* webpackChunkName: "form" */ '../views/form/index.vue'),
+    meta: {
+      title: '动态表单',
+    },
+  },
+  {
     path: '/slot',
     name: 'slot',
     component: () => import(/* webpackChunkName: "slot" */ '../views/slot/index.vue'),

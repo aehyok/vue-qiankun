@@ -46,7 +46,7 @@
   import { useRouter } from 'vue-router';
   const router = useRouter();
   const state = {
-    tabHeadList: ['全部', '三务公开', '党建宣传', '精神文明', '便民信息'],
+    tabHeadList: ['全部', 'Java高级', '前端精讲', '全栈说法', '算法摘要'],
     offset: 6, // 滚动条与底部距离小于 offset 时触发load事件
     nodata: false,
     active: 0,

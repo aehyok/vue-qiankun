@@ -8,17 +8,6 @@
 
     <news-list></news-list>
 
-    <van-form ref="form" :model="state.formConfig.formData">
-      <formView
-        :columnList="state.formConfig.formListItem"
-        :formData="state.formConfig.formData"
-        v-model:columnSpan="state.formConfig.cols"
-      />
-      <div style="margin: 16px">
-        <van-button round block type="primary" native-type="submit"> 提交 </van-button>
-      </div>
-    </van-form>
-
     <van-button type="primary" @click="jump">测试跳转</van-button>
     <div :class="classes.homered">Home</div>
     <div :class="$style.hometwo">Home</div>
@@ -26,52 +15,19 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { Button as VanButton, Form as VanForm } from 'vant';
+  import { Button as VanButton } from 'vant';
   import { useRouter } from 'vue-router';
-  import { onMounted, reactive } from 'vue';
+  import { onMounted } from 'vue';
   import banner from '../home/banner.vue';
   import module from '../home/module.vue';
   import collectionData from '../home/collection-data.vue';
   import newsList from '../home/news-list.vue';
-  import formView from '/@/components/form/index.vue';
   const router = useRouter();
   console.log('test');
   const jump = () => {
     console.log('jump--jump');
     router.push('/test');
   };
-
-  const state = reactive({
-    formConfig: {
-      cols: 24,
-      formListItem: [
-        {
-          name: 'name1',
-          type: 'text',
-          title: '栏目标题',
-          required: true, // 必填
-        },
-        {
-          name: 'name',
-          type: 'text',
-          title: '栏1目标题',
-          required: true, // 必填
-        },
-      ],
-      formData: {
-        name: '主菜单栏目',
-        name1: '222222',
-        count: null,
-        createDate: 1606730360386,
-        type: 2,
-        requireType: undefined,
-        creType: '',
-        range: [],
-        isExpired: false,
-        isValid: true,
-      },
-    },
-  });
 
   const theme = {
     height: '200px',

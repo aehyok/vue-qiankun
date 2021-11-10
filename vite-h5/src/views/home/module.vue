@@ -1,6 +1,6 @@
 <template>
   <van-grid :border="false" :column-num="4" class="module">
-    <van-grid-item :icon="state.newIcon1" text="form表单" @click="jumpRouter('test')" />
+    <van-grid-item :icon="state.newIcon1" text="form表单" @click="jumpRouter('form')" />
 
     <van-grid-item :icon="state.newIcon2" text="动态列表" @click="jumpRouter('test')" />
 
@@ -36,7 +36,7 @@
   });
 
   //跳转到对应的Page
-  const jumpRouter = (pageRouter: any) => {
+  const jumpRouter = (pageRouter: string) => {
     console.log(`/${pageRouter}`);
     router.push(`/${pageRouter}`);
   };
