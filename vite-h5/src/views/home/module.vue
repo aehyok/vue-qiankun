@@ -2,7 +2,7 @@
   <van-grid :border="false" :column-num="4" class="module">
     <van-grid-item :icon="state.newIcon1" text="form表单" @click="jumpRouter('form')" />
 
-    <van-grid-item :icon="state.newIcon2" text="动态列表" @click="jumpRouter('test')" />
+    <van-grid-item :icon="state.newIcon2" text="动态列表" @click="jumpRouter('news')" />
 
     <van-grid-item :icon="state.newIcon3" text="图文消息" @click="jumpRouter('test')" />
 

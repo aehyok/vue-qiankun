@@ -8,10 +8,7 @@
     left-arrow
     @click-left="onClickLeft"
   />
-  <!-- tab切换区 -->
-  <keep-alive include="tabIndex">
-    <component :is="tabIndex"></component>
-  </keep-alive>
+  <component :is="tabIndex"></component>
 </template>
 
 <script lang="ts" setup>

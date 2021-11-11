@@ -54,7 +54,8 @@
   });
   const router = useRouter();
   const goto = () => {
-    router.push('/news-list');
+    console.log(`/news`);
+    router.push('/news');
   };
 
   const load = () => {};

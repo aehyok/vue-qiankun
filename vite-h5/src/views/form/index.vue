@@ -33,8 +33,8 @@
         },
       ],
       formData: {
-        name: '主菜单栏目',
-        name1: '222222',
+        name: '',
+        name1: '',
         count: null,
         createDate: 1606730360386,
         type: 2,

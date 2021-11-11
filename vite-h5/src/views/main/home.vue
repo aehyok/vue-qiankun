@@ -6,7 +6,7 @@
 
     <collection-data></collection-data>
 
-    <news-list></news-list>
+    <news-data></news-data>
 
     <van-button type="primary" @click="jump">测试跳转</van-button>
     <div :class="classes.homered">Home</div>
@@ -21,7 +21,7 @@
   import banner from '../home/banner.vue';
   import module from '../home/module.vue';
   import collectionData from '../home/collection-data.vue';
-  import newsList from '../home/news-list.vue';
+  import newsData from '../home/news-data.vue';
   const router = useRouter();
   console.log('test');
   const jump = () => {

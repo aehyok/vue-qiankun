@@ -4,7 +4,7 @@
     v-model="value"
     :required="column.required"
     :label="column.title"
-    :rules="[{ required: true, message: '请填写用户名' }]"
+    :rules="[{ required: true, message: '请输入' + column.title }]"
     :placeholder="'请输入' + column.title"
   />
 </template>
@@ -51,3 +51,17 @@
     },
   });
 </script>
+<style lang="scss" scoped>
+  :deep(.van-cell:after) {
+    position: absolute;
+    box-sizing: border-box;
+    content: ' ';
+    pointer-events: none;
+    right: 16 px;
+    bottom: 0;
+    left: 16 px;
+    border-bottom: 1 px solid #ebedf0;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+</style>

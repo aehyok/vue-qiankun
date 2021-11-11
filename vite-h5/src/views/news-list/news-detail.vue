@@ -30,7 +30,7 @@
   const router = useRouter();
   const goBack = () => {
     console.log('goBack--');
-    router.push('/news-list');
+    router.go(-1);
   };
 
   const objData = reactive({

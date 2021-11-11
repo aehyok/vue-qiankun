@@ -38,15 +38,23 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/scan',
-    name: 'Scan',
+    name: 'scan',
     component: () => import(/* webpackChunkName: "scan" */ '../views/Scan.vue'),
     meta: {
       title: '扫描',
     },
   },
   {
-    path: '/news-list',
-    name: 'NewsList',
+    path: '/my-bill',
+    name: 'my-bill',
+    component: () => import(/* webpackChunkName: "my-bill" */ '../views/my-bill/index.vue'),
+    meta: {
+      title: '我的账单',
+    },
+  },
+  {
+    path: '/news',
+    name: 'news',
     component: () => import(/* webpackChunkName: "news-list" */ '../views/news-list/index.vue'),
     meta: {
       title: '博客列表',
