@@ -1,6 +1,6 @@
 <template>
   <div style="position: relative; margin-bottom: 42px">
-    <template v-for="(item: any, index: Number) in columnList" :key="index + 'formView'">
+    <template v-for="item: any in columnList" :key="index + 'formView'">
       <component-view
         :columnSpan="columnSpan"
         :column="item"

@@ -40,7 +40,7 @@
   // import radioView from './item-view/radioView.vue'
   // import checkboxView from './item-view/checkboxView.vue'
   // import daterangeView from './item-view/daterangeView.vue'
-  // import selectView from './item-view/selectView.vue'
+  import selectView from './item-view/selectView.vue';
   // import imageView from './item-view/imageView.vue'
   // import videoView from './item-view/videoView.vue'
   // import staticView from './item-view/staticView.vue'
@@ -62,7 +62,7 @@
       // switchView,
       // radioView,
       // checkboxView,
-      // selectView,
+      selectView,
       // imageView,
       // videoView,
       // staticView,
