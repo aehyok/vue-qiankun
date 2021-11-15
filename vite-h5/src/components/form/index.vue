@@ -1,10 +1,10 @@
 <template>
   <div style="position: relative; margin-bottom: 42px">
-    <template v-for="item: any in columnList" :key="index + 'formView'">
+    <template v-for="(item: any, index: number) in columnList">
       <component-view
-        :columnSpan="columnSpan"
         :column="item"
         :formData="formData"
+        :key="index"
         v-if="ifshow(item, formData)"
       />
     </template>
@@ -12,7 +12,7 @@
 </template>
 <script lang="ts" setup>
   import ComponentView from './column/component-view.vue';
-  const props = defineProps({
+  defineProps({
     columnList: {
       type: Array,
       default: () => [],
@@ -20,10 +20,6 @@
     formData: {
       type: Object,
       default: () => {},
-    },
-    columnSpan: {
-      type: Number,
-      default: 24,
     },
   });
 

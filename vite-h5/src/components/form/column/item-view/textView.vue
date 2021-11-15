@@ -5,6 +5,7 @@
     :required="column.required"
     :label="column.title"
     :rules="[{ required: true, message: '请输入' + column.title }]"
+    right-icon="arrow"
     :placeholder="'请输入' + column.title"
   />
 </template>

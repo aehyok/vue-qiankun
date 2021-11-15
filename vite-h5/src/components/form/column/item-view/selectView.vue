@@ -4,10 +4,12 @@
     readonly
     clickable
     v-model="text"
+    :required="column.required"
     :label="column.title"
     :placeholder="'请选择' + column.title"
     :rules="rules"
     @click="popClick"
+    right-icon="arrow"
   />
   <van-popup v-model:show="showPicker" position="bottom">
     <van-picker show-toolbar :columns="list" @confirm="onConfirm" @cancel="onCancel" />
@@ -26,6 +28,10 @@
     data: {
       type: [Number, String, Array],
       default: undefined,
+    },
+    formData: {
+      type: [Object],
+      default: () => {},
     },
   });
 
@@ -110,3 +116,4 @@
     }
   };
 </script>
+<style lang="scss" scoped></style>

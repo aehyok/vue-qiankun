@@ -1,5 +1,5 @@
 <template>
-  <div :span="columnSpan" style="width: 100%">
+  <div style="width: 100%">
     <!--不包含View则是npm组件库中的-->
     <component
       v-if="!column.type.includes('View') && !column.type.includes('textSelect')"
@@ -7,7 +7,6 @@
       :column="column"
       :formData="formData"
       v-model:data="formData[column.name]"
-      :columnSpan="columnSpan"
     />
 
     <component
@@ -17,7 +16,6 @@
       :formData="formData"
       v-model:leftValue="formData[column.text.name]"
       v-model:rightValue="formData[column.select.name]"
-      :columnSpan="columnSpan"
     />
 
     <!--可单独自定义录入组件-->
@@ -27,12 +25,11 @@
       :column="column"
       :formData="formData"
       v-model:data="formData[column.name]"
-      :columnSpan="columnSpan"
     />
   </div>
 </template>
 <script lang="ts">
-  import { createApp, defineComponent } from 'vue';
+  import { defineComponent } from 'vue';
   import textView from './item-view/textView.vue';
   // import textareaView from './item-view/textareaView.vue'
   // import numberView from './item-view/numberView.vue'
@@ -80,12 +77,8 @@
         type: Object,
         default: () => {},
       },
-      columnSpan: {
-        type: Number,
-        default: 24,
-      },
     },
-    setup(props, context) {
+    setup(props) {
       // const $context = require.context("./item-view", true, /.vue$/)
       // console.log($context, '$context--------------')
 
@@ -95,14 +88,12 @@
         console.log(props.formData, props.column);
       }
 
-      const registerComponent = (componentName) => {
-        console.log(componentName, 'this.componentName');
-        return createApp(componentName.default);
-      };
-
       const isIncludes = () => {
-        console.log(['textSelect', 'numberSelect'].includes(column.type), 'text-number----select');
-        return ['textSelect', 'numberSelect'].includes(column.type);
+        console.log(
+          ['textSelect', 'numberSelect'].includes(props.column.type),
+          'text-number----select',
+        );
+        return ['textSelect', 'numberSelect'].includes(props.column.type);
       };
       // const compose = computed({
       //   get: function() {
