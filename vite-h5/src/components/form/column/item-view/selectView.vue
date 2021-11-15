@@ -4,13 +4,20 @@
     readonly
     clickable
     v-model="text"
-    :required="column.required"
     :label="column.title"
     :placeholder="'请选择' + column.title"
     :rules="rules"
     @click="popClick"
-    right-icon="arrow"
-  />
+    error-message-align="right"
+    input-align="right"
+    is-link
+  >
+    <template #label
+      ><span :class="column.required ? 'style-font-color' : 'style-padding-labelleft'">
+        {{ column.required ? '*' : '' }}</span
+      >{{ column.title }}</template
+    >
+  </van-field>
   <van-popup v-model:show="showPicker" position="bottom">
     <van-picker show-toolbar :columns="list" @confirm="onConfirm" @cancel="onCancel" />
   </van-popup>
@@ -116,4 +123,13 @@
     }
   };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .style-padding-labelleft {
+    padding-left: 10px;
+  }
+
+  .style-font-color {
+    color: red;
+    padding-right: 5px;
+  }
+</style>

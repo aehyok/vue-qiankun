@@ -2,12 +2,18 @@
 <template>
   <van-field
     v-model="value"
-    :required="column.required"
     :label="column.title"
-    :rules="[{ required: true, message: '请输入' + column.title }]"
-    right-icon="arrow"
+    :rules="[{ required: column.required, message: '请输入' + column.title }]"
+    input-align="right"
+    error-message-align="right"
     :placeholder="'请输入' + column.title"
-  />
+  >
+    <template #label
+      ><span :class="column.required ? 'style-font-color' : 'style-padding-labelleft'">
+        {{ column.required ? '*' : '' }}</span
+      >{{ column.title }}</template
+    >
+  </van-field>
 </template>
 <script lang="ts" setup>
   import { computed, ref } from 'vue';
@@ -53,16 +59,24 @@
   });
 </script>
 <style lang="scss" scoped>
-  :deep(.van-cell:after) {
+  .style-padding-labelleft {
+    padding-left: 10px;
+  }
+
+  .style-font-color {
+    color: red;
+    padding-right: 5px;
+  }
+
+  :deep(.van-cell::after) {
     position: absolute;
     box-sizing: border-box;
     content: ' ';
     pointer-events: none;
-    right: 16 px;
+    right: var(--van-padding-md);
     bottom: 0;
-    left: 16 px;
-    border-bottom: 1 px solid #ebedf0;
-    -webkit-transform: scaleY(0.5);
+    left: var(--van-padding-md);
+    border-bottom: 1 px solid black;
     transform: scaleY(0.5);
   }
 </style>

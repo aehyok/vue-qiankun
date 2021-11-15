@@ -1,17 +1,20 @@
 <template>
-  <van-form ref="form" :model="state.formConfig.formData">
-    <formView
-      :columnList="state.formConfig.formListItem"
-      :formData="state.formConfig.formData"
-      v-model:columnSpan="state.formConfig.cols"
-    />
-    <div style="margin: 16px">
-      <van-button round block type="primary" native-type="submit"> 提交 </van-button>
-    </div>
-  </van-form>
+  <div style="position: relative; margin-bottom: 42px">
+    <van-form ref="form" :model="state.formConfig.formData">
+      <van-cell-group title="基础信息">
+        <formView
+          :columnList="state.formConfig.formListItem"
+          :formData="state.formConfig.formData"
+        />
+        <div style="margin: 16px">
+          <van-button round block type="primary" native-type="submit"> 提交 </van-button>
+        </div>
+      </van-cell-group>
+    </van-form>
+  </div>
 </template>
 <script lang="ts" setup>
-  import { Button as VanButton, Form as VanForm } from 'vant';
+  import { Button as VanButton, Form as VanForm, CellGroup as VanCellGroup } from 'vant';
   import { reactive } from 'vue';
   import formView from '/@/components/form/index.vue';
 
@@ -37,6 +40,12 @@
           required: true, // 必填
         },
         {
+          name: 'name21',
+          type: 'text',
+          title: '栏目类型',
+          required: false, // 必填
+        },
+        {
           name: 'type',
           type: 'select',
           title: '类型',
@@ -52,7 +61,7 @@
         {
           name: 'type1',
           type: 'select',
-          title: '类型1',
+          title: '级别',
           required: true, // 必填
           dictionary: [
             { code: 1, text: '杭1州' },
