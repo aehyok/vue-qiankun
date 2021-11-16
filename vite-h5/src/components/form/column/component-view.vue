@@ -31,9 +31,9 @@
 <script lang="ts">
   import { defineComponent } from 'vue';
   import textView from './item-view/textView.vue';
-  // import textareaView from './item-view/textareaView.vue'
+  import textareaView from './item-view/textareaView.vue';
   // import numberView from './item-view/numberView.vue'
-  // import dateView from './item-view/dateView.vue'
+  import dateView from './item-view/dateView.vue';
   // import radioView from './item-view/radioView.vue'
   // import checkboxView from './item-view/checkboxView.vue'
   // import daterangeView from './item-view/daterangeView.vue'
@@ -52,9 +52,9 @@
     name: 'formView',
     components: {
       textView,
-      // textareaView,
+      textareaView,
       // numberView,
-      // dateView,
+      dateView,
       // daterangeView,
       // switchView,
       // radioView,

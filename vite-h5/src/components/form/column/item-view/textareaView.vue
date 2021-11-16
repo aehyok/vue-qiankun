@@ -1,18 +1,25 @@
 <!--简单文本框-->
 <template>
-  <el-form-item :label="column.title + '：'" :prop="column.name" :rules="rules">
-    <el-input
-      v-model="value"
-      type="textarea"
-      :placeholder="'请输入' + column.title"
-      :rows="column.rows"
-      :maxlength="column.maxlength"
-      :minlength="column.minlength"
+  <van-field
+    :rows="column.rows"
+    autosize
+    type="textarea"
+    v-model="value"
+    :label="column.title"
+    :rules="[{ required: column.required, message: '请输入' + column.title }]"
+    input-align="right"
+    error-message-align="right"
+    :placeholder="'请输入' + column.title"
+  >
+    <template #label
+      ><span :class="column.required ? 'style-font-color' : 'style-padding-labelleft'">
+        {{ column.required ? '*' : '' }}</span
+      >{{ column.title }}</template
     >
-    </el-input>
-  </el-form-item>
+  </van-field>
 </template>
 <script setup>
+  import { Field as VanField } from 'vant';
   import { computed, ref } from 'vue';
   const emit = defineEmits(['update:data']);
   const props = defineProps({
@@ -25,7 +32,7 @@
       default: '',
     },
   });
-
+  console.log('--textarea--');
   const { column } = props;
   if (column && !column.rows) {
     column.rows = 3;
@@ -55,3 +62,25 @@
     },
   });
 </script>
+<style lang="scss" scoped>
+  .style-padding-labelleft {
+    padding-left: 10px;
+  }
+
+  .style-font-color {
+    color: red;
+    padding-right: 5px;
+  }
+
+  :deep(.van-cell::after) {
+    position: absolute;
+    box-sizing: border-box;
+    content: ' ';
+    pointer-events: none;
+    right: var(--van-padding-md);
+    bottom: 0;
+    left: var(--van-padding-md);
+    border-bottom: 1 px solid black;
+    transform: scaleY(0.5);
+  }
+</style>

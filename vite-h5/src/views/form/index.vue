@@ -40,9 +40,27 @@
           required: true, // 必填
         },
         {
-          name: 'name21',
+          name: 'name2',
           type: 'text',
-          title: '栏目类型',
+          title: '栏目姓名',
+          required: false, // 必填
+        },
+        {
+          name: 'content',
+          type: 'textarea',
+          title: '栏目内容',
+          required: true, // 必填
+        },
+        {
+          name: 'remark',
+          type: 'textarea',
+          title: '栏目备注',
+          required: false, // 必填
+        },
+        {
+          name: 'createDate',
+          type: 'date',
+          title: '创建日期',
           required: false, // 必填
         },
         {
@@ -75,8 +93,8 @@
       formData: {
         name: '',
         name1: '',
-        count: null,
-        createDate: 1606730360386,
+        content: '',
+        createDate: undefined,
         type: 2,
         type1: 2,
         requireType: undefined,
