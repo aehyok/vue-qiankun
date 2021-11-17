@@ -14,25 +14,7 @@
       @load="onLoad"
     >
       <div class="main">
-        <div
-          class="flex"
-          v-for="item: NewsModel in dataList"
-          :key="item.id"
-          @click="goDetails(item.id)"
-        >
-          <div :class="!item.url ? 'itemCollagen' : 'itemCollagenSeventy'">
-            <p>{{ item.messageName }}</p>
-            <span
-              ><span :class="item.createdByDeptName ? 'createdByDeptName' : ''">{{
-                item.createdByDeptName ? item.createdByDeptName : ''
-              }}</span
-              >{{ item.createdAt }}</span
-            >
-          </div>
-          <div v-if="item.url">
-            <img :src="item.url" alt="" />
-          </div>
-        </div>
+        <item-view :dataList="dataList" :goDetails="goDetails"></item-view>
       </div>
     </van-list>
   </van-pull-refresh>
@@ -44,6 +26,7 @@
   import type { NewsModel } from '../../types/models';
   import { list } from './data.d';
   import { useRouter } from 'vue-router';
+  import itemView from './item-view.vue';
   const router = useRouter();
   const state = {
     tabHeadList: ['全部', 'Java高级', '前端精讲', '全栈说法', '算法摘要'],
