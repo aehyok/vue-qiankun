@@ -16,6 +16,10 @@
       type: String,
       default: '',
     },
+    formData: {
+      type: [Object],
+      default: () => {},
+    },
   });
   const show = ref(false);
   const { column, data } = props;
