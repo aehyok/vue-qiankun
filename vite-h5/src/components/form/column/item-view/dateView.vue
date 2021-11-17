@@ -38,7 +38,7 @@
   const onConfirm = (val) => {
     console.log('date');
     show.value = false;
-    emit('update:data', val);
+    emit('update:data', formatDate(val));
   };
   const value = computed({
     get: function () {

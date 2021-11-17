@@ -1,29 +1,36 @@
 <!--简单文本框-->
 <template>
-  <van-field
-    readonly
-    clickable
-    v-model="text"
-    :label="column.title"
-    :placeholder="'请选择' + column.title"
-    :rules="rules"
-    @click="popClick"
-    error-message-align="right"
-    input-align="right"
-    is-link
-  >
-    <template #label
-      ><span :class="column.required ? 'style-font-color' : 'style-padding-labelleft'">
-        {{ column.required ? '*' : '' }}</span
-      >{{ column.title }}</template
+  <van-cell-group>
+    <van-field
+      readonly
+      clickable
+      v-model="text"
+      :label="column.title"
+      :placeholder="'请选择' + column.title"
+      :rules="rules"
+      @click="popClick"
+      error-message-align="right"
+      input-align="right"
+      is-link
     >
-  </van-field>
+      <template #label
+        ><span :class="column.required ? 'style-font-color' : 'style-padding-labelleft'">
+          {{ column.required ? '*' : '' }}</span
+        >{{ column.title }}</template
+      >
+    </van-field>
+  </van-cell-group>
   <van-popup v-model:show="showPicker" position="bottom">
     <van-picker show-toolbar :columns="list" @confirm="onConfirm" @cancel="onCancel" />
   </van-popup>
 </template>
 <script setup>
-  import { Field as VanField, Popup as VanPopup, Picker as VanPicker } from 'vant';
+  import {
+    Field as VanField,
+    Popup as VanPopup,
+    Picker as VanPicker,
+    CellGroup as VanCellGroup,
+  } from 'vant';
   import { computed, ref, watch } from 'vue';
   const emit = defineEmits(['update:data']);
   console.log('select-view');

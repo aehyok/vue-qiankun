@@ -1,25 +1,27 @@
 <!--简单文本框-->
 <template>
-  <van-field
-    :rows="column.rows"
-    autosize
-    type="textarea"
-    v-model="value"
-    :label="column.title"
-    :rules="[{ required: column.required, message: '请输入' + column.title }]"
-    input-align="right"
-    error-message-align="right"
-    :placeholder="'请输入' + column.title"
-  >
-    <template #label
-      ><span :class="column.required ? 'style-font-color' : 'style-padding-labelleft'">
-        {{ column.required ? '*' : '' }}</span
-      >{{ column.title }}</template
+  <van-cell-group>
+    <van-field
+      :rows="column.rows"
+      autosize
+      type="textarea"
+      v-model="value"
+      :label="column.title"
+      :rules="[{ required: column.required, message: '请输入' + column.title }]"
+      input-align="right"
+      error-message-align="right"
+      :placeholder="'请输入' + column.title"
     >
-  </van-field>
+      <template #label
+        ><span :class="column.required ? 'style-font-color' : 'style-padding-labelleft'">
+          {{ column.required ? '*' : '' }}</span
+        >{{ column.title }}</template
+      >
+    </van-field>
+  </van-cell-group>
 </template>
 <script setup>
-  import { Field as VanField } from 'vant';
+  import { Field as VanField, CellGroup as VanCellGroup } from 'vant';
   import { computed, ref } from 'vue';
   const emit = defineEmits(['update:data']);
   const props = defineProps({

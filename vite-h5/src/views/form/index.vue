@@ -1,20 +1,15 @@
 <template>
   <div style="position: relative; margin-bottom: 42px">
     <van-form ref="form" :model="state.formConfig.formData">
-      <van-cell-group title="基础信息">
-        <formView
-          :columnList="state.formConfig.formListItem"
-          :formData="state.formConfig.formData"
-        />
-        <div style="margin: 16px">
-          <van-button round block type="primary" native-type="submit"> 提交 </van-button>
-        </div>
-      </van-cell-group>
+      <formView :columnList="state.formConfig.formListItem" :formData="state.formConfig.formData" />
+      <div style="margin: 16px">
+        <van-button round block type="primary" native-type="submit"> 提交 </van-button>
+      </div>
     </van-form>
   </div>
 </template>
 <script lang="ts" setup>
-  import { Button as VanButton, Form as VanForm, CellGroup as VanCellGroup } from 'vant';
+  import { Button as VanButton, Form as VanForm } from 'vant';
   import { reactive } from 'vue';
   import formView from '/@/components/form/index.vue';
 
