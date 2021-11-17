@@ -30,7 +30,6 @@
   import { list } from './data.d';
   import { useRouter } from 'vue-router';
   import itemView from './item-view.vue';
-  import ItemView from './item-view.vue';
   const router = useRouter();
   const state = {
     tabHeadList: ['全部', 'Java高级', '前端精讲', '全栈说法', '算法摘要'],
