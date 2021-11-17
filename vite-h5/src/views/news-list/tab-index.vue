@@ -2,7 +2,7 @@
   <div class="tab">
     <van-tabs v-model="state.active" @click-tab="clickTabs" swipe-threshold="4">
       <van-tab v-for="(item, index) in state.tabHeadList" :title="item" :key="index">
-        <list-view>1111111111111</list-view>
+        <list-view> 111111111 </list-view>
       </van-tab>
     </van-tabs>
   </div>
@@ -10,6 +10,7 @@
 <script lang="ts" setup>
   import { Tab as VanTab, Tabs as VanTabs } from 'vant';
   import listView from './list-view.vue';
+
   import { onMounted, onUnmounted, onActivated, onDeactivated } from 'vue';
   const state = {
     tabHeadList: ['全部', '三务公开', '党建宣传', '精神文明', '便民信息'],
