@@ -13,12 +13,7 @@
       :immediate-check="false"
       @load="onLoad"
     >
-      <div class="main">
-        <div class="flex" v-for="item in dataList" :key="item.id" @click="goDetails(item.id)">
-          <item-view :item="item"></item-view>
-          <slot></slot>
-        </div>
-      </div>
+      <slot></slot>
     </van-list>
   </van-pull-refresh>
   <van-empty description="没有数据" v-if="state.nodata" />
@@ -29,7 +24,6 @@
   import type { NewsModel } from '../../types/models';
   import { list } from './data.d';
   import { useRouter } from 'vue-router';
-  import itemView from './item-view.vue';
   const router = useRouter();
   const state = {
     tabHeadList: ['全部', 'Java高级', '前端精讲', '全栈说法', '算法摘要'],

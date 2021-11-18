@@ -29,6 +29,20 @@
   function leftClick() {
     router.push('/');
   }
+  console.log(Test(121), '1344131');
+  function Test(num: number): boolean {
+    let nums: string = '';
+    if (num >= 0) {
+      nums = num.toString().split('').reverse().join('');
+      if (num === parseInt(nums)) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
