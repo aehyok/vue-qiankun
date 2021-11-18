@@ -1,21 +1,21 @@
 <template>
-  <list-view @getList="getList" v-model:pageModel="pageModel">
-    <item-view :dataList="dataList"></item-view>
-  </list-view>
-
   <div class="tab">
     <van-tabs v-model="state.active" @click-tab="clickTabs" swipe-threshold="4">
-      <van-tab v-for="(item, index) in state.tabHeadList" :title="item" :key="index"> </van-tab>
+      <van-tab v-for="(item, index) in state.tabHeadList" :title="item" :key="index">
+        <list-view @getList="getList" v-model:pageModel="pageModel">
+          <item-view :dataList="dataList"></item-view>
+        </list-view>
+      </van-tab>
     </van-tabs>
   </div>
 </template>
 <script lang="ts" setup>
   import { Tab as VanTab, Tabs as VanTabs } from 'vant';
-  import listView from './list-view.vue';
+  import listView from '../../components/list/index.vue';
   import itemView from './item-view.vue';
   import { list } from './data.d';
   import { onMounted, onUnmounted, onActivated, onDeactivated, reactive, ref } from 'vue';
-  import type { NewsModel } from '../../types/models/index.d';
+  import type { NewsModel, PageModel } from '../../types/models/index.d';
   const state = {
     tabHeadList: ['全部', '三务公开', '党建宣传', '精神文明', '便民信息'],
     active: 0,
@@ -23,7 +23,7 @@
 
   const dataList = ref<NewsModel[]>();
 
-  const pageModel = reactive({
+  const pageModel = reactive<PageModel>({
     page: 1,
     limit: 15,
     total: list.length,
@@ -69,7 +69,7 @@
 
 <style lang="scss" scoped>
   .tab {
-    display: none;
+    // display: none;
     position: relative;
     width: 100%;
     margin: 0 0 3px 0;

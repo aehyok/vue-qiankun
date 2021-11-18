@@ -57,7 +57,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'news',
     component: () => import(/* webpackChunkName: "news-list" */ '../views/news-list/index.vue'),
     meta: {
-      title: '博客列表',
+      title: '三务公开',
     },
   },
   {
