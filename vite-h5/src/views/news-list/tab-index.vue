@@ -1,11 +1,11 @@
 <template>
+  <list-view @getList="getList" v-model:pageModel="pageModel">
+    <item-view :dataList="dataList"></item-view>
+  </list-view>
+
   <div class="tab">
     <van-tabs v-model="state.active" @click-tab="clickTabs" swipe-threshold="4">
-      <van-tab v-for="(item, index) in state.tabHeadList" :title="item" :key="index">
-        <list-view>
-          <item-view :dataList="list"></item-view>
-        </list-view>
-      </van-tab>
+      <van-tab v-for="(item, index) in state.tabHeadList" :title="item" :key="index"> </van-tab>
     </van-tabs>
   </div>
 </template>
@@ -14,18 +14,38 @@
   import listView from './list-view.vue';
   import itemView from './item-view.vue';
   import { list } from './data.d';
-  import { onMounted, onUnmounted, onActivated, onDeactivated } from 'vue';
+  import { onMounted, onUnmounted, onActivated, onDeactivated, reactive, ref } from 'vue';
+  import type { NewsModel } from '../../types/models/index.d';
   const state = {
     tabHeadList: ['全部', '三务公开', '党建宣传', '精神文明', '便民信息'],
-    refreshing: false,
-    loading: false,
+    active: 0,
+  };
+
+  const dataList = ref<NewsModel[]>();
+
+  const pageModel = reactive({
     page: 1,
     limit: 15,
-    finished: false, // 上拉加载完毕
-    offset: 6, // 滚动条与底部距离小于 offset 时触发load事件
-    total: 0,
-    nodata: false,
-    active: 0,
+    total: list.length,
+    pages: Math.round(list.length / 15),
+  });
+
+  const getListApi = () => {
+    let start = pageModel.limit * (pageModel.page - 1);
+    let end = pageModel.limit * pageModel.page;
+    let tempList = list.slice(start, end);
+    return tempList;
+  };
+
+  const getList = () => {
+    if (pageModel.page === 1) {
+      dataList.value = getListApi();
+    } else {
+      let tempList = getListApi();
+      tempList.forEach((item) => {
+        dataList.value?.push(item);
+      });
+    }
   };
   // const dataList = [];
   const clickTabs = () => {
@@ -49,6 +69,7 @@
 
 <style lang="scss" scoped>
   .tab {
+    display: none;
     position: relative;
     width: 100%;
     margin: 0 0 3px 0;

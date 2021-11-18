@@ -1,7 +1,6 @@
-import { NewsModel } from '../../types/models/index.d';
 <template>
   <div class="main">
-    <div class="flex" v-for="item in dataList" :key="item.id" @click="goDetails(item.id)">
+    <div class="flex" v-for="item: any in dataList" :key="item.id" @click="goDetails(item.id)">
       <div :class="!item.url ? 'itemCollagen' : 'itemCollagenSeventy'">
         <p>{{ item.messageName }}</p>
         <span
@@ -18,11 +17,9 @@ import { NewsModel } from '../../types/models/index.d';
   </div>
 </template>
 <script lang="ts" setup>
-  import { PropType } from 'vue';
-  import type { NewsModel } from '../../types/models';
   defineProps({
     dataList: {
-      type: [Array] as PropType<NewsModel[]>,
+      type: [Array],
       default: () => {},
     },
   });

@@ -20,54 +20,30 @@
 </template>
 <script lang="ts" setup>
   import { PullRefresh as VanPullRefresh, List as VanList, Empty as VanEmpty } from 'vant';
-  import { onBeforeMount, ref, reactive } from 'vue';
-  import type { NewsModel } from '../../types/models';
-  import { list } from './data.d';
+  import { onBeforeMount, ref } from 'vue';
   import { useRouter } from 'vue-router';
+  const emits = defineEmits(['getList', 'update:pageModel']);
   const router = useRouter();
+  const props = defineProps({
+    pageModel: {
+      type: Object,
+      default: () => {},
+    },
+  });
   const state = {
     tabHeadList: ['全部', 'Java高级', '前端精讲', '全栈说法', '算法摘要'],
     offset: 6, // 滚动条与底部距离小于 offset 时触发load事件
     nodata: false,
     active: 0,
   };
-  const dataList = ref<NewsModel[]>();
-
-  const pageSetting = reactive({
-    page: 1,
-    limit: 15,
-    total: list.length,
-    pages: Math.round(list.length / 15),
-  });
 
   const isRefresh = ref(false);
   const isFinished = ref(false);
   const isListLoading = ref(false);
 
   onBeforeMount(() => {
-    getList();
+    emits('getList');
   });
-
-  const getList = () => {
-    let start = pageSetting.limit * (pageSetting.page - 1);
-    let end = pageSetting.limit * pageSetting.page;
-    let tempList = list.slice(start, end);
-    console.log(tempList, 'tempList');
-    if (pageSetting.page === pageSetting.pages) {
-      isFinished.value = true;
-    } else {
-      isFinished.value = false;
-    }
-
-    if (pageSetting.page === 1) {
-      dataList.value = tempList;
-    } else {
-      tempList.forEach((item) => {
-        dataList.value?.push(item);
-      });
-      console.log(dataList.value, 'dataList.value', dataList.value?.length);
-    }
-  };
 
   const refreshClick = () => {
     setTimeout(() => {
@@ -76,15 +52,19 @@
       isListLoading.value = false;
       // 通过接口调用数据
       console.log('调用接口成功');
-      pageSetting.page = 1;
-      getList();
+      props.pageModel.page = 1;
+      emits('getList');
     }, 500);
   };
 
   const onLoad = () => {
-    console.log('onLoad--start', pageSetting);
-    pageSetting.page = pageSetting.page + 1;
-    getList();
+    console.log('onLoad--start', props.pageModel);
+    props.pageModel.page = props.pageModel.page + 1;
+    let model = {
+      ...props.pageModel,
+    };
+    emits('update:pageModel', model);
+    emits('getList');
   };
 
   const goDetails = (item: number) => {
