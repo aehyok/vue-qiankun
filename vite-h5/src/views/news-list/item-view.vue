@@ -17,14 +17,18 @@
   </div>
 </template>
 <script lang="ts" setup>
+  import { useRouter } from 'vue-router';
   defineProps({
     dataList: {
       type: [Array],
       default: () => {},
     },
   });
+
+  const router = useRouter();
   const goDetails = (item) => {
     console.log(item);
+    router.push('/news-detail');
   };
 </script>
 <style lang="scss" scoped>
