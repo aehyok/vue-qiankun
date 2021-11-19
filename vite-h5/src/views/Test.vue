@@ -43,6 +43,34 @@
       return false;
     }
   }
+
+  convertTest('III');
+  function convertTest(input: string): number {
+    let obj = {
+      I: 1,
+      V: 5,
+      X: 10,
+      K: 50,
+      C: 100,
+      D: 500,
+      M: 1000,
+    };
+
+    let spec = {
+      CM: 900,
+      CD: 400,
+      XC: 90,
+      XL: 40,
+      IX: 9,
+      IV: 4,
+    };
+    Object.keys(spec).forEach((item) => {
+      input.replace(item, spec[item]);
+    });
+    console.log(obj['IV'], 'obj');
+
+    return 0;
+  }
 </script>
 
 <style lang="scss" scoped>

@@ -30,6 +30,10 @@
     pages: Math.round(list.length / 15),
   });
 
+  const obj: NewsModel | undefined = list.find((item) => item.id === 85);
+  console.log(obj, 'obj');
+  obj?.id;
+
   const getListApi = () => {
     let start = pageModel.limit * (pageModel.page - 1);
     let end = pageModel.limit * pageModel.page;

@@ -3,8 +3,8 @@
     <div class="header">
       <div>Dynamic Form Design</div>
       <div>
-        <el-button type="primary" size="mini">PC</el-button>
-        <el-button type="primary" size="mini">H5</el-button>
+        <!-- <el-button type="primary" size="mini">PC</el-button>
+        <el-button type="primary" size="mini">H5</el-button> -->
       </div>
       <div>
         <el-button type="primary" size="mini">预览</el-button>
@@ -87,24 +87,25 @@ componentList.value = [
     id: 0,
     type: "static",
     title: "静态文本",
+    default: '静态文本'
   },
   {
     id: 1,
     type: "text",
     title: "文本框",
-    value: "文本框",
+    default: "文本框",
   },
   {
     id: 2,
     type: "textarea",
     title: "多行文本",
-    value: "多行文本"
+    default: "多行文本"
   },
   {
     id: 3,
     type: "number",
     title: "数字框",
-    value : 0
+    default : 0
   },
   {
     id: 4,
