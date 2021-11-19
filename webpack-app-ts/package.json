@@ -1,0 +1,69 @@
+{
+  "name": "webpack-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.10.0",
+    "aehyok-form-vue3": "^1.0.53",
+    "core-js": "^3.6.5",
+    "element-plus": "^1.1.0-beta.8",
+    "eslint-import-resolver-webpack": "^0.13.0",
+    "jsoneditor": "^9.5.6",
+    "leaflet": "^1.7.1",
+    "sass-loader": "^10.0.1",
+    "vue": "^3.2.20",
+    "vue-drag-resize": "^2.0.3",
+    "vue-router": "^4.0.0-0",
+    "vuedraggable": "^4.0.3",
+    "vuex": "^4.0.0-0",
+    "vxe-table": "^4.0.15",
+    "wangeditor": "^4.7.1",
+    "xe-utils": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.2.20",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "date-fns": "^2.24.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.0.0",
+    "prettier": "^2.2.1",
+    "sass": "^1.32.12",
+    "typescript": "^4.5.2",
+    "vue-tsc": "^0.29.5"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended",
+      "@vue/prettier"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
