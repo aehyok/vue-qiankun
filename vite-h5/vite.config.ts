@@ -2,6 +2,8 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
 import styleImport from 'vite-plugin-style-import';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir);
 }
@@ -10,6 +12,7 @@ function pathResolve(dir: string) {
 export default defineConfig({
   plugins: [
     vue(),
+    vueJsx(),
     styleImport({
       libs: [
         {
