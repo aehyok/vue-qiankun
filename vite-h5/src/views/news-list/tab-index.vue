@@ -38,6 +38,7 @@
     let start = pageModel.limit * (pageModel.page - 1);
     let end = pageModel.limit * pageModel.page;
     let tempList = list.slice(start, end);
+    console.log(pageModel, '获取数据列表');
     return tempList;
   };
 

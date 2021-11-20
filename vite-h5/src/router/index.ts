@@ -55,9 +55,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/news',
     name: 'news',
-    component: () => import(/* webpackChunkName: "news-list" */ '../views/news-list/index.vue'),
+    component: () => import(/* webpackChunkName: "news" */ '../views/news-list/index.vue'),
     meta: {
       title: '三务公开',
+      keepAlive: true,
     },
   },
   {

@@ -55,7 +55,12 @@
   };
 
   const onLoad = () => {
-    props.pageModel.page = props.pageModel.page + 1;
+    if (props.pageModel.page + 1 > props.pageModel.pages) {
+      return;
+    } else {
+      props.pageModel.page = props.pageModel.page + 1;
+    }
+
     let model = {
       ...props.pageModel,
     };

@@ -14,16 +14,24 @@
 <script lang="ts" setup>
   import { NavBar as VanNavBar } from 'vant';
   import { useRouter } from 'vue-router';
-  // import { ref } from 'vue';
+  import { onActivated, onDeactivated } from 'vue';
   import tabIndex from './tab-index.vue';
   const router = useRouter();
-
+  console.log('news-list------------------------------------------------------------------');
   // const componentName = ref('tabIndex');
   // const componentName = 'tabIndex';
   const onClickLeft = () => {
     console.log('////');
     router.push('/');
   };
+
+  onActivated(() => {
+    console.log('activated-------');
+  });
+
+  onDeactivated(() => {
+    console.log('onDeactivated-------');
+  });
 </script>
 
 <style lang="scss" scoped>
