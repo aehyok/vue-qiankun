@@ -1,4 +1,3 @@
-import { formatRelative } from 'date-fns'
 import { defineComponent } from 'vue'
 export default defineComponent({
   setup() {
@@ -56,7 +55,7 @@ export default defineComponent({
 
 
 
-    const romanToInt = function(s) {
+    function romanToInt(s) {
       const map = {
           I: 1,
           V: 5,
@@ -80,37 +79,44 @@ export default defineComponent({
       }
       console.log(sum, 'sum')
       return sum
-  };
+    };
+    romanToInt('III')
+    // 14. 最长公共前缀
+    function longestCommonPrefix (strs:string[]):string {
+      // 先找出数组中字符串最短的一个
 
-  // 14. 最长公共前缀
-  function longestCommonPrefix (strs:string[]):string {
-     // 先找出数组中字符串最短的一个
+      let lengths = strs.map(item => item.length)
 
-     let lengths = strs.map(item => item.length)
+      let min= Math.min(...lengths)
+      // 找出最短字符串的索引值
+      let str = strs[lengths.indexOf(min)]
 
-     let min= Math.min(...lengths)
-     // 找出最短字符串的索引值
-     let str = strs[lengths.indexOf(min)]
-
-     let currentS =''
-     let result = ''
-     for(let item of str) {
-      currentS += item
-      if (strs.every(item => item.startsWith(currentS))) {
-        result= currentS
-        console.log('result', result, item)
-      } else {
-        console.log('result','break', result)
-        break
+      let currentS =''
+      let result = ''
+      for(let item of str) {
+        currentS += item
+        if (strs.every(item => item.startsWith(currentS))) {
+          result= currentS
+          console.log('result', result, item)
+        } else {
+          console.log('result','break', result)
+          break
+        }
       }
-     }
 
-    return result ?? ''
-  }
+      return result ?? ''
+    }
 
-  longestCommonPrefix( ["flower","flow","flight"])
-  longestCommonPrefix(["dog","racecar","car"])
+    longestCommonPrefix( ["flower","flow","flight"])
+    longestCommonPrefix(["dog","racecar","car"])
 
+
+    // 20. 有效的括号
+    function isValid(s: string): boolean {
+      return s.length > 0
+    };
+
+    isValid('[]')
     return () =>
       <>
         Test
