@@ -4,7 +4,7 @@
             组件id:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入内容" v-model="column.id"></el-input>
+            <el-input placeholder="请输入内容" v-model="componentValue.id"></el-input>
         </el-col>
     </el-row>
     <el-row class="component-config-row">
@@ -12,7 +12,7 @@
             组件name:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入内容" v-model="column.name"></el-input>
+            <el-input placeholder="请输入内容" v-model="componentValue.name"></el-input>
         </el-col>
     </el-row>
     <el-row class="component-config-row">
@@ -20,7 +20,7 @@
             组件label:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入内容" v-model="column.placeholder"></el-input>
+            <el-input placeholder="请输入内容" v-model="componentValue.placeholder"></el-input>
         </el-col>
     </el-row>
     <el-row class="component-config-row">
@@ -28,7 +28,7 @@
             是否必填:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-switch></el-switch>
+            <el-switch v-model="componentValue.required"></el-switch>
         </el-col>
     </el-row>
     <el-row class="component-config-row">
@@ -41,13 +41,25 @@
     </el-row>
 </template>
 <script setup>
-    const props = defineProps({
-        column: {
-            type: Object,
-            default: () => { },
-        }
-    })
-    console.log(props.column, 'text-props-column')
+import { computed } from 'vue'
+const props = defineProps({
+    column: {
+        type: Object,
+        default: () => { },
+    }
+})
+
+const componentValue = computed({
+  get: function () {
+    return props.column
+  },
+  set: function (val) {
+      console.log(val, 'text-config-computed')
+    emit('update:column', val)
+  }
+})
+
+console.log(props.column, '文本框的text-props-column')
 </script>
 <style lang="scss" scoped>
 

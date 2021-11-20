@@ -46,7 +46,7 @@
       <div class="right-component">
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="组件配置" name="first">
-            <config-view :column="currentColumn" ></config-view>
+            <config-view v-model:column="currentColumn" ></config-view>
           </el-tab-pane>
           <el-tab-pane label="组件样式" name="second">组件样式</el-tab-pane>
           <el-tab-pane label="表单配置" name="third">表单配置</el-tab-pane>
@@ -56,7 +56,7 @@
   </div>
 </template>
 <script setup>
-import { ref, reactive, onMounted } from 'vue';
+import { ref, reactive, onMounted, watch } from 'vue';
 import DragView from "../../../common/components/form/drag-index.vue";
 import ConfigView from "../../../common/components/form/config-index.vue";
 import shortid from 'shortid';
@@ -196,7 +196,8 @@ const dropClick = (e) => {
     id: shortid.generate(),
     name: shortid.generate(),
     type: item.type,
-    title: item.title
+    title: item.title,
+    required: true,
   }
   if (["select", "radio", "checkbox"].includes(item.type)) {
     column.dictionary = [
@@ -222,12 +223,35 @@ const dragClick = (item) => {
   console.log(item, 'drag')
 }
 
+
+watch(
+  () => currentColumn.value,
+  (newVal, oldVal) => {
+    if (newVal) {
+      console.log(newVal, '新的值')
+      state.formConfig.formListItem.forEach(item => {
+        if(item.id === newVal.id) {
+          return {
+            ...newVal
+          }
+        }
+      })
+
+      console.log(state.formConfig.formListItem,' 字段列表')
+    }
+  }, {
+    immediate: true,
+    deep: true,
+  }
+);
+
 const componentClick = (item) => {
   console.log("当前组件为: ", item);
   let column = {
     name: shortid.generate(),
     type: item.name,
-    title: item.title
+    title: item.title,
+    required: true,
   }
   if (["select", "radio", "checkbox"].includes(item.type)) {
     column.dictionary = [
