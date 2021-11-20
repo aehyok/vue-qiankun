@@ -65,10 +65,10 @@
     console.log('onUnmounted');
   });
   onActivated(() => {
-    console.log('onActived');
+    console.log('onActived——Start');
   });
   onDeactivated(() => {
-    console.log('onDeactivated');
+    console.log('onDeactivated-Tab');
   });
 </script>
 

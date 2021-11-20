@@ -26,11 +26,11 @@
   };
 
   onActivated(() => {
-    console.log('activated-------');
+    console.log('activated----start---');
   });
 
   onDeactivated(() => {
-    console.log('onDeactivated-------');
+    console.log('onDeactivated--end-----');
   });
 </script>
 
