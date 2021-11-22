@@ -17,10 +17,10 @@
     </el-row>
     <el-row class="component-config-row">
         <el-col :span="8" class="component-config-right">
-            组件label:
+            组件title:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入内容" v-model="componentValue.placeholder"></el-input>
+            <el-input placeholder="请输入组件名称" v-model="componentValue.title"></el-input>
         </el-col>
     </el-row>
     <el-row class="component-config-row">
@@ -33,10 +33,10 @@
     </el-row>
     <el-row class="component-config-row">
         <el-col :span="8" class="component-config-right">
-            maxlength:
+            占位文本:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入内容"></el-input>
+            <el-input placeholder="请输入占位文本" v-model="componentValue.placeholder"></el-input>
         </el-col>
     </el-row>
 </template>
@@ -54,7 +54,7 @@ const componentValue = computed({
     return props.column
   },
   set: function (val) {
-      console.log(val, 'text-config-computed')
+    console.log(val, 'text-config-computed')
     emit('update:column', val)
   }
 })

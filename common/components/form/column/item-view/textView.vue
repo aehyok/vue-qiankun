@@ -1,10 +1,10 @@
 <!--简单文本框-->
 <template>
-  <el-form-item :label="column.title + '：'" :prop="column.name" :rules="rules">
+  <el-form-item :label="column.title + '：'" :prop="column.name" :rules="rules" :required="column.required">
     <el-input
       v-model="value"
       :name="column.name"
-      :placeholder="placeholder"
+      :placeholder="column.placeholder"
       :maxlength="column.maxlength"
       :show-word-limit="column.showwordlimit"
     >
@@ -16,7 +16,7 @@
   </el-form-item>
 </template>
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 const emit = defineEmits(["update:data"])
 const props = defineProps({
   column: {
@@ -54,4 +54,20 @@ const value = computed({
     emit('update:data', val)
   }
 })
+watch(
+  () => props.visible,
+  (newVal, oldVal) => {
+    if (newVal) {
+      state.disabled = false;
+    }
+  },
+);
+watch(()=>
+  props.column,(newValue, oldValue) =>{
+    console.log(newValue,'文本框的配置项发生变更了')
+  }, {
+    immediate: true,
+    deep: true,
+  }
+)
 </script>

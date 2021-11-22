@@ -27,7 +27,7 @@
                     console.log(props.column,"props.column")
                 },
                 {
-                    immediate: true,
+                    // immediate: true,
                     deep: true
                 }
             ); 

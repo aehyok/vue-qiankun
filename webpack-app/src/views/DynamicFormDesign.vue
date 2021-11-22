@@ -197,7 +197,6 @@ const dropClick = (e) => {
     name: shortid.generate(),
     type: item.type,
     title: item.title,
-    required: true,
   }
   if (["select", "radio", "checkbox"].includes(item.type)) {
     column.dictionary = [
@@ -223,12 +222,11 @@ const dragClick = (item) => {
   console.log(item, 'drag')
 }
 
-
 watch(
   () => currentColumn.value,
   (newVal, oldVal) => {
     if (newVal) {
-      console.log(newVal, '新的值')
+      console.log(newVal, '修改后的字段项目配置')
       state.formConfig.formListItem.forEach(item => {
         if(item.id === newVal.id) {
           return {
@@ -237,10 +235,10 @@ watch(
         }
       })
 
-      console.log(state.formConfig.formListItem,' 字段列表')
+      console.log(state.formConfig.formListItem,'修改后的字段项目配置')
     }
   }, {
-    immediate: true,
+    // immediate: true,
     deep: true,
   }
 );
