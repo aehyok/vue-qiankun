@@ -1,6 +1,6 @@
 <template>
   <div class="tab">
-    <van-tabs v-model="state.active" @click-tab="clickTabs" swipe-threshold="4">
+    <van-tabs v-model="state.active" @click-tab="clickTabs" swipe-threshold="4" sticky offset-top="46px">
       <van-tab v-for="(item, index) in state.tabHeadList" :title="item" :key="index">
         <list-view @getList="getList" v-model:pageModel="pageModel">
           <item-view :dataList="dataList"></item-view>
