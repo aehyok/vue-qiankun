@@ -1,6 +1,6 @@
 <template>
   <div style="position: relative; margin-bottom: 42px">
-    <van-form ref="form" :model="state.formConfig.formData">
+    <van-form ref="form" :model="state.formConfig.formData" show-error :show-error-message="false">
       <formView :columnList="state.formConfig.formListItem" :formData="state.formConfig.formData" />
       <div style="margin: 16px">
         <van-button round block type="primary" native-type="submit"> 提交 </van-button>

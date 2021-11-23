@@ -53,6 +53,27 @@ export default defineComponent({
     convertTest('LVIII');
     convertTest('MCMXCIV');
 
+    function isValid(s: string): boolean {
+      let map = new Map()
+      map.set( '(',')')
+      map.set( '{','}')
+      map.set( '[',']')
+
+      let stack: string[] = [];
+      for(let item of s) {
+        if(map.has(item)) {
+          stack.push(map.get(item));
+        }
+        else {
+            if(stack.length == 0 || stack.pop() !== item) return false;
+        }
+      }
+      console.log(stack,stack.length)
+      return !stack.length;
+    };
+
+    console.log(isValid('(([]){})'), '00--00')
+
     return () =>
       <>
         Test

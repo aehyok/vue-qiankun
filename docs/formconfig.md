@@ -243,7 +243,7 @@
         name: "name",   //与后台对接字段
         title: "名称",  // 前端展示字段
         ifshow: (data) => {   // 那么只有字段type ===1 的时候才会显示
-          return data.type === 1 
+          return data.type === 1  || data.selected === 2
         }
       },
     ```
