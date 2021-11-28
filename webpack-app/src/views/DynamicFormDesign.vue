@@ -197,6 +197,7 @@ const dropClick = (e) => {
     name: shortid.generate(),
     type: item.type,
     title: item.title,
+    rules: []
   }
   if (["select", "radio", "checkbox"].includes(item.type)) {
     column.dictionary = [

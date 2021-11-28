@@ -89,7 +89,14 @@ const componentValue = computed({
 })
 
 const createRuleClick = () => {
-    componentValue.rules.push([])
+    console.log(componentValue, '---------')
+    componentValue.rules =[
+        // ...componentValue.rules,
+        {
+            pattern:'',
+            message: ''
+        }
+    ]
 }
 console.log(props.column, '文本框的text-props-column')
 </script>
