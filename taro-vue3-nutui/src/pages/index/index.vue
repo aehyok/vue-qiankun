@@ -38,11 +38,14 @@ const handleClick = (type, msg, cover = false) => {
   state.msg2 = msg;
   state.type = type;
   state.cover = cover;
-  router.push(`/pages/me/index1`)
+  router.push(`/pages/me/index`)
   Taro.login({
     success: function (res) {
       if (res.code) {
         console.log(res, 'res')
+        try {
+          Taro.setStorageSync('token', res)
+        } catch (e) { }
         //发起网络请求
         Taro.request({
           url: 'https://dvs-dev.sunlight-tech.com/api/sso/auth/getVerifyCode',
