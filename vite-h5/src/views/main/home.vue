@@ -9,7 +9,7 @@
     <news-data></news-data>
 
     <van-button type="primary" @click="jump">测试跳转</van-button>
-    <div :class="classes.homered">Home</div>
+    <div :class="stylessss.homered">Home</div>
     <div :class="$style.hometwo">Home</div>
     <div class="homethree">Home</div>
   </div>
@@ -35,12 +35,13 @@
   };
 
   onMounted(() => {
-    console.log('11-22-33');
+    console.log('11-22-33', window.location.href);
+    console.log('token-ss',localStorage.getItem('token--ss'))
     console.timeEnd('11');
   });
 </script>
 
-<style module="classes">
+<style module="stylessss">
   .red {
     color: red;
   }

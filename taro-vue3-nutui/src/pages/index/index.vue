@@ -1,5 +1,7 @@
 <template>
   <view class="index">
+
+    <nut-button type="primary" open-type="getPhoneNumber" @bindgetphonenumber="getPhoneNumber">11111111111111111111</nut-button>
     <view>
       <img src="" alt="" />
     </view>
@@ -30,7 +32,17 @@ const state = reactive({
   cover: false,
 });
 
+  const getPhoneNumber = (e) => {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+  }
+
 const router = useRouter()
+
+const accountInfo = Taro.getAccountInfoSync();
+console.log(accountInfo.miniProgram.appId) // 小程序 appId
+console.log(accountInfo.miniProgram.envVersion ) // 小程序 环境
 
 
 const handleClick = (type, msg, cover = false) => {
@@ -44,7 +56,7 @@ const handleClick = (type, msg, cover = false) => {
       if (res.code) {
         console.log(res, 'res')
         try {
-          Taro.setStorageSync('token', res)
+          Taro.setStorageSync('token--ss', res)
         } catch (e) { }
         //发起网络请求
         Taro.request({
@@ -55,6 +67,7 @@ const handleClick = (type, msg, cover = false) => {
         })
       } else {
         console.log('登录失败！' + res.errMsg)
+        router.push(`/pages/me/index`)
       }
     }
   })
