@@ -1,7 +1,7 @@
 <template>
   <view class="index">
 
-    <nut-button type="primary" open-type="getPhoneNumber" @bindgetphonenumber="getPhoneNumber">11111111111111111111</nut-button>
+    <nut-button type="primary" open-type="getPhoneNumber" @getphonenumber="getPhoneNumberClick" @bindgetphonenumber="getPhoneNumberClick">11111111111111111111</nut-button>
     <view>
       <img src="" alt="" />
     </view>
@@ -18,6 +18,21 @@
       :cover="state.cover"
     />
   </view>
+
+  <nut-tabbar :bottom="true">
+  <nut-tabbar-item tab-title="首页" href="" icon="home"></nut-tabbar-item>
+  <nut-tabbar-item tab-title="我i村" icon="category"></nut-tabbar-item>
+  <nut-tabbar-item
+    tab-title="我i家"
+    href="https://m.jd.com"
+    icon="cart"
+  ></nut-tabbar-item>
+  <nut-tabbar-item
+    tab-title="我的"
+    href="######"
+    icon="my"
+  ></nut-tabbar-item>
+</nut-tabbar>
 </template>
 
 <script lang="ts" setup>
@@ -32,7 +47,8 @@ const state = reactive({
   cover: false,
 });
 
-  const getPhoneNumber = (e) => {
+  const getPhoneNumberClick = (e) => {
+    console.log(e, 'getPhoneNumber-getPhoneNumber')
     console.log(e.detail.errMsg)
     console.log(e.detail.iv)
     console.log(e.detail.encryptedData)
@@ -50,7 +66,20 @@ const handleClick = (type, msg, cover = false) => {
   state.msg2 = msg;
   state.type = type;
   state.cover = cover;
-  router.push(`/pages/me/index`)
+  
+  
+  Taro.checkSession({
+    success: function () {
+      //session_key 未过期，并且在本生命周期一直有效
+      console.log('success,,,,')
+    },
+    fail: function () {
+      // session_key 已经失效，需要重新执行登录流程
+      console.log('fail,,,,')
+    }
+  })
+      
+  // router.push(`/pages/me/index`)
   Taro.login({
     success: function (res) {
       if (res.code) {
