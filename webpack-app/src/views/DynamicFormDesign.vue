@@ -167,7 +167,6 @@ onMounted(() => {
   }
 })
 
-
 // 组件列表拖拽的事件
 const dragStartClick = (e) => {
   console.log(e, 'dragStartClick')
@@ -252,6 +251,7 @@ const componentClick = (item) => {
     title: item.title,
     required: true,
   }
+  
   if (["select", "radio", "checkbox"].includes(item.type)) {
     column.dictionary = [
       {

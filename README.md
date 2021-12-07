@@ -17,3 +17,7 @@
 ##  [8、ak-vue3通用脚手架项目搭建（刚开了一个头）](https://github.com/aehyok/ak-vue3)
 
 ##  [9、taro3+vue3+typescript+nutui 微信小程序为主多端项目一套代码实现（代码待继续完善）](https://github.com/aehyok/taro-vue3-miniprogram)
+
+##  [10、通过脚本.sh编译前端项目，生成tag拷贝到nginx远程服务器等（待做版本回滚、jenkins docker尝试）](https://github.com/aehyok/2021/blob/main/2021-08-07-dvs-build.sh)
+
+##  [11、React+ umi + dva + Antd demo项目（）](https://github.com/aehyok/vue-qiankun/blob/dev/react-app)
