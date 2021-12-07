@@ -20,4 +20,4 @@
 
 ##  [10、通过脚本.sh编译前端项目，生成tag拷贝到nginx远程服务器等（待做版本回滚、jenkins docker尝试）](https://github.com/aehyok/2021/blob/main/2021-08-07-dvs-build.sh)
 
-##  [11、React+ umi + dva + Antd demo项目（）](https://github.com/aehyok/vue-qiankun/blob/dev/react-app)
+##  [11、React+ umi + dva + Antd demo项目（demo项目初始化）](https://github.com/aehyok/vue-qiankun/blob/dev/react-app)
