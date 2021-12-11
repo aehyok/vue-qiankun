@@ -1,6 +1,6 @@
 import { Card, Col, Row, Tabs } from 'antd';
 import { RingProgress, Line } from '@ant-design/charts';
-import type { OfflineDataType, DataItem } from '../data.d';
+import type { OfflineDataType, DataItem } from '../data';
 
 import NumberInfo from './NumberInfo';
 import styles from '../style.less';

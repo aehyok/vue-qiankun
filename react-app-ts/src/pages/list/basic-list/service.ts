@@ -1,5 +1,5 @@
 import { request } from 'umi';
-import type { BasicListItemDataType } from './data.d';
+import type { BasicListItemDataType } from './data';
 
 type ParamsType = {
   count?: number;

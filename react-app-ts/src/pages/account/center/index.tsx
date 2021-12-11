@@ -7,7 +7,7 @@ import type { RouteChildrenProps } from 'react-router';
 import Projects from './components/Projects';
 import Articles from './components/Articles';
 import Applications from './components/Applications';
-import type { CurrentUser, TagType, tabKeyType } from './data.d';
+import type { CurrentUser, TagType, tabKeyType } from './data';
 import { queryCurrent } from './service';
 import styles from './Center.less';
 

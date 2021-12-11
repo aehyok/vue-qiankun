@@ -21,7 +21,7 @@ import { useRequest } from 'umi';
 import moment from 'moment';
 import OperationModal from './components/OperationModal';
 import { addFakeList, queryFakeList, removeFakeList, updateFakeList } from './service';
-import type { BasicListItemDataType } from './data.d';
+import type { BasicListItemDataType } from './data';
 import styles from './style.less';
 
 const RadioButton = Radio.Button;

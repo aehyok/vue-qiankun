@@ -11,7 +11,7 @@ import React from 'react';
 import { useRequest } from 'umi';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
-import type { ListItemDataType } from './data.d';
+import type { ListItemDataType } from './data';
 import { queryFakeList } from './service';
 import styles from './style.less';
 

@@ -1,6 +1,6 @@
 import moment from 'moment';
 import type { Request, Response } from 'express';
-import type { SearchDataType, OfflineDataType, DataItem } from './data.d';
+import type { SearchDataType, OfflineDataType, DataItem } from './data';
 
 // mock data
 const visitData: DataItem[] = [];

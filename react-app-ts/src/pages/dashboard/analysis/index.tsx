@@ -17,7 +17,7 @@ import { fakeChartData } from './service';
 import PageLoading from './components/PageLoading';
 import type { TimeType } from './components/SalesCard';
 import { getTimeDistance } from './utils/utils';
-import type { AnalysisData } from './data.d';
+import type { AnalysisData } from './data';
 import styles from './style.less';
 
 type RangePickerValue = RangePickerProps<moment.Moment>['value'];

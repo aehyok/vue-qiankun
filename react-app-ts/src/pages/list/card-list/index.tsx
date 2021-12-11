@@ -3,7 +3,7 @@ import { Button, Card, List, Typography } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useRequest } from 'umi';
 import { queryFakeList } from './service';
-import type { CardListItemDataType } from './data.d';
+import type { CardListItemDataType } from './data';
 import styles from './style.less';
 
 const { Paragraph } = Typography;

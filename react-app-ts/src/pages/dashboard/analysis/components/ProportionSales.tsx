@@ -4,7 +4,7 @@ import type { RadioChangeEvent } from 'antd/es/radio';
 import { Donut } from '@ant-design/charts';
 import type { DonutConfig } from '@ant-design/charts/es/donut';
 import React from 'react';
-import type { DataItem } from '../data.d';
+import type { DataItem } from '../data';
 import styles from '../style.less';
 
 const { Text } = Typography;

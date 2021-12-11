@@ -4,7 +4,7 @@ import type moment from 'moment';
 import { Column } from '@ant-design/charts';
 
 import numeral from 'numeral';
-import type { DataItem } from '../data.d';
+import type { DataItem } from '../data';
 import styles from '../style.less';
 
 type RangePickerValue = RangePickerProps<moment.Moment>['value'];

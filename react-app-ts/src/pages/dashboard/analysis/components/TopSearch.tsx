@@ -3,7 +3,7 @@ import { Card, Col, Row, Table, Tooltip } from 'antd';
 import { TinyArea } from '@ant-design/charts';
 import React from 'react';
 import numeral from 'numeral';
-import type { DataItem } from '../data.d';
+import type { DataItem } from '../data';
 
 import NumberInfo from './NumberInfo';
 import Trend from './Trend';

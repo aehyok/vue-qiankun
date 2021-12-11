@@ -25,7 +25,7 @@ import React, { Fragment, useState } from 'react';
 
 import classNames from 'classnames';
 import { useRequest } from 'umi';
-import type { AdvancedProfileData } from './data.d';
+import type { AdvancedProfileData } from './data';
 import { queryAdvancedProfile } from './service';
 import styles from './style.less';
 

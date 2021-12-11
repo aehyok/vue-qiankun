@@ -1,6 +1,6 @@
 import moment from 'moment';
 import type { Request, Response } from 'express';
-import type { AnalysisData, RadarData, DataItem } from './data.d';
+import type { AnalysisData, RadarData, DataItem } from './data';
 
 // mock data
 const visitData: DataItem[] = [];

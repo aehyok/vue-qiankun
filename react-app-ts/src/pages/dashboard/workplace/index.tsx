@@ -7,7 +7,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import moment from 'moment';
 import EditableLinkGroup from './components/EditableLinkGroup';
 import styles from './style.less';
-import type { ActivitiesType, CurrentUser } from './data.d';
+import type { ActivitiesType, CurrentUser } from './data';
 import { queryProjectNotice, queryActivities, fakeChartData } from './service';
 
 const links = [
