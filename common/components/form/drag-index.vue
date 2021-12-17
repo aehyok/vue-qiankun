@@ -35,7 +35,9 @@
 import ComponentView from './column/component-view.vue'
 import { ref } from 'vue'
 import draggable from 'vuedraggable'
+import { useStore } from 'vuex';
 const emit = defineEmits(["update:data", "setCurrentColumn"])
+const store = useStore()
 const props = defineProps({
   columnList: {
     type: Array,
@@ -70,14 +72,16 @@ const dragEnd = (event) => {
 
 const mouseOverClick = (index,e) => {
   selectIndex.value = index
-  let currentSelectColumn = props.columnList[index]
-  console.log(currentSelectColumn, 'mouseOverClick',e)
-  emit('setCurrentColumn', currentSelectColumn)
+  let currentSelectComponent = props.columnList[index]
+  console.log(currentSelectComponent, 'mouseOverClick',e)
+  store.commit('setCurrentComponent', currentSelectComponent)
+  emit('setCurrentColumn', currentSelectComponent)
 }
 
 const deleteComponentClick = (index) => {
   let array = props.columnList
   array.splice(index,1)
+  store.commit('updateComponentList', array)
   emit("update:columnList", array)
 }
 
@@ -91,9 +95,7 @@ const moveComponentClick = (type, index, e) => {
     if(selectIndex.value > 0)  {
       array.splice(type ? index : index - 1, 1, ...array.splice(type ? index + 1 : index, 1, array[type ? index : index - 1]))
       emit("update:columnList", array)
-      console.log(selectIndex,"shang")
       selectIndex.value = selectIndex.value -1 
-      console.log(selectIndex,"xia")
     } else {
       selectIndex.value = 0
     }

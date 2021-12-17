@@ -57,9 +57,11 @@
 </template>
 <script setup>
 import { ref, reactive, onMounted, watch } from 'vue';
+import { useStore } from 'vuex';
 import DragView from "../../../common/components/form/drag-index.vue";
 import ConfigView from "../../../common/components/form/config-index.vue";
 import shortid from 'shortid';
+const store = useStore()
 const componentList = ref([])
 const activeName = ref('first')
 const currentColumn = ref({})
@@ -188,7 +190,7 @@ const dropClick = (e) => {
   e.stopPropagation()
 
   const index = e.dataTransfer.getData('index')
-  console.log(index,componentList.value[index],'dropClick')
+  console.log(index, componentList.value[index], 'dropClick')
   let item = componentList.value[index]
   console.log("当前组件为: ", item);
   let column = {
@@ -212,6 +214,7 @@ const dropClick = (e) => {
   }
   console.log(column, '--column--')
   state.formConfig.formListItem.push(column)
+  store.commit('addComponent', column)
 }
 
 const dragEndClick = (item) => {

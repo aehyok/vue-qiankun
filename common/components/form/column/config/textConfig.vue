@@ -48,7 +48,7 @@
         </el-col>
     </el-row>
     <el-divider content-position="center">正则校验</el-divider>
-    <template v-for="item in componentValue.rules">
+    <template v-for="item in store.state.currentComponent.rules">
         <el-row class="component-config-row">
             <el-col :span="8" class="component-config-right">
                 表达式:
@@ -71,12 +71,15 @@
 </template>
 <script setup>
 import { computed } from 'vue'
+import { useStore } from 'vuex'
 const props = defineProps({
     column: {
         type: Object,
         default: () => { },
     }
 })
+
+const store = useStore()
 
 const componentValue = computed({
   get: function () {
@@ -89,14 +92,19 @@ const componentValue = computed({
 })
 
 const createRuleClick = () => {
-    console.log(componentValue, '---------')
-    componentValue.rules =[
-        // ...componentValue.rules,
-        {
-            pattern:'',
-            message: ''
-        }
-    ]
+    // console.log(componentValue, '---------')
+    // componentValue.rules =[
+    //     // ...componentValue.rules,
+    //     {
+    //         pattern:'',
+    //         message: ''
+    //     }
+    // ]
+    store.commit('addComponentRule', 
+    {
+        pattern:'',
+        message: ''
+    })
 }
 console.log(props.column, '文本框的text-props-column')
 </script>
