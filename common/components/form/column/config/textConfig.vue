@@ -4,7 +4,7 @@
             组件id:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入内容" v-model="componentValue.id"></el-input>
+            <el-input placeholder="请输入内容" v-model="store.state.currentComponent.id"></el-input>
         </el-col>
     </el-row>
     <el-row class="component-config-row">
@@ -12,7 +12,7 @@
             组件name:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入内容" v-model="componentValue.name"></el-input>
+            <el-input placeholder="请输入内容" v-model="store.state.currentComponent.name"></el-input>
         </el-col>
     </el-row>
     <el-row class="component-config-row">
@@ -20,7 +20,7 @@
             组件title:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入组件名称" v-model="componentValue.title"></el-input>
+            <el-input placeholder="请输入组件名称" v-model="store.state.currentComponent.title"></el-input>
         </el-col>
     </el-row>
     <el-row class="component-config-row">
@@ -28,7 +28,7 @@
             是否必填:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-switch v-model="componentValue.required"></el-switch>
+            <el-switch v-model="store.state.currentComponent.required"></el-switch>
         </el-col>
     </el-row>
     <el-row class="component-config-row">
@@ -36,7 +36,7 @@
             占位文本:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入占位文本" v-model="componentValue.placeholder"></el-input>
+            <el-input placeholder="请输入占位文本" v-model="store.state.currentComponent.placeholder"></el-input>
         </el-col>
     </el-row>
     <el-row class="component-config-row">
@@ -44,7 +44,7 @@
             校验规则:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入占位文本" v-model="componentValue.placeholder"></el-input>
+            <el-input placeholder="请输入占位文本" v-model="store.state.currentComponent.placeholder"></el-input>
         </el-col>
     </el-row>
     <el-divider content-position="center">正则校验</el-divider>
