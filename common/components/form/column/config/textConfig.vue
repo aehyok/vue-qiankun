@@ -39,14 +39,6 @@
             <el-input placeholder="请输入占位文本" v-model="store.state.currentComponent.placeholder"></el-input>
         </el-col>
     </el-row>
-    <el-row class="component-config-row">
-        <el-col :span="8" class="component-config-right">
-            校验规则:
-        </el-col>
-        <el-col :span="16" class="component-config-left">
-            <el-input placeholder="请输入占位文本" v-model="store.state.currentComponent.placeholder"></el-input>
-        </el-col>
-    </el-row>
     <el-divider content-position="center">正则校验</el-divider>
     <template v-for="item in store.state.currentComponent.rules">
         <el-row class="component-config-row">
