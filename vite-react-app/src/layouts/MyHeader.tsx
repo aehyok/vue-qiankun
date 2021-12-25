@@ -6,37 +6,37 @@ const { Header } = Layout
 const MyHeader = () => {
     const menu = (
         <Menu>
-            <Menu.Item>
+            <Menu.Item key="1">
                 <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
                     数字农业子系统
                 </a>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="2">
                 <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
                     乡村治理子系统
                 </a>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="3">
                 <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
                     数字信息子系统
                 </a>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="4">
                 <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
                     便民服务子系统
                 </a>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="5">
                 <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
                     地理信息管理子系统
                 </a>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="6">
                 <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
                     基础支撑子系统
                 </a>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="7">
                 <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
                     数据引擎子系统
                 </a>
