@@ -1,16 +1,15 @@
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd'
-import { useRoutes } from 'react-router-dom'
 
-import Detail from '../pages/detail'
+import Detail from '../pages/Detail'
 import List from '../pages/list'
-import Index from '../pages/home/index'
+import Index from '../pages/Home/index'
 import './MyLeftSide.css'
 const { SubMenu } = Menu;
 const { Sider } = Layout;
-import { useNavigate, useLocation, To } from 'react-router-dom'
+import { useHistory, useLocation, To } from 'react-router-dom'
 const MyLeftSide = () => {
-    const navigate = useNavigate()
+    const navigate = useHistory()
     const redirectTo = (path: To) => {
         navigate(path)
     }
@@ -29,14 +28,6 @@ const MyLeftSide = () => {
             path: '/detail'
         },
     ]
-
-
-    useRoutes([
-        { path: '/list', element: <List /> },
-        { path: '/detail', element: <Detail /> },
-        { path: '/index', element: <Index /> },
-    ]);
-
 
     return (
         <Sider width={200} className="my-left-side" style={{ background: '#0f2144' }}>

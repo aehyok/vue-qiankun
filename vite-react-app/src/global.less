@@ -1,0 +1,38 @@
+
+html,
+body,
+#root {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  border: #fff;
+}
+
+:root {
+  --white: #fff;
+  --active-color: #00aeb0;
+}
+
+.ant-layout {
+  height: 100%;
+}
+
+.ant-layout-footer {
+  text-align: center;
+  background: transparent;
+}
+
+._bg {
+  background: linear-gradient(45deg, var(--active-color) 20%, transparent 100%) no-repeat;
+  animation: colorChange 20s alternate infinite;
+}
+
+@keyframes colorChange {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
