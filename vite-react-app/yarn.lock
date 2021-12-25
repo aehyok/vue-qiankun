@@ -501,12 +501,27 @@
   dependencies:
     "safe-buffer" "~5.1.1"
 
+"cookie-storage@^6.1.0":
+  "integrity" "sha512-HeVqbVy8BjXhAAuFtL6MTG+witHoLbxfky2jgVh9FmxmyL6IKa9gSSyPNjevXCCCxPu6Tzd9J8+eXTRQzYU/cg=="
+  "resolved" "https://repo.huaweicloud.com/repository/npm/cookie-storage/-/cookie-storage-6.1.0.tgz"
+  "version" "6.1.0"
+
+"copy-text-to-clipboard@^3.0.1":
+  "integrity" "sha512-rvVsHrpFcL4F2P8ihsoLdFHmd404+CMg71S756oRSeQgqk51U3kicGdnvfkrxva0xXH92SjGS62B0XIJsbh+9Q=="
+  "resolved" "https://repo.huaweicloud.com/repository/npm/copy-text-to-clipboard/-/copy-text-to-clipboard-3.0.1.tgz"
+  "version" "3.0.1"
+
 "copy-to-clipboard@^3.2.0":
   "integrity" "sha512-i13qo6kIHTTpCm8/Wup+0b1mVWETvu2kIMzKoK8FpkLkFxlt0znUAHcMzox+T8sPlqtZXq3CulEjQHsYiGFJUw=="
   "resolved" "https://repo.huaweicloud.com/repository/npm/copy-to-clipboard/-/copy-to-clipboard-3.3.1.tgz"
   "version" "3.3.1"
   dependencies:
     "toggle-selection" "^1.0.6"
+
+"core-js@^3.11.0":
+  "integrity" "sha512-KjbKU7UEfg4YPpskMtMXPhUKn7m/1OdTHTVjy09ScR2LVaoUXe8Jh0UdvN2EKUR6iKTJph52SJP95mAB0MnVLQ=="
+  "resolved" "https://repo.huaweicloud.com/repository/npm/core-js/-/core-js-3.20.0.tgz"
+  "version" "3.20.0"
 
 "csstype@^3.0.2":
   "integrity" "sha512-2u44ZG2OcNUO9HDp/Jl8C07x6pU/eTR3ncV91SiK3dhG9TWvRVsCoJw14Ckx5DgWkzGA3waZWO3d7pgqpUI/XA=="
@@ -742,6 +757,11 @@
   "integrity" "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
   "resolved" "https://repo.huaweicloud.com/repository/npm/ms/-/ms-2.1.2.tgz"
   "version" "2.1.2"
+
+"mutation-observer@^1.0.3":
+  "integrity" "sha512-M/O/4rF2h776hV7qGMZUH3utZLO/jK7p8rnNgGkjKUw8zCGjRQPxB8z6+5l8+VjRUQ3dNYu4vjqXYLr+U8ZVNA=="
+  "resolved" "https://repo.huaweicloud.com/repository/npm/mutation-observer/-/mutation-observer-1.0.3.tgz"
+  "version" "1.0.3"
 
 "nanoid@^3.1.30":
   "integrity" "sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ=="
@@ -1339,6 +1359,16 @@
   "version" "2.0.2"
   dependencies:
     "tslib" "^2.0.3"
+
+"vconsole@^3.10.0":
+  "integrity" "sha512-xXRr+m9jJpUu3GhV6uZc/xm/lNAH9ULzal1VX/NxNlzYT9bNGQFgAuRT0yCZVCHEiZL/lXg7SyqiRUy6IvWv7g=="
+  "resolved" "https://repo.huaweicloud.com/repository/npm/vconsole/-/vconsole-3.10.0.tgz"
+  "version" "3.10.0"
+  dependencies:
+    "cookie-storage" "^6.1.0"
+    "copy-text-to-clipboard" "^3.0.1"
+    "core-js" "^3.11.0"
+    "mutation-observer" "^1.0.3"
 
 "vite-plugin-style-import@^1.4.0":
   "integrity" "sha512-EGAx0zVGUkwAwvDaC66zxgzXyHE0CwAXp4O1xGKnpMcrDT9L1nlojiCjjLRQzL8C3zwY1jn9ilq+m0VABKiiLg=="

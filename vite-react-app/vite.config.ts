@@ -20,4 +20,8 @@ export default defineConfig({
       }
     ),
   ],
+  server: {
+    port: 9528,
+    host: '0.0.0.0'
+  }
 })
