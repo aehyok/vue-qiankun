@@ -8,9 +8,9 @@ const Authority: React.FC = ({ children }) => {
   // const user = useStore((state) => state.user);
   // console.log('Authority', user);
 
-//   if (!localStorage.getItem('vite-react-ts-antd-token')) {
-//     history.push('/user/login');
-//   }
+  if (!localStorage.getItem('vite-react-ts-antd-token')) {
+    history.push('/user/login');
+  }
   // if (!user?.token) {
   //   history.push('/user/login');
   // }

@@ -4,7 +4,7 @@ import './index.css'
 import App from './App'
 import VConsole from 'vconsole'
 
-const vConsole = new VConsole();
+// const vConsole = new VConsole();
 ReactDOM.render(
   <React.StrictMode>
     <App />
