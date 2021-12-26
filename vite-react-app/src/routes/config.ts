@@ -54,6 +54,18 @@ const layouts: IRouteConfig[] = [
         icon: 'home',
         component: React.lazy(() => import('../pages/About')),
       },
+      {
+        path: '/sys/list',
+        title: '关于',
+        icon: 'home',
+        component: React.lazy(() => import('../pages/List')),
+      },
+      {
+        path: '/sys/detail',
+        title: '关于',
+        icon: 'home',
+        component: React.lazy(() => import('../pages/Detail')),
+      },
     ],
   },
   {

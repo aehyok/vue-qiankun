@@ -2,14 +2,14 @@ import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/
 import { Layout, Menu } from 'antd'
 
 import Detail from '../pages/Detail'
-import List from '../pages/list'
+import List from '../pages/List'
 import Index from '../pages/Home/index'
 import './MyLeftSide.css'
 const { SubMenu } = Menu;
 const { Sider } = Layout;
-import { useHistory, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const MyLeftSide = () => {
-    const navigate = useHistory()
+    // const navigate = useHistory()
     // const redirectTo = (path: To) => {
     //     navigate(path)
     // }
@@ -30,7 +30,7 @@ const MyLeftSide = () => {
     ]
 
     return (
-        <Sider width={200} className="my-left-side" style={{ background: '#0f2144' }}>
+        <Sider width={200} className="my-left-side">
             <Menu
                 mode="inline"
                 defaultSelectedKeys={['1']}
@@ -42,8 +42,8 @@ const MyLeftSide = () => {
                         <Link to="/sys/about">户码管理</Link>
                     </Menu.Item>
                     <Menu.Item key="2"><Link to="/sys/home">门牌名管理</Link></Menu.Item>
-                    <Menu.Item key="3" >门牌模板管理</Menu.Item>
-                    <Menu.Item key="4" >门牌标签管理</Menu.Item>
+                    <Menu.Item key="3" ><Link to="/sys/list">门牌模版管理</Link></Menu.Item>
+                    <Menu.Item key="4" ><Link to="/sys/detail">门牌标签管理</Link></Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub2" icon={<LaptopOutlined />} title="人口信息管理">
                     <Menu.Item key="5">户籍人口</Menu.Item>
