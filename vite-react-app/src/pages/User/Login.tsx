@@ -1,12 +1,13 @@
 
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Card, Form, Input, message } from 'antd';
+import { Checkbox, Button, Card, Form, Input, message } from 'antd';
 import React from 'react';
 
 import useStore from '../../store';
-import cls from './index.module.less';
+import styles from './index.module.scss';
 
 const Login: React.FC = () => {
+
   const { login, loading } = useStore((state: any) => ({ ...state }));
 
   const onFinishClick = ({ username, password }: any) => {
@@ -15,31 +16,79 @@ const Login: React.FC = () => {
     }
     message.error('账号或密码错误，请重试！');
   }
+
+  const vcodeImg = "data:image/png;base64,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"
+
+  const getImageVerifyCode = () => {
+
+  }
+
+  const onRemeberChange = (e: any) => {
+
+  }
+
+  const onDialogVisible = () => {
+
+  }
+
   return (
-    <div className={cls.loginBox}>
-      <Card className="_bg" bordered={false}>
-        <Form
-          onFinish={onFinishClick}>
-          <Form.Item
-            name="username"
-            rules={[{ required: true, message: '请输入用户名' }]}>
-            <Input prefix={<UserOutlined />} placeholder="请输入用户名：admin" />
-          </Form.Item>
-          <Form.Item name="password" rules={[{ required: true, message: '请输入密码' }]}>
-            <Input prefix={<LockOutlined />} placeholder="请输入密码：123456" />
-          </Form.Item>
-          <Form.Item>
-            <Button
-              loading={loading}
-              type="primary"
-              htmlType="submit"
-              className={cls.button}>
-              登录
-            </Button>
-          </Form.Item>
-        </Form>
-      </Card>
-    </div>
+    <>
+      <div className={styles.loginpage}>
+        <div className={styles.leftlogin}></div>
+        <div className={styles.contentwrapper}>
+          <div className={styles.projectname}>数字乡村综合服务平台</div>
+          <Card className="_bg" bordered={false}>
+            <Form
+              onFinish={onFinishClick}>
+              <Form.Item
+                name="username"
+                rules={[{ required: true, message: '请输入用户名' }]}>
+                <Input prefix={<UserOutlined />} placeholder="请输入用户名：admin" />
+              </Form.Item>
+              <Form.Item name="password" rules={[{ required: true, message: '请输入密码' }]}>
+                <Input prefix={<LockOutlined />} placeholder="请输入密码：123456" />
+              </Form.Item>
+              <Form.Item>
+                <div className={styles.formrow}>
+                  <Input
+                    placeholder="验证码"
+                    v-model="loginForm.captchaValue"
+                    style={{ flex: 1 }}
+                  />
+
+                  <div className={styles.verCodeImg}>
+                    <img src={vcodeImg} />
+                    <span
+                      onClick={getImageVerifyCode}
+                      style={{ marginLeft: "20px", cursor: "pointer" }}
+                    >
+                      换一张
+                    </span>
+                  </div>
+                </div>
+              </Form.Item>
+              <Form.Item>
+                <div className={styles.formrow}>
+                  <Checkbox onChange={onRemeberChange}>记住用户名和密码</Checkbox>
+                  <Button type="text" onClick={onDialogVisible}>
+                    忘记密码?
+                  </Button>
+                </div>
+              </Form.Item>
+              <Form.Item>
+                <Button
+                  loading={loading}
+                  type="primary"
+                  htmlType="submit"
+                  className={styles.button}>
+                  登录
+                </Button>
+              </Form.Item>
+            </Form>
+          </Card>
+        </div>
+      </div>
+    </>
   );
 };
 export default Login;

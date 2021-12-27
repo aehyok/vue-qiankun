@@ -1,0 +1,133 @@
+.loginpage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    background: url("../../assets/login/bg.png");
+    background-size: 100% 100%;
+    .leftlogin {
+      width: 50vw;
+      height: 82vh;
+      max-height: 1081px;
+      background: url("../../assets/login/bg_nav.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      margin-top: 40px;
+      margin-left: 39px;
+    }
+    .smbot{
+      border: none;
+    }
+  }
+  .contentwrapper {
+    position: absolute;
+    top: 50%;
+    right: 12vw;
+    transform: translate(0, -50%);
+    background-size: 100% 100%;
+    width: 390px;
+    height: 413px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    opacity: 0.95;
+    box-sizing: border-box;
+    .projectname {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      font-weight: 600;
+      color: #1C63F0;
+    }
+    .project-img{
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+    .verCodeImg {
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      padding: 4px 0px ;
+      .svgbox {
+        position: relative;
+        top: 6px;
+      }
+      img {
+        // height: 100%;
+      }
+    }
+    :deep(.el-input__inner) {
+      height: 40px;
+      border: none;
+    }
+    .smbot :deep(.el-input__inner) {
+      height: 40px;
+      border-radius: 2px;
+      border: 1px solid #9EA7B4;
+    }
+  
+  
+    :deep(.el-form-item__content) {
+      width: 350px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+      border: 1px solid rgba(158, 167, 180, 1);
+      background: rgba(243, 246, 249, 0.2);
+      :focus{
+        border: 1px solid #1C63F0;
+      background: rgba(243, 246, 249, 0.2);
+      }
+    }
+    .smbot :deep(.el-form-item__content) {
+      border: none;
+      :focus{
+        border: 1px solid #1C63F0;
+      }
+    }
+    .formrow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 400;
+      color: #657180;
+    }
+    .el-checkbox {
+      font-size: 14px;
+      font-weight: 400;
+      color: #657180;
+    }
+    .el-button{
+      font-size: 14px;
+      font-weight: 400;
+      color: #657180;
+    }
+    .btn-class {
+      width: 100%;
+      margin-top: 10px;
+      height: 40px;
+      background: #1C63F0;
+      border-radius: 2px;
+      font-size: 16px;
+      font-weight: 400;
+      color: #FFFFFF;
+      margin-bottom: 50px;
+    }
+    :deep(input:-webkit-autofill) {
+    //   box-shadow: 0 0 1000px 0 #071b5a inset !important;
+    //   -webkit-text-fill-color: #fff;
+    }
+    :deep(.el-form-item){
+      margin-bottom: 15px !important;
+    }
+    :deep(.el-form.form-class){
+      padding: 0 20px;
+    }
+  }
+
+  .button {
+      width: 100%;
+  }
