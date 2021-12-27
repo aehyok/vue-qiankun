@@ -7,18 +7,19 @@ import useStore from '../../store';
 import cls from './index.module.less';
 
 const Login: React.FC = () => {
-  const { login, loading } = useStore((state) => ({ ...state }));
+  const { login, loading } = useStore((state: any) => ({ ...state }));
 
+  const onFinishClick = ({ username, password }: any) => {
+    if (username === 'admin' && password === '123456') {
+      return login({ username, password });
+    }
+    message.error('账号或密码错误，请重试！');
+  }
   return (
     <div className={cls.loginBox}>
       <Card className="_bg" bordered={false}>
         <Form
-          onFinish={({ username, password }) => {
-            if (username === 'admin' && password === '123456') {
-              return login({ username, password });
-            }
-            message.error('账号或密码错误，请重试！');
-          }}>
+          onFinish={onFinishClick}>
           <Form.Item
             name="username"
             rules={[{ required: true, message: '请输入用户名' }]}>

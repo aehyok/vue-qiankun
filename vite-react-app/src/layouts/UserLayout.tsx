@@ -10,9 +10,7 @@ const { Text } = Typography;
 const UserLayout: React.FC<{ route: IRouteConfig }> = ({ route }) => {
   return (
     <>
-      <div>上半部分</div>
       {renderRoutes(route.routes)}
-      <div>下半部分</div>
     </>
 
   );

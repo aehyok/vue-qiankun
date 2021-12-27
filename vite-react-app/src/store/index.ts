@@ -43,7 +43,7 @@ const useStore = create<StateProps>((set, get) => ({
   list: [],
   loading: false,
   editItem: undefined,
-  login: async (val) => {
+  login: async (val: any) => {
     // const res = await sleep(1000);
     const res = await login(val);
     if (res.code === 0) {
