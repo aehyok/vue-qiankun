@@ -1,9 +1,11 @@
-import { Layout, Menu, Dropdown } from 'antd'
+import { Layout, Menu, Dropdown, Avatar } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import styles from './MyHeader.module.scss'
 const { Header } = Layout
 
 const MyHeader = () => {
+    const logoUrl = "../assets/login/bg.png"
+    const backHome = () => { }
     const menu = (
         <Menu>
             <Menu.Item key="1">
@@ -29,17 +31,54 @@ const MyHeader = () => {
             </Menu.Item >
         </Menu >
     );
+
+    const avator = '系统管理员'
+    const me = (
+        <Menu>
+            <Menu.Item key="1">
+                修改密码
+            </Menu.Item>
+            <Menu.Item key="2">
+                版本信息
+            </Menu.Item>
+            <Menu.Item key="3">
+                安全退出
+            </Menu.Item>
+        </Menu >
+    )
     return (
         <>
-            <Header className={styles.header}>
-                <div className="logo" />
-                {/* <div>乡村治理子系统</div> */}
-                <Dropdown overlay={menu} className={styles.rightsystem}>
-                    <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                        切换系统 <DownOutlined />
-                    </a>
-                </Dropdown>
-            </Header>
+            <div className={styles.headercontainer}>
+                <Header className={styles.appheader}>
+                    <div className={styles.appheaderleft}>
+                        <Avatar src={logoUrl} alt="" />
+                        <span className={styles.appheadertitle}>地理信息管理子系统</span>
+                    </div>
+                    <div className={styles.headerright}>
+                        <div className={`${styles.commonright} ${styles.color}`} onClick={backHome}>返回主页</div>
+                        <div className={styles.commonright}>
+                            <Dropdown overlay={menu} className={styles.rightsystem}>
+                                <a onClick={e => e.preventDefault()} className={styles.color}>
+                                    切换系统 <DownOutlined />
+                                </a>
+                            </Dropdown>
+                        </div>
+                        <div className={styles.commonright}>
+                            <Dropdown overlay={me} className={styles.rightsystem}>
+                                <div>
+                                    <Avatar
+                                        src={logoUrl}
+                                        alt=""
+                                        style={{ width: '18.5pt', height: '18.5pt', paddingRight: '5px', borderRadius: '4px' }}
+
+                                    /><span className={styles.color}>系统管理员<DownOutlined /></span>
+                                </div>
+                            </Dropdown>
+
+                        </div >
+                    </div >
+                </Header >
+            </div >
         </>
     )
 }

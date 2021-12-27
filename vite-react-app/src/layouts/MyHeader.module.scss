@@ -1,7 +1,52 @@
-.header {
+.headercontainer {
+  :global {
+    .ant-layout-header {
+      padding: 0 10px;
+    }
+  }
+}
+.appheader {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
   background: #093a9b;
+
 }
 
-.rightsystem{
-    float: right;
+.appheaderleft {
+  display: flex;
+  align-items: center;
+  line-height: 40px;
+  color: #fff;
+  font-size: 18px;
+  img {
+    width: 30px;
+    height: 30px;
   }
+}
+
+.apptitle {
+  margin-left: 10px;
+}
+
+.headerright {
+  display: flex;
+  line-height: 60px;
+}
+
+.commonright {
+  margin-left: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color {
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+  }
+}
+
