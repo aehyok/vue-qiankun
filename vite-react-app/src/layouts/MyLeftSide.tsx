@@ -6,26 +6,6 @@ const { SubMenu } = Menu;
 const { Sider } = Layout;
 import { Link } from 'react-router-dom'
 const MyLeftSide = () => {
-    // const navigate = useHistory()
-    // const redirectTo = (path: To) => {
-    //     navigate(path)
-    // }
-
-    const menusList = [
-        {
-            name: '首页',
-            path: '/index'
-        },
-        {
-            name: '列表',
-            path: '/list'
-        },
-        {
-            name: '详情',
-            path: '/detail'
-        },
-    ]
-
     return (
         <Sider width={200} className={styles.myleftside}>
             <Menu
