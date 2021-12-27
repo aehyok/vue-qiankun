@@ -1,10 +1,7 @@
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd'
 
-import Detail from '../pages/Detail'
-import List from '../pages/List'
-import Index from '../pages/Home/index'
-import './MyLeftSide.css'
+import styles from './MyLeftSide.module.scss'
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 import { Link } from 'react-router-dom'
@@ -30,7 +27,7 @@ const MyLeftSide = () => {
     ]
 
     return (
-        <Sider width={200} className="my-left-side">
+        <Sider width={200} className={styles.myleftside}>
             <Menu
                 mode="inline"
                 defaultSelectedKeys={['1']}

@@ -1,54 +1,40 @@
 import { Layout, Menu, Dropdown } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
-import './MyHeader.css'
+import styles from './MyHeader.module.scss'
 const { Header } = Layout
 
 const MyHeader = () => {
     const menu = (
         <Menu>
             <Menu.Item key="1">
-                <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-                    数字农业子系统
-                </a>
+                数字农业子系统
             </Menu.Item>
             <Menu.Item key="2">
-                <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-                    乡村治理子系统
-                </a>
+                乡村治理子系统
             </Menu.Item>
             <Menu.Item key="3">
-                <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-                    数字信息子系统
-                </a>
+                数字信息子系统
             </Menu.Item>
             <Menu.Item key="4">
-                <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-                    便民服务子系统
-                </a>
+                便民服务子系统
             </Menu.Item>
             <Menu.Item key="5">
-                <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-                    地理信息管理子系统
-                </a>
+                地理信息管理子系统
             </Menu.Item>
             <Menu.Item key="6">
-                <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-                    基础支撑子系统
-                </a>
+                基础支撑子系统
             </Menu.Item>
             <Menu.Item key="7">
-                <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-                    数据引擎子系统
-                </a>
-            </Menu.Item>
-        </Menu>
+                数据引擎子系统
+            </Menu.Item >
+        </Menu >
     );
     return (
         <>
-            <Header className="header">
+            <Header className={styles.header}>
                 <div className="logo" />
                 {/* <div>乡村治理子系统</div> */}
-                <Dropdown overlay={menu} className='right-system'>
+                <Dropdown overlay={menu} className={styles.rightsystem}>
                     <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
                         切换系统 <DownOutlined />
                     </a>
