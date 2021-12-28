@@ -1,4 +1,4 @@
-import './global.less';
+import './global.module.scss';
 
 import { Spin } from 'antd';
 import React, { Suspense } from 'react';
