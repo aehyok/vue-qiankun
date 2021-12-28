@@ -1,5 +1,5 @@
 import { Layout, Menu, Dropdown, Avatar } from 'antd'
-import { DownOutlined } from '@ant-design/icons'
+import { DownOutlined,UserOutlined } from '@ant-design/icons'
 import styles from './MyHeader.module.scss'
 const { Header } = Layout
 
@@ -51,8 +51,8 @@ const MyHeader = () => {
             <div className={styles.headercontainer}>
                 <Header className={styles.appheader}>
                     <div className={styles.appheaderleft}>
-                        <Avatar src={logoUrl} alt="" />
-                        <span className={styles.appheadertitle}>地理信息管理子系统</span>
+                        <Avatar shape="square" icon={<UserOutlined/>} alt="" />
+                        <span className={styles.appheadertitle}>乡村治理管理子系统</span>
                     </div>
                     <div className={styles.headerright}>
                         <div className={`${styles.commonright} ${styles.color}`} onClick={backHome}>返回主页</div>
@@ -67,9 +67,9 @@ const MyHeader = () => {
                             <Dropdown overlay={me} className={styles.rightsystem}>
                                 <div>
                                     <Avatar
-                                        src={logoUrl}
+                                        icon={<UserOutlined/>}
                                         alt=""
-                                        style={{ width: '18.5pt', height: '18.5pt', paddingRight: '5px', borderRadius: '4px' }}
+                                        size={25}
 
                                     /><span className={styles.color}>系统管理员<DownOutlined /></span>
                                 </div>
