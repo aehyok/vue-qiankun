@@ -95,6 +95,41 @@ export default defineConfig({
       ],
     },
     {
+      path: '/system',
+      icon: 'smile',
+      name: 'system',
+      routes: [
+        {
+          path: '/system',
+          redirect: '/system/role-manage',
+        },
+        {
+          name: 'role-manage',
+          icon: 'smile',
+          path: '/system/role-manage',
+          component: './system/role-manage',
+        },
+        {
+          name: 'user-manage',
+          icon: 'smile',
+          path: '/system/user-manage',
+          component: './system/user-manage',
+        },
+        {
+          name: 'menu-manage',
+          icon: 'smile',
+          path: '/system/menu-manage',
+          component: './system/menu-manage',
+        },
+        {
+          name: 'guideline-manage',
+          icon: 'smile',
+          path: '/system/guideline-manage',
+          component: './system/guideline-manage',
+        },
+      ],
+    },
+    {
       path: '/form',
       icon: 'form',
       name: 'form',
