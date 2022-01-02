@@ -70,7 +70,7 @@ const getUnreadData = (noticeData: Record<string, API.NoticeIconItem[]>) => {
   return unreadMsg;
 };
 
-const NoticeIconView: React.FC = () => {
+const NoticeIconView = () => {
   const { initialState } = useModel('@@initialState');
   const { currentUser } = initialState || {};
   const [notices, setNotices] = useState<API.NoticeIconItem[]>([]);

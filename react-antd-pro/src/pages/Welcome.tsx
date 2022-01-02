@@ -12,9 +12,8 @@ const CodePreview: React.FC = ({ children }) => (
   </pre>
 );
 
-const Welcome: React.FC = () => {
+export default (): React.ReactNode => {
   const intl = useIntl();
-
   return (
     <PageContainer>
       <Card>
@@ -62,5 +61,3 @@ const Welcome: React.FC = () => {
     </PageContainer>
   );
 };
-
-export default Welcome;

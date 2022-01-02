@@ -4,7 +4,7 @@ import { Card, Typography, Alert } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { useIntl } from 'umi';
 
-const Admin: React.FC = () => {
+export default (): React.ReactNode => {
   const intl = useIntl();
   return (
     <PageHeaderWrapper
@@ -41,5 +41,3 @@ const Admin: React.FC = () => {
     </PageHeaderWrapper>
   );
 };
-
-export default Admin;

@@ -1,3 +1,6 @@
+// @ts-ignore
+/* eslint-disable */
+
 declare namespace API {
   type Order = {
     id?: number;
@@ -45,68 +48,5 @@ declare namespace API {
     code?: number;
     type?: string;
     message?: string;
-  };
-
-  type findPetsByStatusParams = {
-    /** Status values that need to be considered for filter */
-    status: ('available' | 'pending' | 'sold')[];
-  };
-
-  type findPetsByTagsParams = {
-    /** Tags to filter by */
-    tags: string[];
-  };
-
-  type getPetByIdParams = {
-    /** ID of pet to return */
-    petId: number;
-  };
-
-  type updatePetWithFormParams = {
-    /** ID of pet that needs to be updated */
-    petId: number;
-  };
-
-  type deletePetParams = {
-    api_key?: string;
-    /** Pet id to delete */
-    petId: number;
-  };
-
-  type uploadFileParams = {
-    /** ID of pet to update */
-    petId: number;
-  };
-
-  type getOrderByIdParams = {
-    /** ID of pet that needs to be fetched */
-    orderId: number;
-  };
-
-  type deleteOrderParams = {
-    /** ID of the order that needs to be deleted */
-    orderId: number;
-  };
-
-  type loginUserParams = {
-    /** The user name for login */
-    username: string;
-    /** The password for login in clear text */
-    password: string;
-  };
-
-  type getUserByNameParams = {
-    /** The name that needs to be fetched. Use user1 for testing.  */
-    username: string;
-  };
-
-  type updateUserParams = {
-    /** name that need to be updated */
-    username: string;
-  };
-
-  type deleteUserParams = {
-    /** The name that needs to be deleted */
-    username: string;
   };
 }

@@ -25,12 +25,6 @@
     component: './Welcome',
   },
   {
-    path: '/dictionary',
-    name: 'dictionary',
-    icon: 'smile',
-    component: './Dictionary',
-  },
-  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',

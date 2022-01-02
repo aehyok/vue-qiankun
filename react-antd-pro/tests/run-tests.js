@@ -1,5 +1,8 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
 /* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable eslint-comments/no-unlimited-disable */
 const { spawn } = require('child_process');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const { kill } = require('cross-port-killer');
 
 const env = Object.create(process.env);
@@ -33,7 +36,7 @@ startServer.stdout.on('data', (data) => {
     console.log('Development server is started, ready to run tests.');
     const testCmd = spawn(
       /^win/.test(process.platform) ? 'npm.cmd' : 'npm',
-      ['run', 'playwright'],
+      ['test', '--', '--maxWorkers=1', '--runInBand'],
       {
         stdio: 'inherit',
       },
