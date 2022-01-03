@@ -2,6 +2,7 @@ import { Tree, Input, Row, Col, Button } from 'antd';
 import {PageContainer ,GridContent } from '@ant-design/pro-layout';
 import React from 'react';
 import GuidelineForm from './guideline-form'
+import GuidelineTable from './guideline-table'
 import { CheckCircleOutlined, CopyOutlined, DeleteOutlined, ExportOutlined, FileAddOutlined, ImportOutlined, ScissorOutlined } from '@ant-design/icons';
 const { Search } = Input;
 
@@ -149,11 +150,11 @@ class SearchTree extends React.Component {
           </Col>
           <Col lg={17} md={24}>
             <Row gutter={24}>
-              <Col span={24} style={{height:'500px', border: '1px solid black'}}>
+              <Col span={24} style={{height:'300px', border: '1px solid black'}}>
                 <GuidelineForm />
               </Col>
               <Col span={24} style={{height:'300px', border: '1px solid black'}}>
-                3333
+                <GuidelineTable />
               </Col>
             </Row>
           </Col>

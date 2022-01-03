@@ -1,10 +1,6 @@
 import { message } from 'antd';
 import ProForm, {
-  ProFormDateRangePicker,
-  ProFormDependency,
   ProFormDigit,
-  ProFormRadio,
-  ProFormSelect,
   ProFormText,
   ProFormTextArea,
 } from '@ant-design/pro-form';
@@ -32,6 +28,8 @@ const GuidelineForm: FC<Record<string, any>> = () => {
           name="basic"
           layout="horizontal"
           submitter={false}
+          labelCol={{ span: 4 }}
+          wrapperCol={{span: 20}}
           initialValues={{ public: '1' }}
           onFinish={onFinish}
         >
