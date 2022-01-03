@@ -12,7 +12,7 @@ const loginPath = '/user/login';
 
 /** 获取用户信息比较慢的时候会展示一个 loading */
 export const initialStateConfig = {
-  loading: <PageLoading />,
+  loading: <PageLoading tip={'cest'} />,
 };
 
 /**
@@ -65,10 +65,12 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     },
     links: isDev
       ? [
+          // eslint-disable-next-line react/jsx-key
           <Link to="/umi/plugin/openapi" target="_blank">
             <LinkOutlined />
             <span>OpenAPI 文档</span>
           </Link>,
+          // eslint-disable-next-line react/jsx-key
           <Link to="/~docs">
             <BookOutlined />
             <span>业务组件文档</span>

@@ -1,6 +1,8 @@
-import { Tree, Input, Row, Col } from 'antd';
-import { GridContent } from '@ant-design/pro-layout';
+import { Tree, Input, Row, Col, Button } from 'antd';
+import {PageContainer ,GridContent } from '@ant-design/pro-layout';
 import React from 'react';
+import GuidelineForm from './guideline-form'
+import { CheckCircleOutlined, CopyOutlined, DeleteOutlined, ExportOutlined, FileAddOutlined, ImportOutlined, ScissorOutlined } from '@ant-design/icons';
 const { Search } = Input;
 
 const x = 3;
@@ -117,7 +119,22 @@ class SearchTree extends React.Component {
         };
       });
     return (
+      <PageContainer>
       <GridContent>
+        <Row style={{margin: '5px'}}>
+          <Col span={24}>
+            <Button type="primary" icon={<DeleteOutlined />}>删除指标</Button>
+            <Button icon={<FileAddOutlined />}>添加指标</Button>
+            <Button type="dashed" icon={ <ExportOutlined />}>导入指标</Button>
+            <Button type="primary" icon={ <ImportOutlined />}>导出指标</Button>｜
+            <Button icon={<FileAddOutlined />}>添加参数</Button>
+            <Button type="dashed" icon={<DeleteOutlined />}>删除参数</Button>
+            <Button type="dashed" icon={<CopyOutlined />}>复制参数</Button>
+            <Button type='dashed' icon={<ScissorOutlined />}>粘贴参数</Button>｜
+            <Button type="dashed" icon={<CheckCircleOutlined />}>保存</Button>
+            <Button type='dashed' icon={<DeleteOutlined />}>取消</Button>
+          </Col>
+        </Row>
         <Row gutter={24}>
           <Col lg={7} md={24}>
             <div>
@@ -131,10 +148,18 @@ class SearchTree extends React.Component {
             </div>
           </Col>
           <Col lg={17} md={24}>
-            111111
+            <Row gutter={24}>
+              <Col span={24} style={{height:'500px', border: '1px solid black'}}>
+                <GuidelineForm />
+              </Col>
+              <Col span={24} style={{height:'300px', border: '1px solid black'}}>
+                3333
+              </Col>
+            </Row>
           </Col>
         </Row>
       </GridContent>
+      </PageContainer>
     );
   }
 }
