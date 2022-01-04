@@ -1,8 +1,9 @@
-import { Tree, Input, Row, Col, Button } from 'antd';
+import { Tree, Input, Row, Col, Button, Modal } from 'antd';
 import {PageContainer ,GridContent } from '@ant-design/pro-layout';
 import React from 'react';
 import GuidelineForm from './form'
 import GuidelineTable from './table'
+import GuidelineModal from './modal'
 import { CheckCircleOutlined, CopyOutlined, DeleteOutlined, ExportOutlined, FileAddOutlined, ImportOutlined, ScissorOutlined } from '@ant-design/icons';
 const { Search } = Input;
 
@@ -127,13 +128,28 @@ const SearchTree = () =>{
       };
   });
 
+  const [isModalVisible, setIsModalVisible] = React.useState(false);
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const hiddenModal = () => {
+    setIsModalVisible(false)
+  }
+
   return (
     <PageContainer>
+            <GuidelineModal modalVisible = {isModalVisible} hiddenModal = {setIsModalVisible} />
+            {/* <Modal title="Basic Modal" visible={isModalVisible}>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </Modal> */}
       <GridContent>
         <Row style={{margin: '5px'}}>
           <Col span={24}>
             <Button type="primary" icon={<DeleteOutlined />}>删除指标</Button>
-            <Button icon={<FileAddOutlined />}>添加指标</Button>
+            <Button icon={<FileAddOutlined />} onClick={showModal}>添加指标</Button>
             <Button type="dashed" icon={ <ExportOutlined />}>导入指标</Button>
             <Button type="primary" icon={ <ImportOutlined />}>导出指标</Button>｜
             <Button icon={<FileAddOutlined />}>添加参数</Button>
