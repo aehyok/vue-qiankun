@@ -1,17 +1,18 @@
-import { Tree, Input, Row, Col, Button } from 'antd';
+import { Tree, Input, Row, Col, Button, Modal } from 'antd';
 import {PageContainer ,GridContent } from '@ant-design/pro-layout';
 import React from 'react';
-import GuidelineForm from './guideline-form'
-import GuidelineTable from './guideline-table'
+import GuidelineForm from './form'
+import GuidelineTable from './table'
+import GuidelineModal from './modal'
 import { CheckCircleOutlined, CopyOutlined, DeleteOutlined, ExportOutlined, FileAddOutlined, ImportOutlined, ScissorOutlined } from '@ant-design/icons';
 const { Search } = Input;
 
 const x = 3;
 const y = 2;
 const z = 1;
-const gData = [];
+const gData: never[] = [];
 
-const generateData = (_level, _preKey, _tns) => {
+const generateData = (_level:any, _preKey: any, _tns: any) => {
   const preKey = _preKey || '0';
   const tns = _tns || gData;
 
@@ -34,8 +35,8 @@ const generateData = (_level, _preKey, _tns) => {
 };
 generateData(z);
 
-const dataList = [];
-const generateList = data => {
+const dataList: { key: any; title: any; }[] = [];
+const generateList = (data: any) => {
   for (let i = 0; i < data.length; i++) {
     const node = data[i];
     const { key } = node;
@@ -47,12 +48,12 @@ const generateList = data => {
 };
 generateList(gData);
 
-const getParentKey = (key, tree) => {
+const getParentKey = (key: any, tree: any) => {
   let parentKey;
   for (let i = 0; i < tree.length; i++) {
     const node = tree[i];
     if (node.children) {
-      if (node.children.some(item => item.key === key)) {
+      if (node.children.some((item: any) => item.key === key)) {
         parentKey = node.key;
       } else if (getParentKey(key, node.children)) {
         parentKey = getParentKey(key, node.children);
@@ -62,23 +63,29 @@ const getParentKey = (key, tree) => {
   return parentKey;
 };
 
-class SearchTree extends React.Component {
-  state = {
-    expandedKeys: [],
-    searchValue: '',
-    autoExpandParent: true,
+const SearchTree = () =>{
+  // state = {
+  //   expandedKeys: [],
+  //   searchValue: '',
+  //   autoExpandParent: true,
+  // };
+
+  const [expandedKeys, setexpandedKeys] = React.useState()
+  const [searchValue, setsearchValue] = React.useState('')
+  const [autoExpandParent, setautoExpandParent] = React.useState(true)
+
+  const onExpand = (_expandedKeys: any) => {
+    // this.setState({
+    //   expandedKeys,
+    //   autoExpandParent: false,
+    // });
+    setexpandedKeys(_expandedKeys)
+    setautoExpandParent(false)
   };
 
-  onExpand = expandedKeys => {
-    this.setState({
-      expandedKeys,
-      autoExpandParent: false,
-    });
-  };
-
-  onChange = e => {
+  const onChange = (e: any) => {
     const { value } = e.target;
-    const expandedKeys = dataList
+    const _expandedKeys: any = dataList
       .map(item => {
         if (item.title.indexOf(value) > -1) {
           return getParentKey(item.key, gData);
@@ -86,46 +93,63 @@ class SearchTree extends React.Component {
         return null;
       })
       .filter((item, i, self) => item && self.indexOf(item) === i);
-    this.setState({
-      expandedKeys,
-      searchValue: value,
-      autoExpandParent: true,
-    });
+    // this.setState({
+    //   expandedKeys,
+    //   searchValue: value,
+    //   autoExpandParent: true,
+    // });
+    setexpandedKeys(_expandedKeys)
+    setsearchValue(value)
+    setautoExpandParent(false)
   };
 
-  render() {
-    const { searchValue, expandedKeys, autoExpandParent } = this.state;
-    const loop = data =>
-      data.map(item => {
-        const index = item.title.indexOf(searchValue);
-        const beforeStr = item.title.substr(0, index);
-        const afterStr = item.title.substr(index + searchValue.length);
-        const title =
-          index > -1 ? (
-            <span>
-              {beforeStr}
-              <span className="site-tree-search-value">{searchValue}</span>
-              {afterStr}
-            </span>
-          ) : (
-            <span>{item.title}</span>
-          );
-        if (item.children) {
-          return { title, key: item.key, children: loop(item.children) };
-        }
+  const loop = (data: any) =>
+    data.map((item: any) => {
+      const index = item.title.indexOf(searchValue);
+      const beforeStr = item.title.substr(0, index);
+      const afterStr = item.title.substr(index + searchValue.length);
+      const title =
+        index > -1 ? (
+          <span>
+            {beforeStr}
+            <span className="site-tree-search-value">{searchValue}</span>
+            {afterStr}
+          </span>
+        ) : (
+          <span>{item.title}</span>
+        );
+      if (item.children) {
+        return { title, key: item.key, children: loop(item.children) };
+      }
 
-        return {
-          title,
-          key: item.key,
-        };
-      });
-    return (
-      <PageContainer>
+      return {
+        title,
+        key: item.key,
+      };
+  });
+
+  const [isModalVisible, setIsModalVisible] = React.useState(false);
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const hiddenModal = () => {
+    setIsModalVisible(false)
+  }
+
+  return (
+    <PageContainer>
+            <GuidelineModal modalVisible = {isModalVisible} hiddenModal = {setIsModalVisible} />
+            {/* <Modal title="Basic Modal" visible={isModalVisible}>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </Modal> */}
       <GridContent>
         <Row style={{margin: '5px'}}>
           <Col span={24}>
             <Button type="primary" icon={<DeleteOutlined />}>删除指标</Button>
-            <Button icon={<FileAddOutlined />}>添加指标</Button>
+            <Button icon={<FileAddOutlined />} onClick={showModal}>添加指标</Button>
             <Button type="dashed" icon={ <ExportOutlined />}>导入指标</Button>
             <Button type="primary" icon={ <ImportOutlined />}>导出指标</Button>｜
             <Button icon={<FileAddOutlined />}>添加参数</Button>
@@ -139,9 +163,9 @@ class SearchTree extends React.Component {
         <Row gutter={24}>
           <Col lg={7} md={24}>
             <div>
-              <Search style={{ marginBottom: 8 }} placeholder="Search" onChange={this.onChange} />
+              <Search style={{ marginBottom: 8 }} placeholder="Search" onChange={onChange} />
               <Tree
-                onExpand={this.onExpand}
+                onExpand={onExpand}
                 expandedKeys={expandedKeys}
                 autoExpandParent={autoExpandParent}
                 treeData={loop(gData)}
@@ -160,11 +184,8 @@ class SearchTree extends React.Component {
           </Col>
         </Row>
       </GridContent>
-      </PageContainer>
-    );
-  }
+    </PageContainer>
+  );
 }
-
-// ReactDOM.render(<SearchTree />, mountNode);
 
 export default SearchTree;
