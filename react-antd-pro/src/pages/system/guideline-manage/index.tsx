@@ -9,9 +9,9 @@ const { Search } = Input;
 const x = 3;
 const y = 2;
 const z = 1;
-const gData = [];
+const gData: never[] = [];
 
-const generateData = (_level, _preKey, _tns) => {
+const generateData = (_level:any, _preKey: any, _tns: any) => {
   const preKey = _preKey || '0';
   const tns = _tns || gData;
 
@@ -34,8 +34,8 @@ const generateData = (_level, _preKey, _tns) => {
 };
 generateData(z);
 
-const dataList = [];
-const generateList = data => {
+const dataList: { key: any; title: any; }[] = [];
+const generateList = (data:any) => {
   for (let i = 0; i < data.length; i++) {
     const node = data[i];
     const { key } = node;
@@ -47,12 +47,12 @@ const generateList = data => {
 };
 generateList(gData);
 
-const getParentKey = (key, tree) => {
+const getParentKey = (key:any, tree:any) => {
   let parentKey;
   for (let i = 0; i < tree.length; i++) {
     const node = tree[i];
     if (node.children) {
-      if (node.children.some(item => item.key === key)) {
+      if (node.children.some((item:any) => item.key === key)) {
         parentKey = node.key;
       } else if (getParentKey(key, node.children)) {
         parentKey = getParentKey(key, node.children);
@@ -69,14 +69,14 @@ class SearchTree extends React.Component {
     autoExpandParent: true,
   };
 
-  onExpand = expandedKeys => {
+  onExpand = (expandedKeys:any) => {
     this.setState({
       expandedKeys,
       autoExpandParent: false,
     });
   };
 
-  onChange = e => {
+  onChange = (e:any) => {
     const { value } = e.target;
     const expandedKeys = dataList
       .map(item => {
@@ -95,8 +95,8 @@ class SearchTree extends React.Component {
 
   render() {
     const { searchValue, expandedKeys, autoExpandParent } = this.state;
-    const loop = data =>
-      data.map(item => {
+    const loop = (data:any) =>
+      data.map((item:any) => {
         const index = item.title.indexOf(searchValue);
         const beforeStr = item.title.substr(0, index);
         const afterStr = item.title.substr(index + searchValue.length);
