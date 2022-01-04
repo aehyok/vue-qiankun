@@ -79,6 +79,12 @@ const routes = [
     name: "about",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
+  },
+  {
+    path: "/webpack-app/eltable",
+    name: "about",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/ElTable.vue")
   }
 ];
 
