@@ -1,8 +1,8 @@
 import { Tree, Input, Row, Col, Button } from 'antd';
 import {PageContainer ,GridContent } from '@ant-design/pro-layout';
 import React from 'react';
-import GuidelineForm from './guideline-form'
-import GuidelineTable from './guideline-table'
+import GuidelineForm from './form'
+import GuidelineTable from './table'
 import { CheckCircleOutlined, CopyOutlined, DeleteOutlined, ExportOutlined, FileAddOutlined, ImportOutlined, ScissorOutlined } from '@ant-design/icons';
 const { Search } = Input;
 
