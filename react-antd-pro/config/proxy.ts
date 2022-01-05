@@ -22,10 +22,10 @@ export default {
     },
   },
   pre: {
-    '/api/': {
-      target: 'your pre url',
+    '/so/': {
+      target: 'https://dvs-dev.sunlight-tech.com',
       changeOrigin: true,
-      pathRewrite: { '^': '' },
+      pathRewrite: { '^/so': '' },
     },
   },
 };
