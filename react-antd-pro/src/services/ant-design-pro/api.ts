@@ -21,14 +21,12 @@ export async function outLogin(options?: { [key: string]: any }) {
 }
 
 /** 登录接口 POST /api/login/account */
-export async function getVerifyCode(body: API.LoginParams, options?: { [key: string]: any }) {
-  return request('/so/api/sso/auth/getVerifyCode', {
-    method: 'POST',
+export async function getVerifyCode() {
+  return request('/so/api/Values/GetTest', {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-    data: body,
-    ...(options || {}),
   });
 }
 
