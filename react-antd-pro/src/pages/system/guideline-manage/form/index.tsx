@@ -6,16 +6,34 @@ import ProForm, {
 } from '@ant-design/pro-form';
 import { useRequest } from 'umi';
 import type { FC } from 'react';
+import { useEffect } from 'react';
 import { fakeSubmitForm } from './service';
+import { GetGuidelineDefine} from '@/services/guideline/api'
 import styles from './style.less';
 
-const GuidelineForm: FC<Record<string, any>> = () => {
+
+
+const GuidelineForm: FC<Record<string, any>> = (props: any) => {
+  const { guidelineId } = props
+
+  const loadTreeList = async (id: any = "1") => {
+    console.log(id, 'id')
+    const response = await GetGuidelineDefine(id)
+
+    console.log(response, '--detail--response--')
+  }
+
+  useEffect(()=> {
+    loadTreeList(guidelineId)
+  },[guidelineId])
+
   const { run } = useRequest(fakeSubmitForm, {
     manual: true,
     onSuccess: () => {
       message.success('提交成功');
     },
   });
+
 
   const onFinish = async (values: Record<string, any>) => {
     run(values);

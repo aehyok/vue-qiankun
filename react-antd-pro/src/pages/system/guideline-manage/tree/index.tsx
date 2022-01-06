@@ -36,8 +36,10 @@ function updateTreeData(list: DataNode[], key: React.Key, children: DataNode[]):
   });
 }
 
-const GuidelineTree= () => {
+const GuidelineTree= (props: any) => {
+  const {setDefault} = props
   const [treeData, setTreeData] = useState(initTreeData);
+
 
   const loadTreeList = async (id: any = "1", type: any ="one") => {
     console.log(id, 'id')
@@ -51,6 +53,7 @@ const GuidelineTree= () => {
     console.log(list, '--list--')
     if(type === 'one') {
       setTreeData(list)
+      setDefault([list[0].key])
     } else {
       setTreeData(origin => {
         console.log(origin, '原始的数据')
@@ -78,10 +81,14 @@ const GuidelineTree= () => {
     });
   }
 
+  const onSelectClick = (selectedKeys: any) => {
+    setDefault(selectedKeys)
+  }
+
   return (
     <>
       <Search style={{ marginBottom: 8 }} placeholder="Search" />
-      <Tree loadData={onLoadData} treeData={treeData} />
+      <Tree loadData={onLoadData} treeData={treeData} onSelect = { onSelectClick } />
     </>
   )
 };

@@ -1,16 +1,23 @@
 import { Row, Col, Button } from 'antd';
 import {PageContainer ,GridContent } from '@ant-design/pro-layout';
-import React from 'react';
+import React, { useEffect } from 'react';
 import GuidelineForm from './form'
 import GuidelineTable from './table'
 import GuidelineModal from './modal'
 import GuidelineTree from './tree'
+
 import { CheckCircleOutlined, CopyOutlined, DeleteOutlined, ExportOutlined, FileAddOutlined, ImportOutlined, ScissorOutlined } from '@ant-design/icons';
 
 const GuidelineManage = () =>{
 
 
   const [isModalVisible, setIsModalVisible] = React.useState(false);
+
+  const [defaultSelectedKeys, setDefaultSelectedKeys] = React.useState([])
+
+  useEffect(()=> {
+    console.log(defaultSelectedKeys, '12345')
+  },[defaultSelectedKeys])
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -41,13 +48,13 @@ const GuidelineManage = () =>{
         <Row gutter={24}>
           <Col lg={7} md={24}>
             <div>
-              <GuidelineTree />
+              <GuidelineTree setDefault= {setDefaultSelectedKeys} />
             </div>
           </Col>
           <Col lg={17} md={24}>
             <Row gutter={24}>
               <Col span={24} style={{height:'300px', border: '1px solid black'}}>
-                <GuidelineForm />
+                <GuidelineForm  guidelineId = {defaultSelectedKeys} />
               </Col>
               <Col span={24} style={{height:'300px', border: '1px solid black'}}>
                 <GuidelineTable />
