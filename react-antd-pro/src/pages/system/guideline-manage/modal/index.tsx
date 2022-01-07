@@ -1,4 +1,5 @@
 import { Modal, Form,Input, Button } from 'antd';
+import { useRef } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 const GuidelineModal = (props: {modalVisible: boolean, hiddenModal: Function, selectGuidelineId: any}) => {
@@ -9,7 +10,11 @@ const GuidelineModal = (props: {modalVisible: boolean, hiddenModal: Function, se
     hiddenModal()
   }
 
+  const formRef = useRef(null);
+  const [form] = Form.useForm();
+
   const handleCancel = () => {
+    form.resetFields()
     hiddenModal()
   }
 
@@ -18,7 +23,7 @@ const GuidelineModal = (props: {modalVisible: boolean, hiddenModal: Function, se
   }
   return (
       <Modal title="添加指标" footer={null} visible={modalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <Form onFinish={(values: any)=> onSubmit(values) }>
+        <Form form={form} onFinish={(values: any)=> onSubmit(values) } ref={formRef}>
           <Form.Item
             label="指标名称"
             name="GuideLineName"
@@ -27,11 +32,11 @@ const GuidelineModal = (props: {modalVisible: boolean, hiddenModal: Function, se
           >
             <Input />
           </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit" >
+          <Form.Item >
+            <Button type="primary" htmlType="submit" style={{ marginRight :'20px'}} >
               确定
             </Button>
-            <Button htmlType="button">
+            <Button htmlType="button" onClick={ handleCancel }>
               取消
             </Button>
           </Form.Item>
