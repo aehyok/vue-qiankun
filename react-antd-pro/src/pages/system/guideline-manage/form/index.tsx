@@ -1,30 +1,36 @@
-import { message } from 'antd';
-import ProForm, {
+import { message, Form } from 'antd';
+import {
   ProFormDigit,
   ProFormText,
   ProFormTextArea,
 } from '@ant-design/pro-form';
 import { useRequest } from 'umi';
 import type { FC } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { fakeSubmitForm } from './service';
 import { GetGuidelineDefine} from '@/services/guideline/api'
-import styles from './style.less';
-
-
 
 const GuidelineForm: FC<Record<string, any>> = (props: any) => {
   const { guidelineId } = props
-
+  const formRef = useRef(null);
+  const [form] = Form.useForm();
+  // const [initData, setInitData] = useState({})
   const loadTreeList = async (id: any = "1") => {
     console.log(id, 'id')
     const response = await GetGuidelineDefine(id)
-
     console.log(response, '--detail--response--')
+    if(response.data) {
+      form.setFieldsValue({
+        name: response.data.guideLineName,
+        id: response.data.id,
+        displayOrder: response.data.displayOrder
+      });
+    }
   }
 
   useEffect(()=> {
     loadTreeList(guidelineId)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[guidelineId])
 
   const { run } = useRequest(fakeSubmitForm, {
@@ -40,12 +46,13 @@ const GuidelineForm: FC<Record<string, any>> = (props: any) => {
   };
 
   return (
-        <ProForm
+        <Form
           hideRequiredMark
+          form={form}
+          ref={formRef}
           style={{ margin: 'auto', marginTop: 8, maxWidth: 600 }}
           name="basic"
           layout="horizontal"
-          submitter={false}
           labelCol={{ span: 4 }}
           wrapperCol={{span: 20}}
           initialValues={{ public: '1' }}
@@ -54,7 +61,7 @@ const GuidelineForm: FC<Record<string, any>> = (props: any) => {
           <ProFormText
             width="md"
             label="指标名称"
-            name="title"
+            name="name"
             rules={[
               {
                 required: true,
@@ -66,7 +73,7 @@ const GuidelineForm: FC<Record<string, any>> = (props: any) => {
           <ProFormText
             width="md"
             label="指标ID"
-            name="title"
+            name="id"
             rules={[
               {
                 required: true,
@@ -99,7 +106,7 @@ const GuidelineForm: FC<Record<string, any>> = (props: any) => {
             ]}
             placeholder="请输入你的阶段性工作目标"
           />
-        </ProForm>
+        </Form>
   );
 };
 
