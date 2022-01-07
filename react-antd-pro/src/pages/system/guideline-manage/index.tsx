@@ -39,8 +39,8 @@ const GuidelineManage = () =>{
       <GridContent>
         <Row style={{margin: '5px'}} justify={'space-between'}>
           <Col>
-            <Button icon={<FileAddOutlined />} onClick={() => showModal()}>添加指标</Button>
-            <Button type="primary" icon={<DeleteOutlined />}>删除指标</Button>
+            <Button type="primary" icon={<FileAddOutlined />} onClick={() => showModal()}>添加指标</Button>
+            <Button type="dashed" icon={<DeleteOutlined />}>删除指标</Button>
             <Button type="dashed" icon={ <ExportOutlined />}>导入指标</Button>
             <Button type="dashed" icon={ <ImportOutlined />}>导出指标</Button>
            </Col>
