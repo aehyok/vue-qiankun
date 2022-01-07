@@ -1,14 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Tabs } from 'antd'
 import type { ProColumns } from '@ant-design/pro-table';
 import { EditableProTable } from '@ant-design/pro-table';
 import type { ProFormInstance } from '@ant-design/pro-form';
 import ProForm, { ProFormRadio } from '@ant-design/pro-form';
 // import ProCard from '@ant-design/pro-card';
-
+const { TabPane } = Tabs;
 type DataSourceType = {
   id: React.Key;
-  title?: string;
-  decs?: string;
+  parameterName?: string;
+  displayTitle?: string;
   state?: string;
   created_at?: string;
   update_at?: string;
@@ -18,42 +19,52 @@ type DataSourceType = {
 const defaultData: DataSourceType[] = [
   {
     id: '624748504',
-    title: '活动名称一',
-    decs: '这个活动真好玩',
+    parameterName: '活动名称一',
+    displayTitle: '这个活动真好玩',
     state: 'open',
     created_at: '2020-05-26T09:42:56Z',
     update_at: '2020-05-26T09:42:56Z',
   },
   {
     id: '624691229',
-    title: '活动名称二',
-    decs: '这个活动真好玩',
+    parameterName: '活动名称二',
+    displayTitle: '这个活动真好玩',
     state: 'closed',
     created_at: '2020-05-26T08:19:22Z',
     update_at: '2020-05-26T08:19:22Z',
   },
 ];
 
-export default () => {
+const GuidelineTable = (props: any) => {
+  const { guidelineData } = props
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>(() => []);
   const [position, setPosition] = useState<'top' | 'bottom' | 'hidden'>('bottom');
   const formRef = useRef<ProFormInstance<any>>();
+
+  useEffect(()=> {
+    console.log('table-列表',guidelineData)
+  },[guidelineData])
   const columns: ProColumns<DataSourceType>[] = [
     {
       title: '参数名',
-      dataIndex: 'title',
+      dataIndex: 'parameterName',
       formItemProps: () => {
         return {
-          rules: [{ required: true, message: '此项为必填项' }],
+          rules: [{ required: true, message: '参数名为必填项' }],
         };
       },
       width: '30%',
     },
     {
-      title: '状态',
-      key: 'state',
-      dataIndex: 'state',
+      title: '显示名称',
+      key: 'displayTitle',
+      dataIndex: 'displayTitle',
       valueType: 'select',
+      formItemProps: () => {
+        return {
+          rules: [{ required: true, message: '显示名称为必填项' }],
+        };
+      },
       valueEnum: {
         all: { text: '全部', status: 'Default' },
         open: {
@@ -67,11 +78,11 @@ export default () => {
       },
     },
     {
-      title: '描述',
+      title: '类型',
       dataIndex: 'decs',
     },
     {
-      title: '活动时间',
+      title: '顺序',
       dataIndex: 'created_at',
       valueType: 'date',
     },
@@ -104,34 +115,42 @@ export default () => {
   ];
 
   return (
-    <ProForm<{
-      table: DataSourceType[];
-    }>
-      formRef={formRef}
-      initialValues={{
-        table: defaultData,
-      }}
-    >
-      <EditableProTable<DataSourceType>
-        rowKey="id"
-        headerTitle="可编辑表格"
-        maxLength={5}
-        name="table"
-        recordCreatorProps={
-          position !== 'hidden'
-            ? {
-                position: position as 'top',
-                record: () => ({ id: (Math.random() * 1000000).toFixed(0) }),
-              }
-            : false
-        }
-        columns={columns}
-        editable={{
-          type: 'multiple',
-          editableKeys,
-          onChange: setEditableRowKeys,
-        }}
-      />
-    </ProForm>
+    <Tabs defaultActiveKey="1">
+      <TabPane tab="参数定义" key="1">
+        <ProForm<{
+          table: DataSourceType[];
+        }>
+          formRef={formRef}
+          initialValues={{
+            table: defaultData,
+          }}
+        >
+          <EditableProTable<DataSourceType>
+            rowKey="id"
+            maxLength={5}
+            name="table"
+            recordCreatorProps={
+              position !== 'hidden'
+                ? {
+                    position: position as 'top',
+                    record: () => ({ id: (Math.random() * 1000000).toFixed(0) }),
+                  }
+                : false
+            }
+            columns={columns}
+            editable={{
+              type: 'multiple',
+              editableKeys,
+              onChange: setEditableRowKeys,
+            }}
+          />
+        </ProForm>
+      </TabPane>
+      <TabPane tab="显示结果字段定义" key="2">
+        Content of Tab Pane 2
+      </TabPane>
+    </Tabs>
   );
 };
+
+export default GuidelineTable;

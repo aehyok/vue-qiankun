@@ -11,13 +11,8 @@ interface DataNode {
 }
 
 
-const initTreeData: DataNode[] = [
-  { title: '1Expand to load', key: '0' },
-  { title: '2Expand to load', key: '1' },
-  { title: 'Tree Node', key: '2', isLeaf: true },
-];
+const initTreeData: DataNode[] = [];
 
-// It's just a simple demo. You can use tree map to optimize update perf.
 function updateTreeData(list: DataNode[], key: React.Key, children: DataNode[]): DataNode[] {
   return list.map(node => {
     if (node.key === key) {
@@ -82,13 +77,14 @@ const GuidelineTree= (props: any) => {
   }
 
   const onSelectClick = (selectedKeys: any) => {
+    console.log(selectedKeys, 'selectedKeys-info--')
     setDefault(selectedKeys)
   }
 
   return (
     <>
       <Search style={{ marginBottom: 8 }} placeholder="Search" />
-      <Tree loadData={onLoadData} treeData={treeData} onSelect = { onSelectClick } />
+      <Tree loadData={onLoadData} treeData={treeData} onSelect = { (selectedKeys)=> { onSelectClick(selectedKeys)} } />
     </>
   )
 };

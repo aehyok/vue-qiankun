@@ -6,32 +6,24 @@ import {
 } from '@ant-design/pro-form';
 import { useRequest } from 'umi';
 import type { FC } from 'react';
-import { useEffect, useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { fakeSubmitForm } from './service';
-import { GetGuidelineDefine} from '@/services/guideline/api'
 
 const GuidelineForm: FC<Record<string, any>> = (props: any) => {
-  const { guidelineId } = props
+  const { guidelineData } = props
+
   const formRef = useRef(null);
   const [form] = Form.useForm();
-  // const [initData, setInitData] = useState({})
-  const loadTreeList = async (id: any = "1") => {
-    console.log(id, 'id')
-    const response = await GetGuidelineDefine(id)
-    console.log(response, '--detail--response--')
-    if(response.data) {
-      form.setFieldsValue({
-        name: response.data.guideLineName,
-        id: response.data.id,
-        displayOrder: response.data.displayOrder
-      });
-    }
-  }
 
-  useEffect(()=> {
-    loadTreeList(guidelineId)
+  useEffect(() => {
+    console.log('form-表单', guidelineData)
+    form.setFieldsValue({
+      name: guidelineData.guideLineName,
+      id: guidelineData.id,
+      displayOrder:guidelineData.displayOrder
+    });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[guidelineId])
+  },[guidelineData]);
 
   const { run } = useRequest(fakeSubmitForm, {
     manual: true,
