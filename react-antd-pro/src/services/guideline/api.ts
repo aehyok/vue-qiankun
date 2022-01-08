@@ -24,12 +24,12 @@ export async function GetGuidelineDefine(id: string) {
 
 /**
  * 保存新的指标定义，主要先保存名称
- * @param id
+ * @param data
  * @returns
  */
-export async function SaveNewGuideLine(options: any) {
+export async function SaveNewGuideLine(data: any) {
   return request(`/so/api/mddefine/SaveNewGuideLine`, {
     method: 'POST',
-    ...(options || {}),
+    data
   });
 }
