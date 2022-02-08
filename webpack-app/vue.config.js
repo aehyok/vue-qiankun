@@ -7,7 +7,17 @@ module.exports = {
     port: 4000,
     headers: {
       "Access-Control-Allow-Origin": "*"
-    }
+    },
+    proxy: {
+      '/so': {
+        target: 'http://139.186.205.7:5000', // 代理接口
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/so': '',
+        },
+      },
+    },
   },
   chainWebpack: (config) => {
     config.module

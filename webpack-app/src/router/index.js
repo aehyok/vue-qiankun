@@ -1,8 +1,10 @@
 import Home from "../views/Home.vue";
 import TableAndFormAndDetail from "../views/TableAndFormAndDetail.vue";
 import Table from "../views/Table.vue";
+import TableApi from "../views/Table-Api.vue";
 import ffmpeg from "../views/video/ffmpeg.vue";
 import Form from '../views/Form.vue'
+import FormApi from '../views/Form-Api.vue'
 import Detail from '../views/Detail.vue'
 
 const routes = [
@@ -42,6 +44,11 @@ const routes = [
     component: Form
   },
   {
+    path: "/webpack-app/form-api",
+    name: "form-api",
+    component: FormApi
+  },
+  {
     path: "/webpack-app/detail",
     name: "detail",
     component: Detail
@@ -52,6 +59,11 @@ const routes = [
     component: Table
   },
   {
+    path: "/webpack-app/table-api",
+    name: "table-api",
+    component: TableApi
+  },
+  {
     path: "/ffmpeg",
     name: "ffmpeg",
     component: ffmpeg
@@ -60,19 +72,19 @@ const routes = [
     path: "/webpack-app/dragger",
     name: "dragger",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Dragger.vue")
+      import(/* webpackChunkName: "dragger" */ "../views/Dragger.vue")
   },
   {
     path: "/webpack-app/dynamicformdesign",
     name: "DynamicFormDesign",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/DynamicFormDesign.vue")
+      import(/* webpackChunkName: "DynamicFormDesign" */ "../views/DynamicFormDesign.vue")
   },
   {
     path: "/webpack-app/visualdesign",
     name: "VisualDesign",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/VisualDesign.vue")
+      import(/* webpackChunkName: "VisualDesign" */ "../views/VisualDesign.vue")
   },
   {
     path: "/webpack-app/about",
@@ -82,9 +94,9 @@ const routes = [
   },
   {
     path: "/webpack-app/eltable",
-    name: "about",
+    name: "eltable",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/ElTable.vue")
+      import(/* webpackChunkName: "eltable" */ "../views/ElTable.vue")
   }
 ];
 

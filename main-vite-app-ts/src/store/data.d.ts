@@ -60,6 +60,16 @@ export function webpackList(): Menu[] {
       path: '/webpack-app/visualdesign'
     },
     {
+      id: 10,
+      title: '7、table列表封装(配置调用接口)',
+      path: '/webpack-app/table-api'
+    },
+    {
+      id: 11,
+      title: '8、form表单配置器(配置调用接口)',
+      path: '/webpack-app/form-api'
+    },
+    {
       id: 7,
       title: 'about',
       path: '/webpack-app/about'
