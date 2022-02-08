@@ -10,7 +10,7 @@ export const getFormConfig = (data) => {
 export const getTableConfig = (data) => {
     console.log(data, 'data-----')
     return request(`/Guideline/GetGuidelineDefine?guideLineId=${data}`, {
-        method: 'post',
+        method: 'get',
         data,
     })
 }

@@ -21,7 +21,7 @@ export default defineComponent({
   setup() {
     onMounted(() => {
       console.log('form-config')
-      getTableConfig('1').then(result => {
+      getTableConfig('0').then(result => {
         console.log(result, 'table列表配置')
       })
     })
