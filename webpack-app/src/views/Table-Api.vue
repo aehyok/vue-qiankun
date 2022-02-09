@@ -1,6 +1,7 @@
 <template>
   <div>
     <sl-table
+      v-if="show"
       :list="list"
       @handleSelectionChange="handleSelectionChange"
       :columns="columns"
@@ -13,12 +14,13 @@
 </template>
 <script>
 import SlTable from '../../../common/components/table/index.vue'
-import { defineComponent, reactive, toRefs, onMounted } from "vue";
+import { defineComponent, reactive, toRefs, onMounted, ref } from "vue";
 import { list_test, columns_test } from "./tableConfig";
 import { getTableConfig, getTableData } from '../services/api';
 export default defineComponent({
   components: { SlTable },
   setup() {
+    const show = ref(false);
     const state = reactive({
       pageModel: {
         page: 1,
@@ -73,6 +75,7 @@ export default defineComponent({
           state.list =data.data
           console.log(state.columns, 'state.columns')
         }
+        show.value= true
       });
       // console.log('table-config')
       // const result = await getTableConfig('0')
@@ -104,7 +107,8 @@ export default defineComponent({
     return {
       ...toRefs(state),
       handleSelectionChange,
-      search
+      search,
+      show
     };
   }
 });
