@@ -14,3 +14,11 @@ export const getTableConfig = (data) => {
         data,
     })
 }
+
+export const getTableData = (data) => {
+    console.log(data, 'data-----')
+    return request(`/mdquery/GetGuidelineData?guideLineId=${data}`, {
+        method: 'post',
+        data,
+    })
+}

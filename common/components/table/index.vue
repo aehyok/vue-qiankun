@@ -124,7 +124,7 @@
 </template>
 <!--endregion-->
 <script setup>
-import { computed, reactive } from "vue";
+import { computed, ref, watch } from "vue";
 import { format } from 'date-fns'
 import PageSetting from './page-setting.vue'
 const props = defineProps({
@@ -174,15 +174,12 @@ const props = defineProps({
     }
   } // table 表格的控制参数
 })
-
+console.log(props, '--------111-----------')
 const sortable = "custom"
 const ordersList = []
 const activeThead = {}
 const emit = defineEmits(["search", "handleCurrentChange", "handleSelectionChange"])
-const state = reactive({
-  pageIndex: 1,
-  multipleSelection: [] // 多行选中
-});
+const normalColumns = ref([]);
 
 // 多行选中
 const handleSelectionChange = val => {
@@ -203,6 +200,15 @@ const showActionTableDialog = () => {
   emit("handelAction");
 };
 
+
+watch(() => props.columns, (newValue, oldValue) => {
+    normalColumns.value = props.columns.filter(item => (!item.type || !["checkbox", "index"].includes(item.type)))
+    console.log(props.columns, normalColumns.value, '--------normalColumns-----------')
+  },
+    {
+      immediate: true,
+      deep: true
+    })
 // 判断是否展示多选框
 const isCheckBox = computed(() => {
   console.log(props.columns.some(item => item.type === 'index'), '是否显示check')
@@ -235,9 +241,6 @@ const sortChange = (column, prop, order) => {
     // 去调用接口传递orderby参数即可
   }
 }
-
-const normalColumns = props.columns.filter(item => (!item.type || !["checkbox", "index"].includes(item.type)))
-console.log(props.columns, normalColumns, '--------normalColumns-----------')
 
 const pageChange = () => {
   emit('search')
