@@ -1,0 +1,41 @@
+{
+  "name": "webpack-app-ts",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.10.1",
+    "axios": "^0.25.0",
+    "core-js": "^3.6.5",
+    "element-plus": "^2.0.1",
+    "jsoneditor": "^9.7.2",
+    "register-service-worker": "^1.7.1",
+    "shortid": "^2.2.16",
+    "vue": "^3.0.0",
+    "vue-class-component": "^8.0.0-0",
+    "vue-drag-resize": "^1.5.4",
+    "vue-router": "^4.0.12",
+    "vuedraggable": "^2.24.3",
+    "wangeditor": "^4.7.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-pwa": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "typescript": "~4.1.5",
+    "webpack": "^5.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
