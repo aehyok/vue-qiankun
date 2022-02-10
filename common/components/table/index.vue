@@ -45,8 +45,8 @@
       >
         <template #default="scope">
           <!-- html可自定义字段的显示html -->
-          <template v-if="column.html">
-            <div v-html="column.html(scope.row, column)"></div>
+          <template v-if="column.type==='html'">
+            <div v-html="convertHtml(scope.row, column)"></div>
           </template>
 
           <!--字典转换--->
@@ -200,6 +200,12 @@ const showActionTableDialog = () => {
   emit("handelAction");
 };
 
+// 将定义的字符串函数 通过eval进行解析执行
+const convertHtml = (row, column) => {
+  console.log(column.html,'html')
+  const evalFunction = eval(column.html)
+  return evalFunction(row, column)
+}
 
 watch(() => props.columns, (newValue, oldValue) => {
     normalColumns.value = props.columns.filter(item => (!item.type || !["checkbox", "index"].includes(item.type)))
