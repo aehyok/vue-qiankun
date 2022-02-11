@@ -16,7 +16,7 @@
 import SlTable from '../../../common/components/table/index.vue'
 import { defineComponent, reactive, toRefs, onMounted, ref } from "vue";
 import { list_test, columns_test } from "./tableConfig";
-import { getTableConfig, getTableData } from '../services/api';
+import { getTableConfig, getTableData } from '@/services/api';
 export default defineComponent({
   components: { SlTable },
   setup() {

@@ -1,4 +1,4 @@
-import request from '../utils/request'
+import request from '@/utils/request'
 export const getFormConfig = (data) => {
     console.log(data, 'data-----')
     return request(`/Form/getSystemForm?id=${data}`, {

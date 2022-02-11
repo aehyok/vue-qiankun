@@ -3,13 +3,13 @@
     <div class="header">
       <div>Dynamic Form Design</div>
       <div>
-        <!-- <el-button type="primary" size="mini">PC</el-button>
-        <el-button type="primary" size="mini">H5</el-button> -->
+        <!-- <el-button type="primary" size="small">PC</el-button>
+        <el-button type="primary" size="small">H5</el-button> -->
       </div>
       <div>
-        <el-button type="primary" size="mini">预览</el-button>
-        <el-button type="primary" size="mini">导入JSON</el-button>
-        <el-button type="primary" size="mini">生成JSON</el-button>
+        <el-button type="primary" size="small">预览</el-button>
+        <el-button type="primary" size="small">导入JSON</el-button>
+        <el-button type="primary" size="small">生成JSON</el-button>
       </div>
     </div>
     <div class="body">

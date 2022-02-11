@@ -1,6 +1,14 @@
 import { createStore } from "vuex";
 
-export default createStore({
+// 为 store state 声明类型
+export interface State {
+  formListItem: any[],
+  currentComponent: {
+    rules: any[]
+  }
+}
+
+export default createStore<State>({
   state: {
     // 整个字段配置列表
     formListItem: [],

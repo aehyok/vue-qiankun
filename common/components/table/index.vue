@@ -100,7 +100,7 @@
             <div class="item" v-if="btn.show" :key="btn.id">
               <el-button
                 :type="btn.type"
-                size="mini"
+                size="small"
                 :icon="btn.icon"
                 :disabled="btn.disabled"
                 :plain="btn.plain"

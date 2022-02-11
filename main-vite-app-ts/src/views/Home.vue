@@ -92,6 +92,9 @@
         getTreeData()
       })
 
+      const close =() => {
+        console.log('close')
+      }
       const homeClick = () => {
         formSave({
           FormId: 'aehyok',
@@ -108,7 +111,8 @@
         ...toRefs(state),
         modeuleList,
         jumpChildSystem,
-        homeClick
+        homeClick,
+        close
       }
     }
   })

@@ -3,7 +3,7 @@
     <div>
         <el-button
           type="primary"
-          size="medium"
+          size="default"
           @click="addClick"
           >新增</el-button
         >

@@ -10,35 +10,35 @@
       <el-button
         type="primary"
         icon="el-icon-share"
-        size="mini"
+        size="small"
         @click.stop="markClick"
         >绘制标记</el-button
       >
       <el-button
         type="primary"
         icon="el-icon-share"
-        size="mini"
+        size="small"
         @click.stop="plotClick"
         >绘制多边形</el-button
       >
       <el-button
         type="primary"
         icon="el-icon-share"
-        size="mini"
+        size="small"
         @click.stop="dragClick"
         >拖动多边形</el-button
       >
       <el-button
         type="primary"
         icon="el-icon-share"
-        size="mini"
+        size="small"
         @click.stop="editClick"
         >编辑多边形</el-button
       >
       <el-button
         type="primary"
         icon="el-icon-share"
-        size="mini"
+        size="small"
         @click.stop="importClick"
         >导入行政边界（KML文件）</el-button
       >

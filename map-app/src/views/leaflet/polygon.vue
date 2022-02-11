@@ -10,21 +10,21 @@
       <el-button
         type="primary"
         icon="el-icon-share"
-        size="mini"
+        size="small"
         @click.stop="plot"
         >绘制多边形</el-button
       >
       <el-button
         type="primary"
         icon="el-icon-share"
-        size="mini"
+        size="small"
         @click.stop="drag"
         >拖动多边形</el-button
       >
       <el-button
         type="primary"
         icon="el-icon-share"
-        size="mini"
+        size="small"
         @click.stop="edit"
         >编辑多边形</el-button
       >
