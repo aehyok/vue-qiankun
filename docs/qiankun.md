@@ -1,7 +1,7 @@
 ## qiankun微前端在vue3中的使用详细说明
 ---
 
-> 2022年 2月11日已升级到最新版本的依赖， npm i -g pnpm,然后用pnpm去操作，map-app还在处理中
+> 2022年 2月11日已升级到最新版本的依赖， npm i -g pnpm,然后用pnpm去操作
 
 > 大家好，我是aehyok🎋，一个住在深圳城市的佛系码农🧚🏻‍♀️，如果你喜欢我的文章📚，可以通过点赞帮我聚集灵力⭐️。
 
@@ -69,7 +69,7 @@
 
 - 使用ffmpeg通过webassembly对视频进行前端转码功能的实现，目前demo可以查看，具体细节功能待后续完善
 
-#### 3、map-app 微应用开发环境启动后的访问地址 http://localhost:5000(yarn安装依赖如果有问题，可以尝试一下 npm i)
+#### 3、map-app 微应用开发环境启动后的访问地址 http://localhost:5000(yarn安装依赖如果有问题，可以尝试一下 pnpm i)
 
 - 使用 Vue3 + webpack + Element Plus +TypeScript 搭建
 
