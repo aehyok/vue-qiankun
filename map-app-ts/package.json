@@ -7,8 +7,14 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@geoman-io/leaflet-geoman-free": "^2.11.4",
+    "cesium": "^1.90.0",
     "core-js": "^3.6.5",
+    "element-plus": "^2.0.1",
+    "leaflet": "^1.7.1",
+    "leaflet-contextmenu": "^1.4.0",
     "register-service-worker": "^1.7.1",
+    "v-contextmenu": "^3.0.0",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-0",
@@ -24,7 +30,8 @@
     "@vue/compiler-sfc": "^3.0.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "typescript": "~4.1.5"
+    "typescript": "~4.1.5",
+    "webpack": "^4.36.0"
   },
   "browserslist": [
     "> 1%",
