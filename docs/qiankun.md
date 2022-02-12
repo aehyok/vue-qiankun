@@ -1,6 +1,8 @@
 ## qiankun微前端在vue3中的使用详细说明
 ---
 
+> 2022年 2月11日已升级到最新版本的依赖， npm i -g pnpm,然后用pnpm去操作，map-app还在处理中
+
 > 大家好，我是aehyok🎋，一个住在深圳城市的佛系码农🧚🏻‍♀️，如果你喜欢我的文章📚，可以通过点赞帮我聚集灵力⭐️。
 
 > 个人github仓库地址： [https://github.com/aehyok](https://github.com/aehyok)
@@ -43,7 +45,7 @@
     |——build.sh                # 通过脚本对主应用和子应用进行统一的打包
 
 
-#### 1、main-vite-app-ts 主应用开发环境启动后的访问地址 http://localhost:1000(yarn安装依赖如果有问题，可以尝试一下 npm i)
+#### 1、main-vite-app-ts 主应用开发环境启动后的访问地址 http://localhost:1000(yarn安装依赖如果有问题，可以尝试一下 pnpm i)
 
 - 使用 Vue3 + Vite2 +TypeScript + Element Plus 搭建
 
@@ -55,7 +57,7 @@
 
 - 负责子应用的注册引入和管理（可动态管理子应用）
 
-#### 2、webpack-app 微应用开发环境启动后的访问地址 http://localhost:4000(yarn安装依赖如果有问题，可以尝试一下 npm i)
+#### 2、webpack-app 微应用开发环境启动后的访问地址 http://localhost:4000(yarn安装依赖如果有问题，可以尝试一下 pnpm i)
 
 - 使用 Vue3 + webpack + Element Plus 搭建
 
