@@ -124,6 +124,7 @@
 </template>
 <!--endregion-->
 <script setup>
+
 import { computed, ref, watch } from "vue";
 import { format } from 'date-fns'
 import PageSetting from './page-setting.vue'
@@ -200,12 +201,47 @@ const showActionTableDialog = () => {
   emit("handelAction");
 };
 
+// const evalColumn = {
+//     prop:"custom",
+//     label:"自定义",
+//     align: "center",
+//     html: (row, column) => {
+//       return row.title==="编号3" ? `<span style="color: red;">${ row.remark }</span>`:`未定义`
+//     }
+//   }
+
 // 将定义的字符串函数 通过eval进行解析执行
 const convertHtml = (row, column) => {
   console.log(column.html,'html')
-  const evalFunction = eval(column.html)
+
+  // 用eval调用没问题
+  // const evalFunction = eval(column.html)
+  // return evalFunction(row, column)
+
+  // 用new Function 的调用方式 （row，column） => {} 要去掉
+  const evalFunction = new Function('row', 'column',column.html)
+  console.log(evalFunction, 'evalFunction')
   return evalFunction(row, column)
+  
+  // function getTest (test)  {
+  //   console.log('test', test)
+  // }
+  // window.getTest = function getTest (test)  {
+  //   console.log('test', test)
+  // }
+  // const evalFunction = new Function('test','console.log(test); getTest(test);')
+  // console.log(evalFunction,window.getTest)
+  // evalFunction('aaaaaaaaaaaa')
 }
+
+const functionColumn = {
+    prop:"custom",
+    label:"自定义",
+    align: "center",
+    html: (row, column) => {
+      return row.title==="编号3" ? `<span style="color: red;">${ row.remark }</span>`:`未定义`
+    }
+  }
 
 watch(() => props.columns, (newValue, oldValue) => {
     normalColumns.value = props.columns.filter(item => (!item.type || !["checkbox", "index"].includes(item.type)))
