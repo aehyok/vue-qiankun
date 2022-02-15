@@ -60,7 +60,13 @@ export default defineComponent({
     onMounted(async() => {
 
       const resultConfig = await getTableConfig('0')
-      const resultData = await getTableData('0')
+      const resultData = await getTableData({
+        GuideLineId: '0',
+        Param: {
+          "@tabletype": "VIEW",
+          "@tablename":"dvsdb30.view_villageepidemic"
+        }
+      })
       Promise.all([resultConfig, resultData]).then((values) => {
         console.log(values, 'values');
         const result = values[0]

@@ -17,7 +17,7 @@ export const getTableConfig = (data) => {
 
 export const getTableData = (data) => {
     console.log(data, 'data-----')
-    return request(`/mdquery/GetGuidelineData?guideLineId=${data}`, {
+    return request(`/mdquery/GetGuidelineData`, {
         method: 'post',
         data,
     })
