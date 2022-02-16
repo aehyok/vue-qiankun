@@ -5,10 +5,15 @@ export interface PageModel {
   pages: number;
 }
 
-export interface NewsModel {
+export interface NewsModel extends List {
   id: number;
   messageName: string;
   url?: string;
   createdAt: string;
   createdByDeptName: string;
+}
+
+
+export interface List {
+
 }
