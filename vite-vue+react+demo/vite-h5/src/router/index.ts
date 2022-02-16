@@ -62,6 +62,15 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/news-before',
+    name: 'news-before',
+    component: () => import(/* webpackChunkName: "news" */ '../views/news-list/news-before.vue'),
+    meta: {
+      title: 'before',
+      keepAlive: true,
+    },
+  },
+  {
     path: '/news-detail',
     name: 'news-detail',
     component: () =>
