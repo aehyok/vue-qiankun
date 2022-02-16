@@ -8,7 +8,7 @@
   - 2、定义请求接口的页码相关参数，以及控制逻辑
   - 3、下拉刷新第一页数据，并且在刷新过程中，不能再进行下拉刷新
   - 4、上拉加载下一页数据，并且在加载过程中，不能再进行上拉加载
-  - 5、加载到最后一页，则最末端会显示数据已加载完毕
+  - 5、加载到最后一页，则最末端会显示【数据已加载完毕】
   - 6、如果请求api一开始就没有数据，则显示成一个默认图片（代表没有加载到数据）
   ```javascipt
     <template>
@@ -174,67 +174,76 @@
   可以发现如果每个列表都去做上述主要的五件事情，就会有很多重复的代码，
   先来看一下直接封装后写一个列表有多少代码
   ```js
-      
-        <list-view @getList="getList" v-model:pageModel="pageModel">
-          <item-view :dataList="dataList"></item-view>
-        </list-view>
-```
+      <template>
+          <list-view :getListApi="getListApi" v-model:pageModel="pageModel" v-model:dataList="dataList">
+            <item-view :dataList="dataList"></item-view>
+          </list-view>
+      </template>
+      <script lang="ts" setup>
+        import listView from '../../components/list/index.vue';
+        import itemView from './item-view.vue';
+        import {reactive, ref } from 'vue';
+        import type {PageModel } from '../../types/models/index.d';
 
-    解析以上代码：
-
-    1、view视图部分代码其中list-view便是我们封装的组件
-    2、而item- view则是我们列表中每一项的UI视图布局和样式，相当于抽离出来了。
-
-再来看第二段代码
-```js
-      <script setup>
-      import listView from '../../components/list/index.vue'; 
-
-        const dataList= ref([])
+        const dataList = ref([]);
 
         const pageModel = reactive<PageModel>({
           page: 1,
           limit: 15,
-          total: list.length,
-          pages: Math.round(list.length / 15),
+          total: 0,
+          pages: 0,
         });
 
-        // 这里模拟的便是调用接口数据
-        const getListApi = () => {
-          let start = pageModel.limit * (pageModel.page - 1);
-          let end = pageModel.limit * pageModel.page;
-          let tempList = list.slice(start, end);
-          console.log(pageModel, '获取数据列表');
-          return tempList;
-        };
 
-        const getList = () => {
-          if (pageModel.page === 1) {
-            dataList.value = getListApi();
-          } else {
-            let tempList = getListApi();
-            tempList.forEach((item) => {
-              dataList.value?.push(item);
-            });
-          }
-        };
-
-
-      </script>
-```    
-    再来解析以上代码：
-    
-    3、需要通过import进行导入,script 标签上加上setup 可以省略掉
-      components:{
-        listView
+      const setTotal = 51  // 设置列表总记录数
+      let dbList: any= []  // 通过循环向数组插入测试数据
+      for (let i = 0; i < setTotal; i++) {
+          dbList.push({
+              id: i + 1,
+              messageName: '长图片' + (i + 1),
+              createdAt: '2021-07-27 17:06:19',
+              createdByDeptName: '百色',
+              url: 'http://vue.tuokecat.com/cdn/h5/newslist.jpg',
+          })
       }
-    4、准备调用的接口请求，以及返回数据和分页参数
-     getListApi这里模拟的请求接口方法，这里实际上就是接口请求
-     pageModel 就是设置分页的参数
-     dataList 就是通过接口返回的数据列表
-     getList处理逻辑简单判断页码对请求的数据进行叠加
-      
-    
 
+      /**
+      * 模拟通过api获取第几页的数据
+      * @param {每页多少条记录} limit 
+      * @param {第几页} page 
+      */
+      const getListApi = async (limit, page) => {
+          let start = limit * (page - 1);
+          let end = limit * page;
+          let tempList = dbList.slice(start, end);
+          console.log(pageModel, tempList, `获取第${page}页数据列表`);
+          const result = {
+              code: 200,
+              message: 'success',
+              data: {
+                  docs: tempList,
+                  page: page,
+                  limit: limit,
+                  total: setTotal,
+                  pages: Math.ceil(setTotal / 15)
+              }
+          }
+
+          const sleep = (time) => {
+              return new Promise(resolve => setTimeout(resolve, time))
+          }
+
+          await sleep(1000)
+          return new Promise(resolve => resolve(result))
+      };
+      </script>
+  ```
+    - 解析以上代码：
+    1、最重要便是list-view是我们封装的组件，只需要引用即可
+    2、而item-view则是我们列表中每一项的UI视图布局和样式，相当于抽离出来了。跟原来一模一样
+    3、主要是准备模拟api请求多了不少代码
+    4、声明变量和一些定义
+    - 封装的理念
+    将尽可能通用的代码，抽离出来，不用再进行复制粘贴的操作，
 
   ```

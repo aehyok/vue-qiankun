@@ -12,8 +12,6 @@ let data = {
 
 const { pics: eee, morss } = data;
 
-console.log(eee, 'pics-----ssssssssssss');
-
 async function asyncFn() {
   return { code: 200 };
 }
