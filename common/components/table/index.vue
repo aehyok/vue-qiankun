@@ -213,15 +213,25 @@ const showActionTableDialog = () => {
 // 将定义的字符串函数 通过eval进行解析执行
 const convertHtml = (row, column) => {
   console.log(column.html,'html')
+  if (column && column.html) {
+     if(typeof column.html === 'object' ) {
+       return column.html(scope.row, column)
+     }
+     if(typeof column.html === 'string') {
+      // // 用eval调用没问题
+      const evalFunction = eval(column.html)
+      return evalFunction(row, column)
 
-  // 用eval调用没问题
-  // const evalFunction = eval(column.html)
+      // const evalFunction = new Function('row', 'column',column.html)
+      // console.log(evalFunction, 'evalFunction')
+      // return evalFunction(row, column)
+     }
+  }
+  
+  // // 用new Function 的调用方式 （row，column） => {} 要去掉
+  // const evalFunction = new Function('row', 'column',column.html)
+  // console.log(evalFunction, 'evalFunction')
   // return evalFunction(row, column)
-
-  // 用new Function 的调用方式 （row，column） => {} 要去掉
-  const evalFunction = new Function('row', 'column',column.html)
-  console.log(evalFunction, 'evalFunction')
-  return evalFunction(row, column)
   
   // function getTest (test)  {
   //   console.log('test', test)

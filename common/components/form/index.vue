@@ -27,9 +27,27 @@ const props = defineProps({
   }
 })
 
-const ifshow = (column,formData) => {
+const ifshow = (column,data) => {
   if(column && column.ifshow) {
-    return column.ifshow(formData)
+    console.log((typeof column.ifshow) === 'string',data, 'sssssssssssssssss--------------------------')
+    // 通过JSON 定义的函数对象
+    if(typeof column.ifshow === 'object' ) {
+      return column.ifshow(data)
+    }
+    // 通过页面进行配置的字符串函数
+    if(typeof column.ifshow === 'string' ) {
+      // 用eval调用没问题
+      try {
+        console.log('column.ifshow',column.ifshow)
+        const evalFunction = eval(column.ifshow )
+        console.log(evalFunction, 'evalFunction')
+        return evalFunction(data)
+      }
+      catch(err) {
+        console.error(err, 'error')
+        return  false; 
+      }
+    }
   } else {
     return true
   }

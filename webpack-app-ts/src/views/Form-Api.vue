@@ -175,7 +175,7 @@ const state = reactive({
     ],
     formData: {
       name: "主菜单栏目",
-      total: null,
+      total: 1,
       count: null,
       createDate: 1606730360386,
       type: 2,

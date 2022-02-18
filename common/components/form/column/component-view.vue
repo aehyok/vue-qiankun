@@ -3,7 +3,9 @@
     <!--不包含View则是npm组件库中的-->
     <component
       v-if="
-        !column.type.includes('View') && !column.type.includes('textSelect')
+        column && column.type &&
+        !column.type.includes('View') && 
+        !column.type.includes('textSelect')
       "
       :is="column.type + 'View'"
       :column="column"

@@ -30,7 +30,12 @@ import {computed } from 'vue'
       return props.data
     },
     set: function(val) {
-      emit('update:data', val)
+      console.log(typeof val,val, '---------------number')
+      if(val) {
+        emit('update:data', Number(val))
+      } else {
+        emit('update:data', undefined)
+      }
     },
   })
 </script>
