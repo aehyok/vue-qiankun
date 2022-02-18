@@ -11,15 +11,15 @@
 
   const dataList = ref([]);
 
+  const setTotal = 25  // 设置列表总记录数
+  const setLimit = 10  // 设置每页的记录总数
   const pageInfo = reactive<PageModel>({
     page: 1,
-    limit: 15,
+    limit: setLimit,
     total: 0,
     pages: 0,
   });
 
-
-const setTotal = 51  // 设置列表总记录数
 let dbList: any= []  // 通过循环向数组插入测试数据
 for (let i = 0; i < setTotal; i++) {
     dbList.push({
@@ -49,7 +49,7 @@ const getListApi = async (limit, page) => {
             page: page,
             limit: limit,
             total: setTotal,
-            pages: Math.ceil(setTotal / 15)
+            pages: Math.ceil(setTotal / setLimit)
         }
     }
 
@@ -57,7 +57,7 @@ const getListApi = async (limit, page) => {
         return new Promise(resolve => setTimeout(resolve, time))
     }
 
-    await sleep(1000)
+    await sleep(3000)
     return new Promise(resolve => resolve(result))
 };
 

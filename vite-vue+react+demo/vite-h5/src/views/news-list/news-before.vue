@@ -41,7 +41,8 @@
 import { PullRefresh as VanPullRefresh, List as VanList, Empty as VanEmpty } from 'vant';
 import { onBeforeMount, ref, reactive, watch } from 'vue';
 
-const setTotal = 51  // 设置列表总记录数
+const setTotal = 25  // 设置列表总记录数
+const setLimit = 10  // 设置每页记录数
 let dbList = []  // 通过循环向数组插入测试数据
 for (let i = 0; i < setTotal; i++) {
     dbList.push({
@@ -55,7 +56,7 @@ for (let i = 0; i < setTotal; i++) {
 const dataList = ref([]);
 const pageModel = reactive({
     page: 1,
-    limit: 15,
+    limit: setLimit,
     total: 0,
     pages: 0,
 });
@@ -78,7 +79,7 @@ const getListApi = async (limit, page) => {
             page: page,
             limit: limit,
             total: setTotal,
-            pages: Math.ceil(setTotal / 15)
+            pages: Math.ceil(setTotal / setLimit)
         }
     }
 

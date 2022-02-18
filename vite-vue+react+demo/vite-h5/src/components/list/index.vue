@@ -61,7 +61,7 @@ onBeforeMount(() => {
 });
 
 const refreshClick = () => {
-  isRefresh.value = false;
+  isRefresh.value = true;
   isFinished.value = false;
   isListLoading.value = true;
   // 通过接口调用数据
