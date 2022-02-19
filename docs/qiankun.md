@@ -57,7 +57,7 @@
 
 - 负责子应用的注册引入和管理（可动态管理子应用）
 
-#### 2、webpack-app 微应用开发环境启动后的访问地址 http://localhost:4000(yarn安装依赖如果有问题，可以尝试一下 pnpm i)
+#### 2、webpack-app-ts 微应用开发环境启动后的访问地址 http://localhost:4000(yarn安装依赖如果有问题，可以尝试一下 pnpm i)
 
 - 使用 Vue3 + webpack + Element Plus 搭建
 
@@ -69,7 +69,7 @@
 
 - 使用ffmpeg通过webassembly对视频进行前端转码功能的实现，目前demo可以查看，具体细节功能待后续完善
 
-#### 3、map-app 微应用开发环境启动后的访问地址 http://localhost:5000(yarn安装依赖如果有问题，可以尝试一下 pnpm i)
+#### 3、map-app-ts 微应用开发环境启动后的访问地址 http://localhost:5000(yarn安装依赖如果有问题，可以尝试一下 pnpm i)
 
 - 使用 Vue3 + webpack + Element Plus +TypeScript 搭建
 

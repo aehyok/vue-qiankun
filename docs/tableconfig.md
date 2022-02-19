@@ -209,7 +209,7 @@
 > [https://github.com/aehyok/vue-qiankun](https://github.com/aehyok/vue-qiankun) 
   本文中不涉及到代码，有关代码问题可以访问文章开头的微前端github demo 仓库，github仓库将会保持持续更新，不断优化小demo。
 
-> [https://github.com/aehyok/2021](https://github.com/aehyok/2021) 
+> [https://github.com/aehyok/2022](https://github.com/aehyok/2022) 
    最后自己每天工作中的笔记记录仓库，主要以文章链接和问题处理方案为主。
 
     
