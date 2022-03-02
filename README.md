@@ -1,6 +1,6 @@
 | 如果有问题尽量考虑使用 pnpm来安装依赖，本人已使用pnpm进行验证没问题的
 
-##  [0、2021年每天学习记录、周计划和月计划等](https://github.com/aehyok/2021)
+##  [0、2021年每天学习记录、周计划和月计划等](https://github.com/aehyok/2022)
 
 ##  [1、qiankun微前端在vue3中的使用详细说明](https://github.com/aehyok/vue-qiankun/blob/dev/docs/qiankun.md)
 
@@ -10,7 +10,7 @@
 
 ##  [4、vue3 leaflet  geoman地图打点和标绘功能实现(文档待补充)](https://github.com/aehyok/vue-qiankun/tree/dev/map-app)
 
-##  [5、vue3 vant 动态list列表只需提供list项的模板，传入接口就可实现上拉加载和下拉刷新(文档待补充)](https://github.com/aehyok/vue-qiankun/blob/dev/vite-h5/src/components/list/index.vue)
+##  [5、vue3 vant 动态list列表只需提供list项的模板，传入接口就可实现上拉加载和下拉刷新](https://github.com/aehyok/vue-qiankun/blob/dev/docs/vue3-vant3-list.md)
 
 ##  [6、vue3 vant 动态form表单json配置生成器(代码还待完善)](https://github.com/aehyok/vue-qiankun/blob/dev/vite-h5/src/components/form/index.vue)
 
@@ -22,4 +22,4 @@
 
 ##  [10、通过脚本.sh编译前端项目，生成tag拷贝到nginx远程服务器等（待做版本回滚、jenkins docker尝试）](https://github.com/aehyok/2021/blob/main/2021-08-07-dvs-build.sh)
 
-##  [11、React+ umi + dva + Antd demo项目（demo项目初始化）](https://github.com/aehyok/vue-qiankun/blob/dev/react-app)
+##  [11、React+ umi + dva + Antd demo项目（项目已搭建）](https://github.com/aehyok/dotnet6.0/tree/main/react-antd-pro)
