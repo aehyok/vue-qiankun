@@ -10,15 +10,15 @@
 
 ## :x: [4、vue3 leaflet  geoman地图打点和标绘功能实现(文档待补充)](https://github.com/aehyok/vue-qiankun/tree/dev/map-app)
 
-## :heavy_check_mark:[5、vue3 vant 动态list列表只需提供list项的模板，传入接口就可实现上拉加载和下拉刷新](https://github.com/aehyok/vue-qiankun/blob/dev/docs/vue3-vant3-list.md)
+## :heavy_check_mark: [5、vue3 vant 动态list列表只需提供list项的模板，传入接口就可实现上拉加载和下拉刷新](https://github.com/aehyok/vue-qiankun/blob/dev/docs/vue3-vant3-list.md)
 
-##  :x:[6、vue3 vant 动态form表单json配置生成器(代码还待完善)](https://github.com/aehyok/vue-qiankun/blob/dev/vite-h5/src/components/form/index.vue)
+##  :x: [6、vue3 vant 动态form表单json配置生成器(代码还待完善)](https://github.com/aehyok/vue-qiankun/blob/dev/vite-h5/src/components/form/index.vue)
 
 ## :x: [7、vue3 element-plus 拖拽动态form表单json配置生成器(代码还待完善)](https://github.com/aehyok/vue-qiankun/blob/dev/webpapck-app/src/views/DynamicFormDesign.vue)
 
 ## :x: [8、ak-vue3通用脚手架项目搭建（刚开了一个头）](https://github.com/aehyok/ak-vue3)
 
-##  :x:[9、taro3+vue3+typescript+nutui 微信小程序为主多端项目一套代码实现（代码待继续完善）](https://github.com/aehyok/taro-vue3-miniprogram)
+##  :x: [9、taro3+vue3+typescript+nutui 微信小程序为主多端项目一套代码实现（代码待继续完善）](https://github.com/aehyok/taro-vue3-miniprogram)
 
 ## :x: [10、通过脚本.sh编译前端项目，生成tag拷贝到nginx远程服务器等（待做版本回滚、jenkins docker已尝试）](https://github.com/aehyok/2021/blob/main/2021-08-07-dvs-build.sh)
 
