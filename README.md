@@ -22,11 +22,12 @@
 
 ##  [10、通过脚本.sh编译前端项目，生成tag拷贝到nginx远程服务器等（待做版本回滚、jenkins docker尝试）](https://github.com/aehyok/2021/blob/main/2021-08-07-dvs-build.sh)
 
-##  [11、React+ umi + dva + Antd demo项目（项目已搭建）](https://github.com/aehyok/dotnet6.0/tree/main/react-antd-pro)
+##  :white_check_mark:  [11、React+ umi + dva + Antd demo项目（项目已搭建）](https://github.com/aehyok/dotnet6.0/tree/main/react-antd-pro)
 
 
 |:white_check_mark: | 
 :white_check_mark:
+
 People
 
 | :bowtie: `:bowtie:` | :smile: `:smile:` | :laughing: `:laughing:` |
