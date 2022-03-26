@@ -3,7 +3,7 @@ import { ElMessage } from "element-plus";
 export const baseUrl =
   process.env.NODE_ENV === "development"
     ? "/so/api"
-    : "http://139.186.205.7/so/api/";
+    : "http://139.159.245.209/so/api/";
 
 
 
