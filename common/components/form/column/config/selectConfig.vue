@@ -1,5 +1,5 @@
 <template>
-    <h1>Static静态字段</h1>
+    <h1>select多选框</h1>
     <el-row class="component-config-row">
         <el-col :span="8" class="component-config-right">
             组件类型:

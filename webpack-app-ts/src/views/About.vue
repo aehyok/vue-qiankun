@@ -1,5 +1,5 @@
 <template>
-    <div class="div-class">测试</div>
+    <div class="div-class">测试111</div>
 </template>
 <style lang="scss" scoped>
     .div-class {
