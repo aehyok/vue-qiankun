@@ -73,7 +73,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/webpack-app/dragger",
     name: "dragger",
     component: () =>
-      import(/* webpackChunkName: "dragger" */ "../views/Dragger.vue")
+      import(/* webpackChunkName: "dragger" */ "../views/dragger/index.vue")
   },
   {
     path: "/webpack-app/dynamicformdesign",
