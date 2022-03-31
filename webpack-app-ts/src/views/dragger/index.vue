@@ -41,7 +41,7 @@
             @dragging="draggleClick($event, index)"
             @clicked="clickClick($event, index)"
           >
-            <component :is="item.view"  />
+            <component :is="item.view" :column="item"  />
           </vue-drag-resize>
         </template>
       </div>
@@ -292,10 +292,12 @@ const draggleClick = (newRect, index) => {
   color: white;
   cursor: pointer;
 }
+
 .component-config-row {
   display: flex;
   padding: 5px;
 }
+
 .component-config-right {
   display: flex;
   justify-content: flex-end;
