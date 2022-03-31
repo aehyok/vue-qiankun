@@ -2,7 +2,7 @@
   <el-row :gutter="20">
     <el-col :span="5">
       <div class="y-component">
-        <div style="font-weight: 600; margin: 15px">表单组件</div>
+        <div style="font-weight: 600; margin: 15px">组件列表</div>
         <el-row>
           <template v-for="(item, index) in componentList">
             <el-col
@@ -20,7 +20,12 @@
       </div>
     </el-col>
     <el-col :span="14">
-      <div style="width:375px ; height: 667px; border: 1px solid blue; position: relative;">
+      <div
+        style="width:375px ; height: 667px; border: 1px solid blue; position: relative;"
+        id="content"
+        @dragover="dragOverClick"
+        @drop="dropClick"
+      >
         <grid-line />
         <template v-for="(item, index) in state.list">
           <vue-drag-resize
@@ -31,23 +36,25 @@
             :y="item.y"
             :minh="state.minh"
             :minw="state.minw"
-            :index="index"
+            :index="state.index"
             @resizing="resizeClick($event, index)"
             @dragging="draggleClick($event, index)"
             @clicked="clickClick($event, index)"
           >
-            <component :is="item.view" />
+            <component :is="item.view"  />
           </vue-drag-resize>
         </template>
       </div>
     </el-col>
     <el-col :span="5">
       组件属性配置
-      <component :is="configView" />
+      <component :is="configView" :config="currentComponent" />
     </el-col>
   </el-row>
 </template>
 <script>
+import VueDragResize from "vue-drag-resize";
+import GridLine from './grid-line.vue'
 import DragImage from './list-item/image.vue'
 import DragButton from './list-item/button.vue'
 import DragDate from './list-item/date.vue'
@@ -58,7 +65,7 @@ import ConfigButton from './config-item/button.vue'
 import ConfigDate from './config-item/date.vue'
 import ConfigText from './config-item/text.vue'
 
-
+import { defineComponent, onMounted, reactive, ref } from "vue";
 export default defineComponent({
   components: {
     VueDragResize,
@@ -76,39 +83,45 @@ export default defineComponent({
 
 </script>
 <script setup>
-import VueDragResize from "vue-drag-resize";
-import GridLine from './grid-line.vue'
-import { defineComponent, reactive, toRefs, ref } from "vue";
-
+import shortid from 'shortid'
 const componentList = ref([])
 const configView = ref()
+const currentComponent = ref()
 componentList.value = componentList.value = [
   {
-    id: 0,
+    id: shortid.generate(),
     type: "image",
     title: "图片",
     default: '图片',
+    view: 'DragImage',
+    config: 'ConfigImage',
   },
   {
-    id: 1,
+    id: shortid.generate(),
     type: "date",
     title: "日期",
     default: "日期",
+    view: 'DragDate',
+    config: 'ConfigDate',
   },
   {
-    id: 2,
+    id: shortid.generate(),
     type: "text",
     title: "文本",
     default: "文本",
+    view: 'DragText',
+    config: 'ConfigText',
   },
   {
-    id: 3,
+    id: shortid.generate(),
     type: "button",
     title: "按钮",
     default: "按钮",
+    view: 'DragButton',
+    config: 'ConfigButton',
   }
 ]
-//     const componentList = [0: "checkboxView",
+// const componentList = [0: "checkboxView",
 // 1: "citySelectView"
 // 2: "dateView"
 // 3: "daterangeView"
@@ -127,14 +140,12 @@ componentList.value = componentList.value = [
 
 console.log(window.componentListView, 'window.view')
 const state = reactive({
-  width: 0,
-  height: 0,
-  x: 0,
-  y: 0,
-  minh: 1,
-  minw: 1,
+  minh: 1,   // 最小高度
+  minw: 1,  // 最小宽度
+  index: 1, // 设置默认层级
   list: [
     {
+      id: shortid.generate(),
       index: 10000,
       width: 100,
       height: 100,
@@ -145,6 +156,7 @@ const state = reactive({
       config: 'ConfigImage',
     },
     {
+      id: shortid.generate(),
       index: 100001,
       width: 100,
       height: 100,
@@ -155,6 +167,7 @@ const state = reactive({
       config: 'ConfigDate',
     },
     {
+      id: shortid.generate(),
       index: 10002,
       width: 100,
       height: 100,
@@ -165,6 +178,7 @@ const state = reactive({
       config: 'ConfigButton',
     },
     {
+      id: shortid.generate(),
       index: 10003,
       width: 100,
       height: 100,
@@ -178,9 +192,22 @@ const state = reactive({
 },
 );
 
+
+onMounted(() => {
+  let content = document.getElementById("content")
+
+  content.ondragover = function (e) {
+    console.log('dragover')
+    e.preventDefault()
+    e.dataTransfer.dropEffect = 'copy'
+  }
+})
+
 const clickClick = (newRect, index) => {
   console.log('clickClick', newRect, index)
+  currentComponent.value = state.list[index]
 }
+
 
 // 组件列表拖拽的事件
 const dragStartClick = (e) => {
@@ -190,6 +217,31 @@ const dragStartClick = (e) => {
 
 const dragOverClick = (e) => {
   console.log('dragOverClick')
+}
+
+
+// 调用drop事件需要dropOver的支持
+const dropClick = (e) => {
+  console.log('drop', e)
+  e.preventDefault()
+  e.stopPropagation()
+
+  const index = e.dataTransfer.getData('index')
+  const componentItem = componentList.value[index]
+  console.log(index, componentList.value[index], 'dropClick')
+  let item = {
+    id: shortid.generate(),
+    type: componentItem.type,
+    title: componentItem.title,
+    width: 100,
+    height: 100,
+    view: componentItem.view,
+    config: componentItem.config,
+    x: e.offsetX,
+    y: e.offsetY
+  }
+
+  state.list.push(item)
 }
 
 const resizeClick = (newRect, index) => {
@@ -216,6 +268,15 @@ const draggleClick = (newRect, index) => {
   flex-direction: row;
   justify-content: space-between;
 }
+
+.left-component {
+  min-width: 200px;
+  max-width: 300px;
+  height: calc(90vh - 60px);
+  border-right: 1px solid #eaecef;
+  padding: 5px;
+}
+
 .item-component {
   border: 1px solid #eaecef;
   padding: 25px;
