@@ -29,7 +29,7 @@
         <grid-line />
         <template v-for="(item, index) in state.list">
           <vue-drag-resize
-            :isActive="state.isActive"
+            :isActive="item.isActive"
             :w="item.width"
             :h="item.height"
             :x="item.x"
@@ -266,6 +266,11 @@ const draggleClick = (newRect, index) => {
     console.log('...............................')
     state.list[index].y = 0
   }
+  state.list.forEach(item => {
+    item.isActive = false
+  })
+  currentComponent.value.isActive = true
+  console.log(state.list, 'sssssssssssssssss')
   configView.value = state.list[index].config
   let item = state.list[index]
   console.log(newRect, index, 'index-draggleClick')
