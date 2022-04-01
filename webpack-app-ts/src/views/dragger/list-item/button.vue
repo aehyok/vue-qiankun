@@ -1,5 +1,6 @@
 <template>
     <el-button :style="{
+        // border: '0px',
         width: column.width + 'px',
         height: column.height + 'px'
     }">按钮</el-button>

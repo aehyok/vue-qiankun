@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="20">
-    <el-col :span="5">
+    <el-col :span="6">
       <div class="y-component">
         <div style="font-weight: 600; margin: 15px">组件列表</div>
         <el-row>
@@ -19,7 +19,7 @@
         </el-row>
       </div>
     </el-col>
-    <el-col :span="14">
+    <el-col :span="8">
       <div
         style="width:375px ; height: 667px; border: 1px solid blue; position: relative;"
         id="content"
@@ -29,7 +29,7 @@
         <grid-line />
         <template v-for="(item, index) in state.list">
           <vue-drag-resize
-            :isActive="true"
+            :isActive="state.isActive"
             :w="item.width"
             :h="item.height"
             :x="item.x"
@@ -39,22 +39,29 @@
             :index="state.index"
             @resizing="resizeClick($event, index)"
             @dragging="draggleClick($event, index)"
-            @clicked="clickClick($event, index)"
+            @clicked.stop="clickClick($event, index)"
           >
-            <component :is="item.view" :column="item"  />
+            <component :is="item.view" :column="item" />
           </vue-drag-resize>
         </template>
       </div>
     </el-col>
-    <el-col :span="5">
-      组件属性配置
-      <component :is="configView" :config="currentComponent" />
+    <el-col :span="10">
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane label="组件配置" name="first">
+            <component :is="configView" :config="currentComponent" />
+          </el-tab-pane>
+          <el-tab-pane label="组件样式" name="second">组件样式</el-tab-pane>
+          <el-tab-pane label="表单配置" name="third">表单配置</el-tab-pane>
+        </el-tabs>
+      
     </el-col>
   </el-row>
 </template>
 <script>
 import VueDragResize from "vue-drag-resize";
-import GridLine from './grid-line.vue'
+import GridLine from './components/grid-line.vue'
+// import MarkLine from './components/mark-line.vue'
 import DragImage from './list-item/image.vue'
 import DragButton from './list-item/button.vue'
 import DragDate from './list-item/date.vue'
@@ -70,6 +77,7 @@ export default defineComponent({
   components: {
     VueDragResize,
     GridLine,
+    // MarkLine,
     DragImage,
     DragButton,
     DragDate,
@@ -87,6 +95,10 @@ import shortid from 'shortid'
 const componentList = ref([])
 const configView = ref()
 const currentComponent = ref()
+const activeName = ref('first')
+const handleClick = (tab, event) => {
+  console.log(tab, event);
+}
 componentList.value = componentList.value = [
   {
     id: shortid.generate(),
@@ -95,14 +107,18 @@ componentList.value = componentList.value = [
     default: '图片',
     view: 'DragImage',
     config: 'ConfigImage',
+    minh: 9,
+    minw: 55,
   },
   {
     id: shortid.generate(),
     type: "date",
     title: "日期",
-    default: "日期",
+    default: new Date(),
     view: 'DragDate',
     config: 'ConfigDate',
+    minh: 9,
+    minw: 55,
   },
   {
     id: shortid.generate(),
@@ -111,6 +127,8 @@ componentList.value = componentList.value = [
     default: "文本",
     view: 'DragText',
     config: 'ConfigText',
+    minh: 1,
+    minw: 1,
   },
   {
     id: shortid.generate(),
@@ -119,24 +137,10 @@ componentList.value = componentList.value = [
     default: "按钮",
     view: 'DragButton',
     config: 'ConfigButton',
+    minh: 9,
+    minw: 55,
   }
 ]
-// const componentList = [0: "checkboxView",
-// 1: "citySelectView"
-// 2: "dateView"
-// 3: "daterangeView"
-// 4: "editorView"
-// 5: "imageView"
-// 6: "numberView"
-// 7: "radioView"
-// 8: "selectView"
-// 9: "staticView"
-// 10: "switchView"
-// 11: "textView"
-// 12: "textareaView"
-// 13: "videoView"
-// 14: "numberSelectView"
-// 15: "textSelectView"]
 
 console.log(window.componentListView, 'window.view')
 const state = reactive({
@@ -149,6 +153,7 @@ const state = reactive({
       index: 10000,
       width: 100,
       height: 100,
+      isActive: false,
       x: 0,
       y: 0,
       name: "图片",
@@ -160,6 +165,7 @@ const state = reactive({
       index: 100001,
       width: 100,
       height: 100,
+      isActive: false,
       x: 200,
       y: 300,
       name: "日期",
@@ -171,6 +177,7 @@ const state = reactive({
       index: 10002,
       width: 100,
       height: 100,
+      isActive: false,
       x: 200,
       y: 100,
       name: "按钮",
@@ -182,6 +189,7 @@ const state = reactive({
       index: 10003,
       width: 100,
       height: 100,
+      isActive: false,
       x: 100,
       y: 100,
       name: "文字",
@@ -189,9 +197,7 @@ const state = reactive({
       config: 'ConfigText',
     },
   ]
-},
-);
-
+});
 
 onMounted(() => {
   let content = document.getElementById("content")
@@ -206,8 +212,11 @@ onMounted(() => {
 const clickClick = (newRect, index) => {
   console.log('clickClick', newRect, index)
   currentComponent.value = state.list[index]
+  state.list.forEach(item => {
+    item.isActive = false
+  })
+  currentComponent.value.isActive = true
 }
-
 
 // 组件列表拖拽的事件
 const dragStartClick = (e) => {
@@ -240,17 +249,16 @@ const dropClick = (e) => {
     x: e.offsetX,
     y: e.offsetY
   }
-
   state.list.push(item)
 }
 
 const resizeClick = (newRect, index) => {
-
+  let item = state.list[index]
   console.log(newRect, index, 'index-resizeClick')
-  // state.list[index].width = newRect.width;
-  // state.list[index].height = newRect.height;
-  // state.list[index].x = newRect.x;
-  // state.list[index].y = newRect.y;
+  item.width = newRect.width
+  item.height = newRect.height
+  item.x = newRect.left
+  item.y = newRect.top
 };
 
 const draggleClick = (newRect, index) => {
@@ -259,8 +267,14 @@ const draggleClick = (newRect, index) => {
     state.list[index].y = 0
   }
   configView.value = state.list[index].config
+  let item = state.list[index]
   console.log(newRect, index, 'index-draggleClick')
+  item.width = newRect.width
+  item.height = newRect.height
+  item.x = newRect.left
+  item.y = newRect.top
 }
+
 </script>
 <style lang="scss" scoped>
 .body {
