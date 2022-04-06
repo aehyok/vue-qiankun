@@ -1,18 +1,24 @@
 <template>
+<div :style="{
+  width: '100vw',
+  height: '100vh'
+}">
     <list-view :getListApi="getListApi" v-model:pageModel="pageInfo" v-model:dataList="dataList">
       <item-view :dataList="dataList"></item-view>
     </list-view>
+</div>
 </template>
 <script lang="ts" setup>
   import listView from '../../components/list/index.vue';
-  import itemView from './item-view.vue';
+  // import itemView from './item-view.vue';
+  import itemView from './drag-item-view.vue';
   import {reactive, ref, watch } from 'vue';
   import type {PageModel } from '../../types/models/index.d';
 
   const dataList = ref([]);
 
   const setTotal = 25  // 设置列表总记录数
-  const setLimit = 10  // 设置每页的记录总数
+  const setLimit = 15  // 设置每页的记录总数
   const pageInfo = reactive<PageModel>({
     page: 1,
     limit: setLimit,
@@ -26,7 +32,7 @@ for (let i = 0; i < setTotal; i++) {
         id: i + 1,
         messageName: '长图片' + (i + 1),
         createdAt: '2021-07-27 17:06:19',
-        createdByDeptName: '百色',
+        createdByDeptName: '百色百色百色百色',
         url: 'http://vue.tuokecat.com/cdn/h5/newslist.jpg',
     })
 }

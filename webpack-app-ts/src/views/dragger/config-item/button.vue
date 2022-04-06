@@ -24,9 +24,14 @@
             <el-input-number v-model="config.height" :controls="controls" placeholder="请输入数值" />
         </el-col>
     </el-row>
+    <el-row class="component-config-row">
+        <el-col :span="8" class="component-config-right">接口字段名:</el-col>
+         <el-col :span="16" class="component-config-left">
+            <el-input v-model="config.name" placeholder="请输入字符" />
+        </el-col>
+    </el-row>
 </template>
 <script setup lang="ts">
-
 import { watch } from 'vue';
 
 const props = defineProps({
