@@ -75,6 +75,11 @@ export function webpackList(): Menu[] {
       path: '/webpack-app/item-config'
     },
     {
+      id: 13,
+      title: '10、echart demo',
+      path: '/webpack-app/echarts'
+    },
+    {
       id: 7,
       title: 'about',
       path: '/webpack-app/about'

@@ -21,12 +21,12 @@
     </el-col>
     <el-col :span="8">
       <div
-        style="
-          width: 375px;
-          height: 667px;
-          border: 1px solid blue;
-          position: relative;
-        "
+        :style="{
+          width: '375px',
+          height: `${state.listViewConfig.height}px`,
+          border: '1px solid blue',
+          position: 'relative'
+        }"
         id="content"
         @dragover="dragOverClick"
         @drop="dropClick"
@@ -59,8 +59,10 @@
         <el-tab-pane label="组件样式" name="second">组件样式</el-tab-pane>
         <el-tab-pane label="列表项配置" name="third">
           <el-row class="component-config-row">
-            <el-col :span="8" class="component-config-right">left:</el-col>
-            <el-col :span="16" class="component-config-left"> right </el-col>
+            <el-col :span="8" class="component-config-right">height:</el-col>
+            <el-col :span="16" class="component-config-left"> 
+              <el-input-number v-model="state.listViewConfig.height" :controls="state.controls" placeholder="请输入高度" /> 
+             </el-col>
           </el-row>
         </el-tab-pane>
       </el-tabs>
@@ -155,6 +157,10 @@ const state = reactive({
   minh: 1, // 最小高度
   minw: 1, // 最小宽度
   index: 1, // 设置默认层级
+  controls: false,
+  listViewConfig: {
+    height: 50
+  },
   list: [
       {
         id: 'JniON6qs92',

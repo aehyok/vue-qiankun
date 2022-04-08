@@ -7,7 +7,7 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-    const imageUrl = ref(require('@/assets/logo.png'))
+    const imageUrl = ref('http://vue.tuokecat.com/cdn/h5/newslist.jpg')
 </script>
 <style lang="scss" scoped>
 .img-class {

@@ -1,9 +1,9 @@
 <template>
-    <h1>button日期选择</h1>
+    <h1>button按钮</h1>
     <el-row class="component-config-row">
         <el-col :span="8" class="component-config-right">left:</el-col>
         <el-col :span="16" class="component-config-left">
-            <el-input-number v-model="config.x" :controls="controls" placeholder="请输入数值" />
+            <el-input-number v-model="config.x" :controls="controls" placeholder="请输入数值" width="100%" />
         </el-col>
     </el-row>
     <el-row class="component-config-row">
