@@ -1,18 +1,19 @@
 <template>
-    <div class="dscreen-chart" ref="bar" id="bar" style="width: 400px;height: 216px;"></div>
+    <div class="dscreen-chart" id="chart" style="width: 400px;height: 216px;"></div>
 </template>
     
 <script setup lang='ts'>
 import * as echarts from "echarts";
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, ref } from "vue";
+
 enum OrientType {
     /**
-     * 水平
+     * 水平方向
      */
     horizontal = 'horizontal',
 
     /**
-     * 竖直
+     * 竖直方向
      */
     vertical = 'vertical'
 }
@@ -44,8 +45,9 @@ const state = reactive({
 			},
 		],
 })
+
 onMounted(() => {
-    let dom = document.getElementById("bar")
+    let dom = document.getElementById('chart')
     let myChart: any
     if (dom) {
         myChart = echarts.init(dom)
@@ -64,22 +66,21 @@ onMounted(() => {
         // 分类块列表显示位置
         legend: {
             // 水平和竖直
-            orient: OrientType.vertical,
+            orient: OrientType.horizontal,
             
-            type: 'scroll',
-            right: 10,
-            x: 'center',
+            type: 'scroll', // 默认值为plain，图例过多时，使用scroll，有分页效果所以直接用scroll
+            right: 5,
             textStyle: {
                 color: "black"
             },
         },
-        grid: {
-            left: "40%",
-            // right: "0%",
-            // bottom: "0%",
-            // top: "12%",
-            // containLabel: true,
-        },
+        // grid: {
+        //     left: "10%",
+        //     // right: "0%",
+        //     // bottom: "0%",
+        //     // top: "12%",
+        //     // containLabel: true,
+        // },
         series: [
             {
                 name: '企业市值',
