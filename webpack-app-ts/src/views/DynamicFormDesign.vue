@@ -4,12 +4,12 @@
       <div>Dynamic Form Design</div>
       <div>
         <!-- <el-button type="primary" size="small">PC</el-button>
-        <el-button type="primary" size="small">H5</el-button> -->
+        <el-button type="primary" size="small">H5</el-button>-->
       </div>
       <div>
         <el-button type="primary" size="small">预览</el-button>
         <el-button type="primary" size="small">导入JSON</el-button>
-        <el-button type="primary" size="small">生成JSON</el-button>
+        <el-button type="primary" size="small" @click="createJsonClick">生成JSON</el-button>
       </div>
     </div>
     <div class="body">
@@ -30,11 +30,7 @@
           </template>
         </el-row>
       </div>
-      <div class="center"     
-          id="content"
-          @dragover="dragOverClick"
-          @drop="dropClick"
-            >
+      <div class="center" id="content" @dragover="dragOverClick" @drop="dropClick">
         <el-form :model="state.formConfig.formData" label-width="120px">
           <drag-view
             v-model:columnList="state.formConfig.formListItem"
@@ -46,7 +42,7 @@
       <div class="right-component">
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="组件配置" name="first">
-            <config-view v-model:column="currentColumn" ></config-view>
+            <config-view v-model:column="currentColumn"></config-view>
           </el-tab-pane>
           <el-tab-pane label="组件样式" name="second">组件样式</el-tab-pane>
           <el-tab-pane label="表单配置" name="third">表单配置</el-tab-pane>
@@ -54,19 +50,60 @@
       </div>
     </div>
   </div>
+  <el-dialog v-model="dialogVisible" title="JSON预览" width="30%" :before-close="handleClose">
+     <code-editor :mode="'json'" :readonly="true" v-model="json"></code-editor>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="dialogVisible = false">导出</el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 <script setup>
 import { ref, reactive, onMounted, watch } from 'vue';
+import CodeEditor from '@/components/index'
 import { useStore } from 'vuex';
+import { ElMessageBox } from 'element-plus'
 import DragView from "../../../common/components/form/drag-index.vue";
 import ConfigView from "../../../common/components/form/config-index.vue";
 import shortid from 'shortid';
+import { computed } from '@vue/reactivity';
 const store = useStore()
 const componentList = ref([])
 const activeName = ref('first')
 const currentColumn = ref({})
 const handleClick = (tab, event) => {
   console.log(tab, event);
+}
+
+
+
+
+const dialogVisible = ref(false)
+
+const handleClose = (done) => {
+  ElMessageBox.confirm('Are you sure to close this dialog?')
+    .then(() => {
+      done()
+    })
+    .catch(() => {
+      // catch error
+    })
+}
+
+const json = computed(()=> {
+  return JSON.stringify(state.formConfig, null, '  ')
+  // return JSON.stringify(state.formConfig)
+})
+const createJsonClick = () => {
+  // window.onerror (// 监听js错误)
+
+  // addEventListener('error', {
+  //   //资源加载
+  // })
+  dialogVisible.value = true
+
 }
 const state = reactive({
   options: {
@@ -107,7 +144,7 @@ componentList.value = [
     id: 3,
     type: "number",
     title: "数字框",
-    default : 0
+    default: 0
   },
   {
     id: 4,
@@ -161,7 +198,7 @@ componentList.value = [
 
 onMounted(() => {
   let content = document.getElementById("content")
-  
+
   content.ondragover = function (e) {
     console.log('dragover')
     e.preventDefault()
@@ -218,7 +255,7 @@ const dropClick = (e) => {
 }
 
 const dragEndClick = (item) => {
-  console.log(item,'end')
+  console.log(item, 'end')
 }
 
 const dragClick = (item) => {
@@ -231,19 +268,19 @@ watch(
     if (newVal) {
       console.log(newVal, '修改后的字段项目配置')
       state.formConfig.formListItem.forEach(item => {
-        if(item.id === newVal.id) {
+        if (item.id === newVal.id) {
           return {
             ...newVal
           }
         }
       })
 
-      console.log(state.formConfig.formListItem,'修改后的字段项目配置')
+      console.log(state.formConfig.formListItem, '修改后的字段项目配置')
     }
   }, {
-    // immediate: true,
-    deep: true,
-  }
+  // immediate: true,
+  deep: true,
+}
 );
 
 const componentClick = (item) => {
@@ -254,7 +291,7 @@ const componentClick = (item) => {
     title: item.title,
     required: true,
   }
-  
+
   if (["select", "radio", "checkbox"].includes(item.type)) {
     column.dictionary = [
       {
@@ -332,14 +369,14 @@ const componentClick = (item) => {
   display: flex;
   padding: 5px;
 }
-.component-config-right{
+.component-config-right {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding-right: 15px;
 }
 
-.component-config-left{
+.component-config-left {
   display: flex;
   justify-content: flex-start;
   align-items: center;

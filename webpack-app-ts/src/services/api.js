@@ -8,7 +8,8 @@ export const getFormConfig = (data) => {
 }
 
 export const getTableConfig = (data) => {
-    console.log(data, 'data-----')
+    console.timeLog('config')
+    console.log('data11111111111111111111-----',  new Date().getMilliseconds());
     return request(`/Guideline/GetGuidelineDefine?guideLineId=${data}`, {
         method: 'get',
         data,
@@ -16,7 +17,8 @@ export const getTableConfig = (data) => {
 }
 
 export const getTableData = (data) => {
-    console.log(data, 'data-----')
+    console.timeLog('data')
+    console.log('data22222222222222222222-----', new Date().getMilliseconds());
     return request(`/mdquery/GetGuidelineData`, {
         method: 'post',
         data,

@@ -10,7 +10,7 @@ module.exports = {
     },
     proxy: {
       '/so': {
-        target: 'http://139.186.205.7:5000', // 代理接口
+        target: 'http://139.159.245.209:5000', // 代理接口
         ws: true,
         changeOrigin: true,
         pathRewrite: {
