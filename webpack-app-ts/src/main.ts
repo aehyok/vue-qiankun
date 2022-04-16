@@ -10,7 +10,6 @@ import routes from './router'
 import store from "./store";
 import { autoComponentRegister } from "../../common/utils/auto-component-register.js";
 import plugins from "./plugins";
-
 let instance = null;
 
 function render(props: any = {}) {

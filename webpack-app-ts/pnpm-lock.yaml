@@ -28,6 +28,7 @@ specifiers:
   vue-class-component: ^8.0.0-0
   vue-drag-resize: ^2.0.3
   vue-router: ^4.0.12
+  vue3-seamless-scroll: ^1.2.0
   vuedraggable: ^4.1.0
   vuex: ^4.0.2
   wangeditor: ^4.7.11
@@ -51,6 +52,7 @@ dependencies:
   vue-class-component: registry.npmmirror.com/vue-class-component/8.0.0-rc.1_vue@3.2.30
   vue-drag-resize: registry.npmmirror.com/vue-drag-resize/2.0.3
   vue-router: registry.npmmirror.com/vue-router/4.0.12_vue@3.2.30
+  vue3-seamless-scroll: registry.npmmirror.com/vue3-seamless-scroll/1.2.0
   vuedraggable: 4.1.0_vue@3.2.30
   vuex: 4.0.2_vue@3.2.30
   wangeditor: 4.7.11
@@ -11132,6 +11134,13 @@ packages:
       webpack: 4.46.0
     dev: true
 
+  registry.npmmirror.com/throttle-debounce/3.0.1:
+    resolution: {integrity: sha512-dTEWWNu6JmeVXY0ZYoPuH5cRIwc0MeGbJwah9KUNYSJwommQpCzTySTpEe8Gs1J23aeWEuAobe4Ag7EHVt/LOg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/throttle-debounce/-/throttle-debounce-3.0.1.tgz}
+    name: throttle-debounce
+    version: 3.0.1
+    engines: {node: '>=10'}
+    dev: false
+
   registry.npmmirror.com/through2/2.0.5:
     resolution: {integrity: sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/through2/-/through2-2.0.5.tgz}
     name: through2
@@ -11791,6 +11800,14 @@ packages:
       '@vue/runtime-dom': registry.npmmirror.com/@vue/runtime-dom/3.2.30
       '@vue/server-renderer': registry.npmmirror.com/@vue/server-renderer/3.2.30_vue@3.2.30
       '@vue/shared': registry.npmmirror.com/@vue/shared/3.2.30
+    dev: false
+
+  registry.npmmirror.com/vue3-seamless-scroll/1.2.0:
+    resolution: {integrity: sha512-2cKeIN5XjnYI08R0RVbvgpc1kgxp2zmE8CNeRVXvPk9lWox8m6bvYDCXrjl7q1qXXFh0KccBbJ7iFa1n5tu0RQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue3-seamless-scroll/-/vue3-seamless-scroll-1.2.0.tgz}
+    name: vue3-seamless-scroll
+    version: 1.2.0
+    dependencies:
+      throttle-debounce: registry.npmmirror.com/throttle-debounce/3.0.1
     dev: false
 
   registry.npmmirror.com/watchpack-chokidar2/2.0.1:
