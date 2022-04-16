@@ -209,6 +209,11 @@ componentList.value = [
     type: "video",
     title: "视频"
   },
+  {
+    id: 13,
+    type: 'grid',
+    title: '栅格'
+  }
 ]
 
 onMounted(() => {
