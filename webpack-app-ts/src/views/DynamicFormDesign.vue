@@ -9,7 +9,8 @@
       <div>
         <el-button type="primary" size="small">预览</el-button>
         <el-button type="primary" size="small">导入JSON</el-button>
-        <el-button type="primary" size="small" @click="createJsonClick">生成JSON</el-button>
+        <el-button type="primary" size="small" @click="createJsonClick">生成json</el-button>
+        <el-button type="primary" size="small" @click="createVueClick">生成vue代码</el-button>
       </div>
     </div>
     <div class="body">
@@ -50,12 +51,12 @@
       </div>
     </div>
   </div>
-  <el-dialog v-model="dialogVisible" title="JSON预览" width="30%" :before-close="handleClose">
-     <code-editor :mode="'json'" :readonly="true" v-model="json"></code-editor>
+  <el-dialog v-model="dialogVisible" title="JSON预览" width="80%" :before-close="handleClose">
+    <code-editor :mode="'json'" :readonly="true" v-model="json"></code-editor>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogVisible = false">导出</el-button>
+        <el-button type="primary" @click="saveJsonFileClick">保存JSON文件</el-button>
       </span>
     </template>
   </el-dialog>
@@ -67,43 +68,16 @@ import { useStore } from 'vuex';
 import { ElMessageBox } from 'element-plus'
 import DragView from "../../../common/components/form/drag-index.vue";
 import ConfigView from "../../../common/components/form/config-index.vue";
+import { generateCode } from '@/utils/code-generator.js'
 import shortid from 'shortid';
 import { computed } from '@vue/reactivity';
+import { saveAs } from 'file-saver'
 const store = useStore()
 const componentList = ref([])
 const activeName = ref('first')
 const currentColumn = ref({})
 const handleClick = (tab, event) => {
   console.log(tab, event);
-}
-
-
-
-
-const dialogVisible = ref(false)
-
-const handleClose = (done) => {
-  ElMessageBox.confirm('Are you sure to close this dialog?')
-    .then(() => {
-      done()
-    })
-    .catch(() => {
-      // catch error
-    })
-}
-
-const json = computed(()=> {
-  return JSON.stringify(state.formConfig, null, '  ')
-  // return JSON.stringify(state.formConfig)
-})
-const createJsonClick = () => {
-  // window.onerror (// 监听js错误)
-
-  // addEventListener('error', {
-  //   //资源加载
-  // })
-  dialogVisible.value = true
-
 }
 const state = reactive({
   options: {
@@ -118,8 +92,49 @@ const state = reactive({
     formData: {
 
     }
-  }
+  },
+  jsonCode: '',
+  vueCode: ''
 });
+
+const dialogVisible = ref(false)
+
+const handleClose = (done) => {
+  ElMessageBox.confirm('Are you sure to close this dialog?')
+    .then(() => {
+      done()
+    })
+    .catch(() => {
+      // catch error
+    })
+}
+
+const json = computed(() => {
+  // generateCode vue3 template setup style初始化模板
+  let temp = JSON.stringify(state.formConfig, null, '  ')
+  console.log(state.formConfig, 'form-json')
+  return generateCode(state.formConfig)
+  return JSON.stringify(state.formConfig, null, '  ')
+})
+const createJsonClick = () => {
+  // window.onerror (// 监听js错误)
+  state.jsonCode = generateCode(state.formConfig)
+  // addEventListener('error', {
+  //   //资源加载
+  // })
+  dialogVisible.value = true
+
+}
+
+const createVueClick = () => {
+  state.vueCode = generateCode(state.formConfig)
+}
+
+const saveJsonFileClick = () => {
+  dialogVisible.value = false
+  console.log(state.jsonCode, 'vue文件要保存勒哟')
+  saveAsFile(state.jsonCode, `${shortid.generate()}.vue`)
+}
 
 componentList.value = [
   {
@@ -261,6 +276,37 @@ const dragEndClick = (item) => {
 const dragClick = (item) => {
   console.log(item, 'drag')
 }
+
+const saveAsFile = (fileContent, defaultFileName) => {
+  // this.$prompt(this.i18nt('designer.hint.fileNameForSave'), this.i18nt('designer.hint.saveFileTitle'), {
+  //   inputValue: defaultFileName,
+  //   closeOnClickModal: false,
+  //   inputPlaceholder: this.i18nt('designer.hint.fileNameInputPlaceholder')
+  // }).then(({ value }) => {
+  //   if (!value) {
+  //     value = defaultFileName
+  //   }
+
+  //   if (getQueryParam('vscode') == 1) {
+  //     this.vsSaveFile(value, fileContent)
+  //     return
+  //   }
+
+  //   const fileBlob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' })
+  //   saveAs(fileBlob ,value)
+  // }).catch(() => {
+  //   //
+  // })
+
+
+  try {
+    const fileBlob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' })
+    saveAs(fileBlob, defaultFileName)
+  } catch {
+
+  }
+}
+
 
 watch(
   () => currentColumn.value,

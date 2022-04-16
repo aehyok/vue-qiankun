@@ -16,6 +16,7 @@
     "date-fns": "^2.28.0",
     "echarts": "^5.3.2",
     "element-plus": "^2.0.1",
+    "file-saver": "^2.0.5",
     "jsoneditor": "^9.7.2",
     "register-service-worker": "^1.7.1",
     "shortid": "^2.2.16",

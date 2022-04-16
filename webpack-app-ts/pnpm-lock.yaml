@@ -17,6 +17,7 @@ specifiers:
   date-fns: ^2.28.0
   echarts: ^5.3.2
   element-plus: ^2.0.1
+  file-saver: ^2.0.5
   jsoneditor: ^9.7.2
   register-service-worker: ^1.7.1
   sass: ^1.26.5
@@ -42,6 +43,7 @@ dependencies:
   date-fns: 2.28.0
   echarts: registry.npmmirror.com/echarts/5.3.2
   element-plus: 2.0.1_vue@3.2.30
+  file-saver: registry.npmmirror.com/file-saver/2.0.5
   jsoneditor: 9.7.2
   register-service-worker: registry.npmmirror.com/register-service-worker/1.7.2
   shortid: 2.2.16
@@ -6116,6 +6118,12 @@ packages:
       schema-utils: registry.npmmirror.com/schema-utils/2.7.1
       webpack: 4.46.0
     dev: true
+
+  registry.npmmirror.com/file-saver/2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/file-saver/-/file-saver-2.0.5.tgz}
+    name: file-saver
+    version: 2.0.5
+    dev: false
 
   registry.npmmirror.com/file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz}

@@ -1,6 +1,6 @@
 export const generateCode = function(formJson, codeType= 'vue') {
-  let formJsonStr = JSON.stringify(formJson)
-
+  // let formJsonStr = JSON.stringify(formJson)
+  let formJsonStr = JSON.stringify(formJson, null, '  ')
   if (codeType === 'html') {
     return `<!DOCTYPE html>
 <html>
@@ -56,7 +56,7 @@ export const generateCode = function(formJson, codeType= 'vue') {
   } else {
     return `<template>
   <div>
-    <v-form-render :form-json="formJson" :form-data="formData" :option-data="optionData" ref="vFormRef">
+    <sl-form :form-json="formJson" :form-data="formData" :option-data="optionData" ref="refForm">
     </v-form-render>
     <el-button type="primary" @click="submitForm">Submit</el-button>
   </div>
@@ -69,10 +69,10 @@ export const generateCode = function(formJson, codeType= 'vue') {
   const formJson = reactive(${formJsonStr})
   const formData = reactive({})
   const optionData = reactive({})
-  const vFormRef = ref(null)
+  const refForm = ref(null)
 
   const submitForm = () => {
-    vFormRef.value.getFormData().then(formData => {
+    refForm.value.getFormData().then(formData => {
       // Form Validation OK
       alert( JSON.stringify(formData) )
     }).catch(error => {
