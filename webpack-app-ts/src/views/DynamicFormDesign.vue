@@ -60,6 +60,15 @@
       </span>
     </template>
   </el-dialog>
+  <el-dialog v-model="vueDialogVisible" title="vue文件预览" width="80%" :before-close="handleClose">
+    <code-editor :mode="'json'" :readonly="true" v-model="vueString"></code-editor>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="vueDialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="saveVueFileClick">保存VUE文件</el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 <script setup>
 import { ref, reactive, onMounted, watch } from 'vue';
@@ -98,27 +107,29 @@ const state = reactive({
 });
 
 const dialogVisible = ref(false)
+const vueDialogVisible = ref(false)
 
 const handleClose = (done) => {
-  ElMessageBox.confirm('Are you sure to close this dialog?')
-    .then(() => {
-      done()
-    })
-    .catch(() => {
-      // catch error
-    })
+  done()
 }
 
 const json = computed(() => {
   // generateCode vue3 template setup style初始化模板
-  let temp = JSON.stringify(state.formConfig, null, '  ')
+  // let temp = JSON.stringify(state.formConfig, null, '  ')
+  // console.log(state.formConfig, 'form-json')
+  // return generateCode(state.formConfig)
+  return JSON.stringify(state.formConfig, null, '  ')
+})
+
+const vueString = computed(() => {
+    let temp = JSON.stringify(state.formConfig, null, '  ')
   console.log(state.formConfig, 'form-json')
   return generateCode(state.formConfig)
   return JSON.stringify(state.formConfig, null, '  ')
 })
 const createJsonClick = () => {
   // window.onerror (// 监听js错误)
-  state.jsonCode = generateCode(state.formConfig)
+  state.jsonCode = JSON.stringify(state.formConfig, null, '  ')
   // addEventListener('error', {
   //   //资源加载
   // })
@@ -128,9 +139,16 @@ const createJsonClick = () => {
 
 const createVueClick = () => {
   state.vueCode = generateCode(state.formConfig)
+   vueDialogVisible.value = true
 }
 
 const saveJsonFileClick = () => {
+  dialogVisible.value = false
+  console.log(state.jsonCode, 'vue文件要保存勒哟')
+  saveAsFile(state.jsonCode, `${shortid.generate()}.json`)
+}
+
+const saveVueFileClick = () => {
   dialogVisible.value = false
   console.log(state.jsonCode, 'vue文件要保存勒哟')
   saveAsFile(state.jsonCode, `${shortid.generate()}.vue`)
