@@ -80,6 +80,11 @@ export function webpackList(): Menu[] {
       path: '/webpack-app/echarts'
     },
     {
+      id: 14,
+      title: '11、dragger clone',
+      path: '/webpack-app/dragger-clone'
+    },
+    {
       id: 7,
       title: 'about',
       path: '/webpack-app/about'
