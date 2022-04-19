@@ -56,6 +56,7 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="copyJsonFileClick">复制JSON</el-button>
         <el-button type="primary" @click="saveJsonFileClick">保存JSON文件</el-button>
       </span>
     </template>
@@ -65,6 +66,7 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="vueDialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="copyVueFileClick">复制vue代码</el-button>
         <el-button type="primary" @click="saveVueFileClick">保存VUE文件</el-button>
       </span>
     </template>
@@ -74,11 +76,13 @@
 import { ref, reactive, onMounted, watch } from 'vue';
 import CodeEditor from '@/components/index'
 import { useStore } from 'vuex';
-import { ElMessageBox } from 'element-plus'
+import Clipboard from 'clipboard';
+import { ElMessage, ElMessageBox } from 'element-plus'
 import DragView from "../../../common/components/form/drag-index.vue";
 import ConfigView from "../../../common/components/form/config-index.vue";
 import { generateCode } from '@/utils/code-generator.js'
 import shortid from 'shortid';
+import { copyToClipboard } from '@/utils/utils'
 import { computed } from '@vue/reactivity';
 import { saveAs } from 'file-saver'
 const store = useStore()
@@ -142,16 +146,33 @@ const createVueClick = () => {
    vueDialogVisible.value = true
 }
 
-const saveJsonFileClick = () => {
-  dialogVisible.value = false
-  console.log(state.jsonCode, 'vue文件要保存勒哟')
-  saveAsFile(state.jsonCode, `${shortid.generate()}.json`)
+const copyJsonFileClick = (e) => {
+  copyToClipboard(state.jsonCode, e,
+            ElMessage,
+            'copy成功',
+            'copy失败'
+        )
+  // dialogVisible.value = false
+  // console.log(state.jsonCode, 'vue文件要保存勒哟')
+  // saveAsFile(state.jsonCode, `${shortid.generate()}.json`)
 }
 
 const saveVueFileClick = () => {
   dialogVisible.value = false
-  console.log(state.jsonCode, 'vue文件要保存勒哟')
-  saveAsFile(state.jsonCode, `${shortid.generate()}.vue`)
+  console.log(state.vueCode, 'vue文件要保存勒哟')
+  saveAsFile(state.vueCode, `${shortid.generate()}.vue`)
+}
+
+//拷贝vue文件代码
+const copyVueFileClick = () => {
+    copyToClipboard(state.vueCode, e,
+            ElMessage,
+            'copy成功',
+            'copy失败'
+        )
+  // dialogVisible.value = false
+  // console.log(state.vueCode, 'vue文件要保存勒哟')
+  // saveAsFile(state.vueCode, `${shortid.generate()}.vue`)
 }
 
 componentList.value = [

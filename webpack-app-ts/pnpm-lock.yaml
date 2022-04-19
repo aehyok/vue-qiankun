@@ -12,6 +12,7 @@ specifiers:
   '@vue/compiler-sfc': ^3.0.0
   ace-builds: ^1.4.14
   axios: ^0.25.0
+  clipboard: ^2.0.10
   common: file:../../common
   core-js: ^3.6.5
   date-fns: ^2.28.0
@@ -39,6 +40,7 @@ dependencies:
   '@ffmpeg/ffmpeg': 0.10.1
   ace-builds: registry.npmmirror.com/ace-builds/1.4.14
   axios: 0.25.0
+  clipboard: registry.npmmirror.com/clipboard/2.0.10
   common: link:../../common
   core-js: registry.npmmirror.com/core-js/3.21.0
   date-fns: 2.28.0
@@ -4570,6 +4572,16 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  registry.npmmirror.com/clipboard/2.0.10:
+    resolution: {integrity: sha512-cz3m2YVwFz95qSEbCDi2fzLN/epEN9zXBvfgAoGkvGOJZATMl9gtTDVOtBYkx2ODUJl2kvmud7n32sV2BpYR4g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/clipboard/-/clipboard-2.0.10.tgz}
+    name: clipboard
+    version: 2.0.10
+    dependencies:
+      good-listener: registry.npmmirror.com/good-listener/1.2.2
+      select: registry.npmmirror.com/select/1.1.2
+      tiny-emitter: registry.npmmirror.com/tiny-emitter/2.1.0
+    dev: false
+
   registry.npmmirror.com/clipboardy/2.3.0:
     resolution: {integrity: sha512-mKhiIL2DrQIsuXMgBgnfEHOZOryC7kY7YO//TN6c63wlEm3NG5tz+YgY5rVi29KCmq/QQjKYvM7a19+MDOTHOQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/clipboardy/-/clipboardy-2.3.0.tgz}
     name: clipboardy
@@ -5436,6 +5448,12 @@ packages:
     version: 1.0.0
     engines: {node: '>=0.4.0'}
     dev: true
+
+  registry.npmmirror.com/delegate/3.2.0:
+    resolution: {integrity: sha512-IofjkYBZaZivn0V8nnsMJGBr4jVLxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/delegate/-/delegate-3.2.0.tgz}
+    name: delegate
+    version: 3.2.0
+    dev: false
 
   registry.npmmirror.com/depd/1.1.2:
     resolution: {integrity: sha512-7emPTl6Dpo6JRXOXjLRxck+FlLRX5847cLKEn00PLAgc3g2hTZZgr+e4c2v6QpSmLeFP3n5yUo7ft6avBK/5jQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/depd/-/depd-1.1.2.tgz}
@@ -6569,6 +6587,14 @@ packages:
       pify: registry.npmmirror.com/pify/4.0.1
       slash: registry.npmmirror.com/slash/2.0.0
     dev: true
+
+  registry.npmmirror.com/good-listener/1.2.2:
+    resolution: {integrity: sha512-goW1b+d9q/HIwbVYZzZ6SsTr4IgE+WA44A0GmPIQstuOrgsFcT7VEJ48nmr9GaRtNu0XTKacFLGnBPAM6Afouw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/good-listener/-/good-listener-1.2.2.tgz}
+    name: good-listener
+    version: 1.2.2
+    dependencies:
+      delegate: registry.npmmirror.com/delegate/3.2.0
+    dev: false
 
   registry.npmmirror.com/graceful-fs/4.2.9:
     resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/graceful-fs/-/graceful-fs-4.2.9.tgz}
@@ -10295,6 +10321,12 @@ packages:
     version: 2.0.0
     dev: true
 
+  registry.npmmirror.com/select/1.1.2:
+    resolution: {integrity: sha512-OwpTSOfy6xSs1+pwcNrv0RBMOzI39Lp3qQKUTPVVPRjCdNa5JH/oPRiqsesIskK8TVgmRiHwO4KXlV2Li9dANA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/select/-/select-1.1.2.tgz}
+    name: select
+    version: 1.1.2
+    dev: false
+
   registry.npmmirror.com/selfsigned/1.10.14:
     resolution: {integrity: sha512-lkjaiAye+wBZDCBsu5BGi0XiLRxeUlsGod5ZP924CRSEoGuZAw/f7y9RKu28rwTfiHVhdavhB0qH0INV6P1lEA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/selfsigned/-/selfsigned-1.10.14.tgz}
     name: selfsigned
@@ -11170,6 +11202,12 @@ packages:
     name: timsort
     version: 0.3.0
     dev: true
+
+  registry.npmmirror.com/tiny-emitter/2.1.0:
+    resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz}
+    name: tiny-emitter
+    version: 2.1.0
+    dev: false
 
   registry.npmmirror.com/to-arraybuffer/1.0.1:
     resolution: {integrity: sha512-okFlQcoGTi4LQBG/PgSYblw9VOyptsz2KJZqc6qtgGdes8VktzUQkj4BI2blit072iS8VODNcMA+tvnS9dnuMA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz}
