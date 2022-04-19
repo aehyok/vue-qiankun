@@ -11,6 +11,7 @@
         <el-button type="primary" size="small">导入JSON</el-button>
         <el-button type="primary" size="small" @click="createJsonClick">生成json</el-button>
         <el-button type="primary" size="small" @click="createVueClick">生成vue代码</el-button>
+        <el-button type="primary" size="small" @click="customerClick">自定义组件代码</el-button>
       </div>
     </div>
     <div class="body">
@@ -55,26 +56,37 @@
     <code-editor :mode="'json'" :readonly="true" v-model="json"></code-editor>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button @click="dialogVisible = false">关闭</el-button>
         <el-button type="primary" @click="copyJsonFileClick">复制JSON</el-button>
         <el-button type="primary" @click="saveJsonFileClick">保存JSON文件</el-button>
       </span>
     </template>
   </el-dialog>
   <el-dialog v-model="vueDialogVisible" title="vue文件预览" width="80%" :before-close="handleClose">
-    <code-editor :mode="'json'" :readonly="true" v-model="vueString"></code-editor>
+    <code-editor :mode="'html'" :readonly="false" v-model="vueString"></code-editor>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="vueDialogVisible = false">Cancel</el-button>
+        <el-button @click="vueDialogVisible = false">关闭</el-button>
         <el-button type="primary" @click="copyVueFileClick">复制vue代码</el-button>
         <el-button type="primary" @click="saveVueFileClick">保存VUE文件</el-button>
+      </span>
+    </template>
+  </el-dialog>
+    <el-dialog v-model="customerVisible" title="自定义组件代码" width="80%" :before-close="handleClose">
+    <code-editor :mode="'javascript'" :readonly="false" v-model="customerCode"></code-editor>
+   
+    <template #footer>
+      <span class="dialog-footer">
+         <div v-if="isError" style="color: red; font-size:12px; margin-top:5px;">请检查语法错误：{{error}}</div>
+        <el-button @click="customerVisible = false">关闭</el-button>
+        <el-button type="primary" @click="checkCodeClick">校验代码</el-button>
       </span>
     </template>
   </el-dialog>
 </template>
 <script setup>
 import { ref, reactive, onMounted, watch } from 'vue';
-import CodeEditor from '@/components/index'
+import CodeEditor from '@/components/code-editor/index'
 import { useStore } from 'vuex';
 import Clipboard from 'clipboard';
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -112,7 +124,7 @@ const state = reactive({
 
 const dialogVisible = ref(false)
 const vueDialogVisible = ref(false)
-
+const customerVisible = ref(false)
 const handleClose = (done) => {
   done()
 }
@@ -141,6 +153,29 @@ const createJsonClick = () => {
 
 }
 
+const error = ref('')
+const isError = ref(false)
+const checkCodeClick = () => {
+    const code = customerCode.value
+    // 去掉注释
+    const temp = code.replace(/.+\*\/\s*/gs, "").replace(/\s+/g, "");
+    try {
+      // 转换为对象
+      const jsCodeInfo = eval(`(function(){return ${temp}})()`);
+      console.log(jsCodeInfo, 'jsCodeInfo')
+      isError.value = false
+    } catch (error) {
+      console.warn(error);
+      console.log(error,'error')
+      isError.value = true
+      error.value = error
+    }
+}
+
+const customerCode = ref('')
+const customerClick = () => {
+  customerVisible.value = true
+}
 const createVueClick = () => {
   state.vueCode = generateCode(state.formConfig)
    vueDialogVisible.value = true
@@ -157,8 +192,14 @@ const copyJsonFileClick = (e) => {
   // saveAsFile(state.jsonCode, `${shortid.generate()}.json`)
 }
 
-const saveVueFileClick = () => {
+const saveJsonFileClick = (e) => {
   dialogVisible.value = false
+  console.log(state.jsonCode, 'vue文件要保存勒哟')
+  saveAsFile(state.jsonCode, `${shortid.generate()}.json`)
+}
+
+const saveVueFileClick = () => {
+  vueDialogVisible.value = false
   console.log(state.vueCode, 'vue文件要保存勒哟')
   saveAsFile(state.vueCode, `${shortid.generate()}.vue`)
 }
