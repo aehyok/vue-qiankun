@@ -12,6 +12,7 @@
     "@vitejs/plugin-vue": "^1.9.3",
     "date-fns": "^2.25.0",
     "jsqr": "^1.4.0",
+    "pdfjs-dist": "^2.13.216",
     "pinia": "^2.0.0-rc.10",
     "vant": "^3.2.8",
     "vconsole": "^3.9.5",

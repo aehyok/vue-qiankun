@@ -112,6 +112,14 @@ const routes: Array<RouteRecordRaw> = [
       title: '博客列表',
     },
   },
+  {
+    path: '/pdf',
+    name: 'pdf',
+    component: () => import(/* webpackChunkName: "slot" */ '../views/pdf/index.vue'),
+    meta: {
+      title: '博客列表',
+    },
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),
