@@ -18,6 +18,8 @@ import {computed } from 'vue'
     }
   })
 
+  console.log('ddds',  "--------------")
+
   const { column } = props
   const rules = [
     {

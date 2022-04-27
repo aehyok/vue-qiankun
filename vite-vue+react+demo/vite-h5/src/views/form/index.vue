@@ -2,14 +2,17 @@
   <div style="position: relative; margin-bottom: 42px">
     <van-form ref="form" :model="state.formConfig.formData" show-error :show-error-message="false">
       <formView :columnList="state.formConfig.formListItem" :formData="state.formConfig.formData" />
+<van-field v-model="state.numberValue" type="number" label="数字" />
       <div style="margin: 16px">
         <van-button round block type="primary" native-type="submit"> 提交 </van-button>
+          <!-- 允许输入数字，调起带符号的纯数字键盘 -->
+        
       </div>
     </van-form>
   </div>
 </template>
 <script lang="ts" setup>
-  import { Button as VanButton, Form as VanForm } from 'vant';
+  import { Button as VanButton, Form as VanForm, Field as VanField } from 'vant';
   import { reactive } from 'vue';
   import formView from '/@/components/form/index.vue';
 
@@ -23,6 +26,7 @@
       { code: 4, text: '嘉兴' },
       { code: 5, text: '湖州' },
     ],
+    numberValue: undefined,
     value: '',
     valueCode: '',
     formConfig: {
@@ -31,7 +35,13 @@
         {
           name: 'name1',
           type: 'text',
-          title: '栏目标题',
+          title: '栏目1标题',
+          required: true, // 必填
+        },
+        {
+          name: 'name333',
+          type: 'number',
+          title: '栏目number标题',
           required: true, // 必填
         },
         {

@@ -10,14 +10,14 @@
 </template>
 <script lang="ts" setup>
   import listView from '../../components/list/index.vue';
-  // import itemView from './item-view.vue';
-  import itemView from './drag-item-view.vue';
-  import {reactive, ref, watch } from 'vue';
+  import itemView from './item-view.vue';
+  // import itemView from './drag-item-view.vue';
+  import {reactive, ref, watch, onActivated, onDeactivated, onMounted } from 'vue';
   import type {PageModel } from '../../types/models/index.d';
-
+  import { onBeforeRouteLeave } from 'vue-router'
   const dataList = ref([]);
 
-  const setTotal = 25  // 设置列表总记录数
+  const setTotal = 65  // 设置列表总记录数
   const setLimit = 15  // 设置每页的记录总数
   const pageInfo = reactive<PageModel>({
     page: 1,
@@ -26,6 +26,27 @@
     pages: 0,
   });
 
+onMounted(() => {
+  console.log('第一个onMounted')
+})
+
+onMounted(() => {
+  console.log('第二个onMounted')
+})
+
+onBeforeRouteLeave((to: any, from: any ,next: any) => {
+  console.log(to, from , 'to-from')
+  next()
+})
+
+onActivated(() => {
+  console.log('onActivated')
+}) 
+
+onDeactivated(() => {
+  console.log('onDeactivated')
+}) 
+ 
 let dbList: any= []  // 通过循环向数组插入测试数据
 for (let i = 0; i < setTotal; i++) {
     dbList.push({
@@ -63,7 +84,7 @@ const getListApi = async (limit, page) => {
         return new Promise(resolve => setTimeout(resolve, time))
     }
 
-    await sleep(3000)
+    // await sleep(3000)
     return new Promise(resolve => resolve(result))
 };
 

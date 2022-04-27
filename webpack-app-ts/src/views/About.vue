@@ -1,4 +1,5 @@
 <template>
+  <h1>6666666666666666666</h1>
   <vue3-seamless-scroll :list="list" :class="[classArray[index1]]">
     <div class="item" v-for="(item, index) in list" :key="index">
       <span>{{item.title}}</span>
@@ -19,8 +20,6 @@
 <script setup>
 import { defineComponent, ref } from "vue";
 import { Vue3SeamlessScroll } from "vue3-seamless-scroll";
-
-
     const classArray = [
         'scroll1',
         'scroll2'

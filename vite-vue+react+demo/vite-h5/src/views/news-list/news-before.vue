@@ -50,7 +50,7 @@ for (let i = 0; i < setTotal; i++) {
         messageName: '长图片' + (i + 1),
         createdAt: '2021-07-27 17:06:19',
         createdByDeptName: '百色',
-        url: 'http://vue.tuokecat.com/cdn/h5/newslist.jpg',
+        url: '',
     })
 }
 const dataList = ref([]);

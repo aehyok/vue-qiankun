@@ -45,6 +45,14 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/canvas',
+    name: 'canvas',
+    component: () => import(/* webpackChunkName: "scan" */ '../views/canvas/index.vue'),
+    meta: {
+      title: '扫描',
+    },
+  },
+  {
     path: '/my-bill',
     name: 'my-bill',
     component: () => import(/* webpackChunkName: "my-bill" */ '../views/my-bill/index.vue'),
