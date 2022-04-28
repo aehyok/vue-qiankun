@@ -39,7 +39,9 @@ const ifshow = (column,data) => {
       // 用eval调用没问题
       try {
         console.log('column.ifshow',column.ifshow)
-        const evalFunction = eval(column.ifshow )
+        const expression = `(data) => { return  ${column.ifshow}}`
+        console.log('column.expression',expression)
+        const evalFunction = eval(expression)
         console.log(evalFunction, 'evalFunction')
         return evalFunction(data)
       }
