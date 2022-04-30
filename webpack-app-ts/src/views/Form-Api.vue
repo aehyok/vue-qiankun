@@ -39,7 +39,7 @@
 import { reactive, watch, ref, onMounted } from "vue";
 import FormView from "../../../common/components/form/index.vue";
 import VueJsonEditor from '../../../common/components/json/vue-json-editor.vue'
-import { getFormConfig } from '../services/api';
+import { getFormConfig } from '@/services/api';
 let formDom = ref(null);
 
 onMounted(() => {

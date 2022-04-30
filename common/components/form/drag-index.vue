@@ -22,9 +22,9 @@
           <div
             :class="[selectIndex === index ? 'drag-operation' : 'drag-hidden']"
           >
-          <el-button type="primary" size="small" @click="moveComponentClick(0,index,$event)"><i class="el-icon-top" ></i></el-button>
-          <el-button type="primary"  size="small" @click="moveComponentClick(1,index,$event)"><i class="el-icon-bottom"></i></el-button>
-          <el-button type="primary" size="small" @click="deleteComponentClick(index)"><i class="el-icon-close" ></i></el-button>  
+          <el-button type="primary" size="small" @click="moveComponentClick(0,index,$event)"><el-icon><top /></el-icon></el-button>
+          <el-button type="primary"  size="small" @click="moveComponentClick(1,index,$event)"><el-icon><bottom /></el-icon></el-button>
+          <el-button type="primary" size="small" @click="deleteComponentClick(index)"><el-icon><close /></el-icon></el-button>  
           </div>
         </div>
       </template>
@@ -33,6 +33,7 @@
 </template>
 <script setup>
 import ComponentView from './column/component-view.vue'
+import { Top, Bottom, Close  } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import draggable from 'vuedraggable'
 import { useStore } from 'vuex';

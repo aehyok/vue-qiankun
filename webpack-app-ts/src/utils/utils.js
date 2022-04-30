@@ -1,3 +1,4 @@
+import Clipboard from 'clipboard'
 export const isObjArr = (value) => {
     if (Object.prototype.toString.call(value) === "[object Array]") {
         return true
@@ -49,3 +50,22 @@ export const stringRandom = (length) => {
     }
     return noceStr
 }
+
+
+export function copyToClipboard(content, clickEvent, $message, successMsg, errorMsg) {
+    const clipboard = new Clipboard(clickEvent.target, {
+      text: () => content
+    })
+  
+    clipboard.on('success', () => {
+      $message.success(successMsg)
+      clipboard.destroy()
+    })
+  
+    clipboard.on('error', () => {
+      $message.error(errorMsg)
+      clipboard.destroy()
+    })
+  
+    clipboard.onClick(clickEvent)
+  }

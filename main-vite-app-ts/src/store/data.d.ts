@@ -70,6 +70,21 @@ export function webpackList(): Menu[] {
       path: '/webpack-app/form-api'
     },
     {
+      id: 12,
+      title: '9、移动端H5 列表项配置',
+      path: '/webpack-app/item-config'
+    },
+    {
+      id: 13,
+      title: '10、echart demo',
+      path: '/webpack-app/echarts'
+    },
+    {
+      id: 14,
+      title: '11、dragger clone',
+      path: '/webpack-app/dragger-clone'
+    },
+    {
       id: 7,
       title: 'about',
       path: '/webpack-app/about'

@@ -4,12 +4,14 @@
       <div>Dynamic Form Design</div>
       <div>
         <!-- <el-button type="primary" size="small">PC</el-button>
-        <el-button type="primary" size="small">H5</el-button> -->
+        <el-button type="primary" size="small">H5</el-button>-->
       </div>
       <div>
         <el-button type="primary" size="small">预览</el-button>
         <el-button type="primary" size="small">导入JSON</el-button>
-        <el-button type="primary" size="small">生成JSON</el-button>
+        <el-button type="primary" size="small" @click="createJsonClick">生成json</el-button>
+        <el-button type="primary" size="small" @click="createVueClick">生成vue代码</el-button>
+        <el-button type="primary" size="small" @click="customerClick">自定义组件代码</el-button>
       </div>
     </div>
     <div class="body">
@@ -30,11 +32,7 @@
           </template>
         </el-row>
       </div>
-      <div class="center"     
-          id="content"
-          @dragover="dragOverClick"
-          @drop="dropClick"
-            >
+      <div class="center" id="content" @dragover="dragOverClick" @drop="dropClick">
         <el-form :model="state.formConfig.formData" label-width="120px">
           <drag-view
             v-model:columnList="state.formConfig.formListItem"
@@ -46,7 +44,7 @@
       <div class="right-component">
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="组件配置" name="first">
-            <config-view v-model:column="currentColumn" ></config-view>
+            <config-view v-model:column="currentColumn"></config-view>
           </el-tab-pane>
           <el-tab-pane label="组件样式" name="second">组件样式</el-tab-pane>
           <el-tab-pane label="表单配置" name="third">表单配置</el-tab-pane>
@@ -54,13 +52,51 @@
       </div>
     </div>
   </div>
+  <el-dialog v-model="dialogVisible" title="JSON预览" width="80%" :before-close="handleClose">
+    <code-editor :mode="'json'" :readonly="true" v-model="json"></code-editor>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogVisible = false">关闭</el-button>
+        <el-button type="primary" @click="copyJsonFileClick">复制JSON</el-button>
+        <el-button type="primary" @click="saveJsonFileClick">保存JSON文件</el-button>
+      </span>
+    </template>
+  </el-dialog>
+  <el-dialog v-model="vueDialogVisible" title="vue文件预览" width="80%" :before-close="handleClose">
+    <code-editor :mode="'html'" :readonly="false" v-model="vueString"></code-editor>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="vueDialogVisible = false">关闭</el-button>
+        <el-button type="primary" @click="copyVueFileClick">复制vue代码</el-button>
+        <el-button type="primary" @click="saveVueFileClick">保存VUE文件</el-button>
+      </span>
+    </template>
+  </el-dialog>
+    <el-dialog v-model="customerVisible" title="自定义组件代码" width="80%" :before-close="handleClose">
+    <code-editor :mode="'javascript'" :readonly="false" v-model="customerCode"></code-editor>
+   
+    <template #footer>
+      <span class="dialog-footer">
+         <div v-if="isError" style="color: red; font-size:12px; margin-top:5px;">请检查语法错误：{{error}}</div>
+        <el-button @click="customerVisible = false">关闭</el-button>
+        <el-button type="primary" @click="checkCodeClick">校验代码</el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 <script setup>
 import { ref, reactive, onMounted, watch } from 'vue';
+import CodeEditor from '@/components/code-editor/index'
 import { useStore } from 'vuex';
+import Clipboard from 'clipboard';
+import { ElMessage, ElMessageBox } from 'element-plus'
 import DragView from "../../../common/components/form/drag-index.vue";
 import ConfigView from "../../../common/components/form/config-index.vue";
+import { generateCode } from '@/utils/code-generator.js'
 import shortid from 'shortid';
+import { copyToClipboard } from '@/utils/utils'
+import { computed } from '@vue/reactivity';
+import { saveAs } from 'file-saver'
 const store = useStore()
 const componentList = ref([])
 const activeName = ref('first')
@@ -81,8 +117,104 @@ const state = reactive({
     formData: {
 
     }
-  }
+  },
+  jsonCode: '',
+  vueCode: ''
 });
+
+const dialogVisible = ref(false)
+const vueDialogVisible = ref(false)
+const customerVisible = ref(false)
+const handleClose = (done) => {
+  done()
+}
+
+const json = computed(() => {
+  // generateCode vue3 template setup style初始化模板
+  // let temp = JSON.stringify(state.formConfig, null, '  ')
+  // console.log(state.formConfig, 'form-json')
+  // return generateCode(state.formConfig)
+  return JSON.stringify(state.formConfig, null, '  ')
+})
+
+const vueString = computed(() => {
+    let temp = JSON.stringify(state.formConfig, null, '  ')
+  console.log(state.formConfig, 'form-json')
+  return generateCode(state.formConfig)
+  return JSON.stringify(state.formConfig, null, '  ')
+})
+const createJsonClick = () => {
+  // window.onerror (// 监听js错误)
+  state.jsonCode = JSON.stringify(state.formConfig, null, '  ')
+  // addEventListener('error', {
+  //   //资源加载
+  // })
+  dialogVisible.value = true
+
+}
+
+const error = ref('')
+const isError = ref(false)
+const checkCodeClick = () => {
+    const code = customerCode.value
+    // 去掉注释
+    const temp = code.replace(/.+\*\/\s*/gs, "").replace(/\s+/g, "");
+    try {
+      // 转换为对象
+      const jsCodeInfo = eval(`(function(){return ${temp}})()`);
+      console.log(jsCodeInfo, 'jsCodeInfo')
+      isError.value = false
+    } catch (error) {
+      console.warn(error);
+      console.log(error,'error')
+      isError.value = true
+      error.value = error
+    }
+}
+
+const customerCode = ref('')
+const customerClick = () => {
+  customerVisible.value = true
+}
+const createVueClick = () => {
+  state.vueCode = generateCode(state.formConfig)
+   vueDialogVisible.value = true
+}
+
+const copyJsonFileClick = (e) => {
+  copyToClipboard(state.jsonCode, e,
+            ElMessage,
+            'copy成功',
+            'copy失败'
+        )
+  // dialogVisible.value = false
+  // console.log(state.jsonCode, 'vue文件要保存勒哟')
+  // saveAsFile(state.jsonCode, `${shortid.generate()}.json`)
+}
+
+const saveJsonFileClick = (e) => {
+  dialogVisible.value = false
+  console.log(state.jsonCode, 'vue文件要保存勒哟')
+  saveAsFile(state.jsonCode, `${shortid.generate()}.json`)
+}
+
+const saveVueFileClick = () => {
+  vueDialogVisible.value = false
+  console.log(state.vueCode, 'vue文件要保存勒哟')
+  saveAsFile(state.vueCode, `${shortid.generate()}.vue`)
+}
+
+//拷贝vue文件代码
+const copyVueFileClick = () => {
+    copyToClipboard(state.vueCode, e,
+            ElMessage,
+            'copy成功',
+            'copy失败'
+        )
+  // dialogVisible.value = false
+  // console.log(state.vueCode, 'vue文件要保存勒哟')
+  // saveAsFile(state.vueCode, `${shortid.generate()}.vue`)
+}
 
 componentList.value = [
   {
@@ -107,7 +239,7 @@ componentList.value = [
     id: 3,
     type: "number",
     title: "数字框",
-    default : 0
+    default: 0
   },
   {
     id: 4,
@@ -157,11 +289,16 @@ componentList.value = [
     type: "video",
     title: "视频"
   },
+  {
+    id: 13,
+    type: 'grid',
+    title: '栅格'
+  }
 ]
 
 onMounted(() => {
   let content = document.getElementById("content")
-  
+
   content.ondragover = function (e) {
     console.log('dragover')
     e.preventDefault()
@@ -218,12 +355,43 @@ const dropClick = (e) => {
 }
 
 const dragEndClick = (item) => {
-  console.log(item,'end')
+  console.log(item, 'end')
 }
 
 const dragClick = (item) => {
   console.log(item, 'drag')
 }
+
+const saveAsFile = (fileContent, defaultFileName) => {
+  // this.$prompt(this.i18nt('designer.hint.fileNameForSave'), this.i18nt('designer.hint.saveFileTitle'), {
+  //   inputValue: defaultFileName,
+  //   closeOnClickModal: false,
+  //   inputPlaceholder: this.i18nt('designer.hint.fileNameInputPlaceholder')
+  // }).then(({ value }) => {
+  //   if (!value) {
+  //     value = defaultFileName
+  //   }
+
+  //   if (getQueryParam('vscode') == 1) {
+  //     this.vsSaveFile(value, fileContent)
+  //     return
+  //   }
+
+  //   const fileBlob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' })
+  //   saveAs(fileBlob ,value)
+  // }).catch(() => {
+  //   //
+  // })
+
+
+  try {
+    const fileBlob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' })
+    saveAs(fileBlob, defaultFileName)
+  } catch {
+
+  }
+}
+
 
 watch(
   () => currentColumn.value,
@@ -231,19 +399,19 @@ watch(
     if (newVal) {
       console.log(newVal, '修改后的字段项目配置')
       state.formConfig.formListItem.forEach(item => {
-        if(item.id === newVal.id) {
+        if (item.id === newVal.id) {
           return {
             ...newVal
           }
         }
       })
 
-      console.log(state.formConfig.formListItem,'修改后的字段项目配置')
+      console.log(state.formConfig.formListItem, '修改后的字段项目配置')
     }
   }, {
-    // immediate: true,
-    deep: true,
-  }
+  // immediate: true,
+  deep: true,
+}
 );
 
 const componentClick = (item) => {
@@ -254,7 +422,7 @@ const componentClick = (item) => {
     title: item.title,
     required: true,
   }
-  
+
   if (["select", "radio", "checkbox"].includes(item.type)) {
     column.dictionary = [
       {
@@ -332,14 +500,14 @@ const componentClick = (item) => {
   display: flex;
   padding: 5px;
 }
-.component-config-right{
+.component-config-right {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding-right: 15px;
 }
 
-.component-config-left{
+.component-config-left {
   display: flex;
   justify-content: flex-start;
   align-items: center;

@@ -10,9 +10,9 @@
           >{{ item.createdAt }}</span
         >
       </div>
-      <div v-if="item.url">
+      <!-- <div v-if="!item.url">
         <img :src="item.url" alt="" />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -24,10 +24,10 @@
       default: () => {},
     },
   });
-
+console.log('11111111111')
   const router = useRouter();
   const goDetails = (item) => {
-    console.log(item);
+    console.log(item, 11111111111);
     router.push('/news-detail');
   };
 </script>

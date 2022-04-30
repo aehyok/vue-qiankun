@@ -1,10 +1,11 @@
 <template>
+    <h1>Static静态字段</h1>
     <el-row class="component-config-row">
         <el-col :span="8" class="component-config-right">
             组件类型:
         </el-col>
         <el-col :span="16" class="component-config-left">
-            {{column.type}}</el-input>
+            {{column.type}}
         </el-col>
     </el-row>
     <el-row class="component-config-row">

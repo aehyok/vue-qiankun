@@ -67,8 +67,10 @@ export default defineComponent({
           "@tablename":"dvsdb30.view_villageepidemic"
         }
       })
+      console.time('data1')
       Promise.all([resultConfig, resultData]).then((values) => {
-        console.log(values, 'values');
+        console.timeEnd('data1')
+        console.log(values, 'values', new Date().getMilliseconds());
         const result = values[0]
         if(result.code == 200 ) {
           console.log(result, 'table列表配置')

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="editorRef" style="text-align: left"></div>
+    <div ref="editorRef" style="text-align: left;"></div>
     <!-- <div v-html="propEditorContent"></div> -->
   </div>
 </template>
