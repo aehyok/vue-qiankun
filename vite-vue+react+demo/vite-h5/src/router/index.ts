@@ -120,6 +120,14 @@ const routes: Array<RouteRecordRaw> = [
       title: '博客列表',
     },
   },
+  {
+    path: '/suspense',
+    name: 'suspense',
+    component: () => import(/* webpackChunkName: "slot" */ '../views/suspense/index.vue'),
+    meta: {
+      title: '博客列表',
+    },
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),
