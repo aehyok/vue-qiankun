@@ -1,5 +1,5 @@
 import 'v-contextmenu/dist/themes/default.css'
-import { createApp,'ssssss' } from 'vue'
+import { createApp } from 'vue'
 
 // 内置ElementPlus
 import ElementPlus from 'element-plus'
