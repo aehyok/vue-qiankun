@@ -4,12 +4,12 @@ import { createPinia } from 'pinia';
 import VConsole from 'vconsole';
 import App from './App.vue';
 import router from './router';
-import { Button as NutButton, Signature as NutSignature } from '@nutui/nutui';
+// import { Button as NutButton, Signature as NutSignature } from '@nutui/nutui';
 const app = createApp(App);
 
-app
-.use(NutButton)
-.use(NutSignature)
+// app
+// .use(NutButton)
+// .use(NutSignature)
 
 app.use(router)
 .use(createPinia()).mount('#app');

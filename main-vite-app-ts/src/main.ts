@@ -10,6 +10,5 @@ import router from './router'
 import store from './store'
 
 const app = createApp(App)
-
 app.use(store).use(router).use(ElementPlus, { locale: zhCn })
 app.mount('#app')
