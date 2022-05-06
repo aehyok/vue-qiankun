@@ -23,6 +23,7 @@
 </template>
 <script lang="ts" setup>
   import { NavBar as VanNavBar, Tabbar as VanTabbar, TabbarItem as VanTabbarItem } from 'vant';
+import { onMounted, watch } from 'vue';
   import { useRouter } from 'vue-router';
   import useStore from '../store';
 
@@ -40,10 +41,46 @@
     active: '/images/main/btn-mine-selected.png',
     inactive: '/images/main/btn-mine-normal.png',
   };
+
+  const sleep = (time: number) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve()
+        }, time);
+    })
+ }
+
   const scan = () => {
     console.log('scan');
     router.push('/scan');
   };
+
+  const setConfig = () => {
+    let config = {
+      id: Date.now,
+      title: 'config'
+    }
+    console.log('setConfig','sssssssssssssss')
+    store.setConfig(config)
+  }
+
+  onMounted(async() => {
+    console.log('onMounted----sleep')
+    await sleep(3000)
+    setInterval(() => {
+      console.log('setTimeout')
+      setConfig()
+    }, 500);
+  })
+
+  watch(
+    () => store.config, 
+    (newValue, oldValue) => {
+    console.log(newValue, 'new-old-Value')
+  }, {
+    immediate: true,
+    deep: true
+  })
 </script>
 <style lang="scss" scoped>
   :deep(.van-nav-bar) {

@@ -6,6 +6,12 @@ export default defineStore({
     return {
       count: 0,
       title: 'hello aehyok',
+      config: {}
     };
   },
+  actions: {
+    setConfig(config: any) {
+      this.config = config
+    }
+  }
 });
