@@ -1,0 +1,29 @@
+{
+  "name": "vue-qiankun",
+  "version": "1.0.0",
+  "description": "| 如果有问题尽量考虑使用 pnpm来安装依赖，本人已使用pnpm进行验证没问题的",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cd:main": "cd packages/main-vite-app-ts",
+    "cd:child": "cd packages/webpack-app-ts",
+    "cd:map": "cd packages/map-app-ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aehyok/vue-qiankun.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aehyok/vue-qiankun/issues"
+  },
+  "homepage": "https://github.com/aehyok/vue-qiankun#readme",
+  "dependencies": {
+    "@app/map-webpack": "workspace:^0.1.0",
+    "url-loader": "^4.1.1"
+  }
+}
