@@ -1,5 +1,8 @@
-## qiankun微前端在vue3中的使用详细说明
+## qiankun微前端在vue3中的使用详细说明: 注意分支
 ---
+> 注意dev-qiankun 这个是初始化版本，初步上手难度较低
+
+> 现在的dev版本是使用了pnpm monorepo,了解了以后也比较简单
 
 > 2022年 2月11日已升级到最新版本的依赖， npm i -g pnpm,然后用pnpm去操作
 
