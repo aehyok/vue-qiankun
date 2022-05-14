@@ -1,21 +1,23 @@
 <template>
   <div>
-    <sl-table
-      v-if="show"
-      :list="list"
-      @handleSelectionChange="handleSelectionChange"
-      :columns="columns"
-      :operates="operates"
-      v-model:pageModel="pageModel"
-      @search="search"
+    <el-table
+      :data="apilist"
+      :span-method="objectSpanMethod"
+      border
+      style="width: 100%; margin-top: 20px"
     >
-    </sl-table>
+      <el-table-column prop="id" label="ID" width="180" />
+      <el-table-column prop="project" label="project" />
+      <el-table-column prop="content" label="content" />
+      <el-table-column prop="version" label="version" />
+      <el-table-column prop="createTime" label="createTime" />
+    </el-table>
   </div>
 </template>
 <script>
-import SlTable from '../../../common/components/table/index.vue'
+import SlTable from '../../../../common/components/table/index.vue'
 import { defineComponent, reactive, toRefs, onMounted, ref } from "vue";
-import { getTableConfig, getTableData } from '@/services/api';
+import { getTableConfig, getTableData, getLogList } from '@/services/api';
 export default defineComponent({
   components: { SlTable },
   setup() {
@@ -57,6 +59,13 @@ export default defineComponent({
       } // 列操作按钮
     });
 
+    const getLogListApi = () => {
+      getLogList({}).then(result => {
+        console.log(result, 'getLogListApi')
+        state.apilist = result.data
+      })
+    }
+    getLogListApi()
     onMounted(async() => {
 
       const resultConfig = await getTableConfig('0')

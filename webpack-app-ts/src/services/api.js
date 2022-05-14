@@ -24,3 +24,12 @@ export const getTableData = (data) => {
         data,
     })
 }
+
+export const getLogList = (data) => {
+    console.timeLog('config')
+    console.log('data11111111111111111111-----',  new Date().getMilliseconds());
+    return request(`/Log`, {
+        method: 'get',
+        data,
+    })
+}

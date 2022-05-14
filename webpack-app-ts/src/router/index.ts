@@ -117,6 +117,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "eltable" */ "../views/echarts/index.vue")
   },
+  {
+    path: "/webpack-app/log-list",
+    name: "log-list",
+    component: () =>
+      import(/* webpackChunkName: "eltable" */ "../views/log/index.vue")
+  },
 ];
 
 export default routes

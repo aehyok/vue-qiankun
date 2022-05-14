@@ -18,7 +18,7 @@ const dataState = createPersistedState({
 export default createStore({
   state: (): AppState => ({
     systemList: [],
-    menuList: getMenuList(), // 所有菜单
+    menuList: [], // 所有菜单
     currentSystem: {
       systemId: '',
       path: '',
@@ -35,6 +35,9 @@ export default createStore({
     setSystemList(state: AppState, data) {
       state.systemList = data
       // console.log(state.systemList, "state.Slist")
+    },
+    setMenuList(state: AppState, data) {
+      state.menuList = data
     }
   },
   actions: {
@@ -44,6 +47,7 @@ export default createStore({
 
         if (res?.code === 200) {
           commit('setSystemList', res.data)
+          commit('setMenuList', getMenuList())
           window.location.href = '/'
         }
       } catch (error) {
