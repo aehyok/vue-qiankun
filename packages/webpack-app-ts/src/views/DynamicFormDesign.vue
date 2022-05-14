@@ -34,7 +34,7 @@
       </div>
       <div class="center" id="content" @dragover="dragOverClick" @drop="dropClick">
         <el-form :model="state.formConfig.formData" label-width="120px">
-          <drag-view
+          <sl-drag
             v-model:columnList="state.formConfig.formListItem"
             :formData="state.formConfig.formData"
             @setCurrentColumn="setCurrentColumn"
@@ -44,7 +44,7 @@
       <div class="right-component">
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="组件配置" name="first">
-            <config-view v-model:column="currentColumn"></config-view>
+            <sl-config v-model:column="currentColumn"></sl-config>
           </el-tab-pane>
           <el-tab-pane label="组件样式" name="second">组件样式</el-tab-pane>
           <el-tab-pane label="表单配置" name="third">表单配置</el-tab-pane>
@@ -90,8 +90,9 @@ import CodeEditor from '@/components/code-editor/index'
 import { useStore } from 'vuex';
 import Clipboard from 'clipboard';
 import { ElMessage, ElMessageBox } from 'element-plus'
-import DragView from "../../../common/components/form/drag-index.vue";
-import ConfigView from "../../../common/components/form/config-index.vue";
+// import DragView from "../../../common/components/form/drag-index.vue";
+import { SlDrag, SlConfig} from '@app/components'
+// import ConfigView from "../../../common/components/form/config-index.vue";
 import { generateCode } from '@/utils/code-generator.js'
 import shortid from 'shortid';
 import { copyToClipboard } from '@/utils/utils'

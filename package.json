@@ -8,9 +8,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cd:main": "cd packages/main-vite-app-ts",
-    "cd:child": "cd packages/webpack-app-ts",
-    "cd:map": "cd packages/map-app-ts"
+    "build:main": "cd packages/main-vite-app-ts && pnpm build",
+    "build:child": "cd packages/webpack-app-ts && pnpm build",
+    "build:map": "cd packages/map-app-ts && pnpm build",
+    "build:all": " pnpm build:main && pnpm build:child && pnpm build:map"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "homepage": "https://github.com/aehyok/vue-qiankun#readme",
   "dependencies": {
     "@app/map-webpack": "workspace:^0.1.0",
+    "@element-plus/icons-vue": "^1.1.4",
     "url-loader": "^4.1.1"
   }
 }

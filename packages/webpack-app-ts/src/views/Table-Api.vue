@@ -13,7 +13,8 @@
   </div>
 </template>
 <script>
-import SlTable from '../../../common/components/table/index.vue'
+// import SlTable from '../../../common/components/table/index.vue'
+import { SlTable } from '@app/components'
 import { defineComponent, reactive, toRefs, onMounted, ref } from "vue";
 import { getTableConfig, getTableData } from '@/services/api';
 export default defineComponent({

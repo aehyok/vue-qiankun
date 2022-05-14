@@ -6,7 +6,7 @@
             label-width="120px"
             ref="formDom"
         >
-            <FormView
+            <sl-form
             :columnList="state.formConfig.formListItem"
             :formData="state.formConfig.formData"
             v-model:columnSpan="state.formConfig.cols"
@@ -37,8 +37,9 @@
 </template>
 <script setup>
 import { reactive, watch, ref, onMounted } from "vue";
-import FormView from "../../../common/components/form/index.vue";
-import VueJsonEditor from '../../../common/components/json/vue-json-editor.vue'
+import { SlForm, VueJsonEditor } from '@app/components'
+// import FormView from "../../../common/components/form/index.vue";
+// import VueJsonEditor from '../../../common/components/json/vue-json-editor.vue'
 import { getFormConfig } from '@/services/api';
 let formDom = ref(null);
 

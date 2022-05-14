@@ -35,6 +35,18 @@ export function webpackList(): Menu[] {
       path: '/webpack-app/tableandformanddetail'
     },
     {
+      id: 20,
+      title: '日志管理',
+      path: '#',
+      children: [
+        {
+          id: 11,
+          title: "日志列表",
+          path: "/webpack-app/log-list",
+        }
+      ]
+    },
+    {
       id: 2,
       title: '2、table列表封装',
       path: '/webpack-app/table'
@@ -98,18 +110,6 @@ export function webpackList(): Menu[] {
       id: 9,
       title: 'table',
       path: '/webpack-app/table'
-    },
-    {
-      id: 20,
-      title: '日志管理',
-      path: '#',
-      children: [
-        {
-          id: 11,
-          title: "日志列表",
-          path: "/webpack-app/log-list",
-        }
-      ]
     }
   ]
 }

@@ -14,6 +14,7 @@
     "core-js": "^3.6.5",
     "date-fns": "^2.28.0",
     "element-plus": "^2.0.1",
+    "jsoneditor": "^9.7.2",
     "leaflet": "^1.7.1",
     "leaflet-contextmenu": "^1.4.0",
     "regenerator-runtime": "^0.13.9",
@@ -23,6 +24,7 @@
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-0",
+    "vuedraggable": "^4.1.0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {

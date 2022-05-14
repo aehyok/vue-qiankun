@@ -5,9 +5,11 @@ importers:
   .:
     specifiers:
       '@app/map-webpack': workspace:^0.1.0
+      '@element-plus/icons-vue': ^1.1.4
       url-loader: ^4.1.1
     dependencies:
       '@app/map-webpack': link:packages/map-app-ts
+      '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue/1.1.4
       url-loader: registry.npmmirror.com/url-loader/4.1.1
 
   packages/components:
@@ -107,6 +109,7 @@ importers:
       core-js: ^3.6.5
       date-fns: ^2.28.0
       element-plus: ^2.0.1
+      jsoneditor: ^9.7.2
       leaflet: ^1.7.1
       leaflet-contextmenu: ^1.4.0
       regenerator-runtime: ^0.13.9
@@ -119,6 +122,7 @@ importers:
       vue: ^3.0.0
       vue-class-component: ^8.0.0-0
       vue-router: ^4.0.0-0
+      vuedraggable: ^4.1.0
       vuex: ^4.0.0-0
       webpack: ^4.36.0
     dependencies:
@@ -129,6 +133,7 @@ importers:
       core-js: registry.npmmirror.com/core-js/3.22.5
       date-fns: registry.npmmirror.com/date-fns/2.28.0
       element-plus: registry.npmmirror.com/element-plus/2.2.0_vue@3.2.33
+      jsoneditor: registry.npmmirror.com/jsoneditor/9.7.4
       leaflet: registry.npmmirror.com/leaflet/1.8.0
       leaflet-contextmenu: registry.npmmirror.com/leaflet-contextmenu/1.4.0
       regenerator-runtime: registry.npmmirror.com/regenerator-runtime/0.13.9
@@ -138,6 +143,7 @@ importers:
       vue: registry.npmmirror.com/vue/3.2.33
       vue-class-component: registry.npmmirror.com/vue-class-component/8.0.0-rc.1_vue@3.2.33
       vue-router: registry.npmmirror.com/vue-router/4.0.15_vue@3.2.33
+      vuedraggable: registry.npmmirror.com/vuedraggable/4.1.0_vue@3.2.33
       vuex: registry.npmmirror.com/vuex/4.0.2_vue@3.2.33
     devDependencies:
       '@vue/cli-plugin-babel': registry.npmmirror.com/@vue/cli-plugin-babel/4.5.17_95b4fdf657a0dbd24bb3d165d27ebcc4
@@ -162,6 +168,7 @@ importers:
 
   packages/webpack-app-ts:
     specifiers:
+      '@app/components': workspace:^1.0.0
       '@app/map-webpack': workspace:^0.1.0
       '@element-plus/icons-vue': ^1.1.4
       '@ffmpeg/ffmpeg': ^0.10.1
@@ -199,6 +206,7 @@ importers:
       wangeditor: ^4.7.11
       webpack: ^5.0.0
     dependencies:
+      '@app/components': link:../components
       '@app/map-webpack': link:../map-app-ts
       '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue/1.1.4_vue@3.2.33
       '@ffmpeg/ffmpeg': registry.npmmirror.com/@ffmpeg/ffmpeg/0.10.1
@@ -1733,6 +1741,14 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
+  registry.npmmirror.com/@element-plus/icons-vue/1.1.4:
+    resolution: {integrity: sha512-Iz/nHqdp1sFPmdzRwHkEQQA3lKvoObk8azgABZ81QUOpW9s/lUyQVUSh0tNtEPZXQlKwlSh7SPgoVxzrE0uuVQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-1.1.4.tgz}
+    name: '@element-plus/icons-vue'
+    version: 1.1.4
+    peerDependencies:
+      vue: ^3.2.0
+    dev: false
+
   registry.npmmirror.com/@element-plus/icons-vue/1.1.4_vue@3.2.33:
     resolution: {integrity: sha512-Iz/nHqdp1sFPmdzRwHkEQQA3lKvoObk8azgABZ81QUOpW9s/lUyQVUSh0tNtEPZXQlKwlSh7SPgoVxzrE0uuVQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-1.1.4.tgz}
     id: registry.npmmirror.com/@element-plus/icons-vue/1.1.4
@@ -2936,7 +2952,7 @@ packages:
       pnp-webpack-plugin: registry.npmmirror.com/pnp-webpack-plugin/1.7.0_typescript@4.1.6
       portfinder: registry.npmmirror.com/portfinder/1.0.28
       postcss-loader: registry.npmmirror.com/postcss-loader/3.0.0
-      sass-loader: registry.npmmirror.com/sass-loader/8.0.2_sass@1.51.0+webpack@5.72.1
+      sass-loader: registry.npmmirror.com/sass-loader/8.0.2_sass@1.51.0+webpack@4.46.0
       ssri: registry.npmmirror.com/ssri/8.0.1
       terser-webpack-plugin: registry.npmmirror.com/terser-webpack-plugin/1.4.5_webpack@4.46.0
       thread-loader: registry.npmmirror.com/thread-loader/2.1.3_webpack@4.46.0
@@ -7171,6 +7187,22 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: false
+
+  registry.npmmirror.com/follow-redirects/1.15.0_debug@4.3.4:
+    resolution: {integrity: sha512-aExlJShTV4qOUOL7yF1U5tvLCB0xQuudbf6toyYA0E/acBNw71mvjFTnLaRp50aQaYocMR0a/RMMBIHeZnGyjQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/follow-redirects/-/follow-redirects-1.15.0.tgz}
+    id: registry.npmmirror.com/follow-redirects/1.15.0
+    name: follow-redirects
+    version: 1.15.0
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: registry.npmmirror.com/debug/4.3.4
+    dev: true
 
   registry.npmmirror.com/for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/for-in/-/for-in-1.0.2.tgz}
@@ -7982,7 +8014,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: registry.npmmirror.com/eventemitter3/4.0.7
-      follow-redirects: registry.npmmirror.com/follow-redirects/1.15.0
+      follow-redirects: registry.npmmirror.com/follow-redirects/1.15.0_debug@4.3.4
       requires-port: registry.npmmirror.com/requires-port/1.0.0
     transitivePeerDependencies:
       - debug

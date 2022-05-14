@@ -2,7 +2,7 @@
 <div>
     <el-row :gutter="20">
         <el-col :span="12">
-            <detail  :columnList="state.columns" :columnData="state.formData"/>
+            <sl-detail  :columnList="state.columns" :columnData="state.formData"/>
         </el-col>
         <el-col :span="12">
             <vue-json-editor
@@ -16,8 +16,9 @@
     </div>
 </template>
 <script setup>
-import Detail from '../../../common/components/detail/index.vue'
-import VueJsonEditor from '../../../common/components/json/vue-json-editor.vue'
+// import Detail from '../../../common/components/detail/index.vue'
+import { SlDetail, VueJsonEditor  } from '@app/components'
+// import VueJsonEditor from '../../../common/components/json/vue-json-editor.vue'
 import { reactive } from 'vue'
 const options = {
     mode: "code",

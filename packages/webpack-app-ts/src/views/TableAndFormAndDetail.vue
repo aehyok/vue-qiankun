@@ -51,16 +51,17 @@
     </el-dialog>
 </template>
 <script>
-import SlDialog from '../../../common/components/dialog/index.vue'
-import SlTable from '../../../common/components/table/index.vue'
-import SlForm from '../../../common/components/form/index.vue'
-import SlDetail from '../../../common/components/detail/index.vue'
-import SlSearch from '../../../common/components/search/index.vue'
+// import SlDialog from '../../../common/components/dialog/index.vue'
+// import SlTable from '../../../common/components/table/index.vue'
+// import SlForm from '../../../common/components/form/index.vue'
+// import SlDetail from '../../../common/components/detail/index.vue'
+// import SlSearch from '../../../common/components/search/index.vue'
+import {  SlTable, SlForm, SlDetail, SlSearch } from '@app/components'
 import { defineComponent, reactive, toRefs, ref } from "vue";
 import { table_DataList, table_ColumnList, form_ColumnList, form_Data, detail_ColumnList, detail_Data } from "./TableAndFormAndDetail";
 import { ElMessageBox, ElMessage } from "element-plus"
 export default defineComponent({
-  components: { SlTable, SlDialog,SlForm ,SlDetail, SlSearch },
+  components: { SlTable, SlForm, SlDetail, SlSearch },
   setup() {
     const showEdit = ref (false)
     const showDetail = ref (false)
