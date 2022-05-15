@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <h1>image图片</h1>
     <el-row class="component-config-row">
         <el-col :span="8" class="component-config-right">
@@ -62,4 +62,4 @@
   align-items: center;
   padding-right: 15px;
 }
-</style>
+</style> -->

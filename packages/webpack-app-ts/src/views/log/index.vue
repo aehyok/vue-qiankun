@@ -2,7 +2,6 @@
   <div>
     <el-table
       :data="apilist"
-      :span-method="objectSpanMethod"
       border
       style="width: 100%; margin-top: 20px"
     >
@@ -61,40 +60,43 @@ export default defineComponent({
     });
 
     const getLogListApi = () => {
-      getLogList({}).then(result => {
+      getLogList({
+        page: 1,
+        limit: 23
+      }).then(result => {
         console.log(result, 'getLogListApi')
-        state.apilist = result.data
+        state.apilist = result.data.docs
       })
     }
     getLogListApi()
     onMounted(async() => {
 
-      const resultConfig = await getTableConfig('0')
-      const resultData = await getTableData({
-        GuideLineId: '0',
-        Param: {
-          "@tabletype": "VIEW",
-          "@tablename":"dvsdb30.view_villageepidemic"
-        }
-      })
-      console.time('data1')
-      Promise.all([resultConfig, resultData]).then((values) => {
-        console.timeEnd('data1')
-        console.log(values, 'values', new Date().getMilliseconds());
-        const result = values[0]
-        if(result.code == 200 ) {
-          console.log(result, 'table列表配置')
-          state.columns = JSON.parse(result.data.resultColumns) 
-          console.log(state.columns, 'state.columns')
-        }
-        const data = values[1]
-        if(data.code == 200 ) {
-          console.log(data, 'table列表配置')
-          state.list =data.data
-          console.log(state.columns, 'state.columns')
-        }
-        show.value= true
-      });
+      // const resultConfig = await getTableConfig('0')
+      // const resultData = await getTableData({
+      //   GuideLineId: '0',
+      //   Param: {
+      //     "@tabletype": "VIEW",
+      //     "@tablename":"dvsdb30.view_villageepidemic"
+      //   }
+      // })
+      // console.time('data1')
+      // Promise.all([resultConfig, resultData]).then((values) => {
+      //   console.timeEnd('data1')
+      //   console.log(values, 'values', new Date().getMilliseconds());
+      //   const result = values[0]
+      //   if(result.code == 200 ) {
+      //     console.log(result, 'table列表配置')
+      //     state.columns = JSON.parse(result.data.resultColumns) 
+      //     console.log(state.columns, 'state.columns')
+      //   }
+      //   const data = values[1]
+      //   if(data.code == 200 ) {
+      //     console.log(data, 'table列表配置')
+      //     state.list =data.data
+      //     console.log(state.columns, 'state.columns')
+      //   }
+      //   show.value= true
+      // });
       // console.log('table-config')
       // const result = await getTableConfig('0')
 

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
    <h1>text文本框</h1>
     <el-row class="component-config-row">
         <el-col :span="8" class="component-config-right">
@@ -121,4 +121,4 @@ console.log(props.column, '文本框的text-props-column')
   align-items: center;
   padding-right: 15px;
 }
-</style>
+</style> -->
