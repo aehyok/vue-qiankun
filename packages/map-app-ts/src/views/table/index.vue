@@ -4,7 +4,7 @@
     <el-table-column prop="zx" label="子项" width="180" />
     <el-table-column prop="fx" label="分项" width="180" />
     <el-table-column prop="count" label="汇总数据（万元）" width="180" />
-    <el-table-column prop="s" label="审核"  align="center">
+    <!-- <el-table-column prop="s" label="审核"  align="center">
       <template #default="scope">
         <div style="display: flex; align-items: center">
     <el-radio  label="1" size="small"> 通过</el-radio>
@@ -19,7 +19,7 @@
          <el-button text>编辑</el-button>
         </div>
       </template>
-    </el-table-column>
+    </el-table-column> -->
   </el-table>
 </template>
 
@@ -29,6 +29,20 @@ const tree = [
     key: '1',
     value : '公共基础设施建设',
     rowSpan: 9,
+    colSpan: 1,
+    isValue : 0
+  },
+    {
+    key: '2',
+    value : '水电路气网及排水',
+    rowSpan: 6,
+    colSpan: 1,
+    isValue : 0
+  },
+      {
+    key: '3',
+    value : '文化娱乐设施',
+    rowSpan: 3,
     colSpan: 1,
     isValue : 0
   }
@@ -107,8 +121,10 @@ const arraySpanMethod = ({
   columnIndex,
 }: any) => {
   // console.log( column, 'row-column-rowIndex-columnIndex')
-  
-  console.log(row[column.property], 'ßdddddd')
+  if(rowIndex === 0 && columnIndex === 0) {
+    tree.forEach(item => item.isValue = 0)
+  }
+  console.log(row[column.property], rowIndex, columnIndex, '--------------------------')
   let obj = tree.find(item => item.value === row[column.property])
   if(obj && obj.value) {
     console.log(row[column.property], rowIndex, columnIndex, ';;;;;;')
@@ -119,31 +135,27 @@ const arraySpanMethod = ({
         obj.rowSpan, obj.colSpan
       ]
     } else {
-      console.log(row[column.property], rowIndex, columnIndex,'tree--xiamian')
-      if(rowIndex === 0 && columnIndex === 0) {
-      return [
-        obj.rowSpan, obj.colSpan
-      ]
-      } else {
-        return [0 ,0]
-      }
+       return [0 ,0]
+      // console.log(row[column.property], rowIndex, columnIndex,'tree--xiamian')
+      // if(rowIndex === 0 && columnIndex === 0) {
+      //   return [
+      //     obj.rowSpan, obj.colSpan
+      //   ]
+      // }
+      // else if (rowIndex === 0 && columnIndex === 1) {
+      //   return [
+      //     obj.rowSpan, obj.colSpan
+      //   ]  
+      // }
+      // else if (rowIndex === 6 && columnIndex === 1) {
+      //   return [
+      //     obj.rowSpan, obj.colSpan
+      //   ]  
+      // }
+      //  else {
+      //   return [0 ,0]
+      // }
     }
   } 
-  // if(rowIndex >= 0 && rowIndex <= 5 && columnIndex === 1) {
-  //     console.log(rowIndex, columnIndex , 'rowIndex-columnIndex')
-  //   return [6,1]
-  // } else {
-  //   if(columnIndex === 1) {
-  //     return [0, 0]
-  //   }
-  // }
-
-  // if(rowIndex >= 7 && columnIndex === 1) {
-  //   return [3, 1]
-  // } else {
-  //   if(columnIndex === 1) {
-  //     return [0, 0]
-  //   }
-  // }
 }
 </script>
