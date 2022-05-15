@@ -30,4 +30,3 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 node_modules/
-qiankun/
