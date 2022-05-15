@@ -66,7 +66,7 @@
             </span>
           </template>
           <!--图片url-->
-          <template v-else-if="column.image">
+          <!-- <template v-else-if="column.image">
             <img
               :src="scope.row[column.image][0].url"
               alt=""
@@ -74,7 +74,7 @@
               class="table-img"
             />
             <span v-else>--</span>
-          </template>
+          </template> -->
           <template v-else>
             <span>{{ scope.row[column.prop] }}</span>
           </template>
