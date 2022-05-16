@@ -1,6 +1,5 @@
 import { defineComponent, reactive } from 'vue'
 import child from './child'
-// import slTable from '../../../../common/components/table/index.vue'
 import { list_test, columns_test } from "./tableConfig";
 export default defineComponent({
   components: {

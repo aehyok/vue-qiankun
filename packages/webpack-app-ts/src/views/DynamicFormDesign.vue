@@ -90,9 +90,7 @@ import CodeEditor from '@/components/code-editor/index'
 import { useStore } from 'vuex';
 import Clipboard from 'clipboard';
 import { ElMessage, ElMessageBox } from 'element-plus'
-// import DragView from "../../../common/components/form/drag-index.vue";
 import { SlDrag, SlConfig} from '@app/components'
-// import ConfigView from "../../../common/components/form/config-index.vue";
 import { generateCode } from '@/utils/code-generator.js'
 import shortid from 'shortid';
 import { copyToClipboard } from '@/utils/utils'

@@ -12,7 +12,6 @@
   </div>
 </template>
 <script>
-// import SlTable from '../../../common/components/table/index.vue'
 import { SlTable } from '@app/components'
 import { defineComponent, reactive, toRefs } from "vue";
 import { list_test, columns_test } from "./tableConfig";

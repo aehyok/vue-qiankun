@@ -37,9 +37,7 @@
 </template>
 <script setup>
 import { reactive, watch, ref } from "vue";
-// import FormView from "../../../common/components/form/index.vue";
 import { SlForm, VueJsonEditor } from '@app/components'
-// import VueJsonEditor from '../../../common/components/json/vue-json-editor.vue'
 let formDom = ref(null);
 
 const state = reactive({

@@ -16,9 +16,7 @@
     </div>
 </template>
 <script setup>
-// import Detail from '../../../common/components/detail/index.vue'
 import { SlDetail, VueJsonEditor  } from '@app/components'
-// import VueJsonEditor from '../../../common/components/json/vue-json-editor.vue'
 import { reactive } from 'vue'
 const options = {
     mode: "code",

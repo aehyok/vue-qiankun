@@ -39,8 +39,6 @@
 <script setup>
 import { defineComponent, reactive, toRefs, ref } from "vue";
 import { SlForm, VueJsonEditor } from '@app/components'
-// import FormView from "../../../common/components/form/index.vue";
-// import VueJsonEditor from '../../../common/components/json/vue-json-editor.vue'
 let formDom = ref(null);
 
 const state = reactive({
