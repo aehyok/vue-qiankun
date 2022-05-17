@@ -1,5 +1,6 @@
-export const add = (a, b) => {
-    return a + b
-}
+// import {  autoComponentRegister } from './components/auto-component-register'
 
-// test
+
+// export { 
+//     autoComponentRegister
+// }

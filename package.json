@@ -15,7 +15,6 @@
     "start:child": "cd packages/webpack-app-ts && pnpm start",
     "start:map": "cd packages/map-app-ts && pnpm start",
     "start:all": "pnpm start:main && pnpm start:child && pnpm start:map"
-
   },
   "repository": {
     "type": "git",
@@ -28,7 +27,7 @@
   },
   "homepage": "https://github.com/aehyok/vue-qiankun#readme",
   "dependencies": {
-    "@app/map-webpack": "workspace:^0.1.0",
+    "@app/utils": "workspace:^1.0.0",
     "@element-plus/icons-vue": "^1.1.4",
     "url-loader": "^4.1.1"
   }

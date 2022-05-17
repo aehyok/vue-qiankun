@@ -12,7 +12,6 @@
     "lint-fix": "eslint --fix ./src --ext .vue,.js,.ts"
   },
   "dependencies": {
-    "@app/map-webpack": "workspace:^0.1.0",
     "@app/utils": "workspace:^1.0.0",
     "axios": "^0.21.1",
     "element-plus": "^2.0.1",

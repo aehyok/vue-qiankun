@@ -29,7 +29,7 @@ const props = defineProps({
 
 const ifshow = (column,data) => {
   if(column && column.ifshow) {
-    console.log((typeof column.ifshow) === 'string',data, 'sssssssssssssssss--------------------------')
+    console.log(column, (typeof column.ifshow) === 'string',data, 'sssssssssssssssss--------------------------')
     // 通过JSON 定义的函数对象
     if(typeof column.ifshow === 'object' ) {
       return column.ifshow(data)

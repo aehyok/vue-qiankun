@@ -4,11 +4,11 @@ importers:
 
   .:
     specifiers:
-      '@app/map-webpack': workspace:^0.1.0
+      '@app/utils': workspace:^1.0.0
       '@element-plus/icons-vue': ^1.1.4
       url-loader: ^4.1.1
     dependencies:
-      '@app/map-webpack': link:packages/map-app-ts
+      '@app/utils': link:packages/utils
       '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue/1.1.4
       url-loader: registry.npmmirror.com/url-loader/4.1.1
 
@@ -22,7 +22,6 @@ importers:
 
   packages/main-vite-app-ts:
     specifiers:
-      '@app/map-webpack': workspace:^0.1.0
       '@app/utils': workspace:^1.0.0
       '@types/node': ^15.0.2
       '@types/nprogress': ^0.2.0
@@ -57,7 +56,6 @@ importers:
       vuex: ^4.0.0
       vuex-persistedstate: ^4.1.0
     dependencies:
-      '@app/map-webpack': link:../map-app-ts
       '@app/utils': link:../utils
       axios: registry.npmmirror.com/axios/0.21.4
       element-plus: registry.npmmirror.com/element-plus/2.2.0_vue@3.2.33
@@ -96,7 +94,6 @@ importers:
   packages/map-app-ts:
     specifiers:
       '@app/components': workspace:^1.0.0
-      '@app/map-webpack': workspace:^0.1.0
       '@geoman-io/leaflet-geoman-free': ^2.11.4
       '@vue/cli-plugin-babel': ~4.5.0
       '@vue/cli-plugin-pwa': ~4.5.0
@@ -127,7 +124,6 @@ importers:
       webpack: ^4.36.0
     dependencies:
       '@app/components': link:../components
-      '@app/map-webpack': 'link:'
       '@geoman-io/leaflet-geoman-free': registry.npmmirror.com/@geoman-io/leaflet-geoman-free/2.12.0_leaflet@1.8.0
       cesium: registry.npmmirror.com/cesium/1.93.0
       core-js: registry.npmmirror.com/core-js/3.22.5
@@ -169,7 +165,6 @@ importers:
   packages/webpack-app-ts:
     specifiers:
       '@app/components': workspace:^1.0.0
-      '@app/map-webpack': workspace:^0.1.0
       '@element-plus/icons-vue': ^1.1.4
       '@ffmpeg/ffmpeg': ^0.10.1
       '@types/shortid': ^0.0.29
@@ -207,7 +202,6 @@ importers:
       webpack: ^5.0.0
     dependencies:
       '@app/components': link:../components
-      '@app/map-webpack': link:../map-app-ts
       '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue/1.1.4_vue@3.2.33
       '@ffmpeg/ffmpeg': registry.npmmirror.com/@ffmpeg/ffmpeg/0.10.1
       ace-builds: registry.npmmirror.com/ace-builds/1.5.0
@@ -7187,22 +7181,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: false
-
-  registry.npmmirror.com/follow-redirects/1.15.0_debug@4.3.4:
-    resolution: {integrity: sha512-aExlJShTV4qOUOL7yF1U5tvLCB0xQuudbf6toyYA0E/acBNw71mvjFTnLaRp50aQaYocMR0a/RMMBIHeZnGyjQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/follow-redirects/-/follow-redirects-1.15.0.tgz}
-    id: registry.npmmirror.com/follow-redirects/1.15.0
-    name: follow-redirects
-    version: 1.15.0
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: registry.npmmirror.com/debug/4.3.4
-    dev: true
 
   registry.npmmirror.com/for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/for-in/-/for-in-1.0.2.tgz}
@@ -8014,7 +7992,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: registry.npmmirror.com/eventemitter3/4.0.7
-      follow-redirects: registry.npmmirror.com/follow-redirects/1.15.0_debug@4.3.4
+      follow-redirects: registry.npmmirror.com/follow-redirects/1.15.0
       requires-port: registry.npmmirror.com/requires-port/1.0.0
     transitivePeerDependencies:
       - debug

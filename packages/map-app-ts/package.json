@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "@app/components": "workspace:^1.0.0",
-    "@app/map-webpack": "workspace:^0.1.0",
     "@geoman-io/leaflet-geoman-free": "^2.11.4",
     "cesium": "^1.90.0",
     "core-js": "^3.6.5",
