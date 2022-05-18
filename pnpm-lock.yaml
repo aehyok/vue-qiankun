@@ -6,10 +6,12 @@ importers:
     specifiers:
       '@app/utils': workspace:^1.0.0
       '@element-plus/icons-vue': ^1.1.4
+      '@vueuse/core': ^8.5.0
       url-loader: ^4.1.1
     dependencies:
       '@app/utils': link:packages/utils
       '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue/1.1.4
+      '@vueuse/core': registry.npmmirror.com/@vueuse/core/8.5.0
       url-loader: registry.npmmirror.com/url-loader/4.1.1
 
   packages/components:
@@ -3147,10 +3149,34 @@ packages:
       vue-demi: registry.npmmirror.com/vue-demi/0.12.5_vue@3.2.33
     dev: false
 
+  registry.npmmirror.com/@vueuse/core/8.5.0:
+    resolution: {integrity: sha512-VEJ6sGNsPlUp0o9BGda2YISvDZbhWJSOJu5zlp2TufRGVrLcYUKr31jyFEOj6RXzG3k/H4aCYeZyjpItfU8glw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vueuse/core/-/core-8.5.0.tgz}
+    name: '@vueuse/core'
+    version: 8.5.0
+    peerDependencies:
+      '@vue/composition-api': ^1.1.0
+      vue: ^2.6.0 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      '@vueuse/metadata': registry.npmmirror.com/@vueuse/metadata/8.5.0
+      '@vueuse/shared': registry.npmmirror.com/@vueuse/shared/8.5.0
+      vue-demi: registry.npmmirror.com/vue-demi/0.12.5
+    dev: false
+
   registry.npmmirror.com/@vueuse/metadata/8.4.2:
     resolution: {integrity: sha512-2BIj++7P0/I5dfMsEe8q7Kw0HqVAjVcyNOd9+G22/ILUC9TVLTeYOuJ1kwa1Gpr+0LWKHc6GqHiLWNL33+exoQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vueuse/metadata/-/metadata-8.4.2.tgz}
     name: '@vueuse/metadata'
     version: 8.4.2
+    dev: false
+
+  registry.npmmirror.com/@vueuse/metadata/8.5.0:
+    resolution: {integrity: sha512-WxsD+Cd+bn+HcjpY6Dl9FJ8ywTRTT9pTwk3bCQpzEhXVYAyNczKDSahk50fCfIJKeWHhyI4B2+/ZEOxQAkUr0g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vueuse/metadata/-/metadata-8.5.0.tgz}
+    name: '@vueuse/metadata'
+    version: 8.5.0
     dev: false
 
   registry.npmmirror.com/@vueuse/shared/8.4.2_vue@3.2.33:
@@ -3169,6 +3195,22 @@ packages:
     dependencies:
       vue: registry.npmmirror.com/vue/3.2.33
       vue-demi: registry.npmmirror.com/vue-demi/0.12.5_vue@3.2.33
+    dev: false
+
+  registry.npmmirror.com/@vueuse/shared/8.5.0:
+    resolution: {integrity: sha512-qKG+SZb44VvGD4dU5cQ63z4JE2Yk39hQUecR0a9sEdJA01cx+XrxAvFKJfPooxwoiqalAVw/ktWK6xbyc/jS3g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vueuse/shared/-/shared-8.5.0.tgz}
+    name: '@vueuse/shared'
+    version: 8.5.0
+    peerDependencies:
+      '@vue/composition-api': ^1.1.0
+      vue: ^2.6.0 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      vue-demi: registry.npmmirror.com/vue-demi/0.12.5
     dev: false
 
   registry.npmmirror.com/@webassemblyjs/ast/1.11.1:
@@ -13532,6 +13574,21 @@ packages:
       vue: ^3.0.0
     dependencies:
       vue: registry.npmmirror.com/vue/3.2.33
+    dev: false
+
+  registry.npmmirror.com/vue-demi/0.12.5:
+    resolution: {integrity: sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.12.5.tgz}
+    name: vue-demi
+    version: 0.12.5
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
     dev: false
 
   registry.npmmirror.com/vue-demi/0.12.5_vue@3.2.33:

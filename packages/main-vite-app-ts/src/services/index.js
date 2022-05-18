@@ -57,7 +57,7 @@ export const getSystemList = async () => {
 /**
  *  登录暂存用户列表
  */
-export const login = () => {
+export const login = (data) => {
   return {
     data: [
       {

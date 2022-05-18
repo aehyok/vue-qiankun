@@ -29,6 +29,7 @@
   "dependencies": {
     "@app/utils": "workspace:^1.0.0",
     "@element-plus/icons-vue": "^1.1.4",
+    "@vueuse/core": "^8.5.0",
     "url-loader": "^4.1.1"
   }
 }

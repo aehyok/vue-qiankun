@@ -24,7 +24,7 @@
             <img src="../../../public/images/login/icon-2.png" />
             <el-input placeholder="验证码" v-model="loginForm.captchaValue" style="flex: 1" />
             <div class="verCodeImg">
-              <img :src="vcodeImg" />
+              <img :src="loginForm.vcodeImg" />
               <!-- <div class="svgbox" v-html="vcodeImg"></div> -->
               <span @click="getImageVerifyCode" style="margin-left: 20px; cursor: pointer">
                 换一张
@@ -58,8 +58,9 @@
   import { defineComponent, onBeforeMount, reactive, toRefs, ref } from 'vue'
   import { useStore } from 'vuex'
   import FindPassword from './find-password.vue'
-  import { warnMessage } from '../../utils/message'
-  import { getVerifyCode, login } from '../../services/index'
+  import { warnMessage } from '@/utils/message'
+  import { getVerifyCode, login } from '@/services/index'
+  import { useLogin } from '@/hooks/useLogin'
 
   export default defineComponent({
     name: 'Login',
@@ -97,18 +98,21 @@
         }
       }
 
+      const rememberPasCbox = ref(false)
+
       const state = reactive({
         projectName: 'qiankun综合服务平台',
-        vcodeImg: '',
         imgUrl: '',
         loginImage: 'images/login/systhetic.jpg',
-        rememberPasCbox: false,
+        // rememberPasCbox: false,
         loading: false,
         loginForm: {
           account: 'admin',
           password: '123456',
           captchaValue: 'oyta',
-          captchaId: ''
+          captchaId: '',
+          vcodeImg: '',
+          loading: false,
         },
         dialogVisible: false,
         rules: {
@@ -118,81 +122,15 @@
         }
       })
 
-      // 判断是否已缓存账号密码
-      const checkRemPass = () => {
-        const loginRemInfo = localStorage.getItem('loginRemInfo')
-        if (loginRemInfo) {
-          const jsonInof = JSON.parse(decode(loginRemInfo))
-          state.loginForm.account = jsonInof.account
-          state.loginForm.password = jsonInof.password
-          state.rememberPasCbox = true
-        }
-      }
-
-      // 获取验证码
-      const getImageVerifyCode = async () => {
-        const res = await getVerifyCode()
-        if (res.code === 200) {
-          state.loginForm.captchaId = res.data.key
-          state.vcodeImg = res.data.b64s
-        }
-        console.log(res)
-      }
+      const  { checkRemPass, checkNeedRemPass, getImageVerifyCode, adminLogin } = useLogin(state.loginForm, rememberPasCbox)
 
       onBeforeMount(() => {
         checkRemPass()
         getImageVerifyCode()
       })
 
-      // 判断是否需要记住账号密码
-      const checkNeedRemPass = () => {
-        if (state.rememberPasCbox) {
-          const info = {
-            account: state.loginForm.account,
-            password: state.loginForm.password
-          }
-          localStorage.setItem('loginRemInfo', encode(JSON.stringify(info)))
-        } else {
-          localStorage.removeItem('loginRemInfo')
-        }
-      }
-
-      // 验证登录
-      const adminLogin = async () => {
-        console.log(md5(state.loginForm.password).toLocaleLowerCase())
-        state.loading = true
-
-        const res = await login({
-          account: encode(state.loginForm.account),
-          captchaValue: '0yta',
-          password: md5(state.loginForm.password).toLocaleLowerCase(),
-          captchaId: state.loginForm.captchaId
-        })
-        state.loading = false
-        if (res?.code === 200) {
-          const account = encode(state.loginForm.account)
-          const password = md5(state.loginForm.password).toLocaleLowerCase()
-          const result = res.data.find(
-            (item) => item.account === account && item.password === password
-          )
-          if (result?.success === '200') {
-            localStorage.setItem(
-              'token',
-              JSON.stringify({
-                ...result,
-                account: state.loginForm.account
-              })
-            )
-            localStorage.removeItem('vuex')
-            store.dispatch('fetchSystemList')
-          } else {
-            warnMessage('用户名或密码输入有误，请重新输入')
-          }
-        } else {
-          getImageVerifyCode()
-        }
-      }
       const submitForm = () => {
+        console.log(rememberPasCbox.value, 'rember')
         form.value.validate((valid) => {
           if (valid) {
             checkNeedRemPass()
@@ -207,14 +145,12 @@
 
       return {
         ...toRefs(state),
-        adminLogin,
+        rememberPasCbox,
         getImageVerifyCode,
         submitForm,
         checkNeedRemPass,
         checkRemPass,
         validatorVerCode,
-        validatePass,
-        validateAccount,
         cancel,
         form
       }
