@@ -79,13 +79,8 @@
 </template>
 
 <script>
-  import md5 from 'js-md5'
-  import { encode, decode } from 'js-base64'
   import { defineComponent, onBeforeMount, reactive, toRefs, ref } from 'vue'
-  import { useStore } from 'vuex'
   import FindPassword from './find-password.vue'
-  import { warnMessage } from '@/utils/message'
-  import { getVerifyCode, login } from '@/services/index'
   import { useLogin } from '@/hooks/useLogin'
 
   export default defineComponent({
@@ -95,7 +90,6 @@
     },
     setup() {
       const form = ref(null)
-      const store = useStore()
 
       const validatePass = (rule, value, callback) => {
         if (value === '') {
