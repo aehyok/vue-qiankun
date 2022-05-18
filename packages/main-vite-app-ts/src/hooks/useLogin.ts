@@ -5,22 +5,22 @@ import { getVerifyCode, login } from '@/services/index'
 import md5 from 'js-md5'
 import { warnMessage } from '@/utils/message'
 
-export const useLogin = (loginForm: any, rememberPasCbox: any) => {
+export function useLogin (loginForm: any, rememberPasCbox: any) {
 
   const store = useStore()
-  const checkRemPass = () => {
+  const checkRememberPassword = () => {
     const loginRemInfo = localStorage.getItem('loginRemInfo')
     if (loginRemInfo) {
       const jsonInof = JSON.parse(decode(loginRemInfo))
       loginForm.account = jsonInof.account
       loginForm.password = jsonInof.password
-      console.log(loginForm, 'loginForm')
+      console.log(loginForm, 'loginFormloginFormloginForm')
       rememberPasCbox = true
     }
   }
 
   // 判断是否需要记住账号密码
-  const checkNeedRemPass = () => {
+  const checkNeedRememberPassword = () => {
     if (rememberPasCbox) {
       const info = {
         account: loginForm.account,
@@ -42,7 +42,7 @@ export const useLogin = (loginForm: any, rememberPasCbox: any) => {
     console.log(res)
   }
 
-  const adminLogin = async () => {
+  const submitLogin = async () => {
     console.log(md5(loginForm.password).toLocaleLowerCase())
     loginForm.loading = true
 
@@ -79,9 +79,9 @@ export const useLogin = (loginForm: any, rememberPasCbox: any) => {
   }
 
   return {
-      checkRemPass,
-      checkNeedRemPass,
+    checkRememberPassword,
+    checkNeedRememberPassword,
       getImageVerifyCode,
-      adminLogin
+      submitLogin
   }
 }
