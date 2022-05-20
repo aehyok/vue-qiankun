@@ -5,3 +5,5 @@ const initialState = {}
 const actions: MicroAppStateActions = initGlobalState(initialState)
 
 export default actions
+
+var x = 1

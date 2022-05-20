@@ -24,49 +24,49 @@
 
 <script>
 // import { getSystemParamValue } from '@/services'
-import { ElMessage } from "element-plus";
+import { ElMessage } from 'element-plus'
 import { defineComponent, onMounted, reactive, computed, watch, toRefs } from 'vue'
 export default defineComponent({
   components: {},
   props: {
     showBtn: {
       type: Boolean,
-      default: true,
+      default: true
     },
     fileType: {
       type: String,
-      default: '',
+      default: ''
     },
     limit: {
       type: Number,
-      default: 1,
+      default: 1
     },
     sizeLimit: {
       type: Number,
-      default: 5120, // kb
+      default: 5120 // kb
     },
     accept: {
       type: String,
-      default: '', // .jpg,.jpeg,.png,.bmp
+      default: '' // .jpg,.jpeg,.png,.bmp
     },
     isMaterial: {
       type: Boolean,
-      default: false,
+      default: false
     },
     requiredAudit: {
       type: String,
-      default: 'no',
+      default: 'no'
     },
     multiple: {
       type: Boolean,
-      default: false,
+      default: false
     },
     uploadData: {
       type: Array,
       default: function () {
         return []
       }
-    },
+    }
   },
   emits: ['callback'], // 先申明
   setup(props, context) {
@@ -74,7 +74,7 @@ export default defineComponent({
       headers: {},
       upLoadUrl: '', // 上传地址
       // sizeLimit: 5120, // 规定上传的大小
-      format: [], // 规定格式
+      format: [] // 规定格式
     })
 
     const limitCount = computed(() => {
@@ -94,7 +94,7 @@ export default defineComponent({
 
     const handleExceed = (files, fileList) => {
       ElMessage.warning(
-        `最多上传 ${props.limit} 个文件，已上传${props.uploadData.length}个文件，还可以上传${limitCount}个文件`,
+        `最多上传 ${props.limit} 个文件，已上传${props.uploadData.length}个文件，还可以上传${limitCount}个文件`
       )
     }
     const handleUploadSuccess = (response, file, fileList) => {
@@ -108,7 +108,8 @@ export default defineComponent({
     const beforeAvatarUpload = (file) => {
       if (props.fileType === 'img') {
         // const isJPG = state.format.includes(file.type)
-        const isJPG = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg'
+        const isJPG =
+          file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg'
         if (!isJPG) {
           ElMessage.error(`上传图片只能是 jpeg ,png, jpg 格式!`)
           return false
@@ -136,7 +137,7 @@ export default defineComponent({
       limitCount,
       handleExceed,
       handleUploadSuccess,
-      beforeAvatarUpload,
+      beforeAvatarUpload
       // getImageSize,
     }
   }

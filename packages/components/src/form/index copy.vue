@@ -13,11 +13,7 @@
             v-for="(childColumn, columnIndex) in child.showCondition"
             :key="columnIndex + 'childColumnView'"
           >
-            <component-view
-              :columnSpan="columnSpan"
-              :column="childColumn"
-              :formData="formData"
-            />
+            <component-view :columnSpan="columnSpan" :column="childColumn" :formData="formData" />
             <template v-for="son in childColumn.controls">
               <template v-if="formData[childColumn.name] === son.value">
                 <template
@@ -45,21 +41,19 @@ import ComponentView from './column/component-view.vue'
 const props = defineProps({
   columnList: {
     type: Array,
-    default: () => [],
+    default: () => []
   },
   formData: {
     type: Object,
-    default: () => { },
+    default: () => {}
   },
   columnSpan: {
     type: Number,
-    default: 24,
+    default: 24
   },
   componentExampleClick: {
     type: Function,
-    default: () => {
-
-    }
+    default: () => {}
   }
 })
 </script>

@@ -13,18 +13,17 @@
   </el-form-item>
 </template>
 <script setup>
-import { computed, ref } from "vue"
-const emit = defineEmits(["update:data"])
+import { computed, ref } from 'vue'
+const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
     type: [Object],
-    default: () => {
-    },
+    default: () => {}
   },
   data: {
     type: String,
-    default: '',
-  },
+    default: ''
+  }
 })
 
 const { column } = props
@@ -38,7 +37,7 @@ rules.value = [
   {
     required: column.required,
     message: placeholder,
-    trigger: ['blur', 'change'],
+    trigger: ['blur', 'change']
   }
 ]
 
@@ -53,6 +52,6 @@ const value = computed({
   },
   set: function (val) {
     emit('update:data', val)
-  },
+  }
 })
 </script>

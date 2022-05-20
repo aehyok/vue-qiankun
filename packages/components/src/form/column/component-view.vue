@@ -1,10 +1,11 @@
 <template>
-  <el-col :span="columnSpan" style="width:100%;">
+  <el-col :span="columnSpan" style="width: 100%">
     <!--不包含View则是npm组件库中的-->
     <component
       v-if="
-        column && column.type &&
-        !column.type.includes('View') && 
+        column &&
+        column.type &&
+        !column.type.includes('View') &&
         !column.type.includes('textSelect')
       "
       :is="column.type + 'View'"
@@ -35,7 +36,7 @@
     />
   </el-col>
 </template>
-<script >
+<script>
 import { createApp, defineComponent } from 'vue'
 // import textView from './item-view/textView.vue'
 // import textareaView from './item-view/textareaView.vue'
@@ -78,16 +79,16 @@ export default defineComponent({
   props: {
     column: {
       type: Object,
-      default: () => [],
+      default: () => []
     },
     formData: {
       type: Object,
-      default: () => { },
+      default: () => {}
     },
     columnSpan: {
       type: Number,
-      default: 24,
-    },
+      default: 24
+    }
   },
   setup(props, context) {
     // const $context = require.context("./item-view", true, /.vue$/)
@@ -105,8 +106,8 @@ export default defineComponent({
     }
 
     const isIncludes = () => {
-      console.log(["textSelect", "numberSelect"].includes(column.type), 'text-number----select')
-      return ["textSelect", "numberSelect"].includes(column.type)
+      console.log(['textSelect', 'numberSelect'].includes(column.type), 'text-number----select')
+      return ['textSelect', 'numberSelect'].includes(column.type)
     }
     // const compose = computed({
     //   get: function() {
@@ -121,7 +122,7 @@ export default defineComponent({
     return {
       isIncludes
     }
-  },
+  }
 })
 </script>
 <style scoped></style>

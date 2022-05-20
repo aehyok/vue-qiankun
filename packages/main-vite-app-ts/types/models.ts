@@ -6,24 +6,24 @@
 
 // 菜单核心定义
 export interface Menu {
-  id: string,
-  path?: string,
-  url?: string,
-  title: string,
-  children?: Menu[],
+  id: string
+  path?: string
+  url?: string
+  title: string
+  children?: Menu[]
 }
 
 export interface SystemMenu {
-  MenuList: Menu[],
+  MenuList: Menu[]
   Key: string
 }
 
 export interface SystemInfo {
-  systemId: string,   
-  path: string,   
-  title: string;
+  systemId: string
+  path: string
+  title: string
 }
 
 export type Dictionary = {
   [key: number]: string
-};
+}

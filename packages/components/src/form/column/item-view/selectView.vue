@@ -10,12 +10,7 @@
       @change="changeSelectClick"
       @clear="clearClick"
     >
-      <el-option
-        v-for="item in list"
-        :key="item.code"
-        :label="item.name"
-        :value="item.code"
-      >
+      <el-option v-for="item in list" :key="item.code" :label="item.name" :value="item.code">
       </el-option>
     </el-select>
   </el-form-item>
@@ -24,16 +19,16 @@
 import { computed, ref, watch } from 'vue'
 import { useMock } from '../../../../hooks/useMock'
 import { getDictionaryList } from '../../../../services/common'
-const emit = defineEmits(["update:data"])
+const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
     type: [Object],
-    default: () => { },
+    default: () => {}
   },
   data: {
     type: [Number, String, Array],
-    default: undefined,
-  },
+    default: undefined
+  }
 })
 
 const { column } = props
@@ -53,7 +48,7 @@ const list = ref([])
 const { getDictionaryListApi } = useMock()
 
 const getList = async (code) => {
-  const dataList = await getDictionaryListApi(code);
+  const dataList = await getDictionaryListApi(code)
   list.value = dataList
 }
 
@@ -61,18 +56,18 @@ if (typeof dictionary === 'object' && dictionary.constructor === Array) {
   // dictionary = 'type'
   list.value = dictionary
 } else if (typeof dictionary === 'string') {
-  if (dictionary === "") {
+  if (dictionary === '') {
     console.warn('请配置dictionary字典的code编码')
   }
 
-  getList(dictionary);
+  getList(dictionary)
 }
 const rules = ref([])
 const placeholder = column.placeholder ? column.placeholder : `请输入${column.title}`
 rules.value = [
   {
     required: column.required,
-    message: placeholder,
+    message: placeholder
   }
 ]
 
@@ -88,7 +83,7 @@ const value = computed({
   },
   set: function (val) {
     emit('update:data', val)
-  },
+  }
 })
 
 const changeSelectClick = (item) => {
@@ -108,7 +103,7 @@ watch(
     immediate: true,
     deep: true
   }
-);
+)
 
 const clearClick = () => {
   if (props.column && props.column.changeFunction) {

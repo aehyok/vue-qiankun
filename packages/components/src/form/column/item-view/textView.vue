@@ -1,6 +1,11 @@
 <!--简单文本框-->
 <template>
-  <el-form-item :label="column.title + '：'" :prop="column.name" :rules="rules" :required="column.required">
+  <el-form-item
+    :label="column.title + '：'"
+    :prop="column.name"
+    :rules="rules"
+    :required="column.required"
+  >
     <el-input
       v-model="value"
       :name="column.name"
@@ -17,16 +22,16 @@
 </template>
 <script setup>
 import { computed, ref, watch } from 'vue'
-const emit = defineEmits(["update:data"])
+const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
     type: [Object],
-    default: () => { },
+    default: () => {}
   },
   data: {
     type: String,
-    default: '',
-  },
+    default: ''
+  }
 })
 const { column } = props
 
@@ -36,7 +41,7 @@ rules.value = [
   {
     required: column.required,
     message: placeholder,
-    trigger: ['blur', 'change'],
+    trigger: ['blur', 'change']
   }
 ]
 
@@ -58,16 +63,18 @@ watch(
   () => props.visible,
   (newVal, oldVal) => {
     if (newVal) {
-      state.disabled = false;
+      state.disabled = false
     }
+  }
+)
+watch(
+  () => props.column,
+  (newValue, oldValue) => {
+    console.log(newValue, '文本框的配置项发生变更了')
   },
-);
-watch(()=>
-  props.column,(newValue, oldValue) =>{
-    console.log(newValue,'文本框的配置项发生变更了')
-  }, {
+  {
     immediate: true,
-    deep: true,
+    deep: true
   }
 )
 </script>

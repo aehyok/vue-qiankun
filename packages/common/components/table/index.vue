@@ -16,21 +16,10 @@
     @sort-change="sortChange"
   >
     <!--region 选择框-->
-    <el-table-column
-      v-if="isCheckBox"
-      type="selection"
-      align="center"
-      style="width: 65px"
-    >
+    <el-table-column v-if="isCheckBox" type="selection" align="center" style="width: 65px">
     </el-table-column>
     <!---seq 序列号--->
-    <el-table-column
-      v-if="isIndex"
-      label="序号"
-      type="index"
-      align="center"
-      width="65px"
-    >
+    <el-table-column v-if="isIndex" label="序号" type="index" align="center" width="65px">
     </el-table-column>
     <!--endregion-->
     <!--region 数据列-->
@@ -45,18 +34,14 @@
       >
         <template #default="scope">
           <!-- html可自定义字段的显示html -->
-          <template v-if="column.type==='html'">
+          <template v-if="column.type === 'html'">
             <div v-html="convertHtml(scope.row, column)"></div>
           </template>
 
           <!--字典转换--->
           <template v-else-if="column.dictionary">
             <span>
-              {{
-                column.dictionary.find(
-                  (item) => item.code === scope.row[column.prop]
-                ).name
-              }}
+              {{ column.dictionary.find((item) => item.code === scope.row[column.prop]).name }}
             </span>
           </template>
           <!--日期格式-->
@@ -88,10 +73,7 @@
       align="center"
       :width="operates.width"
       :fixed="operates.fixed"
-      v-if="
-        Object.keys(operates).length &&
-        operates.list.filter((_x) => _x.show).length
-      "
+      v-if="Object.keys(operates).length && operates.list.filter((_x) => _x.show).length"
     >
       <!-- v-permission="btn.permission" -->
       <template #default="scope">
@@ -124,26 +106,21 @@
 </template>
 <!--endregion-->
 <script setup>
-
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch } from 'vue'
 import { format } from 'date-fns'
 import PageSetting from './page-setting.vue'
 const props = defineProps({
   pageModel: {
     type: Object,
-    default: () => { }
+    default: () => {}
   },
   height: {
     type: String,
-    default: () => {
-
-    }
+    default: () => {}
   },
   defaultSort: {
     type: Object,
-    default: () => {
-
-    }
+    default: () => {}
   },
   // 数据列表
   list: {
@@ -159,7 +136,7 @@ const props = defineProps({
   },
   border: {
     type: Boolean,
-    default: true,
+    default: true
   },
   /*
     操作按钮组 === label: 文本，type :类型（primary / success / warning / danger / info / text），show：是否显示，icon：按钮图标，plain：是否朴素按钮，disabled：是否禁用，method：回调方法
@@ -176,30 +153,30 @@ const props = defineProps({
   } // table 表格的控制参数
 })
 console.log(props, '--------111-----------')
-const sortable = "custom"
+const sortable = 'custom'
 const ordersList = []
 const activeThead = {}
-const emit = defineEmits(["search", "handleCurrentChange", "handleSelectionChange"])
-const normalColumns = ref([]);
+const emit = defineEmits(['search', 'handleCurrentChange', 'handleSelectionChange'])
+const normalColumns = ref([])
 
 // 多行选中
-const handleSelectionChange = val => {
-  emit("handleSelectionChange", val);
-};
+const handleSelectionChange = (val) => {
+  emit('handleSelectionChange', val)
+}
 
 const convertDate = (data, dateFormat) => {
   console.log(data, 'row-------------')
-  return data ? format(new Date(data), dateFormat) : ""
+  return data ? format(new Date(data), dateFormat) : ''
 }
 
-const handleCurrentChange = val => {
+const handleCurrentChange = (val) => {
   console.log(val, 'handleCurrentChange')
-  emit("handleCurrentChange", val)
+  emit('handleCurrentChange', val)
 }
 // 显示 表格操作弹窗
 const showActionTableDialog = () => {
-  emit("handelAction");
-};
+  emit('handelAction')
+}
 
 // const evalColumn = {
 //     prop:"custom",
@@ -212,12 +189,12 @@ const showActionTableDialog = () => {
 
 // 将定义的字符串函数 通过eval进行解析执行
 const convertHtml = (row, column) => {
-  console.log(column.html,'html')
+  console.log(column.html, 'html')
   if (column && column.html) {
-     if(typeof column.html === 'object' ) {
-       return column.html(scope.row, column)
-     }
-     if(typeof column.html === 'string') {
+    if (typeof column.html === 'object') {
+      return column.html(scope.row, column)
+    }
+    if (typeof column.html === 'string') {
       // // 用eval调用没问题
       const evalFunction = eval(column.html)
       return evalFunction(row, column)
@@ -225,14 +202,14 @@ const convertHtml = (row, column) => {
       // const evalFunction = new Function('row', 'column',column.html)
       // console.log(evalFunction, 'evalFunction')
       // return evalFunction(row, column)
-     }
+    }
   }
-  
+
   // // 用new Function 的调用方式 （row，column） => {} 要去掉
   // const evalFunction = new Function('row', 'column',column.html)
   // console.log(evalFunction, 'evalFunction')
   // return evalFunction(row, column)
-  
+
   // function getTest (test)  {
   //   console.log('test', test)
   // }
@@ -245,50 +222,61 @@ const convertHtml = (row, column) => {
 }
 
 const functionColumn = {
-    prop:"custom",
-    label:"自定义",
-    align: "center",
-    html: (row, column) => {
-      return row.title==="编号3" ? `<span style="color: red;">${ row.remark }</span>`:`未定义`
-    }
+  prop: 'custom',
+  label: '自定义',
+  align: 'center',
+  html: (row, column) => {
+    return row.title === '编号3' ? `<span style="color: red;">${row.remark}</span>` : `未定义`
   }
+}
 
-watch(() => props.columns, (newValue, oldValue) => {
-    normalColumns.value = props.columns.filter(item => (!item.type || !["checkbox", "index"].includes(item.type)))
+watch(
+  () => props.columns,
+  (newValue, oldValue) => {
+    normalColumns.value = props.columns.filter(
+      (item) => !item.type || !['checkbox', 'index'].includes(item.type)
+    )
     console.log(props.columns, normalColumns.value, '--------normalColumns-----------')
   },
-    {
-      immediate: true,
-      deep: true
-    })
+  {
+    immediate: true,
+    deep: true
+  }
+)
 // 判断是否展示多选框
 const isCheckBox = computed(() => {
-  console.log(props.columns.some(item => item.type === 'index'), '是否显示check')
-  return props.columns.some(item => item.type === 'checkbox')
+  console.log(
+    props.columns.some((item) => item.type === 'index'),
+    '是否显示check'
+  )
+  return props.columns.some((item) => item.type === 'checkbox')
 })
 
 // 判断是否展示多选框
 const isIndex = computed(() => {
-  console.log(props.columns.some(item => item.type === 'index'), '是否显示index')
-  return props.columns.some(item => item.type === 'index')
+  console.log(
+    props.columns.some((item) => item.type === 'index'),
+    '是否显示index'
+  )
+  return props.columns.some((item) => item.type === 'index')
 })
 
 const sortOrder = {
-  "ascending": "asc",
-  "descending": "desc",
+  ascending: 'asc',
+  descending: 'desc'
 }
 
 const sortChange = (column, prop, order) => {
   if (sortable === 'custom') {
     console.log(column, prop, order, '------sortChange--------')
-    let orderby = ""
+    let orderby = ''
     if (column) {
       orderby = {
         fieldName: column.prop,
         sort: sortOrder[column.order]
       }
     } else {
-      orderby = ""
+      orderby = ''
     }
     // 去调用接口传递orderby参数即可
   }

@@ -1,10 +1,13 @@
 {
-  "editor.defaultFormatter":"octref.vetur",
+  "editor.defaultFormatter": "octref.vetur",
   "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   "vetur.format.defaultFormatter.js": "vscode-typescript",
   "workbench.colorCustomizations": {
-      "titleBar.activeBackground": "#1E80FF",
-      "titleBar.inactiveBackground": "#1E80FF"
-    },
+    "titleBar.activeBackground": "#1E80FF",
+    "titleBar.inactiveBackground": "#1E80FF"
+  },
   "vetur.validation.template": false
 }

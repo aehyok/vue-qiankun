@@ -1,5 +1,5 @@
 <template>
-    <component :is="column.type + 'Config'" :column="column" />
+  <component :is="column.type + 'Config'" :column="column" />
 </template>
 
 <script>
@@ -18,38 +18,38 @@ import textConfig from './column/config/textConfig.vue'
 import videoConfig from './column/config/videoConfig.vue'
 import { defineComponent, watch } from 'vue'
 export default defineComponent({
-    props: {
-        column: {
-            type: Object,
-            default: () => { },
-        }
-    },
-    components: {
-        checkboxConfig,
-        cityselectConfig,
-        daterangeConfig,
-        dateConfig,
-        editorConfig,
-        imageConfig,
-        numberConfig,
-        radioConfig,
-        selectConfig,
-        textConfig,
-        textareaConfig,
-        staticConfig,
-        videoConfig
-    },
-    setup(props) {
-        watch(
-            () => props.column,
-            (newValue, oldValue) => {
-                console.log(props.column, "props.column")
-            },
-            {
-                // immediate: true,
-                deep: true
-            }
-        );
+  props: {
+    column: {
+      type: Object,
+      default: () => {}
     }
+  },
+  components: {
+    checkboxConfig,
+    cityselectConfig,
+    daterangeConfig,
+    dateConfig,
+    editorConfig,
+    imageConfig,
+    numberConfig,
+    radioConfig,
+    selectConfig,
+    textConfig,
+    textareaConfig,
+    staticConfig,
+    videoConfig
+  },
+  setup(props) {
+    watch(
+      () => props.column,
+      (newValue, oldValue) => {
+        console.log(props.column, 'props.column')
+      },
+      {
+        // immediate: true,
+        deep: true
+      }
+    )
+  }
 })
 </script>

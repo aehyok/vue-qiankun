@@ -7,14 +7,11 @@
 const props = defineProps({
   column: {
     type: Object,
-    default: () => {
-
-    }
+    default: () => {}
   },
   data: {
     type: String,
-    default: ""
+    default: ''
   }
 })
-
 </script>

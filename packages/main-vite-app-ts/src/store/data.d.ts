@@ -41,8 +41,8 @@ export function webpackList(): Menu[] {
       children: [
         {
           id: 11,
-          title: "日志列表",
-          path: "/webpack-app/log-list",
+          title: '日志列表',
+          path: '/webpack-app/log-list'
         }
       ]
     },

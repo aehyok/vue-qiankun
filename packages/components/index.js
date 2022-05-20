@@ -8,15 +8,13 @@ import SlSearch from './src/search/index.vue'
 import VueJsonEditor from './src/json/vue-json-editor.vue'
 // import { autoComponentRegister } from '../utils'
 
-
 export {
-    SlTable,
-    SlForm,
-    SlDrag,
-    SlDetail,
-    VueJsonEditor,
-    SlConfig,
-    SlSearch,
-    // SlDialog
+  SlTable,
+  SlForm,
+  SlDrag,
+  SlDetail,
+  VueJsonEditor,
+  SlConfig,
+  SlSearch
+  // SlDialog
 }
-

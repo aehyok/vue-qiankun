@@ -4,21 +4,18 @@
   </el-form-item>
 </template>
 <script setup>
-import { convertDate } from '../../../utils/date';
+import { convertDate } from '../../../utils/date'
 console.log('--date')
 const props = defineProps({
   column: {
     type: Object,
-    default: () => {
-
-    }
+    default: () => {}
   },
   data: {
     type: String,
-    default: ""
+    default: ''
   }
 })
 console.log(props.data, 'date')
 const value = convertDate(props.data)
-
 </script>

@@ -1,10 +1,7 @@
 <template>
   <div class="tree-select-div">
     <el-select v-model="selected" class="select-class" ref="selectRef">
-      <el-option
-        style="height: 100%; padding: 0"
-        :value="currentSelectTreeNode"
-      >
+      <el-option style="height: 100%; padding: 0" :value="currentSelectTreeNode">
         <el-tree
           ref="treeRef"
           :data="treeData"
@@ -22,23 +19,20 @@
   </div>
 </template>
 <script>
-import {
-  getRegionTree
-} from '../services/common.js'
-import { defineComponent, toRefs, reactive, ref, onBeforeMount } from 'vue';
+import { getRegionTree } from '../services/common.js'
+import { defineComponent, toRefs, reactive, ref, onBeforeMount } from 'vue'
 export default defineComponent({
   components: {},
-  props: {
-  },
+  props: {},
   setup(props, { emit }) {
     const state = reactive({
-      selected: "",
+      selected: '',
       treeData: [],
       currentSelectTreeNode: {},
       defaultProps: {
         label: 'name',
-        children: 'children',
-      },
+        children: 'children'
+      }
     })
     const selectRef = ref(null)
     // 获取tree数据
@@ -47,7 +41,7 @@ export default defineComponent({
         if (res.code === 200) {
           state.treeData = [res.data]
           state.selected = res.data.name
-          emit("selectTree", res.data.id)
+          emit('selectTree', res.data.id)
         }
       })
     }
@@ -60,12 +54,12 @@ export default defineComponent({
       state.currentSelectTreeNode = data
       state.selected = data.name
       selectRef.value.blur()
-      emit("selectTree", data.id)
+      emit('selectTree', data.id)
     }
     return {
       ...toRefs(state),
       getNode,
-      selectRef,
+      selectRef
     }
   }
 })

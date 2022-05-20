@@ -13,16 +13,16 @@
 </template>
 <script setup>
 import { computed, reactive } from 'vue'
-const emit = defineEmits(["update:data"])
+const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
     type: [Object],
-    default: () => { },
+    default: () => {}
   },
   data: {
     type: String,
-    default: '',
-  },
+    default: ''
+  }
 })
 const { column, data } = props
 const state = reactive({
@@ -31,8 +31,8 @@ const state = reactive({
 const rules = [
   {
     required: column.required,
-    message: `请输入${column.title}`,
-  },
+    message: `请输入${column.title}`
+  }
 ]
 const value = computed({
   get: function () {
@@ -40,6 +40,6 @@ const value = computed({
   },
   set: function (val) {
     emit('update:data', val)
-  },
+  }
 })
 </script>

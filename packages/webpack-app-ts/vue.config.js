@@ -1,12 +1,12 @@
-const { name } = require("./package");
+const { name } = require('./package')
 module.exports = {
-  publicPath: "./",
+  publicPath: './',
   lintOnSave: false,
-  outputDir: "../../../qiankun/main/child/webpack-app",
+  outputDir: '../../../qiankun/main/child/webpack-app',
   devServer: {
     port: 4000,
     headers: {
-      "Access-Control-Allow-Origin": "*"
+      'Access-Control-Allow-Origin': '*'
     },
     proxy: {
       '/so': {
@@ -14,25 +14,25 @@ module.exports = {
         ws: true,
         changeOrigin: true,
         pathRewrite: {
-          '^/so': '',
-        },
-      },
-    },
+          '^/so': ''
+        }
+      }
+    }
   },
   chainWebpack: (config) => {
     config.module
-      .rule("fonts")
+      .rule('fonts')
       .test(/.(ttf|otf|eot|woff|woff2)$/)
-      .use("url-loader")
-      .loader("url-loader")
-      .tap((options) => ({ name: "/fonts/[name].[hash:8].[ext]" }))
-      .end();
+      .use('url-loader')
+      .loader('url-loader')
+      .tap((options) => ({ name: '/fonts/[name].[hash:8].[ext]' }))
+      .end()
   },
   configureWebpack: {
     output: {
       library: `${name}`,
-      libraryTarget: "umd", // 把子应用打包成 umd 库格式
+      libraryTarget: 'umd', // 把子应用打包成 umd 库格式
       jsonpFunction: `webpackJsonp_${name}`
     }
   }
-};
+}

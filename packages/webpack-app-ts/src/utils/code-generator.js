@@ -1,4 +1,4 @@
-export const generateCode = function(formJson, codeType= 'vue') {
+export const generateCode = function (formJson, codeType = 'vue') {
   // let formJsonStr = JSON.stringify(formJson)
   let formJsonStr = JSON.stringify(formJson, null, '  ')
   if (codeType === 'html') {
@@ -52,7 +52,6 @@ export const generateCode = function(formJson, codeType= 'vue') {
 </script>
 </body>
 </html>`
-
   } else {
     return `<template>
   <div>
@@ -81,6 +80,5 @@ export const generateCode = function(formJson, codeType= 'vue') {
     })
   }
 </script>`
-
   }
 }

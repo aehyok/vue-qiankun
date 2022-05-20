@@ -15,90 +15,90 @@
     />
   </div>
 </template>
-  
+
 <script>
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed } from 'vue'
 export default defineComponent({
   props: {
     total: {
       required: true,
-      type: Number,
+      type: Number
     },
     page: {
       type: Number,
-      default: 1,
+      default: 1
     },
     limit: {
       type: Number,
-      default: 10,
+      default: 10
     },
     hideonsinglepage: {
       type: Boolean,
-      default: true,
+      default: true
     },
     pageSizes: {
       type: Array,
       default: function () {
-        return [10, 20, 50, 100];
-      },
+        return [10, 20, 50, 100]
+      }
     },
     layout: {
       type: String,
-      default: "total,prev, pager, next",
+      default: 'total,prev, pager, next'
     },
     background: {
       type: Boolean,
-      default: true,
+      default: true
     },
     autoScroll: {
       type: Boolean,
-      default: true,
+      default: true
     },
     hidden: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   setup(props, { emit }) {
     const currentPage = computed({
       get() {
-        return props.page;
+        return props.page
       },
       set(val) {
-        emit("update:page", val);
-      },
-    });
+        emit('update:page', val)
+      }
+    })
     const pageSize = computed({
       get() {
-        return props.limit;
+        return props.limit
       },
       set(val) {
-        emit("update:limit", val);
-      },
-    });
+        emit('update:limit', val)
+      }
+    })
     const handleSizeChange = (val) => {
-      emit("pageChange");
+      emit('pageChange')
       // if (props.autoScroll) {
       //   scrollTo(0, 800);
       // }
-    };
+    }
     const handleCurrentChange = (val) => {
-      emit("pageChange");
+      emit('pageChange')
       // if (props.autoScroll) {
       //   scrollTo(0, 800);
       // }
-    };
+    }
     return {
       currentPage,
       pageSize,
       handleSizeChange,
-      handleCurrentChange,
-    };
-  },
-});
-  </script>
-  
-  <style lang="scss" scoped>
+      handleCurrentChange
+    }
+  }
+})
+</script>
+
+<style lang="scss" scoped>
 .pagination-container {
   background: #fff;
   padding: 32px 16px;
@@ -108,4 +108,3 @@ export default defineComponent({
 //   display: none;
 // }
 </style>
-  

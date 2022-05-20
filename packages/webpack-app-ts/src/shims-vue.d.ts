@@ -9,5 +9,4 @@ declare module 'vue-drag-resize'
 
 declare interface Window {
   __POWERED_BY_QIANKUN__: any
-
 }

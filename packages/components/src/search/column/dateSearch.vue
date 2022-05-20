@@ -1,21 +1,21 @@
 <template>
-    {{ column.title }}：
-    <el-date-picker
-        v-model="value"
-        type="daterange"
-        @change="changeDate"
-        range-separator="至"
-        start-placeholder="开始日期"
-        end-placeholder="结束日期"
-        format="YYYY-MM-DD"
-        value-format="YYYY-MM-DD"
-    >
-        <!-- :default-value="[timeDefault, timeDefault]" -->
-    </el-date-picker>
+  {{ column.title }}：
+  <el-date-picker
+    v-model="value"
+    type="daterange"
+    @change="changeDate"
+    range-separator="至"
+    start-placeholder="开始日期"
+    end-placeholder="结束日期"
+    format="YYYY-MM-DD"
+    value-format="YYYY-MM-DD"
+  >
+    <!-- :default-value="[timeDefault, timeDefault]" -->
+  </el-date-picker>
 </template>
 <script setup>
 import { computed } from 'vue'
-const emit = defineEmits(["update:data"])
+const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
     type: [Object],
@@ -23,7 +23,7 @@ const props = defineProps({
   },
   data: {
     type: String,
-    default: ""
+    default: ''
   }
 })
 
@@ -36,6 +36,5 @@ const value = computed({
   }
 })
 
-const changeDate = () => {};
-
+const changeDate = () => {}
 </script>

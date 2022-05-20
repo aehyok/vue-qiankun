@@ -1,4 +1,4 @@
-import { ElMessage } from "element-plus"
+import { ElMessage } from 'element-plus'
 
 // 消息
 const Message = (message: string): any => {
@@ -13,7 +13,7 @@ const successMessage = (message: string): any => {
   return ElMessage({
     showClose: true,
     message,
-    type: "success"
+    type: 'success'
   })
 }
 
@@ -22,7 +22,7 @@ const warnMessage = (message: string): any => {
   return ElMessage({
     showClose: true,
     message,
-    type: "warning"
+    type: 'warning'
   })
 }
 
@@ -31,13 +31,8 @@ const errorMessage = (message: string): any => {
   return ElMessage({
     showClose: true,
     message,
-    type: "error"
+    type: 'error'
   })
 }
 
-export {
-  Message,
-  successMessage,
-  warnMessage,
-  errorMessage
-}
+export { Message, successMessage, warnMessage, errorMessage }

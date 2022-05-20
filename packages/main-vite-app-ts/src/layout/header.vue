@@ -43,17 +43,17 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, reactive, ref, toRefs, getCurrentInstance, watch } from "vue"
-  import { useRouter } from "vue-router"
-  import { useStore } from "vuex"
-  import { SystemInfo } from "../../types/models"
-  import { logout } from "../services"
-  import UpdatePassword from "../components/update-password.vue"
-  import Version from "../components/version.vue"
-  import { headerProp } from "./headerProp"
+  import { defineComponent, reactive, ref, toRefs, getCurrentInstance, watch } from 'vue'
+  import { useRouter } from 'vue-router'
+  import { useStore } from 'vuex'
+  import { SystemInfo } from '../../types/models'
+  import { logout } from '../services'
+  import UpdatePassword from '../components/update-password.vue'
+  import Version from '../components/version.vue'
+  import { headerProp } from './headerProp'
 
   export default defineComponent({
-    name: "Header",
+    name: 'Header',
     components: {
       UpdatePassword,
       Version
@@ -62,8 +62,8 @@
       const { proxy } = getCurrentInstance()
       const router = useRouter()
       const store = useStore()
-      let nickName: string = ""
-      const json = localStorage.getItem("token")
+      let nickName: string = ''
+      const json = localStorage.getItem('token')
       if (json != null) {
         nickName = JSON.parse(json).nickName
       }
@@ -71,8 +71,8 @@
       const updateForm = ref(null)
       const state: headerProp = reactive({
         updateDialogVisible: false,
-        logoImage: "images/home/icon_logo.png",
-        avatorImage: "images/avator.png",
+        logoImage: 'images/home/icon_logo.png',
+        avatorImage: 'images/avator.png',
         userName: nickName,
         versionDialogVisible: false
       })
@@ -83,15 +83,15 @@
 
       // 顶部切换系统
       const changeSystem = (item: SystemInfo) => {
-        store.commit("changeSystem", item.systemId)
+        store.commit('changeSystem', item.systemId)
         state.systemInfo = item
         router.push(item.path)
-        console.log(store.state.systemId, "store.state.systemId")
+        console.log(store.state.systemId, 'store.state.systemId')
       }
 
       // 返回主页
       const backHome = () => {
-        router.push("/home")
+        router.push('/home')
       }
 
       const headList = store.getters.headerMenuList
@@ -99,10 +99,10 @@
       // 退出二次确认框
       const checkLoginOut = () => {
         proxy
-          .$confirm("请问是否退出登录?", "提示", {
-            confirmButtonText: "确定",
-            cancelButtonText: "取消",
-            type: "warning"
+          .$confirm('请问是否退出登录?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
           })
           .then(() => {
             loginOutApi()
@@ -113,9 +113,9 @@
       }
 
       const handleCommand = (command: any) => {
-        if (command === "a") {
+        if (command === 'a') {
           state.updateDialogVisible = true
-        } else if (command === "c") {
+        } else if (command === 'c') {
           state.versionDialogVisible = true
         } else {
           checkLoginOut()
@@ -126,7 +126,7 @@
         logout().then((res: any) => {
           if (res.code === 200) {
             localStorage.clear()
-            router.push("/login")
+            router.push('/login')
           }
         })
       }
@@ -140,7 +140,7 @@
       }
 
       const selectMenu = (e: any) => {
-        store.commit("header", e)
+        store.commit('header', e)
       }
 
       watch(

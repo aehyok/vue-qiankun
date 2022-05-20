@@ -1,11 +1,7 @@
 <template>
   <el-form-item :label="column.label + '：'">
     <template v-for="(item, index) in data" :key="index">
-      <el-image
-        :src="item.url"
-        class="img-class"
-        @click="preview(item.url)"
-      ></el-image>
+      <el-image :src="item.url" class="img-class" @click="preview(item.url)"></el-image>
     </template>
   </el-form-item>
 </template>
@@ -13,9 +9,7 @@
 const props = defineProps({
   column: {
     type: Object,
-    default: () => {
-
-    }
+    default: () => {}
   },
   data: {
     type: [Array],

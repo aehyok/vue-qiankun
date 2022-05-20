@@ -1,49 +1,45 @@
 <template>
-    <el-row :gutter="20">
-        <el-col :span="12">
-        <el-form
-            :model="state.formConfig.formData"
-            label-width="120px"
-            ref="formDom"
-        >
-            <sl-form
-            :columnList="state.formConfig.formListItem"
-            :formData="state.formConfig.formData"
-            v-model:columnSpan="state.formConfig.cols"
-            />
-        </el-form>
-        </el-col>
-        <el-col :span="12">
-        <vue-json-editor
-            v-model:value="state.formConfig"
-            :options="state.options"
-            :plus="false"
-            height="800px"
-            @changeModel="changeModel"
+  <el-row :gutter="20">
+    <el-col :span="12">
+      <el-form :model="state.formConfig.formData" label-width="120px" ref="formDom">
+        <sl-form
+          :columnList="state.formConfig.formListItem"
+          :formData="state.formConfig.formData"
+          v-model:columnSpan="state.formConfig.cols"
         />
-        </el-col>
-    </el-row>
-    <el-row>
-        <el-button
-            size="large"
-            type="primary"
-            style="margin-left: 120px; height: 50px"
-            @click="submitForm"
-            native-type="submit"
-        >
-        提交
-        </el-button>
-    </el-row>
+      </el-form>
+    </el-col>
+    <el-col :span="12">
+      <vue-json-editor
+        v-model:value="state.formConfig"
+        :options="state.options"
+        :plus="false"
+        height="800px"
+        @changeModel="changeModel"
+      />
+    </el-col>
+  </el-row>
+  <el-row>
+    <el-button
+      size="large"
+      type="primary"
+      style="margin-left: 120px; height: 50px"
+      @click="submitForm"
+      native-type="submit"
+    >
+      提交
+    </el-button>
+  </el-row>
 </template>
 <script setup>
-import { reactive, watch, ref, onMounted } from "vue";
+import { reactive, watch, ref, onMounted } from 'vue'
 import { SlForm, VueJsonEditor } from '@app/components'
-import { getFormConfig } from '@/services/api';
-let formDom = ref(null);
+import { getFormConfig } from '@/services/api'
+let formDom = ref(null)
 
 onMounted(() => {
   console.log('form-config')
-  getFormConfig('1').then(result => {
+  getFormConfig('1').then((result) => {
     console.log(result)
     state.formConfig.formListItem = JSON.parse(result.data.columnList)
     console.log(state, 'config')
@@ -52,7 +48,7 @@ onMounted(() => {
 
 const state = reactive({
   options: {
-    mode: "code",
+    mode: 'code',
     mainMenuBar: false
   },
   show: true,
@@ -173,42 +169,44 @@ const state = reactive({
       // }
     ],
     formData: {
-      name: "主菜单栏目",
+      name: '主菜单栏目',
       total: 1,
       count: null,
       createDate: 1606730360386,
       type: 2,
       requireType: undefined,
-      creType: "",
+      creType: '',
       range: [],
       isExpired: false,
       isValid: true
     }
   }
-});
+})
 const submitForm = () => {
-  console.log(state.formConfig.formData, "formData");
+  console.log(state.formConfig.formData, 'formData')
   formDom.value.validate((valid) => {
     if (valid) {
-      console.log(valid, "this.valid");
+      console.log(valid, 'this.valid')
     } else {
-      console.log(valid, "验证失败");
+      console.log(valid, '验证失败')
     }
-    return false;
-  });
-};
+    return false
+  })
+}
 
 const changeModel = (value) => {
-    console.log(value,'changeModel')
-    state.formConfig = value
+  console.log(value, 'changeModel')
+  state.formConfig = value
 }
-watch(state,
-    ()=> (newValue, oldValue) => {
-    console.log(state.formConfig.formListItem,'ssssssssssssssss')
-},{
+watch(
+  state,
+  () => (newValue, oldValue) => {
+    console.log(state.formConfig.formListItem, 'ssssssssssssssss')
+  },
+  {
     immediate: true,
     deep: true
-})
-
+  }
+)
 </script>
 <style scoped></style>

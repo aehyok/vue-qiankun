@@ -17,17 +17,17 @@
   </el-container>
 </template>
 <script lang="ts">
-  import { defineComponent, watch, reactive, toRefs, defineAsyncComponent, onMounted } from "vue"
-  import { registerMicroApps, start } from "qiankun"
-  import { useStore } from "vuex"
-  import { useRoute } from "vue-router"
-  import { getActiveRule } from "../../../common/utils/ts/utils"
+  import { defineComponent, watch, reactive, toRefs, defineAsyncComponent, onMounted } from 'vue'
+  import { registerMicroApps, start } from 'qiankun'
+  import { useStore } from 'vuex'
+  import { useRoute } from 'vue-router'
+  import { getActiveRule } from '../../../common/utils/ts/utils'
 
   export default defineComponent({
-    name: "Layout",
+    name: 'Layout',
     components: {
-      Header: defineAsyncComponent(() => import("./header.vue")),
-      SideMenu: defineAsyncComponent(() => import("./side-menu.vue"))
+      Header: defineAsyncComponent(() => import('./header.vue')),
+      SideMenu: defineAsyncComponent(() => import('./side-menu.vue'))
     },
     setup() {
       const store = useStore()
@@ -39,25 +39,26 @@
       })
 
       onMounted(() => {
-
         const array: any = store.state.systemList
           .filter((item: any) => item.enabled === true)
           .map((item: any) => {
             return {
               name: item.name,
               entry:
-                process.env.NODE_ENV === "production" ? item.productionEntry : item.developmentEntry,
-              container: "#mainwrapper",
+                process.env.NODE_ENV === 'production'
+                  ? item.productionEntry
+                  : item.developmentEntry,
+              container: '#mainwrapper',
               activeRule: getActiveRule(`#/${item.name}`)
             }
           })
-        console.log("start loading")
+        console.log('start loading')
         // TODO  在主应用中注册微应用
         registerMicroApps([...array])
 
         // TODO 启动微应用
         start({
-          prefetch: "all",
+          prefetch: 'all',
           sandbox: {
             // strictStyleIsolation: true,
             experimentalStyleIsolation: true
@@ -69,7 +70,7 @@
       watch(
         () => route.path,
         () => {
-          state.showLeft = route.query.pageType !== "1" // 等于1 传递此参数代表不需要显示左侧菜单
+          state.showLeft = route.query.pageType !== '1' // 等于1 传递此参数代表不需要显示左侧菜单
           state.main = route.meta.main
         },
         {

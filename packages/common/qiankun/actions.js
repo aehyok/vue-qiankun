@@ -1,5 +1,5 @@
 function emptyAction() {
-  console.warn("Current execute action is empty!");
+  console.warn('Current execute action is empty!')
 }
 
 class Actions {
@@ -7,30 +7,30 @@ class Actions {
   actions = {
     onGlobalStateChange: emptyAction,
     setGlobalState: emptyAction
-  };
+  }
 
   /**
    * @name 设置 actions
    */
   setActions(actions) {
-    this.actions = actions;
+    this.actions = actions
   }
 
   /**
    * @name 映射
    */
   onGlobalStateChange(...args) {
-    return this.actions.onGlobalStateChange(...args);
+    return this.actions.onGlobalStateChange(...args)
   }
 
   /**
    * @name 映射
    */
   setGlobalState(...args) {
-    return this.actions.setGlobalState(...args);
+    return this.actions.setGlobalState(...args)
   }
 }
 
-const actions = new Actions();
+const actions = new Actions()
 
-export default actions;
+export default actions

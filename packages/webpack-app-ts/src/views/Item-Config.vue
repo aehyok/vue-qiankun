@@ -1,11 +1,5 @@
-<template>
-        item-config
-</template>
-    
-<script setup lang='ts'>
-    
-</script>
-    
-<style>
-    
-</style>
+<template>item-config</template>
+
+<script setup lang="ts"></script>
+
+<style></style>

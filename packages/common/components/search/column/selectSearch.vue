@@ -1,25 +1,25 @@
 <template>
- {{ column.title }}：
-    <el-select
-          v-model="column.defaultSelected"
-          :clearable="column.showClear ? true : false"
-          class="select-search"
-          :placeholder="'请选择' + column.placeholder"
-          @change="changeSelectClick"
-          @clear="clearClick"
-        >
-          <el-option
-            v-for="item in column.dictionary"
-            :key="item.code"
-            :label="item.name"
-            :value="item.code"
-          >
-          </el-option>
-    </el-select>
+  {{ column.title }}：
+  <el-select
+    v-model="column.defaultSelected"
+    :clearable="column.showClear ? true : false"
+    class="select-search"
+    :placeholder="'请选择' + column.placeholder"
+    @change="changeSelectClick"
+    @clear="clearClick"
+  >
+    <el-option
+      v-for="item in column.dictionary"
+      :key="item.code"
+      :label="item.name"
+      :value="item.code"
+    >
+    </el-option>
+  </el-select>
 </template>
 <script setup>
 import { computed } from 'vue'
-const emit = defineEmits(["update:data"])
+const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
     type: [Object],
@@ -27,7 +27,7 @@ const props = defineProps({
   },
   data: {
     type: String,
-    default: ""
+    default: ''
   }
 })
 
@@ -40,12 +40,11 @@ const value = computed({
   }
 })
 
-
 const changeSelectClick = (item) => {
-    console.log('item--item', item)
-};
+  console.log('item--item', item)
+}
 
-const clearClick = () => {};
+const clearClick = () => {}
 </script>
 <style lang="scss" scoped>
 .select-search {

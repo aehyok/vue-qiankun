@@ -1,112 +1,124 @@
 <template lang="html">
-    <div class="jsoneditor-container" :class="{'max-box':max,'min-box':!max}" :style="getHeight">
-        <div ref="jsoneditor" class="jsoneditor-box"></div>
-        <button type="button" @click="max = !max" class="max-btn" size="small" v-if="options.mode == 'code' && plus"></button>
-    </div>
+  <div class="jsoneditor-container" :class="{ 'max-box': max, 'min-box': !max }" :style="getHeight">
+    <div ref="jsoneditor" class="jsoneditor-box"></div>
+    <button
+      type="button"
+      @click="max = !max"
+      class="max-btn"
+      size="small"
+      v-if="options.mode == 'code' && plus"
+    ></button>
+  </div>
 </template>
 
 <script setup>
-import JSONEditor from "jsoneditor/dist/jsoneditor.min.js"
+import JSONEditor from 'jsoneditor/dist/jsoneditor.min.js'
 import 'jsoneditor/dist/jsoneditor.min.css'
-import { onMounted, onUnmounted, watch, reactive, nextTick, computed, ref } from 'vue';
+import { onMounted, onUnmounted, watch, reactive, nextTick, computed, ref } from 'vue'
 
-  const props = defineProps({
-    value: [Object, Array, Number, String, Boolean],
-    height: {
-      type: String
-    },
-    plus: {
-      type: Boolean,
-      default: true
-    }
-  })
-
-  const options =  {
-    mode: "code",
-    mainMenuBar: false
+const props = defineProps({
+  value: [Object, Array, Number, String, Boolean],
+  height: {
+    type: String
+  },
+  plus: {
+    type: Boolean,
+    default: true
   }
+})
 
-  const emit = defineEmits(['update:value','error','changeModel'])
+const options = {
+  mode: 'code',
+  mainMenuBar: false
+}
 
-  const jsoneditor = ref(null);
-  const max = ref (false)
-  const state = reactive({
-    editor: null,
-    style: {},
-    internalChange: false
-  })
-  onMounted(() => {
-    console.log(jsoneditor.value, 'jsoneditor.value');
-    initView()
-  })
-  onUnmounted(() => {
-    destroyView()
-  })
+const emit = defineEmits(['update:value', 'error', 'changeModel'])
 
-  const onChange = () => {
-    let error = null
-    let json = {}
-    try {
-      json = state.editor.get()
-    } catch (err) {
-      error = err
-    }
-    if (error) {
-      emit("error", error)
-    } else {
-      if (state.editor) {
-        state.internalChange = true
-        console.log(json, 'json---------value---')
-        emit('update:value', json)
-        // emit('changeModel', json)
-        nextTick(() => {
-          state.internalChange = false
-        })
-      }
-    }
+const jsoneditor = ref(null)
+const max = ref(false)
+const state = reactive({
+  editor: null,
+  style: {},
+  internalChange: false
+})
+onMounted(() => {
+  console.log(jsoneditor.value, 'jsoneditor.value')
+  initView()
+})
+onUnmounted(() => {
+  destroyView()
+})
+
+const onChange = () => {
+  let error = null
+  let json = {}
+  try {
+    json = state.editor.get()
+  } catch (err) {
+    error = err
   }
-  const initView = () => {
-    if (!state.editor) {
-      const container = jsoneditor.value
-      const _options = Object.assign(options, {
-        onChange: onChange
-      })
-      state.editor = new JSONEditor(container, _options)
-    }
-    console.log(props.value, 'value');
-    state.editor.set(props.value || {})
-  }
-  const destroyView = () => {
+  if (error) {
+    emit('error', error)
+  } else {
     if (state.editor) {
-      state.editor.destroy()
-      state.editor = null
+      state.internalChange = true
+      console.log(json, 'json---------value---')
+      emit('update:value', json)
+      // emit('changeModel', json)
+      nextTick(() => {
+        state.internalChange = false
+      })
     }
   }
-  watch(() => props.value, (newValue, oldValue) => {
+}
+const initView = () => {
+  if (!state.editor) {
+    const container = jsoneditor.value
+    const _options = Object.assign(options, {
+      onChange: onChange
+    })
+    state.editor = new JSONEditor(container, _options)
+  }
+  console.log(props.value, 'value')
+  state.editor.set(props.value || {})
+}
+const destroyView = () => {
+  if (state.editor) {
+    state.editor.destroy()
+    state.editor = null
+  }
+}
+watch(
+  () => props.value,
+  (newValue, oldValue) => {
     if (state.editor && newValue && !state.internalChange) {
       state.editor.set(newValue)
     }
   },
-    {
-      immediate: true,
-      deep: true
-    })
-  watch(() => state.max, (newValue, oldValue) => {
+  {
+    immediate: true,
+    deep: true
+  }
+)
+watch(
+  () => state.max,
+  (newValue, oldValue) => {
     nextTick(() => {
       initView()
     })
   },
-    {
-      immediate: true
-    })
+  {
+    immediate: true
+  }
+)
 
-  const getHeight = computed(() => {
-    if (props.height && !state.max) {
-      return {
-        height: props.height
-      }
+const getHeight = computed(() => {
+  if (props.height && !state.max) {
+    return {
+      height: props.height
     }
-  })
+  }
+})
 </script>
 
 <style lang="scss" scoped>

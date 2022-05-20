@@ -10,16 +10,16 @@
 </template>
 <script setup>
 import { computed, reactive, toRefs } from 'vue'
-const emit = defineEmits(["update:data"])
+const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
     type: [Object],
-    default: () => { },
+    default: () => {}
   },
   data: {
     type: Array,
-    default: () => [],
-  },
+    default: () => []
+  }
 })
 
 const state = reactive({

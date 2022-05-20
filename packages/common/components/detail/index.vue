@@ -13,7 +13,7 @@
 const props = defineProps({
   columnList: {
     type: [Array],
-    default: () =>[]
+    default: () => []
   },
   columnData: {
     type: Object,

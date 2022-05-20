@@ -5,8 +5,7 @@ import { getVerifyCode, login } from '@/services/index'
 import md5 from 'js-md5'
 import { warnMessage } from '@/utils/message'
 
-export function useLogin (loginForm: any, rememberPasCbox: any) {
-
+export function useLogin(loginForm: any, rememberPasCbox: any) {
   const store = useStore()
   const checkRememberPassword = () => {
     const loginRemInfo = localStorage.getItem('loginRemInfo')
@@ -27,7 +26,7 @@ export function useLogin (loginForm: any, rememberPasCbox: any) {
         password: loginForm.password
       }
       localStorage.setItem('loginRemInfo', encode(JSON.stringify(info)))
-    // loginForm = useStorage('loginRemInfo', {...info})
+      // loginForm = useStorage('loginRemInfo', {...info})
     } else {
       localStorage.removeItem('loginRemInfo')
     }
@@ -57,9 +56,7 @@ export function useLogin (loginForm: any, rememberPasCbox: any) {
     if (res?.code === 200) {
       const account = encode(loginForm.account)
       const password = md5(loginForm.password).toLocaleLowerCase()
-      const result = res.data.find(
-        (item) => item.account === account && item.password === password
-      )
+      const result = res.data.find((item) => item.account === account && item.password === password)
       if (result?.success === '200') {
         localStorage.setItem(
           'token',
@@ -81,7 +78,7 @@ export function useLogin (loginForm: any, rememberPasCbox: any) {
   return {
     checkRememberPassword,
     checkNeedRememberPassword,
-      getImageVerifyCode,
-      submitLogin
+    getImageVerifyCode,
+    submitLogin
   }
 }

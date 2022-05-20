@@ -6,25 +6,21 @@ module.exports = {
   },
   extends: ['plugin:vue/essential', 'airbnb-base', 'plugin:prettier/recommended'],
   parserOptions: {
-    ecmaVersion: 12,
+    ecmaVersion: 13,
     parser: '@typescript-eslint/parser',
     sourceType: 'module'
   },
   plugins: ['vue', '@typescript-eslint'],
   rules: {
+    // semi: 'off', // 结尾分号设置
+    'comma-dangle': 'never', // 尾随一个多余的逗号
+    'vue/no-multiple-template-root': 'off',
+    'vue/require-v-for-key': 'off',
+    'no-console': 'off', // console。log可用
+    'vue/multi-word-component-names': 'off',
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
-    'import/no-absolute-path': 'off',
-    'import/no-extraneous-dependencies': 'off',
-    'vue/no-multiple-template-root': 'off',
-    'no-console': 'off',
-    'no-param-reassign': [
-      'error',
-      {
-        props: true,
-        ignorePropertyModificationsFor: ['state', 'config']
-      }
-    ]
+    'no-plusplus': 'off' // i++可用
   },
   settings: {}
 }

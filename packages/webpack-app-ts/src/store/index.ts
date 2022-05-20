@@ -1,8 +1,8 @@
-import { createStore } from "vuex";
+import { createStore } from 'vuex'
 
 // 为 store state 声明类型
 export interface State {
-  formListItem: any[],
+  formListItem: any[]
   currentComponent: {
     rules: any[]
   }
@@ -13,9 +13,9 @@ export default createStore<State>({
     // 整个字段配置列表
     formListItem: [],
     //当前选中的组件
-    currentComponent:  {
-      rules:[]
-    },
+    currentComponent: {
+      rules: []
+    }
   },
   mutations: {
     // 调整组件顺序
@@ -37,4 +37,4 @@ export default createStore<State>({
   },
   actions: {},
   modules: {}
-});
+})

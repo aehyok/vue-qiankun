@@ -109,24 +109,22 @@
   const projectName = 'qiankun综合服务平台'
   const rememberPasCbox = ref(false)
   const dialogVisible = ref(false)
-  const rules =  {
-      password: [{ validator: validatePass, trigger: ['blur', 'change'] }],
-      account: [{ validator: validateAccount, trigger: ['blur', 'change'] }],
-      captchaValue: [{ validator: validatorVerCode, trigger: ['blur', 'change'] }]
-    }
+  const rules = {
+    password: [{ validator: validatePass, trigger: ['blur', 'change'] }],
+    account: [{ validator: validateAccount, trigger: ['blur', 'change'] }],
+    captchaValue: [{ validator: validatorVerCode, trigger: ['blur', 'change'] }]
+  }
   const loginForm = reactive({
-      account: 'admin',
-      password: '123456',
-      captchaValue: 'oyta',
-      captchaId: '',
-      vcodeImg: '',
-      loading: false
+    account: 'admin',
+    password: '123456',
+    captchaValue: 'oyta',
+    captchaId: '',
+    vcodeImg: '',
+    loading: false
   })
 
-  const { checkRememberPassword, checkNeedRememberPassword, getImageVerifyCode, submitLogin } = useLogin(
-    loginForm,
-    rememberPasCbox
-  )
+  const { checkRememberPassword, checkNeedRememberPassword, getImageVerifyCode, submitLogin } =
+    useLogin(loginForm, rememberPasCbox)
 
   checkRememberPassword()
   getImageVerifyCode()

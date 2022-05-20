@@ -6,11 +6,7 @@
     :rules="rules"
     style="display: flex; flex-direction: row"
   >
-    <el-input
-      v-model="leftValue"
-      :name="column.text.name"
-      style="width: 70%"
-    ></el-input>
+    <el-input v-model="leftValue" :name="column.text.name" style="width: 70%"></el-input>
     <el-select v-model="rightValue" placeholder="请选择" style="width: 30%">
       <el-option
         v-for="item in column.select.dictionary"
@@ -24,20 +20,20 @@
 </template>
 <script setup>
 import { computed, ref } from 'vue'
-const emit = defineEmits(["update:leftValue", "update:rightValue"])
+const emit = defineEmits(['update:leftValue', 'update:rightValue'])
 const props = defineProps({
   column: {
     type: [Object],
-    default: () => { },
+    default: () => {}
   },
   leftValue: {
     type: String,
-    default: '',
+    default: ''
   },
   rightValue: {
     type: String,
-    default: '',
-  },
+    default: ''
+  }
 })
 
 console.log('text-select')
@@ -47,8 +43,9 @@ rules.value = [
   {
     required: column.required,
     message: `请输入${column.title}`,
-    trigger: ['blur', 'change'],
-  }]
+    trigger: ['blur', 'change']
+  }
+]
 
 if (column && column.rules) {
   rules.value = [...rules.value, ...column.rules]
@@ -74,4 +71,3 @@ const rightValue = computed({
   }
 })
 </script>
-  

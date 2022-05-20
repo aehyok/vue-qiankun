@@ -1,21 +1,10 @@
 <template>
-  <el-form-item
-    :label="column.title + '：'"
-    :prop="column.name"
-    :rules="state.rules"
-  >
+  <el-form-item :label="column.title + '：'" :prop="column.name" :rules="state.rules">
     <!-- <div style="display: flex"></div> -->
     <template v-if="data.length">
       <div v-for="(item, index) in data" :key="index" class="borderItem">
-        <img
-          :src="item.thumbnailUrl ? item.thumbnailUrl : ''"
-          alt=""
-          class="img-class"
-        />
-        <i
-          class="el-icon-circle-close imageClose"
-          @click="removeImageClick"
-        ></i>
+        <img :src="item.thumbnailUrl ? item.thumbnailUrl : ''" alt="" class="img-class" />
+        <i class="el-icon-circle-close imageClose" @click="removeImageClick"></i>
       </div>
     </template>
 
@@ -36,18 +25,18 @@
 <script setup>
 import UploadView from '../resource/uploadView'
 import { reactive } from 'vue'
-const emit = defineEmits(["update:data"])
+const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
     type: [Object],
-    default: () => { },
+    default: () => {}
   },
   data: {
     type: Array,
     default: function () {
       return []
     }
-  },
+  }
 })
 
 const { column } = props
@@ -62,7 +51,7 @@ state.rules = [
   {
     required: column.required,
     message: `请输入${column.title}`,
-    trigger: ['blur', 'change'],
+    trigger: ['blur', 'change']
   }
 ]
 
@@ -77,7 +66,6 @@ const removeImageClick = (index) => {
   list.splice(index, 1)
   emit('update:data', list)
 }
-
 </script>
 
 <style lang="scss" scoped>

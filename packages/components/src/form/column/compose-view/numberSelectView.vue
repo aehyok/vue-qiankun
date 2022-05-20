@@ -25,20 +25,20 @@
 </template>
 <script setup>
 import { computed, toRefs, reactive } from 'vue'
-const emit = defineEmits(["update:leftValue", "update:rightValue"])
+const emit = defineEmits(['update:leftValue', 'update:rightValue'])
 const props = defineProps({
   column: {
     type: [Object],
-    default: () => { },
+    default: () => {}
   },
   leftValue: {
     type: String,
-    default: '',
+    default: ''
   },
   rightValue: {
     type: String,
-    default: '',
-  },
+    default: ''
+  }
 })
 
 console.log('text-select')
@@ -48,8 +48,9 @@ const rules = [
   {
     required: column.required,
     message: `请输入${column.title}`,
-    trigger: ['blur', 'change'],
-  }]
+    trigger: ['blur', 'change']
+  }
+]
 
 const leftValue = computed({
   get: function () {
@@ -69,4 +70,3 @@ const rightValue = computed({
   }
 })
 </script>
-  

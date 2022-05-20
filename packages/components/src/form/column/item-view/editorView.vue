@@ -1,29 +1,23 @@
 <!--简单文本框-->
 <template>
   <el-form-item :label="column.title + '：'" :prop="column.name" :rules="rules">
-    <wangeditor
-      v-model:data="data"
-      @dochange="editorChange"
-      :canAssignHtml="canAssignHtml"
-    />
-    <span style="color: #ccc"
-      >&nbsp;&nbsp;{{ currentTextLength }}/{{ maxLength }}个字</span
-    >
+    <wangeditor v-model:data="data" @dochange="editorChange" :canAssignHtml="canAssignHtml" />
+    <span style="color: #ccc">&nbsp;&nbsp;{{ currentTextLength }}/{{ maxLength }}个字</span>
   </el-form-item>
 </template>
 <script setup>
 import { computed, ref } from 'vue'
 import wangeditor from './wangeditor'
-const emit = defineEmits(["update:data"])
+const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
     type: [Object],
-    default: () => { },
+    default: () => {}
   },
   data: {
     type: String,
-    default: '',
-  },
+    default: ''
+  }
 })
 const { column } = props
 const canAssignHtml = false
@@ -37,7 +31,7 @@ rules.value = [
   {
     required: column.required,
     message: placeholder,
-    trigger: ['onblur', 'onfocus'],
+    trigger: ['onblur', 'onfocus']
   }
 ]
 

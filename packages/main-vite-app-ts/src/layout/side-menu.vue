@@ -1,10 +1,6 @@
 <template>
   <div class="menu-container">
-    <el-scrollbar
-      class="scroll-wrap"
-      :noresize="false"
-      view-style="{ height: '100%' }"
-    >
+    <el-scrollbar class="scroll-wrap" :noresize="false" view-style="{ height: '100%' }">
       <el-menu
         :default-active="activeMenu"
         :unique-opened="true"
@@ -15,11 +11,7 @@
         @select="handleSelect"
       >
         <template v-for="item in displayMenuTree">
-          <el-sub-menu
-            :index="item.path"
-            :key="item.id"
-            v-if="item.children?.length"
-          >
+          <el-sub-menu :index="item.path" :key="item.id" v-if="item.children?.length">
             <template #title>
               <!-- <i class="el-icon-location"></i> -->
               <span>{{ item.title }}</span>
@@ -44,105 +36,98 @@
   </div>
 </template>
 <script lang="ts">
-import {
-  reactive,
-  computed,
-  onMounted,
-  defineComponent,
-  toRefs,
-  watch,
-} from "vue";
-import { useRoute } from "vue-router";
-import { useStore } from "vuex";
-import { Menu } from "../../types/models";
+  import { reactive, computed, onMounted, defineComponent, toRefs, watch } from 'vue'
+  import { useRoute } from 'vue-router'
+  import { useStore } from 'vuex'
+  import { Menu } from '../../types/models'
 
-interface DataProp {
-  displayMenuTree?: Menu[];
-  version: string;
-  openeds?: string[];
-}
-export default defineComponent({
-  setup() {
-    const store = useStore();
-    const route = useRoute();
+  interface DataProp {
+    displayMenuTree?: Menu[]
+    version: string
+    openeds?: string[]
+  }
+  export default defineComponent({
+    setup() {
+      const store = useStore()
+      const route = useRoute()
 
-    const state: DataProp = reactive({
-      version: "",
-    });
-    // TODO watch store
-    watch(
-      () => store.state.systemId,
-      (newValue, oldValue) => {
-        state.displayMenuTree = store.state.menuList.find(
-          (item) => item.Key === newValue
-        )?.MenuList;
-      },
-      {
-        immediate: true,
-        deep: true,
+      const state: DataProp = reactive({
+        version: ''
+      })
+      // TODO watch store
+      watch(
+        () => store.state.systemId,
+        (newValue, oldValue) => {
+          state.displayMenuTree = store.state.menuList.find(
+            (item) => item.Key === newValue
+          )?.MenuList
+        },
+        {
+          immediate: true,
+          deep: true
+        }
+      )
+      const activeMenu = computed(() => {
+        return route.path
+      })
+
+      const handleSelect = (_key, _keyPath) => {
+        //
       }
-    );
-    const activeMenu = computed(() => {
-      return route.path;
-    });
 
-    const handleSelect = (_key, _keyPath) => {
-      //
-    };
-
-    const getVersion = () => {
-      const res = {
-        code: 200,
-        message: "success",
-        data: { code: "0.1.012", updateDate: "2021.76.18", description: "" },
-      };
-      state.version = res.data.code;
-    };
-    onMounted(() => {
-      getVersion();
-    });
-    return {
-      ...toRefs(state),
-      activeMenu,
-      handleSelect,
-    };
-  },
-});
+      const getVersion = () => {
+        const res = {
+          code: 200,
+          message: 'success',
+          data: { code: '0.1.012', updateDate: '2021.76.18', description: '' }
+        }
+        state.version = res.data.code
+      }
+      onMounted(() => {
+        getVersion()
+      })
+      return {
+        ...toRefs(state),
+        activeMenu,
+        handleSelect
+      }
+    }
+  })
 </script>
 <style lang="scss" scoped>
-.scroll-wrap {
-  overflow: hidden;
-  height: 100%;
-  :deep(.el-scrollbar__view) {
+  .scroll-wrap {
+    overflow: hidden;
+    height: 100%;
+    :deep(.el-scrollbar__view) {
+      position: relative;
+    }
+  }
+  .menu-container {
     position: relative;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    background: #0f2144;
+    :deep(.el-scrollbar__wrap) {
+      overflow-x: hidden;
+    }
   }
-}
-.menu-container {
-  position: relative;
-  height: calc(100vh - 60px);
-  display: flex;
-  flex-direction: column;
-  background: #0f2144;
-  :deep(.el-scrollbar__wrap) {
-    overflow-x: hidden;
+  .version {
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    color: #bcbcbc;
+    flex: 0;
+    line-height: 30px;
   }
-}
-.version {
-  color: #fff;
-  width: 100%;
-  text-align: center;
-  color: #bcbcbc;
-  flex: 0;
-  line-height: 30px;
-}
-:deep(.el-submenu__title i) {
-  color: #ffffff;
-}
+  :deep(.el-submenu__title i) {
+    color: #ffffff;
+  }
 
-// :deep(.el-submenu__title) {
-//   font-size: 18px;
-// }
-// :deep(.el-menu-item) {
-//   font-size:18px;
-// }
+  // :deep(.el-submenu__title) {
+  //   font-size: 18px;
+  // }
+  // :deep(.el-menu-item) {
+  //   font-size:18px;
+  // }
 </style>

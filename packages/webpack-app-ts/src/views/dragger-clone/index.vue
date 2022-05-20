@@ -58,40 +58,40 @@
 </template>
 
 <script>
-import draggable from "vuedraggable";
+import draggable from 'vuedraggable'
 export default {
-  name: "clone",
-  display: "Clone",
+  name: 'clone',
+  display: 'Clone',
   order: 2,
   components: {
-    draggable,
+    draggable
   },
   data() {
     return {
       list1: [
-        { name: "John", id: 1 },
-        { name: "Joao", id: 2 },
-        { name: "Jean", id: 3 },
-        { name: "Gerard", id: 4 },
+        { name: 'John', id: 1 },
+        { name: 'Joao', id: 2 },
+        { name: 'Jean', id: 3 },
+        { name: 'Gerard', id: 4 }
       ],
       list2: [
-        { name: "Juan", id: 5 },
-        { name: "Edgard", id: 6 },
-        { name: "Johnson", id: 7 },
+        { name: 'Juan', id: 5 },
+        { name: 'Edgard', id: 6 },
+        { name: 'Johnson', id: 7 }
       ],
       list3: [
-        { name: "Juan-1", id: 15 },
-        { name: "Edgard-2", id: 16 },
-        { name: "Johnson-3", id: 17 },
-      ],
-    };
+        { name: 'Juan-1', id: 15 },
+        { name: 'Edgard-2', id: 16 },
+        { name: 'Johnson-3', id: 17 }
+      ]
+    }
   },
   methods: {
     log: function (evt) {
-      window.console.log(evt);
-    },
-  },
-};
+      window.console.log(evt)
+    }
+  }
+}
 </script>
 <style scoped lang="scss">
 .row {

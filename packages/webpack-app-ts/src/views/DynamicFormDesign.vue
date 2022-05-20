@@ -72,12 +72,19 @@
       </span>
     </template>
   </el-dialog>
-    <el-dialog v-model="customerVisible" title="自定义组件代码" width="80%" :before-close="handleClose">
+  <el-dialog
+    v-model="customerVisible"
+    title="自定义组件代码"
+    width="80%"
+    :before-close="handleClose"
+  >
     <code-editor :mode="'javascript'" :readonly="false" v-model="customerCode"></code-editor>
-   
+
     <template #footer>
       <span class="dialog-footer">
-         <div v-if="isError" style="color: red; font-size:12px; margin-top:5px;">请检查语法错误：{{error}}</div>
+        <div v-if="isError" style="color: red; font-size: 12px; margin-top: 5px">
+          请检查语法错误：{{ error }}
+        </div>
         <el-button @click="customerVisible = false">关闭</el-button>
         <el-button type="primary" @click="checkCodeClick">校验代码</el-button>
       </span>
@@ -85,41 +92,37 @@
   </el-dialog>
 </template>
 <script setup>
-import { ref, reactive, onMounted, watch } from 'vue';
+import { ref, reactive, onMounted, watch } from 'vue'
 import CodeEditor from '@/components/code-editor/index'
-import { useStore } from 'vuex';
-import Clipboard from 'clipboard';
+import { useStore } from 'vuex'
+import Clipboard from 'clipboard'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { SlDrag, SlConfig} from '@app/components'
+import { SlDrag, SlConfig } from '@app/components'
 import { generateCode } from '@/utils/code-generator.js'
-import shortid from 'shortid';
+import shortid from 'shortid'
 import { copyToClipboard } from '@/utils/utils'
-import { computed } from 'vue';
+import { computed } from 'vue'
 import { saveAs } from 'file-saver'
 const store = useStore()
 const componentList = ref([])
 const activeName = ref('first')
 const currentColumn = ref({})
 const handleClick = (tab, event) => {
-  console.log(tab, event);
+  console.log(tab, event)
 }
 const state = reactive({
   options: {
-    mode: "code",
+    mode: 'code',
     mainMenuBar: false
   },
   show: true,
   formConfig: {
-    formListItem: [
-
-    ],
-    formData: {
-
-    }
+    formListItem: [],
+    formData: {}
   },
   jsonCode: '',
   vueCode: ''
-});
+})
 
 const dialogVisible = ref(false)
 const vueDialogVisible = ref(false)
@@ -137,7 +140,7 @@ const json = computed(() => {
 })
 
 const vueString = computed(() => {
-    let temp = JSON.stringify(state.formConfig, null, '  ')
+  let temp = JSON.stringify(state.formConfig, null, '  ')
   console.log(state.formConfig, 'form-json')
   return generateCode(state.formConfig)
   return JSON.stringify(state.formConfig, null, '  ')
@@ -149,26 +152,25 @@ const createJsonClick = () => {
   //   //资源加载
   // })
   dialogVisible.value = true
-
 }
 
 const error = ref('')
 const isError = ref(false)
 const checkCodeClick = () => {
-    const code = customerCode.value
-    // 去掉注释
-    const temp = code.replace(/.+\*\/\s*/gs, "").replace(/\s+/g, "");
-    try {
-      // 转换为对象
-      const jsCodeInfo = eval(`(function(){return ${temp}})()`);
-      console.log(jsCodeInfo, 'jsCodeInfo')
-      isError.value = false
-    } catch (error) {
-      console.warn(error);
-      console.log(error,'error')
-      isError.value = true
-      error.value = error
-    }
+  const code = customerCode.value
+  // 去掉注释
+  const temp = code.replace(/.+\*\/\s*/gs, '').replace(/\s+/g, '')
+  try {
+    // 转换为对象
+    const jsCodeInfo = eval(`(function(){return ${temp}})()`)
+    console.log(jsCodeInfo, 'jsCodeInfo')
+    isError.value = false
+  } catch (error) {
+    console.warn(error)
+    console.log(error, 'error')
+    isError.value = true
+    error.value = error
+  }
 }
 
 const customerCode = ref('')
@@ -177,15 +179,11 @@ const customerClick = () => {
 }
 const createVueClick = () => {
   state.vueCode = generateCode(state.formConfig)
-   vueDialogVisible.value = true
+  vueDialogVisible.value = true
 }
 
 const copyJsonFileClick = (e) => {
-  copyToClipboard(state.jsonCode, e,
-            ElMessage,
-            'copy成功',
-            'copy失败'
-        )
+  copyToClipboard(state.jsonCode, e, ElMessage, 'copy成功', 'copy失败')
   // dialogVisible.value = false
   // console.log(state.jsonCode, 'vue文件要保存勒哟')
   // saveAsFile(state.jsonCode, `${shortid.generate()}.json`)
@@ -205,11 +203,7 @@ const saveVueFileClick = () => {
 
 //拷贝vue文件代码
 const copyVueFileClick = () => {
-    copyToClipboard(state.vueCode, e,
-            ElMessage,
-            'copy成功',
-            'copy失败'
-        )
+  copyToClipboard(state.vueCode, e, ElMessage, 'copy成功', 'copy失败')
   // dialogVisible.value = false
   // console.log(state.vueCode, 'vue文件要保存勒哟')
   // saveAsFile(state.vueCode, `${shortid.generate()}.vue`)
@@ -218,75 +212,75 @@ const copyVueFileClick = () => {
 componentList.value = [
   {
     id: 0,
-    type: "static",
-    title: "静态文本",
+    type: 'static',
+    title: '静态文本',
     default: '静态文本'
   },
   {
     id: 1,
-    type: "text",
-    title: "文本框",
-    default: "文本框",
+    type: 'text',
+    title: '文本框',
+    default: '文本框'
   },
   {
     id: 2,
-    type: "textarea",
-    title: "多行文本",
-    default: "多行文本"
+    type: 'textarea',
+    title: '多行文本',
+    default: '多行文本'
   },
   {
     id: 3,
-    type: "number",
-    title: "数字框",
+    type: 'number',
+    title: '数字框',
     default: 0
   },
   {
     id: 4,
-    type: "select",
-    title: "下拉框",
+    type: 'select',
+    title: '下拉框',
     dictionary: []
   },
   {
     id: 5,
-    type: "radio",
-    title: "单选框",
+    type: 'radio',
+    title: '单选框',
     dictionary: []
   },
   {
     id: 6,
-    type: "checkbox",
-    title: "多选框",
+    type: 'checkbox',
+    title: '多选框',
     dictionary: []
   },
   {
     id: 7,
-    type: "date",
-    title: "日期选择"
+    type: 'date',
+    title: '日期选择'
   },
   {
     id: 8,
-    type: "daterange",
-    title: "日期范围"
+    type: 'daterange',
+    title: '日期范围'
   },
   {
     id: 9,
-    type: "switch",
-    title: "开关"
+    type: 'switch',
+    title: '开关'
   },
   {
     id: 10,
-    type: "editor",
-    title: "富文本"
+    type: 'editor',
+    title: '富文本'
   },
   {
     id: 11,
-    type: "image",
-    title: "图片"
+    type: 'image',
+    title: '图片'
   },
   {
     id: 12,
-    type: "video",
-    title: "视频"
+    type: 'video',
+    title: '视频'
   },
   {
     id: 13,
@@ -296,7 +290,7 @@ componentList.value = [
 ]
 
 onMounted(() => {
-  let content = document.getElementById("content")
+  let content = document.getElementById('content')
 
   content.ondragover = function (e) {
     console.log('dragover')
@@ -328,7 +322,7 @@ const dropClick = (e) => {
   const index = e.dataTransfer.getData('index')
   console.log(index, componentList.value[index], 'dropClick')
   let item = componentList.value[index]
-  console.log("当前组件为: ", item);
+  console.log('当前组件为: ', item)
   let column = {
     id: shortid.generate(),
     name: shortid.generate(),
@@ -336,15 +330,15 @@ const dropClick = (e) => {
     title: item.title,
     rules: []
   }
-  if (["select", "radio", "checkbox"].includes(item.type)) {
+  if (['select', 'radio', 'checkbox'].includes(item.type)) {
     column.dictionary = [
       {
         code: 1,
-        name: "图片"
+        name: '图片'
       },
       {
         code: 2,
-        name: "视频"
+        name: '视频'
       }
     ]
   }
@@ -382,22 +376,18 @@ const saveAsFile = (fileContent, defaultFileName) => {
   //   //
   // })
 
-
   try {
     const fileBlob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' })
     saveAs(fileBlob, defaultFileName)
-  } catch {
-
-  }
+  } catch {}
 }
-
 
 watch(
   () => currentColumn.value,
   (newVal, oldVal) => {
     if (newVal) {
       console.log(newVal, '修改后的字段项目配置')
-      state.formConfig.formListItem.forEach(item => {
+      state.formConfig.formListItem.forEach((item) => {
         if (item.id === newVal.id) {
           return {
             ...newVal
@@ -407,37 +397,38 @@ watch(
 
       console.log(state.formConfig.formListItem, '修改后的字段项目配置')
     }
-  }, {
-  // immediate: true,
-  deep: true,
-}
-);
+  },
+  {
+    // immediate: true,
+    deep: true
+  }
+)
 
 const componentClick = (item) => {
-  console.log("当前组件为: ", item);
+  console.log('当前组件为: ', item)
   let column = {
     name: shortid.generate(),
     type: item.name,
     title: item.title,
-    required: true,
+    required: true
   }
 
-  if (["select", "radio", "checkbox"].includes(item.type)) {
+  if (['select', 'radio', 'checkbox'].includes(item.type)) {
     column.dictionary = [
       {
         code: 1,
-        name: "图片"
+        name: '图片'
       },
       {
         code: 2,
-        name: "视频"
+        name: '视频'
       }
     ]
   }
   state.formConfig.formListItem.push(column)
   state.formConfig.formData = {
     ...state.formConfig.formData,
-    [column.name]: "默认值"
+    [column.name]: '默认值'
   }
 }
 </script>
@@ -512,4 +503,4 @@ const componentClick = (item) => {
   align-items: center;
   padding-right: 15px;
 }
-</style> 
+</style>

@@ -1,37 +1,37 @@
-import { AxiosRequestConfig, AxiosResponse } from "axios"
+import { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 export interface RequestProxyType {
   get(
     url: string,
     config?: AxiosRequestConfig,
     customConfig?: CustomConfigType
-  ): Promise<AxiosResponse>;
+  ): Promise<AxiosResponse>
 
   post(
     url: string,
     config?: AxiosRequestConfig,
     customConfig?: CustomConfigType
-  ): Promise<AxiosResponse>;
+  ): Promise<AxiosResponse>
 
   delete(
     url: string,
     config?: AxiosRequestConfig,
     customConfig?: CustomConfigType
-  ): Promise<AxiosResponse>;
+  ): Promise<AxiosResponse>
 
   put(
     url: string,
     config?: AxiosRequestConfig,
     customConfig?: CustomConfigType
-  ): Promise<AxiosResponse>;
+  ): Promise<AxiosResponse>
 }
 
 export interface CustomConfigType {
-  isNeedToken?: boolean;
-  isNeedLoading?: boolean;
-  isNeedShowError?: boolean;
+  isNeedToken?: boolean
+  isNeedLoading?: boolean
+  isNeedShowError?: boolean
 }
 
 export interface RequestType {
-  request(config: AxiosRequestConfig): Promise<AxiosResponse>;
+  request(config: AxiosRequestConfig): Promise<AxiosResponse>
 }

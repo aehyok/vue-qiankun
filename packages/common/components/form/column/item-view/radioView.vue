@@ -10,20 +10,20 @@
 </template>
 <script setup>
 import { computed, reactive } from 'vue'
-const emit = defineEmits(["update:data"])
+const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
     type: [Object],
-    default: () => { },
+    default: () => {}
   },
   formData: {
     type: [Object],
-    default: () => { },
+    default: () => {}
   },
   data: {
     type: Number,
-    default: undefined,
-  },
+    default: undefined
+  }
 })
 const { column } = props
 let { dictionary } = props.column
@@ -48,8 +48,8 @@ const rules = [
     // 加上双？？，防止出现选中后提示请选择"this.column.title"
     required: column.required ?? false,
     message: `请选择${column.title}`,
-    trigger: 'change',
-  },
+    trigger: 'change'
+  }
 ]
 
 const value = computed({
@@ -58,7 +58,7 @@ const value = computed({
   },
   set: function (val) {
     emit('update:data', val)
-  },
+  }
 })
 
 // radio change事件去切换控制其他组件，或者其他几个组件（先考虑控制一个）

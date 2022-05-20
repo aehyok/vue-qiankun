@@ -92,7 +92,7 @@
         getTreeData()
       })
 
-      const close =() => {
+      const close = () => {
         console.log('close')
       }
       const homeClick = () => {
@@ -267,7 +267,7 @@
         .me-info {
           display: flex;
           align-items: center;
-          background: url("../images/home/meinfo.png");
+          background: url('../images/home/meinfo.png');
           background-size: 100% 100%;
           .me-avator {
             margin: 20px;

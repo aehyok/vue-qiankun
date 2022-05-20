@@ -2,13 +2,13 @@
   <div id="cesiumContainer" style="width: 800px; height: 800px"></div>
 </template>
 <script>
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, onMounted } from 'vue'
 // import "cesium/Build/Cesium/Widgets/widgets.css";
-import * as Cesium from "cesium";
+import * as Cesium from 'cesium'
 export default defineComponent({
   setup() {
     let token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyNzliZGRiNC1mN2U5LTQ0OWItYTUwZi0wYmUxZjk5MGEwOGYiLCJpZCI6NTYyMDMsImlhdCI6MTYyMTMyNTM0NX0.gVy_fonVErGarDg5E-rW6YcY-dJlWVauaE7Wg5ZhDh8";
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyNzliZGRiNC1mN2U5LTQ0OWItYTUwZi0wYmUxZjk5MGEwOGYiLCJpZCI6NTYyMDMsImlhdCI6MTYyMTMyNTM0NX0.gVy_fonVErGarDg5E-rW6YcY-dJlWVauaE7Wg5ZhDh8'
     onMounted(() => {
       // Cesium.Ion.defaultAccessToken = token;
       // var viewer = new Cesium.Viewer("cesiumContainer", {
@@ -25,7 +25,7 @@ export default defineComponent({
       //   shadows: true, //影子
       //   infoBox: false, //是否显示点击要素之后显示的信息
       // });
-    });
-  },
-});
+    })
+  }
+})
 </script>

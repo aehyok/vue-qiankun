@@ -5,7 +5,8 @@
 const phoneReg = /^[1][3,4,5,6,7,8,9][0-9]{9}$/
 
 // 2、身份证的校验
-const sfzReg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/
+const sfzReg =
+  /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/
 
 // 3、邮箱的校验
 const emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
@@ -14,7 +15,8 @@ const emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
 const urlReg = /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
 
 // 5、IPv4的校验
-const ipv4Reg = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+const ipv4Reg =
+  /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
 
 // 6、16进制颜色的校验（#fff、#1234567）
 const color16Reg = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/
@@ -41,7 +43,6 @@ const floatReg = checkFloat(2)
 const floatNum1 = 1234.5
 console.log(floatReg.test(floatNum1)) // true
 
-
 //12、邮政编号的校验
 const postalNoReg = /^\d{6}$/
 
@@ -52,7 +53,8 @@ const qqReg = /^[1-9][0-9]{4,10}$/
 const wxReg = /^[a-zA-Z]([-_a-zA-Z0-9]{5,19})+$/
 
 //15、车牌号的校验
-const carNoReg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/
+const carNoReg =
+  /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/
 
 //16、只含字母的字符串
 const letterReg = /^[a-zA-Z]+$/
@@ -74,8 +76,8 @@ const str1 = 'hhh'
 console.log(lengthReg.test(str1)) // true
 
 //20、文件拓展名的校验
-function checkFileName (arr) {
-  arr = arr.map(name => `.${name}`).join('|')
+function checkFileName(arr) {
+  arr = arr.map((name) => `.${name}`).join('|')
   return new RegExp(`(${arr})$`)
 }
 
@@ -84,12 +86,7 @@ const filenameReg = checkFileName(['jpg', 'png', 'txt'])
 const filename1 = 'sunshine.jpg'
 console.log(filenameReg.test(filename1)) // true
 
-
-
-
-
-
-export const validate = (regString, value,callback) => {
+export const validate = (regString, value, callback) => {
   if (!value) {
     callback()
   }
@@ -113,8 +110,6 @@ export const validateIdCard = (rules, value, callback) => {
   }
 }
 
-
-
 // 手机号码验证
 export const validateMobile = (rules, value, callback) => {
   if (!value) {
@@ -128,7 +123,7 @@ export const validateMobile = (rules, value, callback) => {
   }
 }
 
-// 金额 亩 
+// 金额 亩
 export const validateNumer = (_rule, value, callback) => {
   if (value > 99999999) {
     callback(new Error('超过最大值'))
@@ -136,5 +131,3 @@ export const validateNumer = (_rule, value, callback) => {
     callback()
   }
 }
-
-

@@ -1,45 +1,20 @@
 <template>
-  <div
-    id="map"
-    ref="refMap"
-    class="leaflet-map-class"
-    v-contextmenu:contextmenu
-  >
+  <div id="map" ref="refMap" class="leaflet-map-class" v-contextmenu:contextmenu>
     <div class="operation">
       <!--click.stop阻止事件继续传递执行-->
-      <el-button
-        type="primary"
-        icon="el-icon-share"
-        size="small"
-        @click.stop="markClick"
+      <el-button type="primary" icon="el-icon-share" size="small" @click.stop="markClick"
         >绘制标记</el-button
       >
-      <el-button
-        type="primary"
-        icon="el-icon-share"
-        size="small"
-        @click.stop="plotClick"
+      <el-button type="primary" icon="el-icon-share" size="small" @click.stop="plotClick"
         >绘制多边形</el-button
       >
-      <el-button
-        type="primary"
-        icon="el-icon-share"
-        size="small"
-        @click.stop="dragClick"
+      <el-button type="primary" icon="el-icon-share" size="small" @click.stop="dragClick"
         >拖动多边形</el-button
       >
-      <el-button
-        type="primary"
-        icon="el-icon-share"
-        size="small"
-        @click.stop="editClick"
+      <el-button type="primary" icon="el-icon-share" size="small" @click.stop="editClick"
         >编辑多边形</el-button
       >
-      <el-button
-        type="primary"
-        icon="el-icon-share"
-        size="small"
-        @click.stop="importClick"
+      <el-button type="primary" icon="el-icon-share" size="small" @click.stop="importClick"
         >导入行政边界（KML文件）</el-button
       >
 
@@ -49,9 +24,7 @@
         :before-upload="beforeUpload"
         :on-success="onSuccess"
       >
-        <el-button size="small" type="primary"
-          >导入行政边界（KML文件）</el-button
-        >
+        <el-button size="small" type="primary">导入行政边界（KML文件）</el-button>
       </el-upload>
     </div>
   </div>
@@ -68,131 +41,131 @@
   </v-contextmenu>
 </template>
 <script>
-import { useMap } from "./useMap";
-import { defineComponent, onMounted, reactive, ref, toRefs, watch } from "vue";
-import "../../../public/L.KML.js";
+import { useMap } from './useMap'
+import { defineComponent, onMounted, reactive, ref, toRefs, watch } from 'vue'
+import '../../../public/L.KML.js'
 import {
   directive,
   Contextmenu,
   ContextmenuItem,
   ContextmenuDivider,
   ContextmenuSubmenu,
-  ContextmenuGroup,
-} from "v-contextmenu";
-import "v-contextmenu/dist/themes/default.css";
+  ContextmenuGroup
+} from 'v-contextmenu'
+import 'v-contextmenu/dist/themes/default.css'
 export default defineComponent({
   directives: {
-    contextmenu: directive,
+    contextmenu: directive
   },
   components: {
     [Contextmenu.name]: Contextmenu,
     [ContextmenuItem.name]: ContextmenuItem,
     [ContextmenuDivider.name]: ContextmenuDivider,
     [ContextmenuSubmenu.name]: ContextmenuSubmenu,
-    [ContextmenuGroup.name]: ContextmenuGroup,
+    [ContextmenuGroup.name]: ContextmenuGroup
   },
   setup() {
-    const contextmenu = ref(null);
-    const refMap = ref(null);
-    let map = {};
+    const contextmenu = ref(null)
+    const refMap = ref(null)
+    let map = {}
     const state = reactive({
-      url: "../images/map-app/btn-save-normal.png",
+      url: '../images/map-app/btn-save-normal.png',
       markerPoint: {}, // Marker标记
-      plotPolygon: [], // Polygon多边形
-    });
+      plotPolygon: [] // Polygon多边形
+    })
 
     // const { init } = useMap();
     const markClick = () => {
-      map.pm.enableDraw("Marker", {
-        continueDrawing: false, // 设置后  marker标记完一个后，右键不会移除
-      });
-    };
+      map.pm.enableDraw('Marker', {
+        continueDrawing: false // 设置后  marker标记完一个后，右键不会移除
+      })
+    }
     const plotClick = () => {
-      console.log("open");
-      map.pm.enableDraw("Polygon", {
+      console.log('open')
+      map.pm.enableDraw('Polygon', {
         pinning: true,
         // finishOn: "click",
         snappable: true, // 可吸附于附近的某一个点
-        measurements: { measurement: true },
-      });
-    };
+        measurements: { measurement: true }
+      })
+    }
 
     const editClick = () => {
       map.pm.enableGlobalEditMode({
-        allowSelfIntersection: false,
-      });
-    };
+        allowSelfIntersection: false
+      })
+    }
 
     const dragClick = () => {
-      console.log("drag");
-      map.pm.enableGlobalDragMode();
-    };
+      console.log('drag')
+      map.pm.enableGlobalDragMode()
+    }
 
     const importClick = () => {
-      console.log("导入kml");
-    };
+      console.log('导入kml')
+    }
 
     const beforeUpload = (file) => {
-      console.log(file, "beforeUpload----上传文件");
-      let fileReader = new FileReader();
-      fileReader.readAsBinaryString(file);
+      console.log(file, 'beforeUpload----上传文件')
+      let fileReader = new FileReader()
+      fileReader.readAsBinaryString(file)
 
       fileReader.onload = () => {
-        console.log(fileReader.result, "fileReader.result");
-        const parser = new DOMParser();
-        const kml = parser.parseFromString(fileReader.result, "text/xml");
-        const track = new L.KML(kml);
-        console.log(track, "track");
-        map.addLayer(track);
+        console.log(fileReader.result, 'fileReader.result')
+        const parser = new DOMParser()
+        const kml = parser.parseFromString(fileReader.result, 'text/xml')
+        const track = new L.KML(kml)
+        console.log(track, 'track')
+        map.addLayer(track)
 
         // Adjust map to show the kml
-        const bounds = track.getBounds();
-        map.fitBounds(bounds);
-      };
-    };
+        const bounds = track.getBounds()
+        map.fitBounds(bounds)
+      }
+    }
 
     const onSuccess = (response, file, fileList) => {
-      console.log("success----on", response, file);
-    };
+      console.log('success----on', response, file)
+    }
 
     onMounted(() => {
-      const { init } = useMap();
-      map = init([34.263742732916505, 108.01650524139406]);
+      const { init } = useMap()
+      map = init([34.263742732916505, 108.01650524139406])
 
       // 图层创建成功结束时调用的方法（目前针对Marker和Polygon多边形）
-      map.on("pm:create", (e) => {
+      map.on('pm:create', (e) => {
         // Polygon 多边形
-        if (e.shape === "Polygon") {
-          console.log("绘制多边形", e);
+        if (e.shape === 'Polygon') {
+          console.log('绘制多边形', e)
         }
 
         // Marker标记
-        if (e.shape === "Marker") {
+        if (e.shape === 'Marker') {
           // 只保留最后一次点击的Marker
           map.eachLayer(function (layer) {
-            console.log(layer._url, layer._leaflet_id, layer.pm);
+            console.log(layer._url, layer._leaflet_id, layer.pm)
             if (
               layer.pm &&
-              layer.pm._shape === "Marker" &&
+              layer.pm._shape === 'Marker' &&
               e.marker._leaflet_id !== layer._leaflet_id
             ) {
-              layer.remove();
+              layer.remove()
             }
-          });
+          })
           // map.pm.disableDraw();
           // map.pm.disableGlobalEditMode();
         }
 
-        e.layer.on("click", function () {
-          console.log("创建了图层后的click事件");
-        });
+        e.layer.on('click', function () {
+          console.log('创建了图层后的click事件')
+        })
 
-        e.layer.on("pm:edit", (event) => {
+        e.layer.on('pm:edit', (event) => {
           // 修改坐标
-          console.log(event, "pm:edit拖动");
-        });
-      });
-    });
+          console.log(event, 'pm:edit拖动')
+        })
+      })
+    })
     return {
       ...toRefs(state),
       refMap,
@@ -203,31 +176,31 @@ export default defineComponent({
       editClick,
       importClick,
       beforeUpload,
-      onSuccess,
-    };
-  },
-});
+      onSuccess
+    }
+  }
+})
 </script>
 <style lang="scss" scoped>
-  .leaflet-map-class {
-    width: calc(100vw - 270px); 
-    height: calc(100vh - 90px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .operation {
-    position: absolute;
-    z-index: 10000;
-    top: 20px;
-    left: 10px;
-    padding: 2px;
-    // width: 120px;
-    height: 30px;
-  }
+.leaflet-map-class {
+  width: calc(100vw - 270px);
+  height: calc(100vh - 90px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.operation {
+  position: absolute;
+  z-index: 10000;
+  top: 20px;
+  left: 10px;
+  padding: 2px;
+  // width: 120px;
+  height: 30px;
+}
 
-  .image-size {
-    width: 18px;
-    height: 18px;
-  }
+.image-size {
+  width: 18px;
+  height: 18px;
+}
 </style>

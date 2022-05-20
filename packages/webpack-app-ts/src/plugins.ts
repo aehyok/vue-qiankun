@@ -1,6 +1,6 @@
-import ImageTypeView from "./components/ImageTypeView.vue";
+import ImageTypeView from './components/ImageTypeView.vue'
 
 function plugins(Vue: any) {
-  Vue.component("ImageTypeView", ImageTypeView);
+  Vue.component('ImageTypeView', ImageTypeView)
 }
-export default plugins;
+export default plugins

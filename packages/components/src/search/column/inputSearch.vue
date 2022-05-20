@@ -1,15 +1,15 @@
 <template>
-    <!-- 输入框 -->
-    <el-input
-        :placeholder="column.placeholder"
-        v-model="value"
-        class="input-search"
-        @keyup.enter="search"
-    ></el-input>
+  <!-- 输入框 -->
+  <el-input
+    :placeholder="column.placeholder"
+    v-model="value"
+    class="input-search"
+    @keyup.enter="search"
+  ></el-input>
 </template>
 <script setup>
 import { computed } from 'vue'
-const emit = defineEmits(["update:data"])
+const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
     type: [Object],
@@ -17,7 +17,7 @@ const props = defineProps({
   },
   data: {
     type: String,
-    default: ""
+    default: ''
   }
 })
 
@@ -29,7 +29,6 @@ const value = computed({
     emit('update:data', val)
   }
 })
-
 </script>
 <style lang="scss" scoped>
 .input-search {

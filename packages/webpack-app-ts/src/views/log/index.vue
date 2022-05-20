@@ -1,10 +1,6 @@
 <template>
   <div>
-    <el-table
-      :data="apilist"
-      border
-      style="width: 100%; margin-top: 20px"
-    >
+    <el-table :data="apilist" border style="width: 100%; margin-top: 20px">
       <el-table-column prop="id" label="ID" width="180" />
       <el-table-column prop="project" label="project" />
       <el-table-column prop="content" label="content" />
@@ -15,12 +11,12 @@
 </template>
 <script>
 import { SlTable } from '@app/components'
-import { defineComponent, reactive, toRefs, onMounted, ref } from "vue";
-import { getTableConfig, getTableData, getLogList } from '@/services/api';
+import { defineComponent, reactive, toRefs, onMounted, ref } from 'vue'
+import { getTableConfig, getTableData, getLogList } from '@/services/api'
 export default defineComponent({
   components: { SlTable },
   setup() {
-    const show = ref(false);
+    const show = ref(false)
     const state = reactive({
       pageModel: {
         page: 1,
@@ -32,44 +28,43 @@ export default defineComponent({
       columns: [], // 需要展示的列
       operates: {
         width: 200,
-        fixed: "right",
+        fixed: 'right',
         list: [
           {
-            id: "1",
-            label: "查看",
-            type: "text",
+            id: '1',
+            label: '查看',
+            type: 'text',
             show: true,
             disabled: false,
             method: (index, row, ss) => {
-              handleDetail(index, row, ss);
+              handleDetail(index, row, ss)
             }
           },
           {
-            id: "2",
-            label: "删除",
-            type: "text",
+            id: '2',
+            label: '删除',
+            type: 'text',
             show: true,
             disabled: false,
             method: (index, row) => {
-              handleDel(index, row);
+              handleDel(index, row)
             }
           }
         ]
       } // 列操作按钮
-    });
+    })
 
     const getLogListApi = () => {
       getLogList({
         page: 1,
         limit: 23
-      }).then(result => {
+      }).then((result) => {
         console.log(result, 'getLogListApi')
         state.apilist = result.data.docs
       })
     }
     getLogListApi()
-    onMounted(async() => {
-
+    onMounted(async () => {
       // const resultConfig = await getTableConfig('0')
       // const resultData = await getTableData({
       //   GuideLineId: '0',
@@ -85,7 +80,7 @@ export default defineComponent({
       //   const result = values[0]
       //   if(result.code == 200 ) {
       //     console.log(result, 'table列表配置')
-      //     state.columns = JSON.parse(result.data.resultColumns) 
+      //     state.columns = JSON.parse(result.data.resultColumns)
       //     console.log(state.columns, 'state.columns')
       //   }
       //   const data = values[1]
@@ -98,39 +93,35 @@ export default defineComponent({
       // });
       // console.log('table-config')
       // const result = await getTableConfig('0')
-
-
     })
     // 选中行
     const handleSelectionChange = (val) => {
-      console.log("handleSelectionChange-val:", val);
-    };
+      console.log('handleSelectionChange-val:', val)
+    }
     // 编辑
     const handleDetail = (index, row, idx) => {
-      console.log("index:", index, idx);
-      console.log("row:", row);
-    };
+      console.log('index:', index, idx)
+      console.log('row:', row)
+    }
     // 删除
     const handleDel = (index, row) => {
-      console.log(" index:", index);
-      console.log(" row:", row);
-    };
+      console.log(' index:', index)
+      console.log(' row:', row)
+    }
 
-    state.list = [];
+    state.list = []
     // state.columns = columns_test;
     const search = () => {
-      state.list = [...state.list];
-      console.log(state.pageModel, "state.pageModel");
-    };
-
-
+      state.list = [...state.list]
+      console.log(state.pageModel, 'state.pageModel')
+    }
 
     return {
       ...toRefs(state),
       handleSelectionChange,
       search,
       show
-    };
+    }
   }
-});
+})
 </script>

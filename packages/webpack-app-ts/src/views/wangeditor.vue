@@ -4,45 +4,45 @@
     <div :innerHTML="content.html"></div>
   </div>
 </template>
-  
-  <script>
-import { onMounted, onBeforeUnmount, ref, reactive } from "vue";
-import WangEditor from "wangeditor";
+
+<script>
+import { onMounted, onBeforeUnmount, ref, reactive } from 'vue'
+import WangEditor from 'wangeditor'
 
 export default {
-  name: "editor",
+  name: 'editor',
   setup() {
-    const editor = ref();
+    const editor = ref()
     const content = reactive({
-      html: "",
-      text: ""
-    });
+      html: '',
+      text: ''
+    })
 
-    let instance;
+    let instance
     onMounted(() => {
-      instance = new WangEditor(editor.value);
+      instance = new WangEditor(editor.value)
       Object.assign(instance.config, {
         onchange() {
-          content.html = instance.txt.html();
+          content.html = instance.txt.html()
         }
-      });
-      instance.create();
-    });
+      })
+      instance.create()
+    })
 
     onBeforeUnmount(() => {
-      instance.destroy();
-      instance = null;
-    });
+      instance.destroy()
+      instance = null
+    })
 
     return {
       editor,
       content
-    };
+    }
   }
-};
+}
 </script>
-  
-  <style lang="scss" scoped>
+
+<style lang="scss" scoped>
 :deep(.w-e-text-container) {
   z-index: 99 !important;
 }

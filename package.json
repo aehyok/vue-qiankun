@@ -29,7 +29,14 @@
   "dependencies": {
     "@app/utils": "workspace:^1.0.0",
     "@element-plus/icons-vue": "^1.1.4",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
     "@vueuse/core": "^8.5.0",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-vue": "^7.9.0",
+    "prettier": "^2.2.1",
     "url-loader": "^4.1.1"
   }
 }

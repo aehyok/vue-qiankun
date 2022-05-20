@@ -5,7 +5,7 @@
         :columnSpan="columnSpan"
         :column="item"
         :formData="formData"
-        v-if="ifshow(item,formData)"
+        v-if="ifshow(item, formData)"
       />
     </template>
   </el-row>
@@ -15,39 +15,42 @@ import ComponentView from './column/component-view.vue'
 const props = defineProps({
   columnList: {
     type: Array,
-    default: () => [],
+    default: () => []
   },
   formData: {
     type: Object,
-    default: () => { },
+    default: () => {}
   },
   columnSpan: {
     type: Number,
-    default: 24,
+    default: 24
   }
 })
 
-const ifshow = (column,data) => {
-  if(column && column.ifshow) {
-    console.log((typeof column.ifshow) === 'string',data, 'sssssssssssssssss--------------------------')
+const ifshow = (column, data) => {
+  if (column && column.ifshow) {
+    console.log(
+      typeof column.ifshow === 'string',
+      data,
+      'sssssssssssssssss--------------------------'
+    )
     // 通过JSON 定义的函数对象
-    if(typeof column.ifshow === 'object' ) {
+    if (typeof column.ifshow === 'object') {
       return column.ifshow(data)
     }
     // 通过页面进行配置的字符串函数
-    if(typeof column.ifshow === 'string' ) {
+    if (typeof column.ifshow === 'string') {
       // 用eval调用没问题
       try {
-        console.log('column.ifshow',column.ifshow)
+        console.log('column.ifshow', column.ifshow)
         const expression = `(data) => { return  ${column.ifshow}}`
-        console.log('column.expression',expression)
+        console.log('column.expression', expression)
         const evalFunction = eval(expression)
         console.log(evalFunction, 'evalFunction')
         return evalFunction(data)
-      }
-      catch(err) {
+      } catch (err) {
         console.error(err, 'error')
-        return  false; 
+        return false
       }
     }
   } else {

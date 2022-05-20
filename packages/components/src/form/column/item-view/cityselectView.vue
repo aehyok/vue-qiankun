@@ -15,16 +15,16 @@
 <script setup>
 import { watch, ref } from 'vue'
 import cityJson from '../resource/china.js'
-const emit = defineEmits(["update:data"])
+const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
     type: [Object],
-    default: () => { },
+    default: () => {}
   },
   data: {
     type: Object,
-    default: () => { },
-  },
+    default: () => {}
+  }
 })
 const { column } = props
 
@@ -33,7 +33,7 @@ rules.value = [
   {
     required: column.required,
     message: `请输入${column.title}`,
-    trigger: ['blur', 'change'],
+    trigger: ['blur', 'change']
   }
 ]
 
@@ -55,10 +55,11 @@ console.log(cityJson['100000'], 'city-cityJson')
 
 const provinceData = cityJson['100000']
 // 省
-for (const provinceCode in provinceData) { // provinceCode拿到省份编码
+for (const provinceCode in provinceData) {
+  // provinceCode拿到省份编码
   regionData.value.push({
     value: provinceCode,
-    label: provinceData[provinceCode],
+    label: provinceData[provinceCode]
   })
 }
 console.log(regionData.value, 'state-regionData')
@@ -68,20 +69,21 @@ for (const provinceObj of regionData.value) {
   for (const cityCode in cityJson[provinceObj.value]) {
     city.push({
       value: cityCode,
-      label: cityJson[provinceObj.value][cityCode],
+      label: cityJson[provinceObj.value][cityCode]
     })
     if (city.length) {
       provinceObj.children = city
     }
   }
-  // 区县 
+  // 区县
   if (provinceObj.children) {
-    for (const cityData of provinceObj.children) { // cityData拿到每个市
+    for (const cityData of provinceObj.children) {
+      // cityData拿到每个市
       const district = []
       for (const districtCode in cityJson[cityData.value]) {
         district.push({
           value: districtCode,
-          label: cityJson[cityData.value][districtCode],
+          label: cityJson[cityData.value][districtCode]
         })
       }
       if (district.length) {
@@ -99,10 +101,12 @@ watch(
     let array = newVal && Object.keys(newVal).length > 3 ? props.data.mapCode.split(',') : []
     selectedOptions.value = array.map(String)
     console.log(props.data, array, 'watch--')
-  }, {
-  immediate: true,
-  deep: true,
-})
+  },
+  {
+    immediate: true,
+    deep: true
+  }
+)
 
 const handleChange = (val) => {
   const obj = {}
@@ -115,22 +119,21 @@ const handleChange = (val) => {
   }
   val.forEach((item, index) => {
     if (index === 0) {
-      pro = regionData.value.find(rItem => rItem.value === item)
+      pro = regionData.value.find((rItem) => rItem.value === item)
       obj.province = pro.label
     }
     if (index === 1) {
-      city = pro.children.find(rItem => rItem.value === item)
+      city = pro.children.find((rItem) => rItem.value === item)
       obj.city = city.label
     }
     if (index === 2) {
-      district = city.children.find(rItem => rItem.value === item)
+      district = city.children.find((rItem) => rItem.value === item)
       obj.district = district.label
     }
-  });
+  })
 
   obj.mapCode = val.toString()
   emit('update:data', obj)
 }
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

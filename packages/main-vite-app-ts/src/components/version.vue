@@ -17,7 +17,7 @@
   </el-dialog>
 </template>
 <script lang="ts">
-  import { defineComponent, reactive, toRefs, onMounted } from "vue"
+  import { defineComponent, reactive, toRefs, onMounted } from 'vue'
 
   export default defineComponent({
     name: 'Version',
