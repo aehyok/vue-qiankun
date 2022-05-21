@@ -37,6 +37,14 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/scroll',
+    name: 'scroll',
+    component: () => import(/* webpackChunkName: "test" */ '../views/scroll/index.vue'),
+    meta: {
+      title: '滚动条',
+    },
+  },
+  {
     path: '/scan',
     name: 'scan',
     component: () => import(/* webpackChunkName: "scan" */ '../views/Scan.vue'),
