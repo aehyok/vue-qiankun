@@ -14,7 +14,10 @@
     "start:main": "cd packages/main-vite-app-ts && pnpm start",
     "start:child": "cd packages/webpack-app-ts && pnpm start",
     "start:map": "cd packages/map-app-ts && pnpm start",
-    "start:all": "pnpm start:main && pnpm start:child && pnpm start:map"
+    "start:all": "pnpm start:main && pnpm start:child && pnpm start:map",
+    "format": "prettier --write .",
+    "lint": "eslint ./src --ext .vue,.js,.ts",
+    "lint-fix": "eslint --fix ./src --ext .vue,.js,.ts"
   },
   "repository": {
     "type": "git",
