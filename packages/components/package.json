@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@app/map-webpack": "workspace:^0.1.0",
     "url-loader": "^4.1.1"
   }
 }

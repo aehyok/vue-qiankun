@@ -12,7 +12,7 @@ module.exports = {
   },
   plugins: ['vue', '@typescript-eslint'],
   rules: {
-    // semi: 'off', // 结尾分号设置
+    semi: 'off', // 结尾分号设置
     'comma-dangle': 'off', // 尾随一个多余的逗号
     'vue/no-multiple-template-root': 'off',
     'vue/require-v-for-key': 'off',
