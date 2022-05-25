@@ -14,7 +14,8 @@
 <script>
 import { SlTable } from '@app/components'
 import { defineComponent, reactive, toRefs } from 'vue'
-import { list_test, columns_test } from './tableConfig'
+import { listTest, columnsTest } from './tableConfig'
+
 export default defineComponent({
   components: { SlTable },
   setup() {
@@ -69,8 +70,8 @@ export default defineComponent({
       } // 列操作按钮
     })
 
-    state.list = list_test
-    state.columns = columns_test
+    state.list = listTest
+    state.columns = columnsTest
     const search = () => {
       state.list = [...state.list]
       console.log(state.pageModel, 'state.pageModel')

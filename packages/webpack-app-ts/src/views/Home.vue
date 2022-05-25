@@ -33,9 +33,10 @@
   </div>
 </template>
 <script setup>
-import { defineComponent, reactive, toRefs, ref } from 'vue'
-import { SlForm, VueJsonEditor } from '@app/components'
-let formDom = ref(null)
+import { reactive, ref } from 'vue'
+import { VueJsonEditor } from '@app/components'
+
+const formDom = ref(null)
 
 const state = reactive({
   options: {

@@ -16,10 +16,23 @@
 import { SlTable } from '@app/components'
 import { defineComponent, reactive, toRefs, onMounted, ref } from 'vue'
 import { getTableConfig, getTableData } from '@/services/api'
+
 export default defineComponent({
   components: { SlTable },
   setup() {
     const show = ref(false)
+
+    // 编辑
+    const handleDetail = (index, row, idx) => {
+      console.log('index:', index, idx)
+      console.log('row:', row)
+    }
+    // 删除
+    const handleDel = (index, row) => {
+      console.log(' index:', index)
+      console.log(' row:', row)
+    }
+
     const state = reactive({
       pageModel: {
         page: 1,
@@ -71,13 +84,13 @@ export default defineComponent({
         console.timeEnd('data1')
         console.log(values, 'values', new Date().getMilliseconds())
         const result = values[0]
-        if (result.code == 200) {
+        if (result.code === 200) {
           console.log(result, 'table列表配置')
           state.columns = JSON.parse(result.data.resultColumns)
           console.log(state.columns, 'state.columns')
         }
         const data = values[1]
-        if (data.code == 200) {
+        if (data.code === 200) {
           console.log(data, 'table列表配置')
           state.list = data.data
           console.log(state.columns, 'state.columns')
@@ -90,16 +103,6 @@ export default defineComponent({
     // 选中行
     const handleSelectionChange = (val) => {
       console.log('handleSelectionChange-val:', val)
-    }
-    // 编辑
-    const handleDetail = (index, row, idx) => {
-      console.log('index:', index, idx)
-      console.log('row:', row)
-    }
-    // 删除
-    const handleDel = (index, row) => {
-      console.log(' index:', index)
-      console.log(' row:', row)
     }
 
     state.list = []

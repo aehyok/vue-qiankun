@@ -1,4 +1,5 @@
 const { name } = require('./package')
+
 module.exports = {
   publicPath: './',
   lintOnSave: false,
@@ -25,7 +26,7 @@ module.exports = {
       .test(/.(ttf|otf|eot|woff|woff2)$/)
       .use('url-loader')
       .loader('url-loader')
-      .tap((options) => ({ name: '/fonts/[name].[hash:8].[ext]' }))
+      .tap(() => ({ name: '/fonts/[name].[hash:8].[ext]' }))
       .end()
   },
   configureWebpack: {

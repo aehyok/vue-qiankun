@@ -10,13 +10,22 @@
   </div>
 </template>
 <script>
-import { SlTable } from '@app/components'
 import { defineComponent, reactive, toRefs, onMounted, ref } from 'vue'
-import { getTableConfig, getTableData, getLogList } from '@/services/api'
+import { getLogList } from '@/services/api'
+
 export default defineComponent({
-  components: { SlTable },
   setup() {
     const show = ref(false)
+    // 编辑
+    const handleDetail = (index, row, idx) => {
+      console.log('index:', index, idx)
+      console.log('row:', row)
+    }
+    // 删除
+    const handleDel = (index, row) => {
+      console.log(' index:', index)
+      console.log(' row:', row)
+    }
     const state = reactive({
       pageModel: {
         page: 1,
@@ -97,16 +106,6 @@ export default defineComponent({
     // 选中行
     const handleSelectionChange = (val) => {
       console.log('handleSelectionChange-val:', val)
-    }
-    // 编辑
-    const handleDetail = (index, row, idx) => {
-      console.log('index:', index, idx)
-      console.log('row:', row)
-    }
-    // 删除
-    const handleDel = (index, row) => {
-      console.log(' index:', index)
-      console.log(' row:', row)
     }
 
     state.list = []

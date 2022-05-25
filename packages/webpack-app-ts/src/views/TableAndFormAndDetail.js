@@ -1,4 +1,4 @@
-const table_DataList = [
+const tableDataList = [
   {
     id: '24',
     title: '编号1',
@@ -71,7 +71,7 @@ const table_DataList = [
   }
 ]
 
-const table_ColumnList = [
+const tableColumnList = [
   {
     type: 'checkbox'
   },
@@ -107,13 +107,13 @@ const table_ColumnList = [
     prop: 'custom',
     label: '自定义',
     align: 'center',
-    html: (row, column) => {
+    html: (row) => {
       return row.state === 2 ? `<span style="color: red;">${row.remark}</span>` : `未定义`
     }
   }
 ]
 
-const form_ColumnList = [
+const formColumnList = [
   {
     name: 'name1',
     type: 'text',
@@ -247,7 +247,7 @@ const form_ColumnList = [
   }
 ]
 
-const form_Data = {
+const formData = {
   name: '主菜单栏目',
   total: null,
   count: null,
@@ -260,7 +260,7 @@ const form_Data = {
   isValid: true
 }
 
-const detail_ColumnList = [
+const detailColumnList = [
   {
     label: '事件类型',
     name: 'type',
@@ -290,7 +290,7 @@ const detail_ColumnList = [
   }
 ]
 
-const detail_Data = {
+const detailData = {
   type: '事件类型',
   address: '事发地址',
   createdByName: '上报人员',
@@ -331,11 +331,4 @@ const detail_Data = {
     }
   ]
 }
-export {
-  table_DataList,
-  table_ColumnList,
-  form_ColumnList,
-  form_Data,
-  detail_ColumnList,
-  detail_Data
-}
+export { tableDataList, tableColumnList, formColumnList, formData, detailColumnList, detailData }

@@ -1,4 +1,4 @@
-const list_test = [
+const listTest = [
   {
     id: '24',
     title: '编号3',
@@ -85,7 +85,7 @@ const list_test = [
   }
 ]
 
-const columns_test = [
+const columnsTest = [
   {
     type: 'checkbox'
   },
@@ -121,9 +121,9 @@ const columns_test = [
     prop: 'custom',
     label: '自定义',
     align: 'center',
-    html: (row, column) => {
+    html: (row) => {
       return row.title === '编号3' ? `<span style="color: red;">${row.remark}</span>` : `未定义`
     }
   }
 ]
-export { list_test, columns_test }
+export { listTest, columnsTest }

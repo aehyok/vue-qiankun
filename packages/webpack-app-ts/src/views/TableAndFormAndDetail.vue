@@ -40,15 +40,16 @@
 <script>
 import { SlTable, SlForm, SlDetail, SlSearch } from '@app/components'
 import { defineComponent, reactive, toRefs, ref } from 'vue'
-import {
-  table_DataList,
-  table_ColumnList,
-  form_ColumnList,
-  form_Data,
-  detail_ColumnList,
-  detail_Data
-} from './TableAndFormAndDetail'
 import { ElMessageBox, ElMessage } from 'element-plus'
+import {
+  tableDataList,
+  tableColumnList,
+  formColumnList,
+  formData,
+  detailColumnList,
+  detailData
+} from './TableAndFormAndDetail'
+
 export default defineComponent({
   components: { SlTable, SlForm, SlDetail, SlSearch },
   setup() {
@@ -96,12 +97,6 @@ export default defineComponent({
       console.log('row:', row)
       showDetail.value = true
     }
-    // 删除
-    const handleDel = (index, row) => {
-      console.log(' index:', index)
-      console.log(' row:', row)
-      handleDelete()
-    }
 
     // 删除
     const handleDelete = () => {
@@ -120,6 +115,12 @@ export default defineComponent({
           })
         })
     }
+    // 删除
+    const handleDel = (index, row) => {
+      console.log(' index:', index)
+      console.log(' row:', row)
+      handleDelete()
+    }
 
     const editCloseClick = () => {
       showEdit.value = false
@@ -133,12 +134,12 @@ export default defineComponent({
     }
 
     const detail = reactive({
-      columns: detail_ColumnList,
-      formData: detail_Data
+      columns: detailColumnList,
+      formData: detailData
     })
     const formConfig = reactive({
-      formListItem: form_ColumnList,
-      formData: form_Data
+      formListItem: formColumnList,
+      formData
     })
     const state = reactive({
       pageModel: {
@@ -186,8 +187,8 @@ export default defineComponent({
       } // 列操作按钮
     })
 
-    state.list = table_DataList
-    state.columns = table_ColumnList
+    state.list = tableDataList
+    state.columns = tableColumnList
     const search = () => {
       state.list = [...state.list]
       console.log(state.pageModel, 'state.pageModel')

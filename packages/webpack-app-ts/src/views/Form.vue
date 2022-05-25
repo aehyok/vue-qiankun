@@ -32,9 +32,10 @@
   </el-row>
 </template>
 <script setup>
-import { reactive, watch, ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { SlForm, VueJsonEditor } from '@app/components'
-let formDom = ref(null)
+
+const formDom = ref(null)
 
 const state = reactive({
   options: {
@@ -188,15 +189,15 @@ const changeModel = (value) => {
   console.log(value, 'changeModel')
   state.formConfig = value
 }
-watch(
-  state,
-  () => (newValue, oldValue) => {
-    console.log(state.formConfig.formListItem, 'ssssssssssssssss')
-  },
-  {
-    immediate: true,
-    deep: true
-  }
-)
+// watch(
+//   state,
+//   () => (newValue, oldValue) => {
+//     console.log(state.formConfig.formListItem, 'ssssssssssssssss')
+//   },
+//   {
+//     immediate: true,
+//     deep: true
+//   }
+// )
 </script>
 <style scoped></style>

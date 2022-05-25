@@ -9,11 +9,11 @@
   >
 </template>
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
+// eslint-disable-next-line no-undef
 const props = defineProps({
   column: {
     type: [Object],
-    default: {}
+    default: () => {}
   }
 })
 console.log(props.column, 'column-props--reactive')

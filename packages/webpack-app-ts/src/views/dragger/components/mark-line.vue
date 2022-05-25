@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import eventBus from '@/utils/eventBus'
 import { mapState } from 'vuex'
+import eventBus from '@/utils/eventBus'
 import { getComponentRotatedStyle } from '@/utils/style'
 
 export default {
@@ -58,7 +58,7 @@ export default {
 
       this.hideLine()
       components.forEach((component) => {
-        if (component == this.curComponent) return
+        if (component === this.curComponent) return
         const componentStyle = getComponentRotatedStyle(component.style)
         const { top, left, bottom, right } = componentStyle
         const componentHalfwidth = componentStyle.width / 2
@@ -159,11 +159,12 @@ export default {
             this.$store.commit('setShapeSingleStyle', {
               key,
               value:
-                rotate != 0
+                rotate !== 0
                   ? this.translatecurComponentShift(key, condition, curComponentStyle)
                   : condition.dragShift
             })
 
+            // eslint-disable-next-line no-param-reassign
             condition.lineNode.style[key] = `${condition.lineShift}px`
             needToShow.push(condition.line)
           })
@@ -179,7 +180,7 @@ export default {
 
     translatecurComponentShift(key, condition, curComponentStyle) {
       const { width, height } = this.curComponent.style
-      if (key == 'top') {
+      if (key === 'top') {
         return Math.round(condition.dragShift - (height - curComponentStyle.height) / 2)
       }
 

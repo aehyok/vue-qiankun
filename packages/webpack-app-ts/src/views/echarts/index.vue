@@ -1,17 +1,18 @@
+<!-- /* eslint-disable no-unused-vars */
 <template>
   <div class="dscreen-chart" id="chart" style="width: 400px; height: 216px"></div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive } from 'vue'
 import * as echarts from 'echarts/core'
 import { EChartsType, EChartsOption } from 'echarts/types/dist/shared'
 import {
-  BarChart,
+  // BarChart,
   // 系列类型的定义后缀都为 SeriesOption
   BarSeriesOption,
-  LineChart,
-  LineSeriesOption,
+  // LineChart,
+  // LineSeriesOption,
   PieChart,
   PieSeriesOption
 } from 'echarts/charts'
@@ -89,11 +90,11 @@ const state = reactive({
 })
 
 onMounted(() => {
-  let dom = document.getElementById('chart')
+  const dom = document.getElementById('chart')
   let myChart: EChartsType | null = null
   if (dom) {
     myChart = echarts.init(dom)
-    let options: EChartsOption = {
+    const options: EChartsOption = {
       // 每个饼的颜色
       color: ['#FA6400', '#44D7B6', '#0091FF', '#6DD400', '#F7B500'],
 
@@ -134,8 +135,8 @@ onMounted(() => {
             color: 'red',
             formatter(data: any) {
               console.log(data, 'sssss')
-              let { name, value } = data
-              return name + ' ' + value + '万亿'
+              const { name, value } = data
+              return `${name} ${value}万亿`
             }
           },
           data: state.chartsData
@@ -152,4 +153,4 @@ onMounted(() => {
 .dscreen-chart {
   border: 1px solid red;
 }
-</style>
+</style> -->

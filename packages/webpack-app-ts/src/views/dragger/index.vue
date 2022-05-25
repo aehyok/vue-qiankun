@@ -4,7 +4,7 @@
       <div class="y-component">
         <div style="font-weight: 600; margin: 15px">组件列表</div>
         <el-row>
-          <template v-for="(item, index) in componentList">
+          <template v-for="(item, index) in componentList" :key="item.id">
             <el-col
               :span="12"
               @dragstart="dragStartClick"
@@ -32,7 +32,7 @@
         @drop="dropClick"
       >
         <grid-line />
-        <template v-for="(item, index) in state.list">
+        <template v-for="(item, index) in state.list" :key="item.id">
           <vue-drag-resize
             :isActive="item.isActive"
             :w="item.width"
@@ -75,6 +75,8 @@
 </template>
 <script>
 import VueDragResize from 'vue-drag-resize'
+import { defineComponent, onMounted, reactive, ref } from 'vue'
+import shortid from 'shortid'
 import GridLine from './components/grid-line.vue'
 // import MarkLine from './components/mark-line.vue'
 import DragImage from './list-item/image.vue'
@@ -87,7 +89,6 @@ import ConfigButton from './config-item/button.vue'
 import ConfigDate from './config-item/date.vue'
 import ConfigText from './config-item/text.vue'
 
-import { defineComponent, onMounted, reactive, ref } from 'vue'
 export default defineComponent({
   components: {
     VueDragResize,
@@ -105,7 +106,6 @@ export default defineComponent({
 })
 </script>
 <script setup>
-import shortid from 'shortid'
 const componentList = ref([])
 const configView = ref()
 const currentComponent = ref()
@@ -113,7 +113,7 @@ const activeName = ref('first')
 const handleClick = (tab, event) => {
   console.log(tab, event)
 }
-componentList.value = componentList.value = [
+componentList.value = [
   {
     id: shortid.generate(),
     type: 'image',
@@ -221,14 +221,15 @@ const state = reactive({
   ]
 })
 
+function dragOver(e) {
+  console.log('dragover')
+  e.preventDefault()
+  e.dataTransfer.dropEffect = 'copy'
+}
 onMounted(() => {
-  let content = document.getElementById('content')
+  const content = document.getElementById('content')
 
-  content.ondragover = function (e) {
-    console.log('dragover')
-    e.preventDefault()
-    e.dataTransfer.dropEffect = 'copy'
-  }
+  content.ondragover = dragOver
 })
 
 const clickClick = (newRect, index) => {
@@ -236,6 +237,7 @@ const clickClick = (newRect, index) => {
   currentComponent.value = state.list[index]
   configView.value = state.list[index].config
   state.list.forEach((item) => {
+    // eslint-disable-next-line no-param-reassign
     item.isActive = false
   })
   currentComponent.value.isActive = true
@@ -260,7 +262,7 @@ const dropClick = (e) => {
   const index = e.dataTransfer.getData('index')
   const componentItem = componentList.value[index]
   console.log(index, componentList.value[index], 'dropClick')
-  let item = {
+  const item = {
     id: shortid.generate(),
     type: componentItem.type,
     title: componentItem.title,
@@ -275,7 +277,7 @@ const dropClick = (e) => {
 }
 
 const resizeClick = (newRect, index) => {
-  let item = state.list[index]
+  const item = state.list[index]
   console.log(newRect, index, 'index-resizeClick')
   item.width = newRect.width
   item.height = newRect.height
@@ -289,12 +291,13 @@ const draggleClick = (newRect, index) => {
     state.list[index].y = 0
   }
   state.list.forEach((item) => {
+    // eslint-disable-next-line no-param-reassign
     item.isActive = false
   })
   currentComponent.value.isActive = true
   console.log(state.list, 'sssssssssssssssss')
   configView.value = state.list[index].config
-  let item = state.list[index]
+  const item = state.list[index]
   console.log(newRect, index, 'index-draggleClick')
   item.width = newRect.width
   item.height = newRect.height

@@ -59,6 +59,7 @@
 
 <script>
 import draggable from 'vuedraggable'
+
 export default {
   name: 'clone',
   display: 'Clone',
@@ -87,7 +88,7 @@ export default {
     }
   },
   methods: {
-    log: function (evt) {
+    log(evt) {
       window.console.log(evt)
     }
   }

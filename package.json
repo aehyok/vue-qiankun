@@ -19,6 +19,9 @@
     "lint": "eslint ./src --ext .vue,.js,.ts",
     "lint-fix": "eslint --fix ./src --ext .vue,.js,.ts"
   },
+  "lint-staged": {
+    "*.{vue,js,ts}": "eslint --fix"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aehyok/vue-qiankun.git"
