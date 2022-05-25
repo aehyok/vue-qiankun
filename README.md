@@ -23,3 +23,12 @@
 ## :x: [10、通过脚本.sh 编译前端项目，生成 tag 拷贝到 nginx 远程服务器等（待做版本回滚、jenkins docker 已尝试）](https://github.com/aehyok/2021/blob/main/2021-08-07-dvs-build.sh)
 
 ## :heavy_check_mark: [11、React+ umi + dva + Antd demo 项目（待 umi4 开启升级）](https://github.com/aehyok/dotnet6.0/tree/main/react-antd-pro)
+
+
+#### 工程化项目搭建 prettier + eslint + commitizen
+https://juejin.cn/post/6951649464637636622#heading-19
+
+#### pnpm monorepo
+
+#### qiankun微前端
+
