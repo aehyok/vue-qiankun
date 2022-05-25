@@ -22,6 +22,10 @@ module.exports = {
     'import/extensions': 'off',
     'vue/no-v-model-argument': 'off',
     'vue/no-v-for-template-key': 'off',
+    'no-eval': 'off',
+    'import/prefer-default-export': 'off',
+    'no-undef': 'off',
+    'consistent-return': 'off',
     'no-plusplus': 'off' // i++可用
   },
   settings: {}

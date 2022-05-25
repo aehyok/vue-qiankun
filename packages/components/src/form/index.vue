@@ -12,7 +12,8 @@
 </template>
 <script setup>
 import ComponentView from './column/component-view.vue'
-const props = defineProps({
+
+defineProps({
   columnList: {
     type: Array,
     default: () => []
