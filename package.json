@@ -15,10 +15,11 @@
     "start:child": "cd packages/webpack-app-ts && pnpm start",
     "start:map": "cd packages/map-app-ts && pnpm start",
     "start:all": "pnpm start:main && pnpm start:child && pnpm start:map",
-    "format": "prettier --write .",
-    "lint": "eslint ./src --ext .vue,.js,.ts",
-    "lint-fix": "eslint --fix ./src --ext .vue,.js,.ts",
-    "git": "git cz"
+    "prettier": "prettier --write .",
+    "eslint": "eslint --fix ./src --ext .vue,.js,.ts",
+    "pregit": "git add .",
+    "git": "git add . & git cz & git push",
+    "postgit": "git push"
   },
   "lint-staged": {
     "*.{vue,js,ts}": "eslint --fix"
