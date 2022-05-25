@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@app/components": "workspace:^1.0.0",
+    "@app/utils": "workspace:^1.0.0",
     "@element-plus/icons-vue": "^1.1.4",
     "@ffmpeg/ffmpeg": "^0.10.1",
     "ace-builds": "^1.4.14",

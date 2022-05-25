@@ -1,3 +1,3 @@
-let x = 1
-x++
-console.log(x)
+export const add = (a, b) => {
+  return a + b
+}
