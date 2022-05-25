@@ -17,7 +17,8 @@
     "start:all": "pnpm start:main && pnpm start:child && pnpm start:map",
     "format": "prettier --write .",
     "lint": "eslint ./src --ext .vue,.js,.ts",
-    "lint-fix": "eslint --fix ./src --ext .vue,.js,.ts"
+    "lint-fix": "eslint --fix ./src --ext .vue,.js,.ts",
+    "git": "git cz"
   },
   "lint-staged": {
     "*.{vue,js,ts}": "eslint --fix"
@@ -34,15 +35,27 @@
   "homepage": "https://github.com/aehyok/vue-qiankun#readme",
   "dependencies": {
     "@app/utils": "workspace:^1.0.0",
+    "@commitlint/cli": "^17.0.1",
+    "@commitlint/config-conventional": "^17.0.0",
     "@element-plus/icons-vue": "^1.1.4",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "@vueuse/core": "^8.5.0",
+    "commitizen": "^4.2.4",
+    "cz-customizable": "^6.3.0",
     "eslint": "^7.24.0",
     "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.9.0",
+    "husky": "^8.0.1",
     "prettier": "^2.2.1",
     "url-loader": "^4.1.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
   }
 }
