@@ -26,6 +26,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-undef': 'off',
     'consistent-return': 'off',
+    'no-param-reassign': 'off',
     'no-plusplus': 'off' // i++可用
   },
   settings: {}

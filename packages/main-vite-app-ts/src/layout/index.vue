@@ -19,8 +19,9 @@
 <script lang="ts">
 import { defineComponent, watch, reactive, toRefs, defineAsyncComponent, onMounted } from 'vue'
 import { registerMicroApps, start } from 'qiankun'
-import { useStore } from 'vuex'
+// import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
+import { useSystemMenu } from '@/store'
 import { getActiveRule } from '../../../common/utils/ts/utils'
 
 export default defineComponent({
@@ -30,7 +31,7 @@ export default defineComponent({
     SideMenu: defineAsyncComponent(() => import('./side-menu.vue'))
   },
   setup() {
-    const store = useStore()
+    const store = useSystemMenu()
     const route = useRoute()
     const state = reactive({
       showHeader: true, // 是否显示顶部状态栏
@@ -39,7 +40,7 @@ export default defineComponent({
     })
 
     onMounted(() => {
-      const array: any = store.state.systemList
+      const array: any = store.systemList
         .filter((item: any) => item.enabled === true)
         .map((item: any) => {
           return {
@@ -77,10 +78,10 @@ export default defineComponent({
     )
     // 监测左侧菜单是否展示
     watch(
-      () => store.state.systemId,
+      () => store.systemId,
       (newValue) => {
         if (newValue) {
-          const menu = store.state.menuList.find((item: any) => item.path === newValue)
+          const menu = store.menuList.find((item: any) => item.path === newValue)
           if (menu && menu.source) {
             state.showLeft = menu.source.showLeft
           }

@@ -39,7 +39,8 @@
 <script lang="ts">
 import { reactive, computed, onMounted, defineComponent, toRefs, watch, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useStore } from 'vuex'
+// import { useStore } from 'vuex'
+import { useSystemMenu } from '@/store'
 import { Menu } from '../../types/models'
 
 interface DataProp {
@@ -49,7 +50,7 @@ interface DataProp {
 }
 export default defineComponent({
   setup() {
-    const store = useStore()
+    const store = useSystemMenu()
     const route = useRoute()
     const isCollapse = ref(false)
     const state: DataProp = reactive({
@@ -57,9 +58,9 @@ export default defineComponent({
     })
     // TODO watch store
     watch(
-      () => store.state.systemId,
+      () => store.systemId,
       (newValue) => {
-        state.displayMenuTree = store.state.menuList.find((item) => item.Key === newValue)?.MenuList
+        state.displayMenuTree = store.menuList.find((item) => item.Key === newValue)?.MenuList
       },
       {
         immediate: true,

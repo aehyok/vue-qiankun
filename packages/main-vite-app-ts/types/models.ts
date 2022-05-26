@@ -27,3 +27,12 @@ export interface SystemInfo {
 export type Dictionary = {
   [key: number]: string
 }
+
+export interface LoginState {
+  account: string
+  password: string
+  captchaValue: string
+  captchaId: string
+  vcodeImg: string
+  loading: boolean
+}

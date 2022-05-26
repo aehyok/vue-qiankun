@@ -9,7 +9,9 @@
       <div class="common-right color" @click="backHome">返回主页</div>
       <div class="common-right">
         <el-dropdown @command="changeSystem">
-          <span class="color"> 切换系统<i class="el-icon-arrow-down el-icon--right"></i> </span>
+          <span class="color" style="display: flex; align-items: center; justify-content: center">
+            切换系统<el-icon><ArrowRight /></el-icon>
+          </span>
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item v-for="child in childSystemList" :command="child" :key="child">{{
@@ -26,8 +28,9 @@
           style="width: 18.5pt; height: 18.5pt; padding-right: 5px; border-radius: 4px"
         />
         <el-dropdown @command="handleCommand">
-          <span class="color">
-            {{ userName }}<i class="el-icon-arrow-down el-icon--right"></i>
+          <span class="color" style="display: flex; align-items: center; justify-content: center">
+            {{ userName }}
+            <el-icon><ArrowRight /></el-icon>
           </span>
           <template #dropdown>
             <el-dropdown-menu>
@@ -46,7 +49,8 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs, getCurrentInstance, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
+// import { useStore } from 'vuex'
+import { useSystemMenu } from '@/store'
 import { SystemInfo } from '../../types/models'
 import { logout } from '../services'
 import UpdatePassword from '../components/update-password.vue'
@@ -62,7 +66,7 @@ export default defineComponent({
   setup() {
     const { proxy } = getCurrentInstance()
     const router = useRouter()
-    const store = useStore()
+    const store = useSystemMenu()
     let nickName: string = ''
     const json = localStorage.getItem('token')
     if (json != null) {
@@ -81,16 +85,17 @@ export default defineComponent({
       versionDialogVisible: false
     })
 
-    state.systemInfo = store.state.currentSystem
+    state.systemInfo = store.currentSystem
 
-    const childSystemList = store.state.systemList
+    const childSystemList = store.systemList
 
     // 顶部切换系统
     const changeSystem = (item: SystemInfo) => {
-      store.commit('changeSystem', item.systemId)
+      // store.commit('changeSystem', item.systemId)
+      store.changeSystem(item.systemId)
       state.systemInfo = item
       router.push(item.path)
-      console.log(store.state.systemId, 'store.state.systemId')
+      console.log(store.systemId, 'store.systemId')
     }
 
     // 返回主页
@@ -98,7 +103,7 @@ export default defineComponent({
       router.push('/home')
     }
 
-    const headList = store.getters.headerMenuList
+    // const headList = store.headerMenuList
 
     // 退出登录
     const loginOutApi = async () => {
@@ -149,7 +154,7 @@ export default defineComponent({
     }
 
     watch(
-      () => store.state.currentSystem,
+      () => store.currentSystem,
       (newValue) => {
         state.systemInfo = newValue
       },
@@ -169,7 +174,7 @@ export default defineComponent({
       checkLoginOut,
       handleCommand,
       selectMenu,
-      headList,
+      // headList,
       updateForm,
       collapseClick
     }

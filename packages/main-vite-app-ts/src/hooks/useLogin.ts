@@ -1,12 +1,14 @@
-import { useStorage } from '@vueuse/core'
+// import { useStorage } from '@vueuse/core'
 import { encode, decode } from 'js-base64'
-import { useStore } from 'vuex'
-import { getVerifyCode, login } from '@/services/index'
+// import { useStore } from 'vuex'
 import md5 from 'js-md5'
+import { LoginState } from 'types/models'
+import {  useSystemMenu } from '@/store'
+import { getVerifyCode, login } from '@/services/index'
 import { warnMessage } from '@/utils/message'
 
-export function useLogin(loginForm: any, rememberPasCbox: any) {
-  const store = useStore()
+export function useLogin(loginForm: LoginState, rememberPasCbox: any) {
+  const store = useSystemMenu()
   const checkRememberPassword = () => {
     const loginRemInfo = localStorage.getItem('loginRemInfo')
     if (loginRemInfo) {
@@ -14,6 +16,7 @@ export function useLogin(loginForm: any, rememberPasCbox: any) {
       loginForm.account = jsonInof.account
       loginForm.password = jsonInof.password
       console.log(loginForm, 'loginFormloginFormloginForm')
+      // eslint-disable-next-line no-param-reassign
       rememberPasCbox = true
     }
   }
@@ -66,7 +69,8 @@ export function useLogin(loginForm: any, rememberPasCbox: any) {
           })
         )
         localStorage.removeItem('vuex')
-        store.dispatch('fetchSystemList')
+        // store.dispatch('fetchSystemList')
+        store.fetchSystemList()
       } else {
         warnMessage('用户名或密码输入有误，请重新输入')
       }

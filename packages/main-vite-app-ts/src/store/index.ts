@@ -1,5 +1,4 @@
-import { createStore } from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
+import { defineStore } from 'pinia'
 import { getMenuList } from './data.d'
 import { SystemMenu, SystemInfo } from '../../types/models'
 import { getSystemList } from '../services/index'
@@ -8,16 +7,13 @@ interface AppState {
   menuList: SystemMenu[]
   systemId?: string
   currentSystem?: SystemInfo
-  systemList: []
+  systemList: any[]
 }
 
-const dataState = createPersistedState({
-  paths: ['menuList', 'systemId', 'currentSystem', 'systemList'] // 持久化的数据
-})
-
-export default createStore({
+export const useSystemMenu = defineStore("useSystemMenu", {
   state: (): AppState => ({
     systemList: [],
+    systemId: '',
     menuList: [], // 所有菜单
     currentSystem: {
       systemId: '',
@@ -25,29 +21,27 @@ export default createStore({
       title: ''
     }
   }),
-  mutations: {
-    // 切换系统
-    changeSystem(state: AppState, type: string) {
-      state.systemId = type
-      state.currentSystem = state.systemList.find((item: any) => item.systemId === type)
-      // console.log(state.currentSystem, "store----")
-    },
-    setSystemList(state: AppState, data) {
-      state.systemList = data
-      // console.log(state.systemList, "state.Slist")
-    },
-    setMenuList(state: AppState, data) {
-      state.menuList = data
-    }
-  },
+
   actions: {
-    async fetchSystemList({ commit }) {
+    changeSystem(type: string) {
+      this.currentSystem = this.systemList.find((item: any) => item.systemId === type)
+      this.systemId = type
+    },
+    setSystemList(data: any) {
+      this.systemList = data
+    },
+    setMenuList(data: any) {
+      this.menuList = data
+    },
+    async fetchSystemList() {
       try {
         const res: any = await getSystemList()
 
         if (res?.code === 200) {
-          commit('setSystemList', res.data)
-          commit('setMenuList', getMenuList())
+          // commit('setSystemList', res.data)
+          // commit('setMenuList', getMenuList())
+          this.setSystemList(res.data)
+          this.setMenuList(getMenuList())
           window.location.href = '/'
         }
       } catch (error) {
@@ -55,5 +49,7 @@ export default createStore({
       }
     }
   },
-  plugins: [dataState]
-})
+  persist: {
+    enabled: true,
+  }
+});
