@@ -19,7 +19,6 @@
 <script lang="ts">
 import { defineComponent, watch, reactive, toRefs, defineAsyncComponent, onMounted } from 'vue'
 import { registerMicroApps, start } from 'qiankun'
-// import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 import { useSystemMenu } from '@/store'
 import { getActiveRule } from '../../../common/utils/ts/utils'

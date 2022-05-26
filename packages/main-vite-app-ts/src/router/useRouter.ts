@@ -1,6 +1,5 @@
 import NProgress from '../utils/progress'
 
-// TODO 此处无法通过引用 import { useStore } from 'vuex'
 import { useSystemMenu } from '@/store/index'
 
 export const useRoute = (router: any) => {

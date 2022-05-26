@@ -36,10 +36,7 @@ export const useSystemMenu = defineStore("useSystemMenu", {
     async fetchSystemList() {
       try {
         const res: any = await getSystemList()
-
         if (res?.code === 200) {
-          // commit('setSystemList', res.data)
-          // commit('setMenuList', getMenuList())
           this.setSystemList(res.data)
           this.setMenuList(getMenuList())
           window.location.href = '/'
@@ -51,5 +48,11 @@ export const useSystemMenu = defineStore("useSystemMenu", {
   },
   persist: {
     enabled: true,
+    strategies: [
+      {
+        key: 'pinia',
+        storage: window.localStorage,
+      }
+    ]
   }
 });

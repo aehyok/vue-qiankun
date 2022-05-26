@@ -1,6 +1,5 @@
 // import { useStorage } from '@vueuse/core'
 import { encode, decode } from 'js-base64'
-// import { useStore } from 'vuex'
 import md5 from 'js-md5'
 import { LoginState } from 'types/models'
 import {  useSystemMenu } from '@/store'
@@ -68,8 +67,7 @@ export function useLogin(loginForm: LoginState, rememberPasCbox: any) {
             account: loginForm.account
           })
         )
-        localStorage.removeItem('vuex')
-        // store.dispatch('fetchSystemList')
+        localStorage.removeItem('pinia')
         store.fetchSystemList()
       } else {
         warnMessage('用户名或密码输入有误，请重新输入')

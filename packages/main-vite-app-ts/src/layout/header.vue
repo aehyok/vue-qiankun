@@ -49,7 +49,6 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs, getCurrentInstance, watch } from 'vue'
 import { useRouter } from 'vue-router'
-// import { useStore } from 'vuex'
 import { useSystemMenu } from '@/store'
 import { SystemInfo } from '../../types/models'
 import { logout } from '../services'

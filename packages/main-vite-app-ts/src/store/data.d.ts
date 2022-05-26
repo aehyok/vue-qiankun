@@ -1,4 +1,4 @@
-import { Menu, SystemMenu } from '../../types/models'
+import { Menu, SystemMenu } from '@types/models'
 
 // Form表单菜单列表
 export function mapList(): Menu[] {

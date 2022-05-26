@@ -39,7 +39,6 @@
 <script lang="ts">
 import { reactive, computed, onMounted, defineComponent, toRefs, watch, ref } from 'vue'
 import { useRoute } from 'vue-router'
-// import { useStore } from 'vuex'
 import { useSystemMenu } from '@/store'
 import { Menu } from '../../types/models'
 
