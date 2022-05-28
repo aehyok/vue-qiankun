@@ -18,7 +18,6 @@
     "leaflet-contextmenu": "^1.4.0",
     "regenerator-runtime": "^0.13.9",
     "register-service-worker": "^1.7.1",
-    "url-loader": "^4.1.1",
     "v-contextmenu": "^3.0.0",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",

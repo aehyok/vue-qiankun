@@ -9,6 +9,5 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "url-loader": "^4.1.1"
   }
 }
