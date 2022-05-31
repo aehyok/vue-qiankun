@@ -17,9 +17,7 @@
     "start:all": "concurrently \"pnpm start:main\"  \"pnpm start:child\"  \"pnpm start:map\"",
     "prettier": "prettier --write .",
     "eslint": "eslint --fix ./src --ext .vue,.js,.ts",
-    "pregit": "git add .",
-    "git": "git add . & git cz & git push",
-    "postgit": "git push"
+    "git": "git add . & git cz & git push"
   },
   "lint-staged": {
     "*.{vue,js,ts}": "eslint --fix"
