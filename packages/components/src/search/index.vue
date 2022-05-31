@@ -73,18 +73,29 @@
   <el-button class="global-btn" plain type="primary" @click="search">查询</el-button>
   <el-button class="global-btn" plain type="primary" @click="reset">重置</el-button>
 </template>
-<script setup>
-import searchInput from './column/inputSearch.vue'
-import searchSelect from './column/selectSearch.vue'
-import searchDate from './column/dateSearch.vue'
-import searchDateRange from './column/daterangeSearch.vue'
-import { computed, onMounted, reactive } from 'vue'
+<script>
+import { onMounted, reactive, defineComponent } from 'vue'
 import { ElMessage } from 'element-plus'
+import inputSearch from './column/inputSearch.vue'
+import selectSearch from './column/selectSearch.vue'
+import dateSearch from './column/dateSearch.vue'
+import dateRangeSearch from './column/daterangeSearch.vue'
 
+export default defineComponent({
+  name: 'SlSearch',
+  components: {
+    inputSearch,
+    selectSearch,
+    dateSearch,
+    dateRangeSearch
+  }
+})
+</script>
+<script setup>
 const props = defineProps({
   searchParameters: {
     type: Array,
-    default: []
+    default: () => {}
   }
 })
 
@@ -99,15 +110,15 @@ const state = reactive({
 
 const search = () => {
   if (state.startDate && state.endDate) {
-    let startDate = Number(state.startDate.replace('-', '').replace('-', ''))
-    let endDate = Number(state.endDate.replace('-', '').replace('-', ''))
+    const startDate = Number(state.startDate.replace('-', '').replace('-', ''))
+    const endDate = Number(state.endDate.replace('-', '').replace('-', ''))
     if (startDate > endDate) {
       ElMessage.error('开始时间大于等于结束时间')
       return false
     }
   }
 
-  let option = props.searchParameters.find((res) => res.type == 'select')
+  let option = props.searchParameters.find((res) => res.type === 'select')
   if (!option) {
     option = {}
   }
@@ -125,7 +136,7 @@ const search = () => {
   )
 }
 const reset = () => {
-  let option = props.searchParameters.find((res) => res.type == 'select')
+  let option = props.searchParameters.find((res) => res.type === 'select')
   if (!option) {
     option = {}
   }
@@ -139,8 +150,8 @@ const reset = () => {
 }
 
 onMounted(() => {
-  props.searchParameters.map((res) => {
-    if (res.type == 'select') {
+  props.searchParameters.forEach((res) => {
+    if (res.type === 'select') {
       state.getDefault = res.defaultSelected
     }
   })

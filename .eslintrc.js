@@ -27,6 +27,7 @@ module.exports = {
     'no-undef': 'off',
     'consistent-return': 'off',
     'no-param-reassign': 'off',
+    'vue/no-mutating-props': 'off',
     'no-plusplus': 'off' // i++可用
   },
   settings: {}

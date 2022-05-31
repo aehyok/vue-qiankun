@@ -4,8 +4,9 @@
   </el-form-item>
 </template>
 <script setup>
-import { convertDate } from '../../../utils/date'
-console.log('--date')
+import { useDate } from '@app/utils'
+
+const useUtilsDate = useDate()
 const props = defineProps({
   column: {
     type: Object,
@@ -17,5 +18,5 @@ const props = defineProps({
   }
 })
 console.log(props.data, 'date')
-const value = convertDate(props.data)
+const value = useUtilsDate.convertDate(props.data)
 </script>

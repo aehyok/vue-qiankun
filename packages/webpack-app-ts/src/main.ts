@@ -8,7 +8,7 @@ import App from './App.vue'
 import './registerServiceWorker'
 import routes from './router'
 import store from './store'
-import { autoComponentRegister } from '../../common/utils/auto-component-register.js'
+// import { autoComponentRegister } from '../../common/utils/auto-component-register.js'
 import plugins from './plugins'
 
 let instance = null
@@ -31,7 +31,7 @@ function render(props: any = {}) {
     .use(router)
     .use(plugins)
     .mount(container ? container.querySelector('#webpackapp') : '#webpackapp')
-  autoComponentRegister(instance)
+  // autoComponentRegister(instance)
 }
 
 // 独立运行时

@@ -1,3 +1,3 @@
-export const add = (a, b) => {
-  return a + b
-}
+import useDate from './src/date.js'
+
+export { useDate }

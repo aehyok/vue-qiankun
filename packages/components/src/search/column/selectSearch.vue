@@ -18,27 +18,27 @@
   </el-select>
 </template>
 <script setup>
-import { computed } from 'vue'
-const emit = defineEmits(['update:data'])
-const props = defineProps({
+// import { computed } from 'vue'
+
+defineProps({
   column: {
     type: [Object],
     default: () => {}
   },
   data: {
-    type: String,
+    type: [String, Array, Number],
     default: ''
   }
 })
 
-const value = computed({
-  get: function () {
-    return props.data
-  },
-  set: function (val) {
-    emit('update:data', val)
-  }
-})
+// const value = computed({
+//   get() {
+//     return props.data
+//   },
+//   set(val) {
+//     emit('update:data', val)
+//   }
+// })
 
 const changeSelectClick = (item) => {
   console.log('item--item', item)

@@ -13,6 +13,7 @@
 <script setup>
 import { SlDetail, VueJsonEditor } from '@app/components'
 import { reactive } from 'vue'
+
 const options = {
   mode: 'code',
   mainMenuBar: false

@@ -43,7 +43,5 @@
     },
     // 编译过程中需要引入的库文件的列表。
     "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"]
-  },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"],
-  "exclude": ["node_modules"]
+  }
 }

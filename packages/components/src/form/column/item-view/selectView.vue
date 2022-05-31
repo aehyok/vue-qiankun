@@ -17,8 +17,7 @@
 </template>
 <script setup>
 import { computed, ref, watch } from 'vue'
-import { useMock } from '../../../../hooks/useMock'
-import { getDictionaryList } from '../../../../services/common'
+
 const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
@@ -32,7 +31,7 @@ const props = defineProps({
 })
 
 const { column } = props
-let { dictionary } = props.column
+const { dictionary } = props.column
 
 const list = ref([])
 
@@ -45,11 +44,13 @@ const list = ref([])
 //   })
 // }
 
-const { getDictionaryListApi } = useMock()
+// const { getDictionaryListApi } = useMock()
 
 const getList = async (code) => {
-  const dataList = await getDictionaryListApi(code)
-  list.value = dataList
+  // const dataList = await getDictionaryListApi(code)
+  // list.value = dataList
+  console.log(code, 'code')
+  list.value = []
 }
 
 if (typeof dictionary === 'object' && dictionary.constructor === Array) {
@@ -78,10 +79,10 @@ if (column && column.rules) {
 }
 
 const value = computed({
-  get: function () {
+  get() {
     return props.data
   },
-  set: function (val) {
+  set(val) {
     emit('update:data', val)
   }
 })
@@ -94,7 +95,7 @@ const changeSelectClick = (item) => {
 
 watch(
   () => props.column.dictionary,
-  (newValue, oldValue) => {
+  (newValue) => {
     if (typeof dictionary === 'object' && dictionary.constructor === Array) {
       list.value = newValue
     }

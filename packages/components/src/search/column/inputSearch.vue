@@ -1,14 +1,10 @@
 <template>
   <!-- 输入框 -->
-  <el-input
-    :placeholder="column.placeholder"
-    v-model="value"
-    class="input-search"
-    @keyup.enter="search"
-  ></el-input>
+  <el-input :placeholder="column.placeholder" v-model="value" class="input-search"></el-input>
 </template>
 <script setup>
 import { computed } from 'vue'
+
 const emit = defineEmits(['update:data'])
 const props = defineProps({
   column: {
@@ -22,10 +18,10 @@ const props = defineProps({
 })
 
 const value = computed({
-  get: function () {
+  get() {
     return props.data
   },
-  set: function (val) {
+  set(val) {
     emit('update:data', val)
   }
 })
