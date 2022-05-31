@@ -50,7 +50,7 @@ import imageView from './item-view/imageView.vue'
 import videoView from './item-view/videoView.vue'
 import staticView from './item-view/staticView.vue'
 import switchView from './item-view/switchView.vue'
-import citySelectView from './item-view/cityelectView.vue'
+import citySelectView from './item-view/cityselectView.vue'
 import editorView from './item-view/editorView.vue'
 
 // // 组合式录入控件

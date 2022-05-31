@@ -19,10 +19,8 @@
 <script setup>
 import { ref } from 'vue'
 import { Vue3SeamlessScroll } from 'vue3-seamless-scroll'
-import { add } from '@app/utils'
 
 const classArray = ['scroll1', 'scroll2']
-console.log(add(4, 5), '44-55')
 const index1 = 0
 const index2 = 1
 const list = ref([

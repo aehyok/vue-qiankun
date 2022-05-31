@@ -1,4 +1,4 @@
-<!-- /* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars */
 <template>
   <div class="dscreen-chart" id="chart" style="width: 400px; height: 216px"></div>
 </template>
@@ -10,34 +10,18 @@ import { EChartsType, EChartsOption } from 'echarts/types/dist/shared'
 import {
   // BarChart,
   // 系列类型的定义后缀都为 SeriesOption
-  BarSeriesOption,
   // LineChart,
   // LineSeriesOption,
-  PieChart,
-  PieSeriesOption
+  PieChart
 } from 'echarts/charts'
 import {
   TitleComponent,
   // 组件类型的定义后缀都为 ComponentOption
-  TitleComponentOption,
   GridComponent,
-  GridComponentOption,
   TooltipComponent,
-  TooltipComponentOption,
-  LegendComponent,
-  LegendComponentOption
+  LegendComponent
 } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
-
-// 通过 ComposeOption 来组合出一个只有必须组件和图表的 Option 类型
-type ChartOption = echarts.ComposeOption<
-  | BarSeriesOption
-  | PieSeriesOption
-  | TitleComponentOption
-  | GridComponentOption
-  | TooltipComponentOption
-  | LegendComponentOption
->
 
 // 注册必须的组件
 echarts.use([
@@ -49,17 +33,17 @@ echarts.use([
   CanvasRenderer
 ])
 
-enum OrientType {
-  /**
-   * 水平方向
-   */
-  horizontal = 'horizontal',
+// enum OrientType {
+//   /**
+//    * 水平方向
+//    */
+//   horizontal = 'horizontal',
 
-  /**
-   * 竖直方向
-   */
-  vertical = 'vertical'
-}
+//   /**
+//    * 竖直方向
+//    */
+//   vertical = 'vertical'
+// }
 const state = reactive({
   chartsData: [
     {
@@ -115,7 +99,7 @@ onMounted(() => {
       // 分类块列表显示位置
       legend: {
         // 水平和竖直
-        orient: OrientType.horizontal,
+        orient: 'horizontal',
 
         type: 'scroll', // 默认值为plain，图例过多时，使用scroll，有分页效果所以直接用scroll
         right: 5,
@@ -153,4 +137,4 @@ onMounted(() => {
 .dscreen-chart {
   border: 1px solid red;
 }
-</style> -->
+</style>
