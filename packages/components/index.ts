@@ -1,4 +1,4 @@
-import SlTable from './src/table/index.vue'
+import  SlTable  from './src/table/index.vue'
 import SlForm from './src/form/index.vue'
 import SlConfig from './src/form/config-index.vue'
 import SlDrag from './src/form/drag-index.vue'

@@ -3,13 +3,14 @@ import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import App from './App.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
+import App from './App.vue'
 import './registerServiceWorker'
 import routes from './router'
 import store from './store'
 import { autoComponentRegister } from '../../common/utils/auto-component-register.js'
 import plugins from './plugins'
+
 let instance = null
 
 function render(props: any = {}) {
@@ -34,6 +35,7 @@ function render(props: any = {}) {
 }
 
 // 独立运行时
+// eslint-disable-next-line no-underscore-dangle
 if (!window.__POWERED_BY_QIANKUN__) {
   console.log('独立运行')
   render()
