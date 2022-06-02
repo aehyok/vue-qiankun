@@ -3,7 +3,7 @@ const { name } = require('./package')
 module.exports = {
   publicPath: './',
   lintOnSave: false,
-  outputDir: '../../../qiankun/main/child/webpack-app',
+  outputDir: '../../../release/qiankun/child/webpack-app',
   devServer: {
     port: 4000,
     headers: {

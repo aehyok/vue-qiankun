@@ -1,9 +1,10 @@
+const webpack = require('webpack')
 const packageName = require('./package.json').name
-var webpack = require('webpack')
+
 module.exports = {
   lintOnSave: false,
   publicPath: './',
-  outputDir: '../../../qiankun/main/child/map-app',
+  outputDir: '../../../release/qiankun/child/webpack-app',
   productionSourceMap: false,
   chainWebpack: (config) => {
     config.module.rule('fonts').use('url-loader').loader('url-loader').options({}).end()
