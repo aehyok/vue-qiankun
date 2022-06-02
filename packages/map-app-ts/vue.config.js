@@ -4,7 +4,7 @@ const packageName = require('./package.json').name
 module.exports = {
   lintOnSave: false,
   publicPath: './',
-  outputDir: '../../../release/qiankun/child/webpack-app',
+  outputDir: '../../../release/qiankun/child/map-app',
   productionSourceMap: false,
   chainWebpack: (config) => {
     config.module.rule('fonts').use('url-loader').loader('url-loader').options({}).end()
