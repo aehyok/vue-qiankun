@@ -34,155 +34,155 @@
   </el-dialog>
 </template>
 <script lang="ts">
-  import { defineComponent, reactive, toRefs, ref } from 'vue'
-  import { useRouter } from 'vue-router'
-  import md5 from 'js-md5'
-  import { changedSelf, logout } from '../services'
-  import { successMessage } from '../utils/message'
+import { defineComponent, reactive, toRefs, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import md5 from 'js-md5'
+import { changedSelf, logout } from '../services'
+import { successMessage } from '../utils/message'
 
-  export default defineComponent({
-    name: 'UpdatePassword',
-    props: {
-      updateDialogVisible: {
-        type: Boolean,
-        default: false
-      }
-    },
-    emits: ['cancel'],
-    setup(props, context) {
-      const router = useRouter()
-      const updateForm = ref(null)
-      const state = reactive({
-        visible: props.updateDialogVisible,
-        closeOnClickModal: false,
-        loading: false,
-        form: {
-          oldPassword: '',
-          newPassword: '',
-          checkPwd: ''
-        },
-        rules: []
-      })
+export default defineComponent({
+  name: 'UpdatePassword',
+  props: {
+    updateDialogVisible: {
+      type: Boolean,
+      default: false
+    }
+  },
+  emits: ['cancel'],
+  setup(props, context) {
+    const router = useRouter()
+    const updateForm = ref(null)
+    const state = reactive({
+      visible: props.updateDialogVisible,
+      closeOnClickModal: false,
+      loading: false,
+      form: {
+        oldPassword: '',
+        newPassword: '',
+        checkPwd: ''
+      },
+      rules: []
+    })
 
-      // const checkPsdVal = (_rules, value, callback) => {
-      //   const rule = /^(?![^a-zA-Z]+$)(?!\D+$).{8,16}/
-      //   if (!rule.test(value)) {
-      //     callback(new Error('请输入8-16位字母+数字组合新密码'))
-      //   } else {
-      //     callback()
-      //   }
-      // }
-      const checkPsdVal = (_rules: any, value: any, callback: any) => {
-        if (value.length < 6) {
-          callback(new Error('密码长度不够，请重新输入'))
-        } else {
-          callback()
-        }
-      }
-
-      const checkPassword = (_rules: any, value: any, callback: any) => {
-        if (value !== state.form.newPassword) {
-          callback(new Error('两次密码输入不一致'))
-        } else {
-          callback()
-        }
-      }
-      const rules: any = {
-        oldPassword: [
-          {
-            required: true,
-            message: '请输入原密码',
-            trigger: ['blur']
-          }
-        ],
-        newPassword: [
-          {
-            required: true,
-            message: '请输入新密码',
-            trigger: ['blur']
-          },
-          {
-            validator: checkPsdVal,
-            trigger: ['blur']
-          }
-        ],
-        checkPwd: [
-          {
-            required: true,
-            message: '请再次输入新密码',
-            trigger: ['blur']
-          },
-          {
-            validator: checkPsdVal,
-            trigger: ['blur']
-          },
-          {
-            validator: checkPassword,
-            trigger: ['blur']
-          }
-        ]
-      }
-
-      const close = () => {
-        context.emit('cancel')
-        // updateForm.value.reset
-      }
-
-      const loginOutApi = () => {
-        logout().then((res: any) => {
-          console.log('登出成功', res)
-          localStorage.clear()
-          router.push('/login')
-        })
-      }
-
-      const changedSelfApi = () => {
-        changedSelf({
-          password: md5(state.form.newPassword)
-        }).then((res: any) => {
-          if (res.code === 200) {
-            successMessage('修改成功,请重新登录')
-            close()
-            loginOutApi()
-          }
-        })
-      }
-      const submitPassword = () => {
-        updateForm.value.validate(async (valid: any) => {
-          if (valid) {
-            changedSelfApi()
-          }
-        })
-      }
-
-      return {
-        ...toRefs(state),
-        close,
-        submitPassword,
-        rules,
-        updateForm
+    // const checkPsdVal = (_rules, value, callback) => {
+    //   const rule = /^(?![^a-zA-Z]+$)(?!\D+$).{8,16}/
+    //   if (!rule.test(value)) {
+    //     callback(new Error('请输入8-16位字母+数字组合新密码'))
+    //   } else {
+    //     callback()
+    //   }
+    // }
+    const checkPsdVal = (_rules: any, value: any, callback: any) => {
+      if (value.length < 6) {
+        callback(new Error('密码长度不够，请重新输入'))
+      } else {
+        callback()
       }
     }
-  })
+
+    const checkPassword = (_rules: any, value: any, callback: any) => {
+      if (value !== state.form.newPassword) {
+        callback(new Error('两次密码输入不一致'))
+      } else {
+        callback()
+      }
+    }
+    const rules: any = {
+      oldPassword: [
+        {
+          required: true,
+          message: '请输入原密码',
+          trigger: ['blur']
+        }
+      ],
+      newPassword: [
+        {
+          required: true,
+          message: '请输入新密码',
+          trigger: ['blur']
+        },
+        {
+          validator: checkPsdVal,
+          trigger: ['blur']
+        }
+      ],
+      checkPwd: [
+        {
+          required: true,
+          message: '请再次输入新密码',
+          trigger: ['blur']
+        },
+        {
+          validator: checkPsdVal,
+          trigger: ['blur']
+        },
+        {
+          validator: checkPassword,
+          trigger: ['blur']
+        }
+      ]
+    }
+
+    const close = () => {
+      context.emit('cancel')
+      // updateForm.value.reset
+    }
+
+    const loginOutApi = () => {
+      logout().then((res: any) => {
+        console.log('登出成功', res)
+        localStorage.clear()
+        router.push('/login')
+      })
+    }
+
+    const changedSelfApi = () => {
+      changedSelf({
+        password: md5(state.form.newPassword)
+      }).then((res: any) => {
+        if (res.code === 200) {
+          successMessage('修改成功,请重新登录')
+          close()
+          loginOutApi()
+        }
+      })
+    }
+    const submitPassword = () => {
+      updateForm.value.validate(async (valid: any) => {
+        if (valid) {
+          changedSelfApi()
+        }
+      })
+    }
+
+    return {
+      ...toRefs(state),
+      close,
+      submitPassword,
+      rules,
+      updateForm
+    }
+  }
+})
 </script>
 <style lang="scss" scoped>
-  .form-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-  }
+.form-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
 
-  .verCodeImg {
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
-    .svgbox {
-      position: relative;
-      top: 6px;
-    }
-    img {
-      height: 100%;
-    }
+.verCodeImg {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  .svgbox {
+    position: relative;
+    top: 6px;
   }
+  img {
+    height: 100%;
+  }
+}
 </style>

@@ -8,7 +8,7 @@
     @close="close"
   >
     <div v-for="item in versions" style="display: flex; margin: 20px" :key="item.key">
-      <div style="width: 150px">{{ item.key }}: </div>
+      <div style="width: 150px">{{ item.key }}:</div>
       <div style="width: 100px">{{ item.value }}</div>
     </div>
     <template #footer>
@@ -17,57 +17,57 @@
   </el-dialog>
 </template>
 <script lang="ts">
-  import { defineComponent, reactive, toRefs, onMounted } from 'vue'
+import { defineComponent, reactive, toRefs, onMounted } from 'vue'
 
-  export default defineComponent({
-    name: 'Version',
-    props: {
-      versionDialogVisible: {
-        type: Boolean,
-        default: false
-      }
-    },
-    emits: ['cancel'],
-    setup(props, context) {
-      const state = reactive({
-        visible: props.versionDialogVisible,
-        closeOnClickModal: false,
-        versions: []
-      })
-
-      onMounted(() => {
-        console.log('sssss')
-      })
-
-      const close = () => {
-        context.emit('cancel')
-      }
-
-      return {
-        ...toRefs(state),
-        close
-      }
+export default defineComponent({
+  name: 'Version',
+  props: {
+    versionDialogVisible: {
+      type: Boolean,
+      default: false
     }
-  })
+  },
+  emits: ['cancel'],
+  setup(props, context) {
+    const state = reactive({
+      visible: props.versionDialogVisible,
+      closeOnClickModal: false,
+      versions: []
+    })
+
+    onMounted(() => {
+      console.log('sssss')
+    })
+
+    const close = () => {
+      context.emit('cancel')
+    }
+
+    return {
+      ...toRefs(state),
+      close
+    }
+  }
+})
 </script>
 <style lang="scss" scoped>
-  .form-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-  }
+.form-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
 
-  .verCodeImg {
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
-    .svgbox {
-      position: relative;
-      top: 6px;
-    }
-    img {
-      height: 100%;
-    }
+.verCodeImg {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  .svgbox {
+    position: relative;
+    top: 6px;
   }
+  img {
+    height: 100%;
+  }
+}
 </style>
