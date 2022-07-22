@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@app/utils': workspace:^1.0.0
+      '@app/utils': workspace:*
       '@commitlint/cli': ^17.0.1
       '@commitlint/config-conventional': ^17.0.0
       '@element-plus/icons-vue': ^1.1.4
@@ -46,7 +46,7 @@ importers:
 
   packages/components:
     specifiers:
-      '@app/utils': workspace:^1.0.0
+      '@app/utils': workspace:*
       element-plus: ^2.0.1
       vue: ^3.2.36
     dependencies:
@@ -56,7 +56,7 @@ importers:
 
   packages/main-vite-app-ts:
     specifiers:
-      '@app/utils': workspace:^1.0.0
+      '@app/utils': workspace:*
       '@types/node': ^15.0.2
       '@types/nprogress': ^0.2.0
       '@types/qs': ^6.9.6
@@ -125,7 +125,7 @@ importers:
 
   packages/map-app-ts:
     specifiers:
-      '@app/components': workspace:^1.0.0
+      '@app/components': workspace:*
       '@geoman-io/leaflet-geoman-free': ^2.11.4
       '@vue/cli-plugin-babel': ~4.5.0
       '@vue/cli-plugin-pwa': ~4.5.0
@@ -192,8 +192,8 @@ importers:
 
   packages/webpack-app-ts:
     specifiers:
-      '@app/components': workspace:^1.0.0
-      '@app/utils': workspace:^1.0.0
+      '@app/components': workspace:*
+      '@app/utils': workspace:*
       '@element-plus/icons-vue': ^1.1.4
       '@ffmpeg/ffmpeg': ^0.10.1
       '@types/shortid': ^0.0.29

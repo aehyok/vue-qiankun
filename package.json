@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/aehyok/vue-qiankun#readme",
   "dependencies": {
-    "@app/utils": "workspace:^1.0.0",
+    "@app/utils": "workspace:*",
     "@commitlint/cli": "^17.0.1",
     "@commitlint/config-conventional": "^17.0.0",
     "@element-plus/icons-vue": "^1.1.4",

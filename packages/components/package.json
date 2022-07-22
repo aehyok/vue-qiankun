@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@app/utils": "workspace:^1.0.0",
+    "@app/utils": "workspace:*",
     "element-plus": "^2.0.1",
     "vue": "^3.2.36"
   }

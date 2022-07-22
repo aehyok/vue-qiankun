@@ -7,7 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@app/components": "workspace:^1.0.0",
+    "@app/components": "workspace:*",
     "@geoman-io/leaflet-geoman-free": "^2.11.4",
     "cesium": "^1.90.0",
     "core-js": "^3.6.5",
