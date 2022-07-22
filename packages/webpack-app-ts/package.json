@@ -27,7 +27,6 @@
     "vue-class-component": "^8.0.0-0",
     "vue-drag-resize": "^2.0.3",
     "vue-router": "^4.0.12",
-    "vue3-seamless-scroll": "^1.2.0",
     "vuedraggable": "^4.1.0",
     "vuex": "^4.0.2",
     "wangeditor": "^4.7.11"
@@ -43,6 +42,7 @@
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "typescript": "~4.1.5",
+    "vue3-seamless-scroll": "^2.0.1",
     "webpack": "^5.0.0"
   },
   "browserslist": [
