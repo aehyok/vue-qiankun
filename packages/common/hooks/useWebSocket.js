@@ -1,6 +1,7 @@
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { useOperation } from '../utils/demoroomOperation'
+
 const useWebSocket = () => {
   const store = useStore()
   const router = useRouter()
@@ -8,7 +9,7 @@ const useWebSocket = () => {
   const initWebSocket = () => {
     if (store.state.isDestroyed) {
       console.log(
-        'initWebSocket： !!!!!!!!! this has already been destroyed!! No.' + store.state.isDestroyed
+        `initWebSocket： !!!!!!!!! this has already been destroyed!! No.${store.state.isDestroyed}`
       )
       return
     }
@@ -18,24 +19,20 @@ const useWebSocket = () => {
       store.commit('set_websock', '')
     }
 
-    let wsuri = 'ws://47.111.217.26:5980/socket?roomNo=102A8206'
+    const wsuri = 'ws://47.111.217.26:5980/socket?roomNo=102A8206'
 
-    if (process.env.NODE_ENV === 'production') {
-      wsuri = 'wss://socket.sea.utuapp.cn/socket?roomNo=102A8206'
-    }
-
-    console.log('ws: ' + wsuri)
+    console.log(`ws: ${wsuri}`)
 
     store.state.websock = new WebSocket(wsuri)
     store.state.websock.onmessage = function (msg) {
       console.log('msg', msg)
       try {
-        let states = JSON.parse(msg.data)
+        const states = JSON.parse(msg.data)
 
-        if (states.method == 'heartbeatRequest') {
-          if (states.code == 0) {
-            let now = new Date()
-            let nowTime = now.getTime()
+        if (states.method === 'heartbeatRequest') {
+          if (states.code === 0) {
+            const now = new Date()
+            const nowTime = now.getTime()
             if (
               !store.state.lastHeartbeatRspPrintTime ||
               nowTime > store.state.lastHeartbeatRspPrintTime + 10000
@@ -46,7 +43,7 @@ const useWebSocket = () => {
             setHeartbeatStatus(true)
           } else {
             console.log(
-              store.state.serialNo + ' RCU --------------------==> ' + 'states.code=' + states.code,
+              `${store.state.serialNo} RCU --------------------==> ` + `states.code=${states.code}`,
               states
             )
           }
@@ -66,7 +63,7 @@ const useWebSocket = () => {
                 jumpOperation(states.data[0].code, router)
                 break
               default:
-                let commonFunction = store.state.commonFunction
+                const { commonFunction } = store.state
                 commonFunction(states.data[0].code)
                 break
             }
@@ -78,33 +75,33 @@ const useWebSocket = () => {
     }
 
     store.state.websock.onopen = function () {
-      console.log('onopen, websocket' + store.state.serialNo)
+      console.log(`onopen, websocket${store.state.serialNo}`)
       setWebSocketStatus(true)
     }
 
     store.state.websock.onclose = function (e) {
-      console.log('onclose! websocket' + store.state.serialNo)
+      console.log(`onclose! websocket${store.state.serialNo}`)
       store.commit('set_websock', '')
       setWebSocketStatus(false)
       clearTimeout(store.state.websockTimeout)
       // store.state.websockTimeout = setTimeout(() => {
       //     initWebSocket();
       // }, 2000);
-      let websockTimeout = setTimeout(() => {
+      const websockTimeout = setTimeout(() => {
         initWebSocket()
       }, 2000)
       store.commit('set_websockTimeout', websockTimeout)
     }
 
-    //连接发生错误的回调方法
+    // 连接发生错误的回调方法
     store.state.websock.onerror = function () {
-      console.log('onerror! No.serialNo' + store.state.serialNo)
+      console.log(`onerror! No.serialNo${store.state.serialNo}`)
       setWebSocketStatus(false)
       clearTimeout(store.state.websockTimeout)
       // store.state.websockTimeout = setTimeout(() => {
       //     initWebSocket();
       // }, 2000);
-      let websockTimeout = setTimeout(() => {
+      const websockTimeout = setTimeout(() => {
         initWebSocket()
       }, 2000)
       store.commit('set_websockTimeout', websockTimeout)
@@ -125,7 +122,7 @@ const useWebSocket = () => {
       //     requestHeartbeatToServer();
       // }, 1000);
 
-      let heartbeatTimer = setInterval(() => {
+      const heartbeatTimer = setInterval(() => {
         setHeartbeatStatus(false)
         requestHeartbeatToServer()
       }, 3000)
@@ -151,15 +148,15 @@ const useWebSocket = () => {
 
   const requestHeartbeatToServer = () => {
     if (store.state.websock && store.state.websock.readyState === 1) {
-      let now = new Date()
-      let nowTime = now.getTime()
+      const now = new Date()
+      const nowTime = now.getTime()
       if (
         !store.state.lastHeartbeatReqPrintTime ||
         nowTime > store.state.lastHeartbeatReqPrintTime + 10000
       ) {
         // store.state.lastHeartbeatReqPrintTime = nowTime;
         store.commit('set_lastHeartbeatReqPrintTime', nowTime)
-        console.log(store.state.serialNo + ' RCU <== ' + 'requestHeartbeatToServer')
+        console.log(`${store.state.serialNo} RCU <== ` + `requestHeartbeatToServer`)
       }
       store.state.websock.send(JSON.stringify({ method: 'heartbeatRequest' }))
     } else {

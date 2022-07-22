@@ -4,19 +4,20 @@ import '@geoman-io/leaflet-geoman-free'
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css'
 import { useStore } from 'vuex'
 import { warnMessage } from '../utils/message'
+
 export function useMap() {
-  const satelliteUrl = window.config.VUE_APP_MAP_SATELLITE //"https://mt{s}.sea.utuapp.cn/610403/satellite/{z}/{x}/{y}.png"
+  const satelliteUrl = window.config.VUE_APP_MAP_SATELLITE // "https://mt{s}.sea.utuapp.cn/610403/satellite/{z}/{x}/{y}.png"
   const overlayUrl = window.config.VUE_APP_MAP_OVERLAY // "https://mt{s}.sea.utuapp.cn/610403/overlay/{z}/{x}/{y}.png"
   const villageUrlList = window.config.VUE_APP_MAP_VILLAGE // ["https://mt{s}.sea.utuapp.cn/610403/models/610403102210/{z}/{x}/{y}.png"]
   const store = useStore()
   const init = () => {
-    let centerPoint = window.config.VUE_APP_CENTER
+    const centerPoint = window.config.VUE_APP_CENTER
     return initMap(centerPoint)
   }
 
   const initMapBase = (centerPoint) => {
     initMarkerIcon()
-    let map = L.map('lefletMap', {
+    const map = L.map('lefletMap', {
       zoom: window.config.VUE_APP_ZOOM,
       minZoom: window.config.VUE_APP_MIN_ZOOM,
       maxZoom: window.config.VUE_APP_MAX_ZOOM,
@@ -34,7 +35,7 @@ export function useMap() {
   }
 
   const initMap = (centerPoint) => {
-    let map = initMapBase(centerPoint)
+    const map = initMapBase(centerPoint)
 
     initTileLayer(map, true)
 
@@ -65,7 +66,7 @@ export function useMap() {
       subdomains: ['1', '2', '3', '4']
     })
 
-    let array = []
+    const array = []
 
     if (isVillage) {
       villageUrlList.forEach((item) => {
@@ -162,11 +163,11 @@ export function useMap() {
       return false
     }
     if (store.state.objectId > 0) {
-      let markerPoint = {}
+      const markerPoint = {}
       markerPoint.longitude = e.latlng.lng
       markerPoint.latitude = e.latlng.lat
       store.commit('changeMarker', markerPoint)
-      let temp = L.marker([markerPoint.latitude, markerPoint.longitude], {
+      const temp = L.marker([markerPoint.latitude, markerPoint.longitude], {
         draggable: true
       }).addTo(map)
 
@@ -179,8 +180,8 @@ export function useMap() {
   }
 
   const updatePlotStatus = (type) => {
-    const objectId = store.state.objectId
-    let list = store.state.objectDataList
+    const { objectId } = store.state
+    const list = store.state.objectDataList
     list.forEach((item) => {
       if (item.id === objectId) {
         if (type === 'save' && item.isPloted) {
