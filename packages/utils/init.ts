@@ -1,4 +1,4 @@
-export const checkPhoneFun = (val) => {
+export const checkPhoneFun = (val: any) => {
   if (!/^1\d{10}$/.test(val)) {
     return false
   }
@@ -7,33 +7,33 @@ export const checkPhoneFun = (val) => {
 
 // https://blog.csdn.net/zkcharge/article/details/117168220
 // 判断经纬度是否在某个围栏中
-export const IsPtInPoly = (ALon, ALat, APoints) => {
+export const IsPtInPoly = (aLon: any, aLat: any, aPoints: any) => {
   let iSum = 0
   let dLon1
   let dLon2
   let dLat1
   let dLat2
   let dLon
-  if (APoints.length < 3) return false
-  const iCount = APoints.length
+  if (aPoints.length < 3) return false
+  const iCount = aPoints.length
   for (let i = 0; i < iCount; i++) {
     if (i === iCount - 1) {
-      dLon1 = APoints[i].lng
-      dLat1 = APoints[i].lat
-      dLon2 = APoints[0].lng
-      dLat2 = APoints[0].lat
+      dLon1 = aPoints[i].lng
+      dLat1 = aPoints[i].lat
+      dLon2 = aPoints[0].lng
+      dLat2 = aPoints[0].lat
     } else {
-      dLon1 = APoints[i].lng
-      dLat1 = APoints[i].lat
-      dLon2 = APoints[i + 1].lng
-      dLat2 = APoints[i + 1].lat
+      dLon1 = aPoints[i].lng
+      dLat1 = aPoints[i].lat
+      dLon2 = aPoints[i + 1].lng
+      dLat2 = aPoints[i + 1].lat
     }
     // 以下语句判断A点是否在边的两端点的水平平行线之间，在则可能有交点，开始判断交点是否在左射线上
-    if ((ALat >= dLat1 && ALat < dLat2) || (ALat >= dLat2 && ALat < dLat1)) {
+    if ((aLat >= dLat1 && aLat < dLat2) || (aLat >= dLat2 && aLat < dLat1)) {
       if (Math.abs(dLat1 - dLat2) > 0) {
         // 得到 A点向左射线与边的交点的x坐标：
-        dLon = dLon1 - ((dLon1 - dLon2) * (dLat1 - ALat)) / (dLat1 - dLat2)
-        if (dLon < ALon) iSum++
+        dLon = dLon1 - ((dLon1 - dLon2) * (dLat1 - aLat)) / (dLat1 - dLat2)
+        if (dLon < aLon) iSum++
       }
     }
   }
