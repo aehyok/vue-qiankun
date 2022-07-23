@@ -1,5 +1,5 @@
 import Axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig, Canceler } from 'axios'
-import { RequestType } from './index.d'
+import { RequestType } from '.'
 
 class Request implements RequestType {
   public instance: AxiosInstance

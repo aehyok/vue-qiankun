@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup>
-import { SlDetail, VueJsonEditor } from '@app/components'
+import { SlDetail, VueJsonEditor } from '@aehyok/components'
 import { reactive } from 'vue'
 
 const options = {

@@ -4,7 +4,7 @@
   </el-form-item>
 </template>
 <script setup>
-import { useDate } from '@app/utils'
+import { useDate } from '@aehyok/utils'
 
 const useUtilsDate = useDate()
 console.log('--date')

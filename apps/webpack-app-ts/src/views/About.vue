@@ -7,8 +7,6 @@
     </div>
   </vue3-seamless-scroll>
 
-  <div style="width: 100%; height: 2px"></div>
-
   <vue3-seamless-scroll :list="list1" :class="[classArray[index2]]">
     <div class="item" v-for="(item, index) in list1" :key="index">
       <span>{{ item.title }}</span>

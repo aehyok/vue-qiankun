@@ -21,7 +21,8 @@ import { defineComponent, watch, reactive, toRefs, defineAsyncComponent, onMount
 import { registerMicroApps, start } from 'qiankun'
 import { useRoute } from 'vue-router'
 import { useSystemMenu } from '@/store'
-import { getActiveRule } from '../../../common/utils/ts/utils'
+
+export const getActiveRule = (hash: any) => (location: any) => location.hash.startsWith(hash)
 
 export default defineComponent({
   name: 'Layout',

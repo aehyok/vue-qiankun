@@ -34,7 +34,7 @@
 </template>
 <script setup>
 import { reactive, ref } from 'vue'
-import { VueJsonEditor } from '@app/components'
+import { VueJsonEditor } from '@aehyok/components'
 
 const formDom = ref(null)
 

@@ -1,16 +1,20 @@
 {
-  "name": "@app/components",
+  "name": "@aehyok/components",
   "version": "1.0.0",
-  "description": "",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@app/utils": "workspace:*",
-    "element-plus": "^2.0.1",
-    "vue": "^3.2.36"
-  }
+  "files": [
+    "es",
+    "lib"
+  ],
+  "keywords": [
+    "sl-aehyok",
+    "vue3组件库"
+  ],
+  "author": "aehyok",
+  "license": "MIT",
+  "description": "",
+  "typings": "lib/index.d.ts"
 }

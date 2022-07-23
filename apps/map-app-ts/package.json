@@ -1,5 +1,5 @@
 {
-  "name": "@app/map-webpack",
+  "name": "@apps/map-webpack",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@app/components": "workspace:*",
+    "@aehyok/components": "workspace:*",
     "@geoman-io/leaflet-geoman-free": "^2.11.4",
     "cesium": "^1.90.0",
     "core-js": "^3.6.5",

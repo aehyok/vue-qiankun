@@ -1,5 +1,5 @@
 {
-  "name": "@app/main-vite",
+  "name": "@apps/main-vite",
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
@@ -9,7 +9,6 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@app/utils": "workspace:*",
     "axios": "^0.21.1",
     "element-plus": "^2.0.1",
     "js-base64": "^3.6.1",

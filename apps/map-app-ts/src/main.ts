@@ -1,4 +1,4 @@
-import '../../common/qiankun/public-path.js'
+import '../../../packages/common/qiankun/public-path.js'
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'

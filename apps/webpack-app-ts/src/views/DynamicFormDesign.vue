@@ -92,17 +92,17 @@
   </el-dialog>
 </template>
 <script setup>
-import { ref, reactive, onMounted, watch } from 'vue'
-import CodeEditor from '@/components/code-editor/index'
+import { ref, reactive, onMounted, watch, computed } from 'vue'
 import { useStore } from 'vuex'
 import Clipboard from 'clipboard'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { SlDrag, SlConfig } from '@app/components'
-import { generateCode } from '@/utils/code-generator.js'
+import { SlDrag, SlConfig } from '@aehyok/components'
 import shortid from 'shortid'
-import { copyToClipboard } from '@/utils/utils'
-import { computed } from 'vue'
 import { saveAs } from 'file-saver'
+import { generateCode } from '@/utils/code-generator.js'
+import { copyToClipboard } from '@/utils/utils'
+import CodeEditor from '@/components/code-editor/index'
+
 const store = useStore()
 const componentList = ref([])
 const activeName = ref('first')
@@ -140,7 +140,7 @@ const json = computed(() => {
 })
 
 const vueString = computed(() => {
-  let temp = JSON.stringify(state.formConfig, null, '  ')
+  const temp = JSON.stringify(state.formConfig, null, '  ')
   console.log(state.formConfig, 'form-json')
   return generateCode(state.formConfig)
   return JSON.stringify(state.formConfig, null, '  ')
@@ -201,7 +201,7 @@ const saveVueFileClick = () => {
   saveAsFile(state.vueCode, `${shortid.generate()}.vue`)
 }
 
-//拷贝vue文件代码
+// 拷贝vue文件代码
 const copyVueFileClick = () => {
   copyToClipboard(state.vueCode, e, ElMessage, 'copy成功', 'copy失败')
   // dialogVisible.value = false
@@ -290,7 +290,7 @@ componentList.value = [
 ]
 
 onMounted(() => {
-  let content = document.getElementById('content')
+  const content = document.getElementById('content')
 
   content.ondragover = function (e) {
     console.log('dragover')
@@ -321,9 +321,9 @@ const dropClick = (e) => {
 
   const index = e.dataTransfer.getData('index')
   console.log(index, componentList.value[index], 'dropClick')
-  let item = componentList.value[index]
+  const item = componentList.value[index]
   console.log('当前组件为: ', item)
-  let column = {
+  const column = {
     id: shortid.generate(),
     name: shortid.generate(),
     type: item.type,
@@ -406,7 +406,7 @@ watch(
 
 const componentClick = (item) => {
   console.log('当前组件为: ', item)
-  let column = {
+  const column = {
     name: shortid.generate(),
     type: item.name,
     title: item.title,

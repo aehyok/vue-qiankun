@@ -33,7 +33,7 @@
 </template>
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
-import { SlForm, VueJsonEditor } from '@app/components'
+import { SlForm, VueJsonEditor } from '@aehyok/components'
 import { getFormConfig } from '@/services/api'
 
 const formDom = ref(null)

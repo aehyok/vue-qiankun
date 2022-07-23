@@ -38,7 +38,7 @@
   </el-dialog>
 </template>
 <script>
-import { SlTable, SlForm, SlDetail, SlSearch } from '@app/components'
+import { SlTable, SlForm, SlDetail, SlSearch } from '@aehyok/components'
 import { defineComponent, reactive, toRefs, ref } from 'vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import {
