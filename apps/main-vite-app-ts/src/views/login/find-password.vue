@@ -44,8 +44,20 @@
 import { defineComponent, reactive, toRefs, ref } from 'vue'
 import md5 from 'js-md5'
 import { warnMessage, successMessage } from '../../utils/message'
-import { validateMobile } from '../../../../common/utils/form-validator'
 import { changedForMobile, sendMobileValidateCode } from '../../services'
+
+// 手机号码验证
+const validateMobile = (rules: any, value: any, callback: any) => {
+  if (!value) {
+    callback()
+  }
+  const reg = /^1[3456789]\d{9}$/
+  if (!reg.test(value)) {
+    callback(new Error('请输入正确的手机号码'))
+  } else {
+    callback()
+  }
+}
 
 export default defineComponent({
   props: {
@@ -58,18 +70,18 @@ export default defineComponent({
   setup(props, context) {
     const findForm = ref(null)
 
-    const validatePass = (_rule, value, callback) => {
+    const validatePass = (_rule: any, value: any, callback: any) => {
       if (value === '') {
         callback(new Error('请输入密码'))
       } else {
-        if (state.form.mobile !== '') {
+        if (value !== '') {
           findForm.value?.validateField('mobile')
         }
         callback()
       }
     }
 
-    const validateAccount = (_rule, value, callback) => {
+    const validateAccount = (_rule: any, value: any, callback: any) => {
       if (value === '') {
         callback(new Error('请输入用户名'))
       } else {
@@ -77,7 +89,7 @@ export default defineComponent({
       }
     }
 
-    const validatorVerCode = (_rule, value, callback) => {
+    const validatorVerCode = (_rule: any, value: any, callback: any) => {
       if (value === '') {
         callback(new Error('请输入验证码'))
       } else {
@@ -85,7 +97,7 @@ export default defineComponent({
       }
     }
 
-    const validatorType = (_rule, value, callback) => {
+    const validatorType = (_rule: any, value: any, callback: any) => {
       if (value === null) {
         callback(new Error('请选择用户类型'))
       } else {
