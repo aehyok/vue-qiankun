@@ -80,7 +80,7 @@ export default defineComponent({
 
     const beforeUpload = (file) => {
       console.log(file, 'beforeUpload----上传文件')
-      let fileReader = new FileReader()
+      const fileReader = new FileReader()
       fileReader.readAsBinaryString(file)
 
       fileReader.onload = () => {
@@ -113,7 +113,7 @@ export default defineComponent({
         shadowUrl: require('leaflet/dist/images/marker-shadow.png')
       })
 
-      let array = [34.263742732916505, 108.01650524139406]
+      const array = [34.263742732916505, 108.01650524139406]
       map = L.map('map', {
         zoom: 13,
         minZoom: 10,
@@ -182,7 +182,7 @@ export default defineComponent({
       const layerGroup = L.layerGroup([satellite, overlay, village])
       layerGroup.addTo(map)
 
-      var greenIcon = L.icon({
+      const greenIcon = L.icon({
         iconUrl: 'leaf-green.png',
         shadowUrl: 'leaf-green.png',
         iconSize: [38, 95], // size of the icon

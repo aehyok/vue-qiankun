@@ -12,7 +12,7 @@ export default createStore<State>({
   state: {
     // 整个字段配置列表
     formListItem: [],
-    //当前选中的组件
+    // 当前选中的组件
     currentComponent: {
       rules: []
     }

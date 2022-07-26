@@ -5,7 +5,7 @@ interface ProxyStorage {
   clear(): void
 }
 
-//sessionStorage operate
+// sessionStorage operate
 class sessionStorageProxy implements ProxyStorage {
   protected storage: ProxyStorage
 
@@ -34,7 +34,7 @@ class sessionStorageProxy implements ProxyStorage {
   }
 }
 
-//localStorage operate
+// localStorage operate
 class localStorageProxy extends sessionStorageProxy implements ProxyStorage {
   constructor(localStorage: ProxyStorage) {
     super(localStorage)

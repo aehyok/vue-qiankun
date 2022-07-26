@@ -1,21 +1,21 @@
 import Clipboard from 'clipboard'
+
 export const isObjArr = (value) => {
   if (Object.prototype.toString.call(value) === '[object Array]') {
     return true
-  } else {
-    return false
   }
+  return false
 }
 
 // 判断val是否为数值
 export const isNumber = (value) => {
-  var regPos = /^\d+(\.\d+)?$/ //非负浮点数
-  var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/ //负浮点数
+  const regPos = /^\d+(\.\d+)?$/ // 非负浮点数
+  const regNeg =
+    /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/ // 负浮点数
   if (regPos.test(value) || regNeg.test(value)) {
     return true
-  } else {
-    return false
   }
+  return false
 }
 
 // 获取随机数(不与上一次重复)

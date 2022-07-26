@@ -15,10 +15,11 @@
 import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { onMounted, reactive, toRefs } from 'vue'
+
 let map = {}
 const state = reactive({
-  longitude: 0, //经度
-  latitude: 0, //纬度
+  longitude: 0, // 经度
+  latitude: 0, // 纬度
   altitude: 0, // 高度
   gridData: [
     {
@@ -51,9 +52,9 @@ onMounted(() => {
     iconUrl: require('leaflet/dist/images/marker-icon.png'),
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
   })
-  let array = [34.263742732916505, 108.01650524139406]
+  const array = [34.263742732916505, 108.01650524139406]
 
-  //TODO  初始化map
+  // TODO  初始化map
   map = L.map('map', {
     zoom: 16, // 设置初始进入的zoom
     minZoom: 13, // 可缩小的最小值
@@ -78,15 +79,15 @@ onMounted(() => {
     // 清除所有的Marker图层
     layerGroupMarkers.clearLayers()
 
-    //TODO  通过Marker icon设置 label
-    var myIcon = L.divIcon({
+    // TODO  通过Marker icon设置 label
+    const myIcon = L.divIcon({
       html: '狗子',
       className: 'my-div-icon',
       iconSize: 40
     })
 
     // 获取经纬度后生成marker,并添加到对应的图层
-    let marker = L.marker([event.latlng.lat, event.latlng.lng], {
+    const marker = L.marker([event.latlng.lat, event.latlng.lng], {
       draggable: true
     }).addTo(map)
 

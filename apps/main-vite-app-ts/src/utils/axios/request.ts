@@ -3,7 +3,9 @@ import { RequestType } from '.'
 
 class Request implements RequestType {
   public instance: AxiosInstance
+
   private CancelToken = Axios.CancelToken
+
   private theQueue: {
     info: string
     c: Canceler
@@ -52,7 +54,7 @@ class Request implements RequestType {
   private interceptorsResponse() {
     this.instance.interceptors.response.use(
       (response: AxiosResponse<any>) => {
-        const config = response.config
+        const {config} = response
         this.removeQueue({
           info: `${config.url}_${config.method}`
         })
@@ -62,7 +64,7 @@ class Request implements RequestType {
           return Promise.resolve({
             ...response,
             code,
-            data: data,
+            data,
             status: response.status
           })
         }

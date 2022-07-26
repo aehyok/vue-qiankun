@@ -15,11 +15,11 @@ export function useMap() {
   // TODO 初始化Map地图
   const initMap = (centerPoint) => {
     initMarkerIcon()
-    let map = L.map('map', {
+    const map = L.map('map', {
       zoom: 13,
       minZoom: 10,
       maxZoom: 22,
-      center: centerPoint, //必须初始化center中心坐标
+      center: centerPoint, // 必须初始化center中心坐标
       doubleClickZoom: false, // 禁用双击放大
       zoomControl: false, // 不显示默认的放大缩小按钮，可通过control.zoom进行控制
       attributionControl: false,
@@ -68,7 +68,7 @@ export function useMap() {
 
   // TODO 放大 缩小 按钮控制
   const initControl = (map) => {
-    //TODO 设置为true
+    // TODO 设置为true
     // L.PM.setOptIn(true);
     L.control
       .zoom({

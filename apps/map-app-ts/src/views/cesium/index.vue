@@ -5,9 +5,10 @@
 import { defineComponent, onMounted } from 'vue'
 // import "cesium/Build/Cesium/Widgets/widgets.css";
 import * as Cesium from 'cesium'
+
 export default defineComponent({
   setup() {
-    let token =
+    const token =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyNzliZGRiNC1mN2U5LTQ0OWItYTUwZi0wYmUxZjk5MGEwOGYiLCJpZCI6NTYyMDMsImlhdCI6MTYyMTMyNTM0NX0.gVy_fonVErGarDg5E-rW6YcY-dJlWVauaE7Wg5ZhDh8'
     onMounted(() => {
       // Cesium.Ion.defaultAccessToken = token;

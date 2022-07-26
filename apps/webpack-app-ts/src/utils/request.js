@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+
 export const baseUrl =
   process.env.NODE_ENV === 'development' ? '/so/api' : 'http://139.159.245.209/so/api/'
 
@@ -47,9 +48,8 @@ instance.interceptors.response.use(
     if (response.data.code === 200 || response.data.code === 0) {
       // 天气接口code=0 成功
       return response.data
-    } else {
-      return Promise.reject(new Error(response.data.message))
     }
+    return Promise.reject(new Error(response.data.message))
   },
   (error) => {
     const errorString = error.toString()
@@ -81,7 +81,7 @@ const request = (url, options = {}) => {
   if (options.method == 'post') {
     return instance
       .request({
-        url: url,
+        url,
         ...options
       })
       .catch((err) => {
@@ -106,7 +106,7 @@ export function get(url, params) {
   return new Promise((resolve, reject) => {
     instance
       .get(url, {
-        params: params
+        params
       })
       .then((res) => {
         resolve(res.data)

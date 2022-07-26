@@ -53,6 +53,7 @@ import {
   ContextmenuGroup
 } from 'v-contextmenu'
 import 'v-contextmenu/dist/themes/default.css'
+
 export default defineComponent({
   directives: {
     contextmenu: directive
@@ -107,7 +108,7 @@ export default defineComponent({
 
     const beforeUpload = (file) => {
       console.log(file, 'beforeUpload----上传文件')
-      let fileReader = new FileReader()
+      const fileReader = new FileReader()
       fileReader.readAsBinaryString(file)
 
       fileReader.onload = () => {

@@ -11,7 +11,7 @@ export function useMap() {
     return initMap(centerPoint)
   }
 
-  //TODO 初始化Marker 图标
+  // TODO 初始化Marker 图标
   const initMarkerIcon = () => {
     delete L.Icon.Default.prototype._getIconUrl
     L.Icon.Default.mergeOptions({
@@ -27,7 +27,7 @@ export function useMap() {
       zoom: 13,
       minZoom: 10,
       maxZoom: 22,
-      center: centerPoint, //必须初始化center中心坐标
+      center: centerPoint, // 必须初始化center中心坐标
       doubleClickZoom: false, // 禁用双击放大
       zoomControl: false, // 不显示默认的放大缩小按钮，可通过control.zoom进行控制
       attributionControl: false

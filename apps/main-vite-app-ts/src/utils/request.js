@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+
 export const baseUrl =
   process.env.NODE_ENV === 'development'
     ? // ? "http://139.9.184.171:10088/"
@@ -71,7 +72,7 @@ const request = (url, options = {}) => {
   if (options.method == 'post') {
     return instance
       .request({
-        url: url,
+        url,
         ...options
       })
       .catch((err) => {

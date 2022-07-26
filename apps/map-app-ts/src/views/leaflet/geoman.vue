@@ -8,6 +8,7 @@ import 'leaflet/dist/leaflet.css'
 import '@geoman-io/leaflet-geoman-free'
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css'
 import { onMounted } from 'vue'
+
 let map = {}
 
 const open = () => {
@@ -22,9 +23,9 @@ onMounted(() => {
     iconUrl: require('leaflet/dist/images/marker-icon.png'),
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
   })
-  let array = [34.263742732916505, 108.01650524139406]
+  const array = [34.263742732916505, 108.01650524139406]
 
-  //TODO  初始化map
+  // TODO  初始化map
   map = L.map('map', {
     zoom: 16,
     minZoom: 16,
@@ -111,10 +112,10 @@ onMounted(() => {
       ]
     }
   ]
-  let arrayList = []
+  const arrayList = []
 
   json.forEach((item) => {
-    let list = []
+    const list = []
     if (item.fences && item.fences.length > 0) {
       item.fences.forEach((child) => {
         list.push([child.latitude, child.longitude])
@@ -128,8 +129,8 @@ onMounted(() => {
 
   arrayList.forEach((element) => {
     // TODO 加载多边形
-    let drawObj = L.polygon(element.fences, { color: 'orange', id: element.id }).addTo(map)
-    drawObj.id = element.id + 'id'
+    const drawObj = L.polygon(element.fences, { color: 'orange', id: element.id }).addTo(map)
+    drawObj.id = `${element.id}id`
 
     // TODO单个层进行编辑, 禁用编辑为disable
     drawObj.pm.enable({
@@ -140,9 +141,9 @@ onMounted(() => {
     // 如果想设置拖动状态前，先禁用其他状态
     drawObj.pm.enableLayerDrag()
 
-    let lb = L.latLngBounds(element.fences)
-    let center = lb.getCenter()
-    let latlng = L.latLng(center.lat, center.lng)
+    const lb = L.latLngBounds(element.fences)
+    const center = lb.getCenter()
+    const latlng = L.latLng(center.lat, center.lng)
 
     console.log(element, latlng, 'element-latlng')
     // TODO popup 弹窗
@@ -154,7 +155,7 @@ onMounted(() => {
     // .setContent('地块名称信息')
     // .openOn(state.map);
 
-    //TODO  通过Marker icon设置 label
+    // TODO  通过Marker icon设置 label
     // var myIcon = L.divIcon({
     //     html: "狗子",
     //     className: 'my-div-icon',
@@ -173,7 +174,7 @@ onMounted(() => {
     //   }).openTooltip()
 
     drawObj.on('click', function (e) {
-      //TODO  定位到center
+      // TODO  定位到center
       // state.map.flyTo({lat:34.261982635377585 , lng: 108.01560670137407})
       // let lb = L.latLngBounds(element.fences)
 

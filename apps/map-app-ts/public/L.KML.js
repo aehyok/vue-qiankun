@@ -3,7 +3,7 @@
 */
 
 L.KML = L.FeatureGroup.extend({
-  initialize: function (kml, kmlOptions) {
+  initialize(kml, kmlOptions) {
     this._kml = kml
     this._layers = {}
     this._kmlOptions = kmlOptions
@@ -13,10 +13,10 @@ L.KML = L.FeatureGroup.extend({
     }
   },
 
-  addKML: function (xml, kmlOptions) {
-    var layers = L.KML.parseKML(xml, kmlOptions)
+  addKML(xml, kmlOptions) {
+    const layers = L.KML.parseKML(xml, kmlOptions)
     if (!layers || !layers.length) return
-    for (var i = 0; i < layers.length; i++) {
+    for (let i = 0; i < layers.length; i++) {
       this.fire('addlayer', {
         layer: layers[i]
       })
@@ -30,13 +30,13 @@ L.KML = L.FeatureGroup.extend({
 })
 
 L.Util.extend(L.KML, {
-  parseKML: function (xml, kmlOptions) {
-    var style = this.parseStyles(xml, kmlOptions)
+  parseKML(xml, kmlOptions) {
+    const style = this.parseStyles(xml, kmlOptions)
     this.parseStyleMap(xml, style)
-    var el = xml.getElementsByTagName('Folder')
-    var layers = [],
-      l
-    for (var i = 0; i < el.length; i++) {
+    let el = xml.getElementsByTagName('Folder')
+    const layers = []
+    let l
+    for (let i = 0; i < el.length; i++) {
       if (!this._check_folder(el[i])) {
         continue
       }
@@ -46,7 +46,7 @@ L.Util.extend(L.KML, {
       }
     }
     el = xml.getElementsByTagName('Placemark')
-    for (var j = 0; j < el.length; j++) {
+    for (let j = 0; j < el.length; j++) {
       if (!this._check_folder(el[j])) {
         continue
       }
@@ -56,7 +56,7 @@ L.Util.extend(L.KML, {
       }
     }
     el = xml.getElementsByTagName('GroundOverlay')
-    for (var k = 0; k < el.length; k++) {
+    for (let k = 0; k < el.length; k++) {
       l = this.parseGroundOverlay(el[k])
       if (l) {
         layers.push(l)
@@ -67,7 +67,7 @@ L.Util.extend(L.KML, {
 
   // Return false if e's first parent Folder is not [folder]
   // - returns true if no parent Folders
-  _check_folder: function (e, folder) {
+  _check_folder(e, folder) {
     e = e.parentNode
     while (e && e.tagName !== 'Folder') {
       e = e.parentNode
@@ -75,46 +75,48 @@ L.Util.extend(L.KML, {
     return !e || e === folder
   },
 
-  parseStyles: function (xml, kmlOptions) {
-    var styles = {}
-    var sl = xml.getElementsByTagName('Style')
-    for (var i = 0, len = sl.length; i < len; i++) {
-      var style = this.parseStyle(sl[i], kmlOptions)
+  parseStyles(xml, kmlOptions) {
+    const styles = {}
+    const sl = xml.getElementsByTagName('Style')
+    for (let i = 0, len = sl.length; i < len; i++) {
+      const style = this.parseStyle(sl[i], kmlOptions)
       if (style) {
-        var styleName = '#' + style.id
+        const styleName = `#${style.id}`
         styles[styleName] = style
       }
     }
     return styles
   },
 
-  parseStyle: function (xml, kmlOptions) {
-    var style = {},
-      poptions = {},
-      ioptions = {},
-      el,
-      id
+  parseStyle(xml, kmlOptions) {
+    let style = {}
+    let poptions = {}
+    let ioptions = {}
+    let el
+    let id
 
-    var attributes = { color: true, width: true, Icon: true, href: true, hotSpot: true }
+    const attributes = { color: true, width: true, Icon: true, href: true, hotSpot: true }
 
     function _parse(xml) {
-      var options = {}
-      for (var i = 0; i < xml.childNodes.length; i++) {
-        var e = xml.childNodes[i]
-        var key = e.tagName
+      const options = {}
+      for (let i = 0; i < xml.childNodes.length; i++) {
+        const e = xml.childNodes[i]
+        const key = e.tagName
         if (!attributes[key]) {
           continue
         }
         if (key === 'hotSpot') {
-          for (var j = 0; j < e.attributes.length; j++) {
+          for (let j = 0; j < e.attributes.length; j++) {
             options[e.attributes[j].name] = e.attributes[j].nodeValue
           }
         } else {
-          var value = e.childNodes[0].nodeValue
+          const value = e.childNodes[0].nodeValue
           if (key === 'color') {
             options.opacity = parseInt(value.substring(0, 2), 16) / 255.0
-            options.color =
-              '#' + value.substring(6, 8) + value.substring(4, 6) + value.substring(2, 4)
+            options.color = `#${value.substring(6, 8)}${value.substring(4, 6)}${value.substring(
+              2,
+              4
+            )}`
           } else if (key === 'width') {
             options.weight = parseInt(value)
           } else if (key === 'Icon') {
@@ -149,7 +151,7 @@ L.Util.extend(L.KML, {
       ioptions = _parse(el[0])
     }
     if (ioptions.href) {
-      var iconOptions = {
+      const iconOptions = {
         iconUrl: ioptions.href,
         shadowUrl: null,
         anchorRef: { x: ioptions.x, y: ioptions.y },
@@ -171,13 +173,14 @@ L.Util.extend(L.KML, {
     return style
   },
 
-  parseStyleMap: function (xml, existingStyles) {
-    var sl = xml.getElementsByTagName('StyleMap')
+  parseStyleMap(xml, existingStyles) {
+    const sl = xml.getElementsByTagName('StyleMap')
 
-    for (var i = 0; i < sl.length; i++) {
-      var e = sl[i],
-        el
-      var smKey, smStyleUrl
+    for (let i = 0; i < sl.length; i++) {
+      const e = sl[i]
+      var el
+      var smKey
+      var smStyleUrl
 
       el = e.getElementsByTagName('key')
       if (el && el[0]) {
@@ -189,19 +192,17 @@ L.Util.extend(L.KML, {
       }
 
       if (smKey === 'normal') {
-        existingStyles['#' + e.getAttribute('id')] = existingStyles[smStyleUrl]
+        existingStyles[`#${e.getAttribute('id')}`] = existingStyles[smStyleUrl]
       }
     }
-
-    return
   },
 
-  parseFolder: function (xml, style) {
-    var el,
-      layers = [],
-      l
+  parseFolder(xml, style) {
+    let el
+    const layers = []
+    let l
     el = xml.getElementsByTagName('Folder')
-    for (var i = 0; i < el.length; i++) {
+    for (let i = 0; i < el.length; i++) {
       if (!this._check_folder(el[i], xml)) {
         continue
       }
@@ -211,7 +212,7 @@ L.Util.extend(L.KML, {
       }
     }
     el = xml.getElementsByTagName('Placemark')
-    for (var j = 0; j < el.length; j++) {
+    for (let j = 0; j < el.length; j++) {
       if (!this._check_folder(el[j], xml)) {
         continue
       }
@@ -221,7 +222,7 @@ L.Util.extend(L.KML, {
       }
     }
     el = xml.getElementsByTagName('GroundOverlay')
-    for (var k = 0; k < el.length; k++) {
+    for (let k = 0; k < el.length; k++) {
       if (!this._check_folder(el[k], xml)) {
         continue
       }
@@ -245,26 +246,26 @@ L.Util.extend(L.KML, {
     return l
   },
 
-  parsePlacemark: function (place, xml, style, options) {
-    var h,
-      i,
-      j,
-      k,
-      el,
-      il,
-      opts = options || {}
+  parsePlacemark(place, xml, style, options) {
+    let h
+    let i
+    let j
+    let k
+    let el
+    let il
+    const opts = options || {}
 
     el = place.getElementsByTagName('styleUrl')
     for (i = 0; i < el.length; i++) {
-      var url = el[i].childNodes[0].nodeValue
-      for (var a in style[url]) {
+      const url = el[i].childNodes[0].nodeValue
+      for (const a in style[url]) {
         opts[a] = style[url][a]
       }
     }
 
     il = place.getElementsByTagName('Style')[0]
     if (il) {
-      var inlineStyle = this.parseStyle(place)
+      const inlineStyle = this.parseStyle(place)
       if (inlineStyle) {
         for (k in inlineStyle) {
           opts[k] = inlineStyle[k]
@@ -272,7 +273,7 @@ L.Util.extend(L.KML, {
       }
     }
 
-    var multi = ['MultiGeometry', 'MultiTrack', 'gx:MultiTrack']
+    const multi = ['MultiGeometry', 'MultiTrack', 'gx:MultiTrack']
     for (h in multi) {
       el = place.getElementsByTagName(multi[h])
       for (i = 0; i < el.length; i++) {
@@ -283,14 +284,14 @@ L.Util.extend(L.KML, {
       }
     }
 
-    var layers = []
+    const layers = []
 
-    var parse = ['LineString', 'Polygon', 'Point', 'Track', 'gx:Track']
+    const parse = ['LineString', 'Polygon', 'Point', 'Track', 'gx:Track']
     for (j in parse) {
-      var tag = parse[j]
+      const tag = parse[j]
       el = place.getElementsByTagName(tag)
       for (i = 0; i < el.length; i++) {
-        var l = this['parse' + tag.replace(/gx:/, '')](el[i], xml, opts)
+        const l = this[`parse${tag.replace(/gx:/, '')}`](el[i], xml, opts)
         if (l) {
           layers.push(l)
         }
@@ -309,12 +310,12 @@ L.Util.extend(L.KML, {
     return layer
   },
 
-  addPlacePopup: function (place, layer) {
-    var el,
-      i,
-      j,
-      name,
-      descr = ''
+  addPlacePopup(place, layer) {
+    let el
+    let i
+    let j
+    let name
+    let descr = ''
     el = place.getElementsByTagName('name')
     if (el.length && el[0].childNodes.length) {
       name = el[0].childNodes[0].nodeValue
@@ -322,35 +323,35 @@ L.Util.extend(L.KML, {
     el = place.getElementsByTagName('description')
     for (i = 0; i < el.length; i++) {
       for (j = 0; j < el[i].childNodes.length; j++) {
-        descr = descr + el[i].childNodes[j].nodeValue
+        descr += el[i].childNodes[j].nodeValue
       }
     }
 
     if (name) {
-      layer.bindPopup('<h2>' + name + '</h2>' + descr, { className: 'kml-popup' })
+      layer.bindPopup(`<h2>${name}</h2>${descr}`, { className: 'kml-popup' })
     }
   },
 
-  parseCoords: function (xml) {
-    var el = xml.getElementsByTagName('coordinates')
+  parseCoords(xml) {
+    const el = xml.getElementsByTagName('coordinates')
     return this._read_coords(el[0])
   },
 
-  parseLineString: function (line, xml, options) {
-    var coords = this.parseCoords(line)
+  parseLineString(line, xml, options) {
+    const coords = this.parseCoords(line)
     if (!coords.length) {
       return
     }
     return new L.Polyline(coords, options)
   },
 
-  parseTrack: function (line, xml, options) {
-    var el = xml.getElementsByTagName('gx:coord')
+  parseTrack(line, xml, options) {
+    let el = xml.getElementsByTagName('gx:coord')
     if (el.length === 0) {
       el = xml.getElementsByTagName('coord')
     }
-    var coords = []
-    for (var j = 0; j < el.length; j++) {
+    let coords = []
+    for (let j = 0; j < el.length; j++) {
       coords = coords.concat(this._read_gxcoords(el[j]))
     }
     if (!coords.length) {
@@ -359,21 +360,21 @@ L.Util.extend(L.KML, {
     return new L.Polyline(coords, options)
   },
 
-  parsePoint: function (line, xml, options) {
-    var el = line.getElementsByTagName('coordinates')
+  parsePoint(line, xml, options) {
+    const el = line.getElementsByTagName('coordinates')
     if (!el.length) {
       return
     }
-    var ll = el[0].childNodes[0].nodeValue.split(',')
+    const ll = el[0].childNodes[0].nodeValue.split(',')
     return new L.KMLMarker(new L.LatLng(ll[1], ll[0]), options)
   },
 
-  parsePolygon: function (line, xml, options) {
-    var el,
-      polys = [],
-      inner = [],
-      i,
-      coords
+  parsePolygon(line, xml, options) {
+    let el
+    const polys = []
+    const inner = []
+    let i
+    let coords
     el = line.getElementsByTagName('outerBoundaryIs')
     for (i = 0; i < el.length; i++) {
       coords = this.parseCoords(el[i])
@@ -400,26 +401,26 @@ L.Util.extend(L.KML, {
     return new L.MultiPolygon(polys, options)
   },
 
-  getLatLngs: function (xml) {
-    var el = xml.getElementsByTagName('coordinates')
-    var coords = []
-    for (var j = 0; j < el.length; j++) {
+  getLatLngs(xml) {
+    const el = xml.getElementsByTagName('coordinates')
+    let coords = []
+    for (let j = 0; j < el.length; j++) {
       // text might span many childNodes
       coords = coords.concat(this._read_coords(el[j]))
     }
     return coords
   },
 
-  _read_coords: function (el) {
-    var text = '',
-      coords = [],
-      i
+  _read_coords(el) {
+    let text = ''
+    const coords = []
+    let i
     for (i = 0; i < el.childNodes.length; i++) {
-      text = text + el.childNodes[i].nodeValue
+      text += el.childNodes[i].nodeValue
     }
     text = text.split(/[\s\n]+/)
     for (i = 0; i < text.length; i++) {
-      var ll = text[i].split(',')
+      const ll = text[i].split(',')
       if (ll.length < 2) {
         continue
       }
@@ -428,17 +429,17 @@ L.Util.extend(L.KML, {
     return coords
   },
 
-  _read_gxcoords: function (el) {
-    var text = '',
-      coords = []
+  _read_gxcoords(el) {
+    let text = ''
+    const coords = []
     text = el.firstChild.nodeValue.split(' ')
     coords.push(new L.LatLng(text[1], text[0]))
     return coords
   },
 
-  parseGroundOverlay: function (xml) {
-    var latlonbox = xml.getElementsByTagName('LatLonBox')[0]
-    var bounds = new L.LatLngBounds(
+  parseGroundOverlay(xml) {
+    const latlonbox = xml.getElementsByTagName('LatLonBox')[0]
+    const bounds = new L.LatLngBounds(
       [
         latlonbox.getElementsByTagName('south')[0].childNodes[0].nodeValue,
         latlonbox.getElementsByTagName('west')[0].childNodes[0].nodeValue
@@ -448,17 +449,17 @@ L.Util.extend(L.KML, {
         latlonbox.getElementsByTagName('east')[0].childNodes[0].nodeValue
       ]
     )
-    var attributes = { Icon: true, href: true, color: true }
+    const attributes = { Icon: true, href: true, color: true }
     function _parse(xml) {
-      var options = {},
-        ioptions = {}
-      for (var i = 0; i < xml.childNodes.length; i++) {
-        var e = xml.childNodes[i]
-        var key = e.tagName
+      const options = {}
+      let ioptions = {}
+      for (let i = 0; i < xml.childNodes.length; i++) {
+        const e = xml.childNodes[i]
+        const key = e.tagName
         if (!attributes[key]) {
           continue
         }
-        var value = e.childNodes[0].nodeValue
+        const value = e.childNodes[0].nodeValue
         if (key === 'Icon') {
           ioptions = _parse(e)
           if (ioptions.href) {
@@ -468,16 +469,18 @@ L.Util.extend(L.KML, {
           options.href = value
         } else if (key === 'color') {
           options.opacity = parseInt(value.substring(0, 2), 16) / 255.0
-          options.color =
-            '#' + value.substring(6, 8) + value.substring(4, 6) + value.substring(2, 4)
+          options.color = `#${value.substring(6, 8)}${value.substring(4, 6)}${value.substring(
+            2,
+            4
+          )}`
         }
       }
       return options
     }
-    var options = {}
+    let options = {}
     options = _parse(xml)
     if (latlonbox.getElementsByTagName('rotation')[0] !== undefined) {
-      var rotation = latlonbox.getElementsByTagName('rotation')[0].childNodes[0].nodeValue
+      const rotation = latlonbox.getElementsByTagName('rotation')[0].childNodes[0].nodeValue
       options.rotation = parseFloat(rotation)
     }
     return new L.RotatedImageOverlay(options.href, bounds, {
@@ -492,28 +495,28 @@ L.KMLIcon = L.Icon.extend({
     iconSize: [32, 32],
     iconAnchor: [16, 16]
   },
-  _setIconStyles: function (img, name) {
+  _setIconStyles(img, name) {
     L.Icon.prototype._setIconStyles.apply(this, [img, name])
   },
-  _createImg: function (src, el) {
+  _createImg(src, el) {
     el = el || document.createElement('img')
     el.onload = this.applyCustomStyles.bind(this, el)
     el.src = src
     return el
   },
-  applyCustomStyles: function (img) {
-    var options = this.options
-    var width = options.iconSize[0]
-    var height = options.iconSize[1]
+  applyCustomStyles(img) {
+    const { options } = this
+    const width = options.iconSize[0]
+    const height = options.iconSize[1]
 
     this.options.popupAnchor = [0, -0.83 * height]
     if (options.anchorType.x === 'fraction')
-      img.style.marginLeft = -options.anchorRef.x * width + 'px'
+      img.style.marginLeft = `${-options.anchorRef.x * width}px`
     if (options.anchorType.y === 'fraction')
-      img.style.marginTop = -(1 - options.anchorRef.y) * height + 1 + 'px'
-    if (options.anchorType.x === 'pixels') img.style.marginLeft = -options.anchorRef.x + 'px'
+      img.style.marginTop = `${-(1 - options.anchorRef.y) * height + 1}px`
+    if (options.anchorType.x === 'pixels') img.style.marginLeft = `${-options.anchorRef.x}px`
     if (options.anchorType.y === 'pixels')
-      img.style.marginTop = options.anchorRef.y - height + 1 + 'px'
+      img.style.marginTop = `${options.anchorRef.y - height + 1}px`
   }
 })
 
@@ -528,36 +531,27 @@ L.RotatedImageOverlay = L.ImageOverlay.extend({
   options: {
     angle: 0
   },
-  _reset: function () {
+  _reset() {
     L.ImageOverlay.prototype._reset.call(this)
     this._rotate()
   },
-  _animateZoom: function (e) {
+  _animateZoom(e) {
     L.ImageOverlay.prototype._animateZoom.call(this, e)
     this._rotate()
   },
-  _rotate: function () {
+  _rotate() {
     if (L.DomUtil.TRANSFORM) {
       // use the CSS transform rule if available
-      this._image.style[L.DomUtil.TRANSFORM] += ' rotate(' + this.options.angle + 'deg)'
+      this._image.style[L.DomUtil.TRANSFORM] += ` rotate(${this.options.angle}deg)`
     } else if (L.Browser.ie) {
       // fallback for IE6, IE7, IE8
-      var rad = this.options.angle * (Math.PI / 180),
-        costheta = Math.cos(rad),
-        sintheta = Math.sin(rad)
-      this._image.style.filter +=
-        " progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=" +
-        costheta +
-        ', M12=' +
-        -sintheta +
-        ', M21=' +
-        sintheta +
-        ', M22=' +
-        costheta +
-        ')'
+      const rad = this.options.angle * (Math.PI / 180)
+      const costheta = Math.cos(rad)
+      const sintheta = Math.sin(rad)
+      this._image.style.filter += ` progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=${costheta}, M12=${-sintheta}, M21=${sintheta}, M22=${costheta})`
     }
   },
-  getBounds: function () {
+  getBounds() {
     return this._bounds
   }
 })

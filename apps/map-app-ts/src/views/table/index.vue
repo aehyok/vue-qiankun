@@ -120,35 +120,34 @@ const arraySpanMethod = ({ row, column, rowIndex, columnIndex }: any) => {
     tree.forEach((item) => (item.isValue = 0))
   }
   console.log(row[column.property], rowIndex, columnIndex, '--------------------------')
-  let obj = tree.find((item) => item.value === row[column.property])
+  const obj = tree.find((item) => item.value === row[column.property])
   if (obj && obj.value) {
     console.log(row[column.property], rowIndex, columnIndex, ';;;;;;')
     if (obj.isValue === 0) {
       obj.isValue = 1
       console.log(tree, 'tree--tree')
       return [obj.rowSpan, obj.colSpan]
-    } else {
-      return [0, 0]
-      // console.log(row[column.property], rowIndex, columnIndex,'tree--xiamian')
-      // if(rowIndex === 0 && columnIndex === 0) {
-      //   return [
-      //     obj.rowSpan, obj.colSpan
-      //   ]
-      // }
-      // else if (rowIndex === 0 && columnIndex === 1) {
-      //   return [
-      //     obj.rowSpan, obj.colSpan
-      //   ]
-      // }
-      // else if (rowIndex === 6 && columnIndex === 1) {
-      //   return [
-      //     obj.rowSpan, obj.colSpan
-      //   ]
-      // }
-      //  else {
-      //   return [0 ,0]
-      // }
     }
+    return [0, 0]
+    // console.log(row[column.property], rowIndex, columnIndex,'tree--xiamian')
+    // if(rowIndex === 0 && columnIndex === 0) {
+    //   return [
+    //     obj.rowSpan, obj.colSpan
+    //   ]
+    // }
+    // else if (rowIndex === 0 && columnIndex === 1) {
+    //   return [
+    //     obj.rowSpan, obj.colSpan
+    //   ]
+    // }
+    // else if (rowIndex === 6 && columnIndex === 1) {
+    //   return [
+    //     obj.rowSpan, obj.colSpan
+    //   ]
+    // }
+    //  else {
+    //   return [0 ,0]
+    // }
   }
 }
 </script>

@@ -14,7 +14,6 @@ const service = axios.create({
 // Request interceptors
 service.interceptors.request.use(
   (config) => {
-    config
     const token = localStorage.token ? JSON.parse(localStorage.token) : {}
     if (Object.keys(token)) {
       config.headers = {
@@ -54,13 +53,13 @@ service.interceptors.response.use(
           type: 'warning'
         }).then(() => {
           // UserModule.ResetToken()
-          location.reload() // To prevent bugs from vue-router
+          window.location.reload() // To prevent bugs from vue-router
         })
       }
       return Promise.reject(new Error(res.message || 'Error'))
-    } else {
-      return response.data
     }
+      return response.data
+
   },
   (error) => {
     Message({

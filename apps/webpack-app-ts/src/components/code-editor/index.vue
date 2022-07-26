@@ -10,9 +10,9 @@ import ace from 'ace-builds'
 /* 启用此行后webpack打包回生成很多动态加载的js文件，不便于部署，故禁用！！
      特别提示：禁用此行后，需要调用ace.config.set('basePath', 'path...')指定动态js加载URL！！
    */
-//import 'ace-builds/webpack-resolver'
+// import 'ace-builds/webpack-resolver'
 
-//import 'ace-builds/src-min-noconflict/theme-monokai' // 默认设置的主题
+// import 'ace-builds/src-min-noconflict/theme-monokai' // 默认设置的主题
 import 'ace-builds/src-min-noconflict/theme-sqlserver' // 新设主题
 import 'ace-builds/src-min-noconflict/mode-javascript' // 默认设置的语言模式
 import 'ace-builds/src-min-noconflict/mode-json' //
@@ -24,7 +24,7 @@ export default {
   props: {
     modelValue: {
       type: String
-      //required: true
+      // required: true
     },
     readonly: {
       type: Boolean,
@@ -35,17 +35,17 @@ export default {
       default: 'javascript'
     },
     userWorker: {
-      //是否开启语法检查，默认开启
+      // 是否开启语法检查，默认开启
       type: Boolean,
       default: true
     }
   },
   emits: ['update:modelValue'],
   mounted() {
-    //ace.config.set('basePath', 'https://ks3-cn-beijing.ksyun.com/vform2021/ace')
+    // ace.config.set('basePath', 'https://ks3-cn-beijing.ksyun.com/vform2021/ace')
     ace.config.set('basePath', 'https://ks3-cn-beijing.ksyun.com/vform2021/ace-mini')
 
-    this.addAutoCompletion(ace) //添加自定义代码提示！！
+    this.addAutoCompletion(ace) // 添加自定义代码提示！！
 
     this.aceEditor = ace.edit(this.$refs.ace, {
       maxLines: 20, // 最大行数，超过会自动出现滚动条
@@ -75,7 +75,7 @@ export default {
       this.aceEditor.getSession().setUseWorker(false)
     }
 
-    //编辑时同步数据
+    // 编辑时同步数据
     this.aceEditor.getSession().on('change', (ev) => {
       this.$emit('update:modelValue', this.aceEditor.getValue())
     })
@@ -93,19 +93,18 @@ export default {
   },
   methods: {
     addAutoCompletion(ace) {
-      let acData = [
+      const acData = [
         { meta: 'VForm API', caption: 'getWidgetRef', value: 'getWidgetRef()', score: 1 },
         { meta: 'VForm API', caption: 'getFormRef', value: 'getFormRef()', score: 1 }
-        //TODO: 待补充！！
+        // TODO: 待补充！！
       ]
-      let langTools = ace.require('ace/ext/language_tools')
+      const langTools = ace.require('ace/ext/language_tools')
       langTools.addCompleter({
-        getCompletions: function (editor, session, pos, prefix, callback) {
+        getCompletions(editor, session, pos, prefix, callback) {
           if (prefix.length === 0) {
             return callback(null, [])
-          } else {
-            return callback(null, acData)
           }
+          return callback(null, acData)
         }
       })
     },

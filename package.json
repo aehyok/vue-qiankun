@@ -17,8 +17,8 @@
     "start:map": "cd apps/map-app-ts && sudo pnpm start",
     "start:all": "concurrently \"pnpm start:main\"  \"pnpm start:child\"  \"pnpm start:map\"",
     "prettier": "prettier --write .",
-    "eslint": "eslint --fix ./src --ext .vue,.js,.ts",
-    "git": "git add . & git cz & git push"
+    "eslint": "eslint --fix ./apps --ext .vue,.js,.ts",
+    "git": "git cz"
   },
   "lint-staged": {
     "*.{vue,js,ts}": "eslint --fix"

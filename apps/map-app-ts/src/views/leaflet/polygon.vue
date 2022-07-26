@@ -25,7 +25,6 @@
   </v-contextmenu>
 </template>
 <script>
-import { useMap } from './useMap'
 import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
 import {
   directive,
@@ -35,8 +34,10 @@ import {
   ContextmenuSubmenu,
   ContextmenuGroup
 } from 'v-contextmenu'
+import { useMap } from './useMap'
 import 'v-contextmenu/dist/themes/default.css'
 import { warnMessage, successMessage } from '../../../../main-vite-app-ts/src/utils/message'
+
 export default defineComponent({
   directives: {
     contextmenu: directive

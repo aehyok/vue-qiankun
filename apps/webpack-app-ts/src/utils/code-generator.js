@@ -1,6 +1,6 @@
 export const generateCode = function (formJson, codeType = 'vue') {
   // let formJsonStr = JSON.stringify(formJson)
-  let formJsonStr = JSON.stringify(formJson, null, '  ')
+  const formJsonStr = JSON.stringify(formJson, null, '  ')
   if (codeType === 'html') {
     return `<!DOCTYPE html>
 <html>
@@ -52,8 +52,8 @@ export const generateCode = function (formJson, codeType = 'vue') {
 </script>
 </body>
 </html>`
-  } else {
-    return `<template>
+  }
+  return `<template>
   <div>
     <sl-form :form-json="formJson" :form-data="formData" :option-data="optionData" ref="refForm">
     </v-form-render>
@@ -80,5 +80,4 @@ export const generateCode = function (formJson, codeType = 'vue') {
     })
   }
 </script>`
-  }
 }
