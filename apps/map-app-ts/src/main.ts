@@ -1,4 +1,4 @@
-import '../../../packages/common/qiankun/public-path.js'
+import { init } from '@aehyok/utils'
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
@@ -8,6 +8,7 @@ import App from './App.vue'
 import routes from './router'
 import store from './store'
 
+init()
 let instance = null
 
 function render(props: any = {}) {

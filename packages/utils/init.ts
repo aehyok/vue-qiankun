@@ -40,3 +40,13 @@ export const IsPtInPoly = (aLon: any, aLat: any, aPoints: any) => {
   if (iSum % 2 !== 0) return true
   return false
 }
+
+export const init = () => {
+  console.log('window.__POWERED_BY_QIANKUN__', window.__POWERED_BY_QIANKUN__)
+  // eslint-disable-next-line no-underscore-dangle
+  if (window.__POWERED_BY_QIANKUN__) {
+    /* eslint-disable camelcase */
+    // eslint-disable-next-line no-undef, no-underscore-dangle
+    __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__
+  }
+}
