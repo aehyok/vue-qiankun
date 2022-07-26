@@ -7,6 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
     "build:main": "cd apps/main-vite-app-ts && pnpm build",
     "build:child": "cd apps/webpack-app-ts && pnpm build",
