@@ -9,5 +9,8 @@
     "titleBar.activeBackground": "#1E80FF",
     "titleBar.inactiveBackground": "#1E80FF"
   },
-  "vetur.validation.template": false
+  "vetur.validation.template": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

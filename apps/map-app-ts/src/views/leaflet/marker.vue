@@ -12,12 +12,13 @@
   <div id="map" ref="refMap" class="leaflet-map-class" v-contextmenu:contextMenu></div>
 </template>
 <script>
-import { useMap } from './useMap'
 import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
-import { warnMessage, successMessage } from '../../../../common/utils/message'
+import { useMessage } from '@aehyok/utils'
 import { directive, Contextmenu, ContextmenuItem, ContextmenuGroup } from 'v-contextmenu'
+import { useMap } from './useMap'
 import 'v-contextmenu/dist/themes/default.css'
 
+const { warnMessage, successMessage } = useMessage
 export default defineComponent({
   directives: {
     contextmenu: directive
@@ -74,7 +75,7 @@ export default defineComponent({
         state.markerPoint.longitude = e.latlng.lng
         state.markerPoint.latitude = e.latlng.lat
         removeAllMarkers(map)
-        let temp = L.marker([state.markerPoint.latitude, state.markerPoint.longitude], {
+        const temp = L.marker([state.markerPoint.latitude, state.markerPoint.longitude], {
           draggable: true
         }).addTo(map)
 

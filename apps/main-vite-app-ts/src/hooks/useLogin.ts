@@ -2,10 +2,11 @@
 import { encode, decode } from 'js-base64'
 import md5 from 'js-md5'
 import { LoginState } from 'types/models'
+import { useMessage } from '@aehyok/utils'
 import {  useSystemMenu } from '@/store'
 import { getVerifyCode, login } from '@/services/index'
-import { warnMessage } from '@/utils/message'
 
+const  { warnMessage } = useMessage()
 export function useLogin(loginForm: LoginState, rememberPasCbox: any) {
   const store = useSystemMenu()
   const checkRememberPassword = () => {

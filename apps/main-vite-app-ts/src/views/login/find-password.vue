@@ -43,9 +43,10 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs, ref } from 'vue'
 import md5 from 'js-md5'
-import { warnMessage, successMessage } from '../../utils/message'
+import { useMessage } from '@aehyok/utils'
 import { changedForMobile, sendMobileValidateCode } from '../../services'
 
+const { warnMessage, successMessage } = useMessage()
 // 手机号码验证
 const validateMobile = (rules: any, value: any, callback: any) => {
   if (!value) {
