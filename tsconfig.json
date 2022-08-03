@@ -37,10 +37,6 @@
 
     "isolatedModules": true,
 
-    // 模块名到基于 baseUrl的路径映射的列表。
-    "paths": {
-      "@/*": ["src/*"]
-    },
     // 编译过程中需要引入的库文件的列表。
     "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"]
   }
