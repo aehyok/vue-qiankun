@@ -1,4 +1,8 @@
-| 如果有问题尽量考虑使用 pnpm 来安装依赖，本人已使用 pnpm 进行验证没问题的, pnpm i 时将仓库源修改为https://registry.npmjs.org/
+| 如果有问题尽量考虑使用 pnpm 来安装依赖，本人已使用 pnpm 进行验证没问题的
+
+  - pnpm i 时将仓库源修改为https://registry.npmjs.org/,用其他的可能会报错
+
+  - vite 主应用项目如果无法运行考虑使用vite2版本，我切换完没什么问题
 
 ## [0、2021 和 2022 年每天学习记录、周计划和月计划等](https://github.com/aehyok/2022)
 
