@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import TableAndFormAndDetail from '../views/TableAndFormAndDetail.vue'
 import Table from '../views/Table.vue'
 import TableApi from '../views/Table-Api.vue'
+import TableVxe from '../views/Table-vxe.vue'
 import ffmpeg from '../views/video/ffmpeg.vue'
 import Form from '../views/Form.vue'
 import FormApi from '../views/Form-Api.vue'
@@ -57,6 +58,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/webpack-app/table',
     name: 'table',
     component: Table
+  },
+  {
+    path: '/webpack-app/table-vxe',
+    name: 'table-vxe',
+    component: TableVxe
   },
   {
     path: '/webpack-app/table-api',

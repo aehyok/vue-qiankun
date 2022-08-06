@@ -1,23 +1,29 @@
 <template>
   <div>
-    <sl-table
-      :list="list"
-      @handleSelectionChange="handleSelectionChange"
-      :columns="columns"
-      :operates="operates"
-      v-model:pageModel="pageModel"
-      @search="search"
-    >
-    </sl-table>
+    <vxe-table border height="400" :data="list">
+      <vxe-colgroup title="基本信息">
+        <vxe-column type="seq" width="60"></vxe-column>
+        <vxe-column field="name" title="Name"></vxe-column>
+      </vxe-colgroup>
+      <vxe-colgroup title="更多信息">
+        <vxe-column field="role" title="Role"></vxe-column>
+        <vxe-colgroup title="详细信息">
+          <vxe-column field="sex" title="Sex"></vxe-column>
+          <vxe-column field="age" title="Age"></vxe-column>
+        </vxe-colgroup>
+      </vxe-colgroup>
+      <vxe-colgroup title="分类信息">
+        <vxe-column field="date3" title="Date"></vxe-column>
+      </vxe-colgroup>
+      <vxe-column field="address" title="Address" show-overflow></vxe-column>
+    </vxe-table>
   </div>
 </template>
 <script>
-import { SlTable } from '@aehyok/components'
 import { defineComponent, reactive, toRefs } from 'vue'
-import { listTest, columnsTest } from './tableConfig'
+import { listTest, columnsTest } from './tableConfig-vxe'
 
 export default defineComponent({
-  components: { SlTable },
   setup() {
     // 选中行
     const handleSelectionChange = (val) => {
@@ -34,7 +40,7 @@ export default defineComponent({
       console.log(' row:', row)
     }
 
-    const state = {
+    const state = reactive({
       pageModel: {
         page: 1,
         limit: 10,
@@ -68,10 +74,11 @@ export default defineComponent({
           }
         ]
       } // 列操作按钮
-    }
+    })
 
     state.list = Object.freeze(listTest)
     state.columns = columnsTest
+    console.log(columns, 'columns')
     const search = () => {
       state.list = [...state.list]
       console.log(state.pageModel, 'state.pageModel')

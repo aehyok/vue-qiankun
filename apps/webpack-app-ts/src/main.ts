@@ -4,12 +4,19 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import { createRouter, createWebHashHistory } from 'vue-router'
+import VXETable from 'vxe-table'
 import App from './App.vue'
 import './registerServiceWorker'
 import routes from './router'
 import store from './store'
 import plugins from './plugins'
 
+import 'xe-utils'
+import 'vxe-table/lib/style.css'
+
+function useTable(app: any) {
+  app.use(VXETable)
+}
 init()
 let instance = null
 
@@ -30,6 +37,7 @@ function render(props: any = {}) {
     .use(store)
     .use(router)
     .use(plugins)
+    .use(useTable)
     .mount(container ? container.querySelector('#webpackapp') : '#webpackapp')
   // autoComponentRegister(instance)
 }
