@@ -31,7 +31,6 @@
     "wangeditor": "^4.7.11"
   },
   "devDependencies": {
-    "@aehyok/components": "workspace:*",
     "@types/shortid": "^0.0.29",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-pwa": "~4.5.0",
