@@ -110,6 +110,11 @@ export function webpackList(): Menu[] {
       id: 9,
       title: 'table',
       path: '/webpack-app/table'
+    },
+    {
+      id: 19,
+      title: 'vxe-table',
+      path: '/webpack-app/table-vxe'
     }
   ]
 }

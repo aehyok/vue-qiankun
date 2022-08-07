@@ -1,56 +1,46 @@
 <template>
-  <!-- <el-table>
-    <el-table-column
-      fixed="left"
-      header-align="center"
-      prop="areaName"
-      label="区域名称"
-      v-if="state.show"
-    >
-      <template #default="scope">
-        <span v-if="scope.row.areaLevel >= 5 || scope.row.areaName === '汇总数据'">{{
-          scope.row.areaName
-        }}</span>
+  <vxe-table border height="900" :data="list">
+    <vxe-column field="areaName" title="区域名称" width="120" fixed="left">
+      <template #default="{ row }">
+        <span v-if="row.areaLevel >= 5 || row.areaName === '汇总数据'">{{ row.areaName }}</span>
         <span v-else>
-          <a @click="clickItem(0, scope.row)" v-if="scope.row.areaLevel < 5">{{
-            scope.row.areaName
-          }}</a>
+          <a @click="clickItem(0, row)" v-if="row.areaLevel < 5">{{ row.areaName }}</a>
         </span>
       </template>
-    </el-table-column>
-    <el-table-column
+    </vxe-column>
+    <vxe-colgroup
+      v-for="group in columns"
       header-align="center"
-      v-for="group in state.theaders"
       :key="group.MajorGroup"
-      prop=""
-      :label="group.MajorGroup"
+      field=""
+      :title="group.MajorGroup"
       min-width="250px"
       label-class-name="col-class"
     >
-      <el-table-column
+      <vxe-colgroup
         header-align="center"
         v-for="sub in group.SubGroups"
         :key="sub.title"
-        prop=""
-        :label="sub.title"
+        field=""
+        :title="sub.title"
         min-width="120px"
         label-class-name="col-class"
       >
-        <el-table-column
+        <vxe-colgroup
           header-align="center"
           v-for="item in sub.items"
           :key="item.title"
-          :prop="item.keyName"
-          :label="item.title"
+          :field="item.keyName"
+          :title="item.title"
           min-width="120px"
           label-class-name="col-class"
         >
-          <el-table-column
+          <vxe-column
             header-align="center"
             v-for="field in item.fields"
             :key="field.header"
-            :prop="field.keyName"
-            :label="field.header"
+            :filed="field.keyName"
+            :title="field.header"
             min-width="120px"
             label-class-name="col-class"
           >
@@ -69,130 +59,11 @@
                 }}</a>
               </span>
             </template>
-          </el-table-column>
-        </el-table-column>
-      </el-table-column>
-    </el-table-column>
-    <el-table-column
-      header-align="center"
-      prop="auditStatus"
-      label="状态"
-      fixed="right"
-      v-if="state.show && props.showOperationButton"
-    >
-      <template #default="scope">
-        <span v-if="scope.row.areaName === '汇总数据'"></span>
-        <span v-else-if="scope.row.auditStatus === 2" style="color: red">驳回</span>
-        <span
-          v-else
-          :style="{
-            color: scope.row.status === 3 ? 'red' : scope.row.status === 0 ? '#e6a23c' : ''
-          }"
-          >{{ getStatus(scope.row.status) }}</span
-        >
-      </template>
-    </el-table-column>
-    <el-table-column
-      header-align="center"
-      prop=""
-      label="操作"
-      fixed="right"
-      v-if="state.show && props.showOperationButton"
-    >
-      <template #default="scope">
-        <span v-if="scope.row.status === 0 || scope.row.areaName === '汇总数据'"></span>
-        <a @click="clickItem(2, scope.row)" v-if="scope.row.status !== 0">查看</a>
-      </template>
-    </el-table-column>
-  </el-table> -->
-
-  <div>
-    <vxe-table border height="900" :data="list">
-      <!-- <vxe-colgroup title="基本信息">
-        <vxe-column type="seq" width="60"></vxe-column>
-        <vxe-column field="name" title="Name"></vxe-column>
-      </vxe-colgroup>
-      <vxe-colgroup title="更多信息">
-        <vxe-column field="role" title="Role"></vxe-column>
-        <vxe-colgroup title="详细信息">
-          <vxe-column field="sex" title="Sex"></vxe-column>
-          <vxe-column field="age" title="Age"></vxe-column>
+          </vxe-column>
         </vxe-colgroup>
       </vxe-colgroup>
-      <vxe-colgroup title="分类信息">
-        <vxe-column field="date3" title="Date"></vxe-column>
-      </vxe-colgroup>
-      <vxe-column field="address" title="Address" show-overflow></vxe-column> -->
-
-      <vxe-column fixed="left" header-align="center" field="areaName" title="区域名称">
-        <!-- <template #default="scope">
-          <span v-if="scope.row.areaLevel >= 5 || scope.row.areaName === '汇总数据'">{{
-            scope.row.areaName
-          }}</span>
-          <span v-else>
-            <a @click="clickItem(0, scope.row)" v-if="scope.row.areaLevel < 5">{{
-              scope.row.areaName
-            }}</a>
-          </span>
-        </template> -->
-      </vxe-column>
-      <vxe-colgroup
-        v-for="group in columns"
-        header-align="center"
-        :key="group.MajorGroup"
-        field=""
-        :title="group.MajorGroup"
-        min-width="250px"
-        label-class-name="col-class"
-      >
-        <vxe-colgroup
-          header-align="center"
-          v-for="sub in group.SubGroups"
-          :key="sub.title"
-          field=""
-          :title="sub.title"
-          min-width="120px"
-          label-class-name="col-class"
-        >
-          <vxe-colgroup
-            header-align="center"
-            v-for="item in sub.items"
-            :key="item.title"
-            :field="item.keyName"
-            :title="item.title"
-            min-width="120px"
-            label-class-name="col-class"
-          >
-            <vxe-colgroup
-              header-align="center"
-              v-for="field in item.fields"
-              :key="field.header"
-              :filed="field.keyName"
-              :title="field.header"
-              min-width="120px"
-              label-class-name="col-class"
-            >
-              <!-- <template #default="scope">
-                <span v-if="scope.row[`${field.form}.needReport`] === 0">无此建设项目</span>
-                <span v-else-if="!scope.row[field.keyName] && scope.row[field.keyName] !== 0"
-                  >未上报</span
-                >
-
-                <span v-else-if="field.type === 2 || scope.row.areaName === '汇总数据'">
-                  {{ scope.row[field.keyName] }}
-                </span>
-                <span v-else-if="scope.row[field.keyName] || scope.row[field.keyName] === 0">
-                  <a @click="clickItem(1, scope.row, field.keyName)">{{
-                    scope.row[field.keyName]
-                  }}</a>
-                </span>
-              </template> -->
-            </vxe-colgroup>
-          </vxe-colgroup>
-        </vxe-colgroup>
-      </vxe-colgroup>
-    </vxe-table>
-  </div>
+    </vxe-colgroup>
+  </vxe-table>
 </template>
 <script>
 import { defineComponent, reactive, toRefs } from 'vue'
@@ -250,8 +121,8 @@ export default defineComponent({
         ]
       } // 列操作按钮
     })
-
-    listTest.data.map((item) => {
+    console.log(listTest.data, 'older data')
+    listTest.data.map(async (item) => {
       // res.data.forEach((item) => {
       const datas = item.areaData || []
 
@@ -288,8 +159,9 @@ export default defineComponent({
 
     // state.list = listTest.data
     const cols = []
-    state.list = Object.freeze(listTest.data)
-    console.log(columnsTest.data[0].definedata, 'state.columns')
+    // state.list = Object.freeze(listTest.data)
+    console.log(state.list, 'state.list')
+    // console.log(columnsTest.data[0].definedata, 'state.columns')
     state.columns = JSON.parse(columnsTest.data[0].definedata)
     console.log(state.columns, 'state.columns')
 
@@ -320,9 +192,14 @@ export default defineComponent({
       })
     })
 
+    const formatterData = (data) => {
+      console.log(data, '111111')
+      return '111111'
+    }
     return {
       ...toRefs(state),
-      handleSelectionChange
+      handleSelectionChange,
+      formatterData
     }
   }
 })
