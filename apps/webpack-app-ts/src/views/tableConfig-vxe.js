@@ -81,7 +81,7 @@ const columnsTest = [
   }
 ]
 
-let listTest = []
+const listTest = []
 
 for (let index = 0; index < 100; index++) {
   // eslint-disable-next-line no-const-assign

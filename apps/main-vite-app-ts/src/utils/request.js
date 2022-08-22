@@ -69,7 +69,7 @@ instance.interceptors.response.use(
 
 const request = (url, options = {}) => {
   // post 请求
-  if (options.method == 'post') {
+  if (options.method === 'post') {
     return instance
       .request({
         url,

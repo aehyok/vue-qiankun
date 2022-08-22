@@ -22,7 +22,9 @@
     "git": "git cz"
   },
   "lint-staged": {
-    "*.{vue,js,ts}": "eslint --fix"
+    "*.{vue,js,ts}": [
+      "eslint --fix"
+    ]
   },
   "repository": {
     "type": "git",

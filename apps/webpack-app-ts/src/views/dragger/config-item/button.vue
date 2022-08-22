@@ -48,7 +48,7 @@ const props = defineProps({
 
 watch(
   () => props.config,
-  (newValue, oldValue) => {
+  (newValue) => {
     console.log(newValue, '新的属性值')
   },
   {
