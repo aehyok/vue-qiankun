@@ -1,17 +1,23 @@
 {
   "name": "@aehyok/utils",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.ts",
+  "module": "index.ts",
   "type": "module",
+  "private": false,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c"
+    "build": "vite build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "date-fns": "^2.28.0",
-    "rollup": "^2.77.2"
+    "date-fns": "^2.28.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.6.0",
+    "vite": "^3.0.3",
+    "vite-plugin-dts": "^1.4.1"
   }
 }

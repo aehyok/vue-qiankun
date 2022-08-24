@@ -19,7 +19,7 @@
     "start:all": "concurrently \"pnpm start:main\"  \"pnpm start:child\"  \"pnpm start:map\"",
     "prettier": "prettier --write .",
     "eslint": "eslint --fix ./apps --ext .vue,.js,.ts",
-    "git": "git cz"
+    "git": "git add . && git cz"
   },
   "lint-staged": {
     "*.{vue,js,ts}": [
@@ -63,6 +63,6 @@
     }
   },
   "devDependencies": {
-    "lint-staged": "^13.0.3"
+    "lint-staged": "^12.4.2"
   }
 }
