@@ -33,7 +33,7 @@ export default defineConfig({
     //  反向代理配置，注意rewrite写法，开始没看文档在这里踩了坑
     proxy: {
       '/so': {
-        target: 'http://139.159.245.209:5000', // 代理接口
+        target: 'http://175.178.60.76:5000', // 代理接口
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/so/, '')
       }

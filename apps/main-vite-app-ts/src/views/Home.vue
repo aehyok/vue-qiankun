@@ -3,44 +3,37 @@
     <!-- 顶部 -->
     <div class="header">
       <div class="header-left">
-        <img :src="headerSetting.logoUrl" @click="homeClick" />
-        <div class="left-title">qiankun综合服务平台</div>
+        <img :src="headerSetting.logoUrl" class="login-image" @click="homeClick" />
+        <div class="left-title">aehyok</div>
+      </div>
+      <div class="right-center">
+        <template v-for="(item, index) in modeuleList" :key="index">
+          <div
+            @click="jumpChildSystem(item)"
+            class="module-system"
+            :class="item.systemId == activeModule ? 'active-module' : ''"
+            @mouseover="activeModule = item.systemId"
+            @mouseleave="activeModule = ''"
+          >
+            <img :src="item.systemId == activeModule ? item.selected : item.normal" />
+          </div>
+        </template>
       </div>
     </div>
     <!-- 内容 -->
     <div class="content">
-      <!-- 子系统模块 -->
-      <div class="system" v-if="showHome">
-        <swiper class="mySwiper" :slidesPerView="5" :navigation="true">
-          <swiper-slide v-for="(item, index) in modeuleList" :key="index">
-            <div
-              @click="jumpChildSystem(item)"
-              class="module-system"
-              :class="item.systemId == activeModule ? 'active-module' : ''"
-              @mouseover="activeModule = item.systemId"
-              @mouseleave="activeModule = ''"
-            >
-              <img :src="item.systemId == activeModule ? item.selected : item.normal" />
-              <div class="module-title">{{ item.title }}</div>
-            </div>
-          </swiper-slide>
-        </swiper>
-      </div>
       <!-- 详情 -->
+      <chat />
     </div>
     <UpdatePassword v-model="updateDialogVisible" @cancel="close" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, getCurrentInstance, onMounted } from 'vue'
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import 'swiper/swiper.scss'
-import 'swiper/components/pagination/pagination.min.css'
-import 'swiper/components/navigation/navigation.min.css'
 import { useRouter } from 'vue-router'
-import SwiperCore, { Pagination, Navigation } from 'swiper/core'
 import { useSystemMenu } from '@/store'
 import { formSave } from '../services'
+import Chat from './chat/index.vue'
 import UpdatePassword from '../components/update-password.vue'
 
 function useModuleSetting(router: any, store: any, proxy: any) {
@@ -62,12 +55,10 @@ function useModuleSetting(router: any, store: any, proxy: any) {
 }
 
 // install Swiper modules
-SwiperCore.use([Pagination, Navigation])
 export default defineComponent({
   components: {
-    Swiper,
-    SwiperSlide,
-    UpdatePassword
+    UpdatePassword,
+    Chat
   },
   setup() {
     const { proxy } = getCurrentInstance()
@@ -124,29 +115,42 @@ export default defineComponent({
   flex-direction: column;
 }
 .header {
-  width: 1280px;
+  background-color: #0e0e1a;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
   box-sizing: border-box;
-  line-height: 40px;
+  height: 60px;
   color: #fff;
-  margin: 10px auto;
   img {
-    width: 76px;
-    height: 76px;
+    // width: 76px;
+    // height: 76px;
   }
   .header-left {
     display: flex;
     align-items: center;
   }
   .left-title {
-    color: #666;
+    color: white;
     margin-left: 18px;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
   }
+
+  .right-center {
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  .login-image {
+    width: 116px;
+    height: 36px;
+  }
+
   // 顶部消息样式
   .right-notice {
     display: flex;
@@ -217,8 +221,8 @@ export default defineComponent({
       border-radius: 6px;
       color: #fff;
       background: #486bec;
-      margin: 36px 42px;
       display: flex;
+      margin-right: 15px;
       flex-direction: column;
       justify-content: center;
       align-items: center;

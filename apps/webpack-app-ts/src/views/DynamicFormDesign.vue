@@ -140,10 +140,10 @@ const json = computed(() => {
 })
 
 const vueString = computed(() => {
-  const temp = JSON.stringify(state.formConfig, null, '  ')
+  // const temp = JSON.stringify(state.formConfig, null, '  ')
   console.log(state.formConfig, 'form-json')
   return generateCode(state.formConfig)
-  return JSON.stringify(state.formConfig, null, '  ')
+  // return JSON.stringify(state.formConfig, null, '  ')
 })
 const createJsonClick = () => {
   // window.onerror (// 监听js错误)
@@ -157,7 +157,7 @@ const createJsonClick = () => {
 const error = ref('')
 const isError = ref(false)
 const checkCodeClick = () => {
-  const code = customerCode.value
+  // const code = customerCode.value
   // 去掉注释
   const temp = code.replace(/.+\*\/\s*/gs, '').replace(/\s+/g, '')
   try {
@@ -165,6 +165,7 @@ const checkCodeClick = () => {
     const jsCodeInfo = eval(`(function(){return ${temp}})()`)
     console.log(jsCodeInfo, 'jsCodeInfo')
     isError.value = false
+    // eslint-disable-next-line no-shadow
   } catch (error) {
     console.warn(error)
     console.log(error, 'error')

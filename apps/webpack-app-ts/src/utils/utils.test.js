@@ -14,7 +14,6 @@ test('isNumber 是否为数值', () => {
 })
 
 test('getRndInteger 获取随机数', () => {
-  const number1 = 123
   expect(utils.getRndInteger(100)).toBe(true)
 
   const number2 = 's1'

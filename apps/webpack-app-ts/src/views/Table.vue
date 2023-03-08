@@ -13,7 +13,7 @@
 </template>
 <script>
 import { SlTable } from '@aehyok/components'
-import { defineComponent, reactive, toRefs } from 'vue'
+import { defineComponent, toRefs } from 'vue'
 import { listTest, columnsTest } from './tableConfig'
 
 export default defineComponent({

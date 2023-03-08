@@ -157,8 +157,6 @@ const columnsTest = [
   }
 ]
 
-let listTest = []
-
 for (let index = 0; index < 100; index++) {
   // eslint-disable-next-line no-const-assign
   listTest = [...listTest, ...temp]

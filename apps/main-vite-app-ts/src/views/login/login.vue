@@ -80,7 +80,7 @@ import { LoginState } from '@/types/models'
 
 const form = ref(null)
 
-const projectName = 'qiankun综合服务平台'
+const projectName = 'OpenAI aehyok'
 const rememberPasCbox = ref(false)
 const dialogVisible = ref(false)
 const rules = {

@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
 export const baseUrl =
-  process.env.NODE_ENV === 'development' ? '/so/api' : 'http://139.159.245.209/so/api/'
+  process.env.NODE_ENV === 'development' ? '/so/api' : 'http://175.178.60.76/so/api/'
 
 // const origin = window.location.origin
 const instance = axios.create({
@@ -78,7 +78,7 @@ instance.interceptors.response.use(
 
 const request = (url, options = {}) => {
   // post 请求  ||  digital = true => 数字信息子系统  rest接口风格 get请求     options.digital
-  if (options.method == 'post') {
+  if (options.method === 'post') {
     return instance
       .request({
         url,
