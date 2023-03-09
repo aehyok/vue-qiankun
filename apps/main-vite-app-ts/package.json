@@ -9,10 +9,13 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@types/markdown-it": "^12.2.3",
     "axios": "^0.21.4",
     "element-plus": "^2.2.32",
+    "highlight.js": "^11.7.0",
     "js-base64": "^3.7.5",
     "js-md5": "^0.7.3",
+    "markdown-it": "^13.0.1",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.32",
     "pinia-plugin-persist": "^1.0.0",

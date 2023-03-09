@@ -4,7 +4,7 @@
     <div class="header">
       <div class="header-left">
         <img :src="headerSetting.logoUrl" class="login-image" @click="homeClick" />
-        <div class="left-title">盛阳版</div>
+        <div class="left-title">aehyok</div>
       </div>
       <div
         style="
@@ -144,6 +144,7 @@ export default defineComponent({
     margin-left: 10px;
     align-items: center;
     width: 245px;
+    height: 100%;
   }
   .left-title {
     color: white;
