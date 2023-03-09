@@ -5,9 +5,19 @@
       <div :class="item === selected ? 'select-group-title' : 'group-title'">
         {{ item }}chatgpt接口学习指南chatgpt接口学习指南
       </div>
-      <div style="position: absolute; right: 5px; top: 10px" v-if="item === selected">
+      <div
+        style="position: absolute; right: 5px; top: 10px"
+        v-if="item === selected && isEdit === false"
+      >
         <el-icon style="width: 20px; height: 20px" @click="editClick"><Edit /></el-icon>
         <el-icon style="width: 20px; height: 20px" @click="deleteClick"><DeleteFilled /></el-icon>
+      </div>
+      <div
+        style="position: absolute; right: 5px; top: 10px"
+        v-if="item === selected && isEdit === true"
+      >
+        <el-icon style="width: 20px; height: 20px" @click="saveClick"><Check /></el-icon>
+        <el-icon style="width: 20px; height: 20px" @click="closeClick"><Close /></el-icon>
       </div>
     </div>
   </template>
@@ -16,8 +26,10 @@
 import { ref } from 'vue'
 
 const selected = ref(-1)
+const isEdit = ref(false)
 const editClick = () => {
   console.log('edit')
+  isEdit.value = true
 }
 
 const deleteClick = () => {}
@@ -25,7 +37,13 @@ const deleteClick = () => {}
 // 选中
 const selectedClick = (item: any) => {
   selected.value = item
+  isEdit.value = false
 }
+
+const saveClick = () => {}
+
+const closeClick = () => {}
+
 const contentLength = ref(10)
 </script>
 <style type="text/css" scoped>
