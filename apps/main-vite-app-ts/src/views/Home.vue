@@ -4,9 +4,21 @@
     <div class="header">
       <div class="header-left">
         <img :src="headerSetting.logoUrl" class="login-image" @click="homeClick" />
-        <div class="left-title">aehyok</div>
+        <div class="left-title">盛阳版</div>
       </div>
-      <div class="right-center">
+      <div
+        style="
+          flex: auto;
+          color: red;
+          font-size: 10px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-end;
+        "
+      >
+        <div style="display: block">授权总信用额度/已使用额度：{{ '$18.00' }}/{{ '$2.34' }}</div>
+      </div>
+      <div class="center-right">
         <template v-for="(item, index) in modeuleList" :key="index">
           <div
             @click="jumpChildSystem(item)"
@@ -129,7 +141,9 @@ export default defineComponent({
   }
   .header-left {
     display: flex;
+    margin-left: 10px;
     align-items: center;
+    width: 245px;
   }
   .left-title {
     color: white;
@@ -138,7 +152,7 @@ export default defineComponent({
     font-weight: bold;
   }
 
-  .right-center {
+  .center-right {
     float: right;
     display: flex;
     justify-content: center;
