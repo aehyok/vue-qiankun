@@ -110,6 +110,7 @@ import { Promotion } from '@element-plus/icons-vue'
 import MarkdownIt from 'markdown-it'
 import 'highlight.js/styles/default.css'
 import hljs from 'highlight.js'
+import { getChatCompletions } from '@/services/chatgpt.js'
 
 const markdown = new MarkdownIt({
   linkify: true,
@@ -138,6 +139,8 @@ const content = ref(
 const html = computed(() => {
   return markdown.render(content.value)
 })
+
+getChatCompletions({ content: '你好' })
 </script>
 <style lang="scss" scoped>
 .chat-content {
