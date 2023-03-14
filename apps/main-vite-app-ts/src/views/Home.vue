@@ -4,7 +4,7 @@
     <div class="header">
       <div class="header-left">
         <img :src="headerSetting.logoUrl" class="login-image" @click="homeClick" />
-        <div class="left-title">盛阳</div>
+        <div class="left-title">chatMe</div>
       </div>
       <div
         style="
