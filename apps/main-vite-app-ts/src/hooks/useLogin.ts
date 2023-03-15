@@ -48,32 +48,23 @@ export function useLogin(loginForm: LoginState, rememberPasCbox: any) {
     console.log(md5(loginForm.password).toLocaleLowerCase())
     loginForm.loading = true
 
-    // const res = await login({
-    //   account: encode(loginForm.account),
-    //   captchaValue: '0yta',
-    //   password: md5(loginForm.password).toLocaleLowerCase(),
-    //   captchaId: loginForm.captchaId
-    // })
-    const res = await login()
+    const {account} = loginForm
+    const password = md5(loginForm.password).toLocaleLowerCase()
+
+    const res = await login({account, password})
     loginForm.loading = false
     if (res?.code === 200) {
-      const account = encode(loginForm.account)
-      const password = md5(loginForm.password).toLocaleLowerCase()
-      const result = res.data.find((item) => item.account === account && item.password === password)
-      if (result?.success === '200') {
         localStorage.setItem(
           'token',
           JSON.stringify({
-            ...result,
+            ...res,
             account: loginForm.account
           })
         )
         localStorage.removeItem('pinia')
         store.fetchSystemList()
-      } else {
-        warnMessage('用户名或密码输入有误，请重新输入')
-      }
     } else {
+      // warnMessage('用户名或密码输入有误，请重新输入')
       getImageVerifyCode()
     }
   }

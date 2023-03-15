@@ -56,25 +56,11 @@ export const getSystemList = async () => {
 /**
  *  登录暂存用户列表
  */
-export const login = () => {
-  return {
-    data: [
-      {
-        account: 'YWRtaW4=',
-        password: 'e10adc3949ba59abbe56e057f20f883e',
-        success: '200',
-        nickName: 'admin'
-      },
-      {
-        account: 'YWVoeW9r',
-        password: 'e10adc3949ba59abbe56e057f20f883e',
-        success: '200',
-        nickName: 'aehyok'
-      }
-    ],
-    code: 200,
-    message: 'success'
-  }
+export const login = (data) => {
+  return request('/user/login', {
+    method: 'post',
+    data
+  })
 }
 
 /**
