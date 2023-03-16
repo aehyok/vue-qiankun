@@ -1,6 +1,7 @@
 <template>
   <div class="chat-right">
-    <div class="right-scroll">
+    <div ref="contentRef" class="right-scroll">
+      <!-- <div > -->
       <div class="right-content" v-for="(item, index) in questionAndAnswerData" :key="index">
         <!-- -----------问题 开始----------  -->
         <div
@@ -103,8 +104,10 @@
           <!-- 答案的内容 结束 -->
         </div>
       </div>
+
+      <!-- </div> -->
       <!-- 例子 -->
-      <div class="right-content">
+      <!-- <div class="right-content">
         <div
           style="
             display: flex;
@@ -196,17 +199,24 @@
             ></div>
           </div>
         </div>
-      </div>
+      </div> -->
+    </div>
+    <div style="text-align: center; margin: 20px 0">
+      <el-button type="primary" :loading="loading">Loading</el-button>
     </div>
     <div class="foot-content">
+      <el-button type="success" @click="createChatContent">生成图片</el-button>
       <el-input
         v-model="input"
         :rows="2"
         type="textarea"
-        style="height: 60px; padding-right: 10px; margin-top: 10px"
+        :readonly="loading"
+        style="height: 60px; padding: 0 10px; margin-top: 10px"
         placeholder="请输入"
       />
-      <el-button type="success" :icon="Promotion" @click="sendChatContent">发送</el-button>
+      <el-button type="success" :icon="Promotion" @click="sendChatContent" :loading="loading">
+        发送
+      </el-button>
     </div>
   </div>
 </template>
@@ -214,11 +224,11 @@
 import { computed, onMounted, ref } from 'vue'
 import { Promotion } from '@element-plus/icons-vue'
 import MarkdownIt from 'markdown-it'
+import html2canvas from 'html2canvas'
 import 'highlight.js/styles/default.css'
 import hljs from 'highlight.js'
 import { getChatCompletions } from '@/services/chatgpt.js'
 import { useChatStore } from '@/store/chat'
-
 // interface questionAndAnswerDataType {
 //   question: string
 //   answer: string
@@ -229,20 +239,22 @@ const markdown = new MarkdownIt({
   linkify: true,
   highlight(str: any, lang: any) {
     console.log(str, lang, 'str-lang')
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return `<pre class="hljs" style=" position:relative;"><div class="pre-top"><span style="padding-left: 5px;">${lang}</span><span style="padding-right:5px">复制代码</span></div></div><code>${markdown.utils.escapeHtml(
-          str
-        )}</code></pre>`
-        // eslint-disable-next-line no-empty
-      } catch (__) {}
-    }
+    // if (lang && hljs.getLanguage(lang)) {
+    try {
+      return `<pre class="hljs" style=" position:relative;"><div class="pre-top"><span style="padding-left: 5px;">${lang}</span><span style="padding-right:5px">复制代码</span></div></div><code>${markdown.utils.escapeHtml(
+        str
+      )}</code></pre>`
+      // eslint-disable-next-line no-empty
+    } catch (__) {}
+    // }
 
     return `<pre class="hljs-no-lang"><code>${markdown.utils.escapeHtml(str)}</code></pre>`
   }
 })
 
-const input = ref('你好')
+const input = ref('')
+const loading = ref(false)
+const contentRef: any = ref(null)
 const questionAndAnswerData: any = ref([])
 
 const iconUrl = ref('/images/home/icon_avator.png')
@@ -256,6 +268,7 @@ const html = computed(() => {
 })
 
 const sendChatContent = () => {
+  loading.value = true
   getChatCompletions({ content: input.value }).then((res: any) => {
     const { code, data } = res
     if (code === 200) {
@@ -266,9 +279,42 @@ const sendChatContent = () => {
         }
         questionAndAnswerData.value.push(presentData)
         chatStore.setQuestionAnswerDat(questionAndAnswerData.value)
+        input.value = ''
+        loading.value = false
         console.log(code, data, 'chatComplteions')
       }
+    } else {
+      loading.value = false
     }
+  })
+}
+
+const createChatContent = () => {
+  // contentRef.value.scrollTop = 0
+  return new Promise(() => {
+    html2canvas(contentRef.value, {
+      useCORS: true,
+      allowTaint: true,
+      scale: 1,
+      width: contentRef.value.scrollWidth,
+      height: contentRef.value.scrollHeight,
+      windowHeight: contentRef.value.scrollHeight + 220,
+      // windowWidth: contentRef.value.scrollWidth,
+      x: 0,
+      y: 0
+    }).then((canvas) => {
+      const oA = document.createElement('a')
+      // let time = timeFormat()
+      const aaa = '1'
+      oA.download = `img_${aaa}.png`
+      // // 设置下载的文件名，默认是'下载'
+      oA.href = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
+
+      document.body.appendChild(oA)
+      oA.click()
+      oA.remove() // 下载之后把创建的元素删除
+      // resolve(dataURL)
+    })
   })
 }
 
@@ -298,9 +344,12 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  // height: 100vh;
 }
 .right-scroll {
   overflow-y: scroll;
+  // overflow: hidden;
+  // height: auto;
 }
 .right-scroll::-webkit-scrollbar {
   width: 0 !important;

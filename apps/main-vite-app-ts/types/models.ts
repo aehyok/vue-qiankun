@@ -1,8 +1,9 @@
-// declare global {
-//   interface Window {
-//     handConfig: any;
-//   }
-// }
+declare global {
+  interface Window {
+    handConfig: any
+    pageYoffset: any
+  }
+}
 
 // 菜单核心定义
 export interface Menu {
