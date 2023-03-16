@@ -3,7 +3,7 @@
     <div :class="item === selected ? 'select-group ' : 'group-list'" @click="selectedClick(item)">
       <el-icon style="padding-left: 5px"><ChatDotRound /></el-icon>
       <div :class="item === selected ? 'select-group-title' : 'group-title'">
-        {{ item }}chatgpt接口学习指南chatgpt接口学习指南
+        {{ item?.question }}
       </div>
       <div
         style="position: absolute; right: 5px; top: 10px"
@@ -24,6 +24,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useChatStore } from '@/store/chat'
 
 const selected = ref(-1)
 const isEdit = ref(false)
@@ -31,6 +32,7 @@ const editClick = () => {
   console.log('edit')
   isEdit.value = true
 }
+const chatStore = useChatStore()
 
 const deleteClick = () => {}
 
@@ -44,7 +46,8 @@ const saveClick = () => {}
 
 const closeClick = () => {}
 
-const contentLength = ref(10)
+const contentLength = ref([])
+contentLength.value = chatStore.questionAnswerData
 </script>
 <style type="text/css" scoped>
 .group-list {

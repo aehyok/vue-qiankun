@@ -9,8 +9,8 @@
       </el-aside>
       <el-main class="layoutbox">
         <div class="main-wrapper" style="position: relative; height: 100%">
-          <router-view v-show="main"></router-view>
-          <div id="mainwrapper"></div>
+          <!-- <router-view v-show="main"></router-view> -->
+          <div id="mainwrapper">1111111111111</div>
         </div>
       </el-main>
     </el-container>
