@@ -30,7 +30,7 @@ import type { DefineComponent from 'vue';
           <line x1="12" y1="5" x2="12" y2="19"></line>
           <line x1="5" y1="12" x2="19" y2="12"></line>
         </svg>
-        <div style="margin-left: 5px">New chat</div>
+        <div style="margin-left: 5px" @click="setGrouping">New chat</div>
       </div>
       <left-group-component />
     </div>
@@ -40,6 +40,10 @@ import type { DefineComponent from 'vue';
 <script setup lang="ts">
 import LeftGroupComponent from './leftGroup.vue'
 import RightContentComponent from './rightContent.vue'
+
+const setGrouping = () => {
+  
+}
 </script>
 <style lang="scss" scoped>
 .chat-content {

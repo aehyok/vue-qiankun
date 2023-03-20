@@ -22,6 +22,7 @@
     "pinia-plugin-persist": "^1.0.0",
     "qiankun": "^2.10.2",
     "qs": "^6.11.0",
+    "shortid": "^2.2.16",
     "swiper": "^6.8.4",
     "v-contextmenu": "^3.0.0",
     "vue": "^3.2.47",

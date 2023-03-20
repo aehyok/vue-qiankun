@@ -16,7 +16,9 @@
           align-items: flex-end;
         "
       >
-        <div style="display: block">授权总信用额度/已使用额度：{{ '$18.00' }}/{{ '$2.34' }}</div>
+        <div style="display: block">
+          授权总信用额度/已使用额度：${{ totalUsed }}/${{ totalGgranted }}
+        </div>
       </div>
       <div class="center-right">
         <template v-for="(item, index) in modeuleList" :key="index">
@@ -41,12 +43,13 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs, getCurrentInstance, onMounted } from 'vue'
+import { defineComponent, reactive, toRefs, getCurrentInstance, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useSystemMenu } from '@/store'
 import { formSave } from '../services'
 import Chat from './chat/index.vue'
 import UpdatePassword from '../components/update-password.vue'
+import { getChatUsage } from '@/services/chatgpt'
 
 function useModuleSetting(router: any, store: any, proxy: any) {
   const modeuleList = reactive(store.systemList)
@@ -76,6 +79,8 @@ export default defineComponent({
     const { proxy } = getCurrentInstance()
     const router = useRouter()
     const store = useSystemMenu()
+    const totalGgranted = ref(0)
+    const totalUsed = ref(0)
     const state = reactive({
       showHome: true,
       updateDialogVisible: false,
@@ -91,9 +96,19 @@ export default defineComponent({
     // 模块列表
     // eslint-disable-next-line no-use-before-define
     const { modeuleList, jumpChildSystem } = useModuleSetting(router, store, proxy)
+    const getUsage = () => {
+      getChatUsage().then((res: any) => {
+        if (res?.code === 200) {
+          console.log(res.data, 'res.data.')
 
+          totalGgranted.value = res.data.total_granted.toFixed(2)
+          totalUsed.value = res.data.total_used.toFixed(2)
+        }
+      })
+    }
     onMounted(() => {
       getTreeData()
+      getUsage()
     })
 
     const close = () => {
@@ -116,7 +131,9 @@ export default defineComponent({
       modeuleList,
       jumpChildSystem,
       homeClick,
-      close
+      close,
+      totalGgranted,
+      totalUsed
     }
   }
 })

@@ -24,6 +24,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
+// import shortid from 'shortid'
 import { useChatStore } from '@/store/chat'
 
 const selected = ref(-1)

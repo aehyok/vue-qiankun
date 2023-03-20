@@ -6,3 +6,10 @@ export const getChatCompletions = (data) => {
     data
   })
 }
+
+export const getChatUsage = (data) => {
+  return request('/openai/getUsage', {
+    method: 'post',
+    data
+  })
+}
