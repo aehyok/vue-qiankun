@@ -17,7 +17,7 @@
         "
       >
         <div style="display: block">
-          授权总信用额度/已使用额度：${{ totalUsed }}/${{ totalGgranted }}
+          授权总信用额度/已使用额度：${{ totalGgranted }}/${{ totalUsed }}
         </div>
       </div>
       <div class="center-right">

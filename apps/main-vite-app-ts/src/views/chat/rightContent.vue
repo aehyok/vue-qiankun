@@ -207,7 +207,7 @@
       >
     </div>
     <div class="foot-content">
-      <el-button type="success" @click="createChatContent">生成图片</el-button>
+      <el-button type="success" @click="createChatContent">生成回话截图</el-button>
       <el-input
         v-model="input"
         :rows="2"
