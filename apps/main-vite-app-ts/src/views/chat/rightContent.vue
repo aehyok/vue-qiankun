@@ -202,7 +202,9 @@
       </div> -->
     </div>
     <div style="text-align: center; margin: 20px 0">
-      <el-button type="primary" :loading="loading" v-if="loading">Loading</el-button>
+      <el-button type="primary" :loading="loading" v-if="loading"
+        >正在请求数据，请稍后......</el-button
+      >
     </div>
     <div class="foot-content">
       <el-button type="success" @click="createChatContent">生成图片</el-button>
