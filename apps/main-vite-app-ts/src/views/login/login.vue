@@ -89,7 +89,7 @@ const rules = {
   captchaValue: [{ required: true, message: '请输入验证码', trigger: ['blur', 'change'] }]
 }
 const loginForm = reactive<LoginState>({
-  account: 'admin',
+  account: '18888888888',
   password: '123456',
   captchaValue: 'oyta',
   captchaId: '',
