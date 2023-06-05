@@ -57,9 +57,18 @@ export const getSystemList = async () => {
  *  登录暂存用户列表
  */
 export const login = (data) => {
-  return request('/user/login', {
-    method: 'post',
-    data
+  // return request('/user/login', {
+  //   method: 'post',
+  //   data
+  // })
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log(data)
+      resolve({
+        code: 200,
+        data: 'xxxxxxx'
+      })
+    }, 2000)
   })
 }
 

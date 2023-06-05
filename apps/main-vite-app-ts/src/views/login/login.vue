@@ -105,7 +105,7 @@ getImageVerifyCode()
 
 const submitForm = () => {
   console.log(rememberPasCbox.value, 'rember')
-  form.value.validate((valid) => {
+  form.value.validate((valid: any) => {
     if (valid) {
       checkNeedRememberPassword()
       submitLogin()

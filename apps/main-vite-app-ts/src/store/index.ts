@@ -36,6 +36,7 @@ export const useSystemMenu = defineStore("useSystemMenu", {
     async fetchSystemList() {
       try {
         const res: any = await getSystemList()
+        console.log('fetched system list',res)
         if (res?.code === 200) {
           this.setSystemList(res.data)
           this.setMenuList(getMenuList())

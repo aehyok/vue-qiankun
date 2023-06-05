@@ -157,6 +157,8 @@ const columnsTest = [
   }
 ]
 
+// eslint-disable-next-line import/no-mutable-exports
+let listTest = []
 for (let index = 0; index < 100; index++) {
   // eslint-disable-next-line no-const-assign
   listTest = [...listTest, ...temp]
