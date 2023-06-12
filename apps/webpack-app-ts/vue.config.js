@@ -11,7 +11,7 @@ module.exports = {
     },
     proxy: {
       '/so': {
-        target: 'http://175.178.60.76:5000', // 代理接口
+        target: 'http://101.35.211.235:3001', // 代理接口
         ws: true,
         changeOrigin: true,
         pathRewrite: {

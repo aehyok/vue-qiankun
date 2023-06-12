@@ -433,7 +433,7 @@ const componentClick = (item) => {
   }
 }
 </script>
-<style scoped="scss">
+<style scoped lang="scss">
 .container {
   border: 1px solid #eaecef;
   width: 100%;
@@ -464,12 +464,12 @@ const componentClick = (item) => {
 }
 .right-component {
   min-width: 360px;
-  height: calc(90vh- 60px);
+  height: calc(90vh - 60px);
   border-left: 1px solid #eaecef;
 }
 .center {
   width: 100%;
-  height: calc(90vh- 60px);
+  height: calc(90vh - 60px);
   padding: 10px;
 }
 .item-component {

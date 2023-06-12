@@ -31,7 +31,7 @@ module.exports = {
     },
     proxy: {
       '/infra': {
-        target: 'http://139.9.184.171:10088/',
+        target: 'http://101.35.211.235:3001',
         ws: true,
         changeOrigin: true,
         pathRewrite: {

@@ -91,7 +91,7 @@ export default defineComponent({
         }
         const data = values[1]
         if (data.code === 200) {
-          console.log(data, 'table列表配置')
+          console.log(data, 'table列表数据')
           state.list = data.data
           console.log(state.columns, 'state.columns')
         }

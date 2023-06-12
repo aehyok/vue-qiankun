@@ -14,7 +14,7 @@
     </div>
   </vue3-seamless-scroll>
 </template>
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import { Vue3SeamlessScroll } from 'vue3-seamless-scroll'
 

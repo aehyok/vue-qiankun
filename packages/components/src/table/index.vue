@@ -35,7 +35,8 @@
         <template #default="scope">
           <!-- html可自定义字段的显示html -->
           <template v-if="column.type === 'html'">
-            <div v-html="convertHtml(scope.row, column)"></div>
+            <!-- <div v-html="convertHtml(scope.row, column)"></div> -->
+            <div>html</div>
           </template>
 
           <!--字典转换--->
@@ -61,7 +62,8 @@
             <span v-else>--</span>
           </template> -->
           <template v-else>
-            <span>{{ scope.row[column.prop] }}</span>
+            <!-- <span>{{ scope.row[column.prop] }}</span> -->
+            <span>--</span>
           </template>
         </template>
       </el-table-column>
