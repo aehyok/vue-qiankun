@@ -11,7 +11,7 @@
 
 - 可以直接点击[https://github.com/aehyok/vue-qiankun/blob/dev/docs/qiankun.md](https://github.com/aehyok/vue-qiankun/blob/dev/docs/qiankun.md)
 
-## :x: [0、2021 和 2022 年每天学习记录、周计划和月计划等](https://github.com/aehyok/2022)
+## :: [0、2021 和 2022 年每天学习记录、周计划和月计划等](https://github.com/aehyok/2022)
 
 ## :heavy_check_mark: [1、qiankun 微前端在 vue3 中的使用详细说明](https://github.com/aehyok/vue-qiankun/blob/dev/docs/qiankun.md)
 
